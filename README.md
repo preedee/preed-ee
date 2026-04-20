@@ -7,7 +7,7 @@ Personal projects dashboard. Scans `~/Desktop/Cowork/`, emits a static site, dep
 ```
 preed-ee/
 ├── scripts/scan-projects.ts    # Bun scanner — reads git/fs metadata
-├── site/                        # GitHub Pages root (publish this folder)
+├── docs/                        # GitHub Pages root (publish this folder)
 │   ├── index.html
 │   ├── styles.css
 │   ├── projects.json            # data artifact
@@ -21,7 +21,7 @@ preed-ee/
 
 ```bash
 bun run scan      # rescans Cowork/, rewrites projects.json + injects data into index.html
-open site/index.html
+open docs/index.html
 ```
 
 The page is fully self-contained — the project data is inlined into `index.html` between `<!-- DATA:START -->` / `<!-- DATA:END -->`. It works over `file://`, no server needed.
@@ -41,7 +41,7 @@ One-time setup (replace `YOUR-USER` with your GitHub username):
    git remote add origin git@github.com:YOUR-USER/preed-ee.git
    git push -u origin main
    ```
-3. **Enable Pages:** repo → Settings → Pages → Source: *Deploy from a branch* → Branch: `main`, Folder: `/site` → Save.
+3. **Enable Pages:** repo → Settings → Pages → Source: *Deploy from a branch* → Branch: `main`, Folder: `/docs` → Save.
 4. **DNS for preed.ee** (at your registrar). For an apex domain, add these A records pointing at GitHub's Pages IPs:
    ```
    A   @   185.199.108.153

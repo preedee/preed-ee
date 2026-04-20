@@ -4,8 +4,8 @@ import { join, resolve } from "node:path";
 import { $ } from "bun";
 
 const COWORK_ROOT = "/Users/preedee/Desktop/Cowork";
-const OUT_JSON = resolve(import.meta.dir, "../site/projects.json");
-const INDEX_HTML = resolve(import.meta.dir, "../site/index.html");
+const OUT_JSON = resolve(import.meta.dir, "../docs/projects.json");
+const INDEX_HTML = resolve(import.meta.dir, "../docs/index.html");
 
 const TOP_EXCLUDE = new Set([".claude", ".DS_Store", "Plans", "libs", "preed-ee"]);
 const TBDC_EXCLUDE = new Set(["Plans"]);

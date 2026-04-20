@@ -5,7 +5,7 @@
   "scripts": {
     "scan": "bun run scripts/scan-projects.ts",
     "build": "bun run scripts/scan-projects.ts",
-    "serve": "bun --bun serve site --port 4173"
+    "serve": "bun --bun serve docs --port 4173"
   },
   "devDependencies": {
     "@types/bun": "latest"

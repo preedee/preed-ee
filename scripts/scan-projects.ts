@@ -26,12 +26,14 @@ type Meta = { stack: string; purpose: string; group: string; logo: LogoSpec; sta
 
 const GROUP_TBDC = "Tooth Boutique Dental Clinic";
 const GROUP_PADEL = "Padel";
+const GROUP_PADEL_THAILAND = "Padel Thailand";
 const GROUP_OTHER = "Other";
 
 const TBDC_LOGO: LogoSpec = { kind: "copy", from: "tbdc/brand-deck/assets/logo-monogram.png", as: "tbdc.png" };
 const TPS_LOGO: LogoSpec = { kind: "local", file: "tps-logo.png", as: "tps.png" };
 const MATCHDAY_LOGO: LogoSpec = { kind: "local", file: "matchday-logo.png", as: "matchday.png" };
 const AMITY_LOGO: LogoSpec = { kind: "copy", from: "amity-social-uikit-flutter/assets/images/ShareWorldLogo.png", as: "amity.png" };
+const PADEL_THAILAND_LOGO: LogoSpec = { kind: "copy", from: "padelthailand/img/logo.svg", as: "padelthailand.svg" };
 
 const META: Record<string, Meta> = {
   "tbdc / web":                 { stack: "Next.js 16, React 19, TS",     purpose: "Clinic website for Tooth Boutique Dental Clinic", group: GROUP_TBDC, logo: TBDC_LOGO, status: "live" },
@@ -44,11 +46,12 @@ const META: Record<string, Meta> = {
   "the-padel-society-admin":    { stack: "Next.js 14, React 18",          purpose: "Padel Society admin console",                     group: GROUP_PADEL, logo: TPS_LOGO, status: "live" },
   "amity-social-uikit-flutter": { stack: "Flutter (fork)",                purpose: "Amity Social UIKit fork",                         group: GROUP_PADEL, logo: AMITY_LOGO, status: "fork" },
   "tps-monthly-reports":        { stack: "Skill",                         purpose: "The Padel Society monthly reports skill",         group: GROUP_PADEL, logo: TPS_LOGO, status: "skill" },
+  "padelthailand":              { stack: "HTML/CSS/JS, Leaflet",          purpose: "Tournament calendar for padel in Thailand",       group: GROUP_PADEL_THAILAND, logo: PADEL_THAILAND_LOGO, status: "live" },
   "anthropic-course":           { stack: "Docs",                          purpose: "Anthropic course notes",                          group: GROUP_OTHER, logo: { kind: "monogram", letter: "A", bg: "#d97757", fg: "#ffffff", as: "anthropic.svg" }, status: "paused" },
   "convert-xlsx-to-sheets":     { stack: "Skill",                         purpose: "Scheduled skill definition",                      group: GROUP_OTHER, logo: { kind: "monogram", letter: "X", bg: "#475569", fg: "#f8fafc", as: "xlsx.svg" }, status: "skill" },
 };
 
-const GROUP_ORDER = [GROUP_TBDC, GROUP_PADEL, GROUP_OTHER];
+const GROUP_ORDER = [GROUP_TBDC, GROUP_PADEL, GROUP_PADEL_THAILAND, GROUP_OTHER];
 
 const PADEL_ORDER = [
   "the-padel-society-admin",

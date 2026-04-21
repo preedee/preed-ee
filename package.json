@@ -4,10 +4,13 @@
   "type": "module",
   "scripts": {
     "scan": "bun run scripts/scan-projects.ts",
-    "build": "bun run scripts/scan-projects.ts",
+    "encrypt": "bun run scripts/encrypt.ts",
+    "build": "bun run scripts/scan-projects.ts && bun run scripts/encrypt.ts",
+    "rebuild": "bun run scripts/rebuild.ts",
     "serve": "bun --bun serve docs --port 4173"
   },
   "devDependencies": {
-    "@types/bun": "latest"
+    "@types/bun": "latest",
+    "staticrypt": "^3.5.4"
   }
 }

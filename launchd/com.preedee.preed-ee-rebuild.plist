@@ -7,9 +7,8 @@
 
     <key>ProgramArguments</key>
     <array>
-        <string>/bin/bash</string>
-        <string>-lc</string>
-        <string>cd /Users/preedee/Desktop/Cowork/preed-ee &amp;&amp; /Users/preedee/.bun/bin/bun run scan &amp;&amp; git add docs/projects.json docs/index.html &amp;&amp; (git diff --cached --quiet || (git commit -m "daily rescan $(date -u +%Y-%m-%dT%H:%MZ)" &amp;&amp; git push))</string>
+        <string>/Users/preedee/.bun/bin/bun</string>
+        <string>/Users/preedee/Desktop/Cowork/preed-ee/scripts/rebuild.ts</string>
     </array>
 
     <key>StartCalendarInterval</key>

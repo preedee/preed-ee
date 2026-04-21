@@ -1,11 +1,13 @@
 #!/usr/bin/env bun
-import { readdir, stat, readFile, writeFile } from "node:fs/promises";
-import { join, resolve } from "node:path";
+import { readdir, stat, readFile, writeFile, rm, mkdir, copyFile } from "node:fs/promises";
+import { join, resolve, dirname } from "node:path";
 import { $ } from "bun";
 
 const COWORK_ROOT = "/Users/preedee/Desktop/Cowork";
-const OUT_JSON = resolve(import.meta.dir, "../docs/projects.json");
-const INDEX_HTML = resolve(import.meta.dir, "../docs/index.html");
+const SITE_ROOT = resolve(import.meta.dir, "../docs");
+const LOGOS_DIR = join(SITE_ROOT, "logos");
+const DASHBOARD_TEMPLATE = resolve(import.meta.dir, "dashboard-template.html");
+const DASHBOARD_HTML = join(SITE_ROOT, "projects", "index.html");
 
 const TOP_EXCLUDE = new Set([".claude", ".DS_Store", "Plans", "libs", "preed-ee"]);
 const TBDC_EXCLUDE = new Set(["Plans"]);
@@ -13,33 +15,69 @@ const TBDC_EXCLUDE = new Set(["Plans"]);
 const DATA_START = "<!-- DATA:START -->";
 const DATA_END = "<!-- DATA:END -->";
 
-type Registry = { stack: string; purpose: string };
-const UNKNOWN: Registry = { stack: "—", purpose: "—" };
+type LogoSpec =
+  | { kind: "copy"; from: string; as: string }
+  | { kind: "monogram"; letter: string; bg: string; fg: string; as: string };
 
-const META: Record<string, Registry> = {
-  "tbdc / web":                 { stack: "Next.js 16, React 19, TS",  purpose: "Clinic website for Tooth Boutique Dental Clinic" },
-  "tbdc / invoices":            { stack: "Bun, TypeScript, Playwright", purpose: "Monthly multi-vendor invoice aggregator" },
-  "tbdc / docs":                { stack: "Docs",                        purpose: "HR job descriptions (Thai + English)" },
-  "tbdc / brand-deck":          { stack: "Bun, TS, pptxgenjs",          purpose: "Bilingual onboarding deck generator" },
-  "matchday":                   { stack: "Next.js + specs",             purpose: "Matchday product hub site + spec docs" },
-  "mobile-app-padel":           { stack: "Flutter",                     purpose: "Padel mobile app" },
-  "padel-backend":              { stack: "Express / Node",              purpose: "Padel API backend" },
-  "the-padel-society-admin":    { stack: "Next.js 14, React 18",        purpose: "Padel Society admin console" },
-  "amity-social-uikit-flutter": { stack: "Flutter (fork)",              purpose: "Amity Social UIKit fork" },
-  "anthropic-course":           { stack: "Docs",                        purpose: "Anthropic course notes" },
-  "convert-xlsx-to-sheets":     { stack: "Skill",                       purpose: "Scheduled skill definition" },
-  "tps-monthly-reports":        { stack: "Skill",                       purpose: "The Padel Society monthly reports skill" },
+type Meta = { stack: string; purpose: string; group: string; logo: LogoSpec };
+
+const GROUP_TBDC = "Tooth Boutique Dental Clinic";
+const GROUP_PADEL = "Padel";
+const GROUP_OTHER = "Other";
+
+const TBDC_LOGO: LogoSpec = { kind: "copy", from: "tbdc/brand-deck/assets/logo-monogram.png", as: "tbdc.png" };
+const PADEL_APP_LOGO: LogoSpec = { kind: "copy", from: "mobile-app-padel/assets/images/logo.svg", as: "padel-app.svg" };
+const TPS_LOGO: LogoSpec = { kind: "copy", from: "the-padel-society-admin/public/images/logos/light-logo.svg", as: "tps.svg" };
+const AMITY_LOGO: LogoSpec = { kind: "copy", from: "amity-social-uikit-flutter/assets/images/ShareWorldLogo.png", as: "amity.png" };
+
+const META: Record<string, Meta> = {
+  "tbdc / web":                 { stack: "Next.js 16, React 19, TS",     purpose: "Clinic website for Tooth Boutique Dental Clinic", group: GROUP_TBDC, logo: TBDC_LOGO },
+  "tbdc / invoices":            { stack: "Bun, TypeScript, Playwright",   purpose: "Monthly multi-vendor invoice aggregator",         group: GROUP_TBDC, logo: TBDC_LOGO },
+  "tbdc / docs":                { stack: "Docs",                          purpose: "HR job descriptions (Thai + English)",            group: GROUP_TBDC, logo: TBDC_LOGO },
+  "tbdc / brand-deck":          { stack: "Bun, TS, pptxgenjs",            purpose: "Bilingual onboarding deck generator",             group: GROUP_TBDC, logo: TBDC_LOGO },
+  "matchday":                   { stack: "Next.js + specs",               purpose: "Matchday product hub site + spec docs",           group: GROUP_PADEL, logo: { kind: "monogram", letter: "M", bg: "#0f766e", fg: "#ecfeff", as: "matchday.svg" } },
+  "mobile-app-padel":           { stack: "Flutter",                       purpose: "Padel mobile app",                                group: GROUP_PADEL, logo: PADEL_APP_LOGO },
+  "padel-backend":              { stack: "Express / Node",                purpose: "Padel API backend",                               group: GROUP_PADEL, logo: TPS_LOGO },
+  "the-padel-society-admin":    { stack: "Next.js 14, React 18",          purpose: "Padel Society admin console",                     group: GROUP_PADEL, logo: TPS_LOGO },
+  "amity-social-uikit-flutter": { stack: "Flutter (fork)",                purpose: "Amity Social UIKit fork",                         group: GROUP_PADEL, logo: AMITY_LOGO },
+  "tps-monthly-reports":        { stack: "Skill",                         purpose: "The Padel Society monthly reports skill",         group: GROUP_PADEL, logo: TPS_LOGO },
+  "anthropic-course":           { stack: "Docs",                          purpose: "Anthropic course notes",                          group: GROUP_OTHER, logo: { kind: "monogram", letter: "A", bg: "#d97757", fg: "#ffffff", as: "anthropic.svg" } },
+  "convert-xlsx-to-sheets":     { stack: "Skill",                         purpose: "Scheduled skill definition",                      group: GROUP_OTHER, logo: { kind: "monogram", letter: "X", bg: "#475569", fg: "#f8fafc", as: "xlsx.svg" } },
 };
+
+const GROUP_ORDER = [GROUP_TBDC, GROUP_PADEL, GROUP_OTHER];
 
 type Project = {
   name: string;
-  path: string;
   stack: string;
   purpose: string;
   createdAt: string;
   updatedAt: string;
   isGit: boolean;
+  group: string;
+  logoPath: string;
 };
+
+function monogramSvg(letter: string, bg: string, fg: string): string {
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64"><rect width="64" height="64" rx="12" fill="${bg}"/><text x="32" y="44" font-family="ui-monospace, SF Mono, Menlo, monospace" font-size="36" font-weight="600" fill="${fg}" text-anchor="middle">${letter}</text></svg>`;
+}
+
+async function materializeLogos(): Promise<void> {
+  await rm(LOGOS_DIR, { recursive: true, force: true });
+  await mkdir(LOGOS_DIR, { recursive: true });
+  const done = new Set<string>();
+  for (const meta of Object.values(META)) {
+    const { logo } = meta;
+    if (done.has(logo.as)) continue;
+    done.add(logo.as);
+    const dest = join(LOGOS_DIR, logo.as);
+    if (logo.kind === "copy") {
+      await copyFile(join(COWORK_ROOT, logo.from), dest);
+    } else {
+      await writeFile(dest, monogramSvg(logo.letter, logo.bg, logo.fg));
+    }
+  }
+}
 
 async function gitDates(dir: string): Promise<{ first: string; last: string } | null> {
   try {
@@ -50,15 +88,23 @@ async function gitDates(dir: string): Promise<{ first: string; last: string } | 
   } catch { return null; }
 }
 
-async function describe(name: string, path: string): Promise<Project> {
-  const meta = META[name] ?? UNKNOWN;
+async function describe(name: string, path: string): Promise<Project | null> {
+  const meta = META[name];
+  if (!meta) return null;
   const [dates, fs] = await Promise.all([gitDates(path), stat(path)]);
-  const createdAt = dates?.first ?? fs.birthtime.toISOString();
-  const updatedAt = dates?.last ?? fs.mtime.toISOString();
-  return { name, path, stack: meta.stack, purpose: meta.purpose, createdAt, updatedAt, isGit: Boolean(dates) };
+  return {
+    name,
+    stack: meta.stack,
+    purpose: meta.purpose,
+    createdAt: dates?.first ?? fs.birthtime.toISOString(),
+    updatedAt: dates?.last ?? fs.mtime.toISOString(),
+    isGit: Boolean(dates),
+    group: meta.group,
+    logoPath: `/logos/${meta.logo.as}`,
+  };
 }
 
-async function listDirs(path: string, exclude: Set<string>): Promise<{ name: string; full: string }[]> {
+async function listDirs(path: string, exclude: Set<string>) {
   const entries = await readdir(path, { withFileTypes: true });
   return entries
     .filter((e) => e.isDirectory() && !e.name.startsWith(".") && !exclude.has(e.name))
@@ -67,8 +113,7 @@ async function listDirs(path: string, exclude: Set<string>): Promise<{ name: str
 
 async function scan(): Promise<Project[]> {
   const top = await listDirs(COWORK_ROOT, TOP_EXCLUDE);
-  const jobs: Promise<Project>[] = [];
-
+  const jobs: Promise<Project | null>[] = [];
   for (const { name, full } of top) {
     if (name === "tbdc") {
       const subs = await listDirs(full, TBDC_EXCLUDE);
@@ -77,35 +122,51 @@ async function scan(): Promise<Project[]> {
       jobs.push(describe(name, full));
     }
   }
-
-  const projects = await Promise.all(jobs);
+  const resolved = await Promise.all(jobs);
+  const projects = resolved.filter((p): p is Project => p !== null);
   projects.sort((a, b) => b.updatedAt.localeCompare(a.updatedAt));
   return projects;
 }
 
-async function injectIntoHtml(inlineJson: string): Promise<boolean> {
-  let html: string;
-  try { html = await readFile(INDEX_HTML, "utf8"); }
-  catch { return false; }
-  const s = html.indexOf(DATA_START);
-  const e = html.indexOf(DATA_END);
-  if (s === -1 || e === -1) return false;
-  const next = html.slice(0, s + DATA_START.length) + "\n" + inlineJson + "\n    " + html.slice(e);
-  await writeFile(INDEX_HTML, next);
-  return true;
+function groupProjects(projects: Project[]) {
+  const byGroup = new Map<string, Project[]>();
+  for (const p of projects) {
+    const arr = byGroup.get(p.group) ?? [];
+    arr.push(p);
+    byGroup.set(p.group, arr);
+  }
+  return GROUP_ORDER
+    .filter((g) => byGroup.has(g))
+    .map((g) => ({ name: g, projects: byGroup.get(g)! }));
+}
+
+async function renderDashboard(inlineJson: string): Promise<void> {
+  const template = await readFile(DASHBOARD_TEMPLATE, "utf8");
+  const s = template.indexOf(DATA_START);
+  const e = template.indexOf(DATA_END);
+  if (s === -1 || e === -1) throw new Error("template missing DATA:START/END markers");
+  const next = template.slice(0, s + DATA_START.length) + "\n" + inlineJson + "\n    " + template.slice(e);
+  await mkdir(dirname(DASHBOARD_HTML), { recursive: true });
+  await writeFile(DASHBOARD_HTML, next);
 }
 
 async function main() {
+  await materializeLogos();
   const projects = await scan();
-  const payload = { scannedAt: new Date().toISOString(), count: projects.length, projects };
-  await writeFile(OUT_JSON, JSON.stringify(payload, null, 2) + "\n");
-  const injected = await injectIntoHtml(JSON.stringify(payload));
-
-  console.log(`scanned ${projects.length} projects`);
-  console.log(`wrote ${OUT_JSON}`);
-  console.log(injected ? `injected into ${INDEX_HTML}` : `index.html not found — skipped inject`);
-  for (const p of projects) {
-    console.log(`  ${p.createdAt.slice(0, 10)}  ${p.updatedAt.slice(0, 10)}  ${p.isGit ? "git" : "fs "}  ${p.name}`);
+  const groups = groupProjects(projects);
+  const payload = {
+    scannedAt: new Date().toISOString(),
+    count: projects.length,
+    groups,
+  };
+  await renderDashboard(JSON.stringify(payload));
+  console.log(`scanned ${projects.length} projects across ${groups.length} groups`);
+  console.log(`rendered ${DASHBOARD_HTML}`);
+  for (const g of groups) {
+    console.log(`  [${g.name}] ${g.projects.length}`);
+    for (const p of g.projects) {
+      console.log(`    ${p.updatedAt.slice(0, 10)}  ${p.isGit ? "git" : "fs "}  ${p.name}`);
+    }
   }
 }
 

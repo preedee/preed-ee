@@ -17,6 +17,7 @@ const DATA_END = "<!-- DATA:END -->";
 
 type LogoSpec =
   | { kind: "copy"; from: string; as: string }
+  | { kind: "local"; file: string; as: string }
   | { kind: "monogram"; letter: string; bg: string; fg: string; as: string };
 
 type Meta = { stack: string; purpose: string; group: string; logo: LogoSpec };
@@ -27,7 +28,7 @@ const GROUP_OTHER = "Other";
 
 const TBDC_LOGO: LogoSpec = { kind: "copy", from: "tbdc/brand-deck/assets/logo-monogram.png", as: "tbdc.png" };
 const PADEL_APP_LOGO: LogoSpec = { kind: "copy", from: "mobile-app-padel/assets/images/logo.svg", as: "padel-app.svg" };
-const TPS_LOGO: LogoSpec = { kind: "copy", from: "the-padel-society-admin/public/images/logos/light-logo.svg", as: "tps.svg" };
+const TPS_LOGO: LogoSpec = { kind: "local", file: "tps-logo.png", as: "tps.png" };
 const AMITY_LOGO: LogoSpec = { kind: "copy", from: "amity-social-uikit-flutter/assets/images/ShareWorldLogo.png", as: "amity.png" };
 
 const META: Record<string, Meta> = {
@@ -73,6 +74,8 @@ async function materializeLogos(): Promise<void> {
     const dest = join(LOGOS_DIR, logo.as);
     if (logo.kind === "copy") {
       await copyFile(join(COWORK_ROOT, logo.from), dest);
+    } else if (logo.kind === "local") {
+      await copyFile(resolve(import.meta.dir, logo.file), dest);
     } else {
       await writeFile(dest, monogramSvg(logo.letter, logo.bg, logo.fg));
     }

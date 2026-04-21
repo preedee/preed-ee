@@ -15,7 +15,7 @@ if (!password) {
 
 await rm(ENCRYPTED_TMP_DIR, { recursive: true, force: true });
 
-await $`bunx staticrypt ${TARGET} -p ${password} --short --template-title ${"preed.ee / projects"} --template-instructions ${"enter password to continue"} --template-button ${"unlock"} --template-color-primary ${"#7dd3c0"} --template-color-secondary ${"#0a0a0a"} --template-placeholder ${"password"} -d ${ENCRYPTED_TMP_DIR}`.quiet();
+await $`bunx staticrypt ${TARGET} -p ${password} --short --remember ${30} --template-title ${"preed.ee / projects"} --template-instructions ${"enter password to continue"} --template-button ${"unlock"} --template-color-primary ${"#7dd3c0"} --template-color-secondary ${"#0a0a0a"} --template-placeholder ${"password"} --template-remember ${"remember this device for 30 days"} -d ${ENCRYPTED_TMP_DIR}`.quiet();
 
 const encryptedPath = join(ENCRYPTED_TMP_DIR, "index.html");
 const encrypted = await readFile(encryptedPath, "utf8");

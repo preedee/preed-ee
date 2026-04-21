@@ -1,23 +1,14 @@
 {
-  "scannedAt": "2026-04-20T16:37:54.278Z",
+  "scannedAt": "2026-04-21T06:46:05.046Z",
   "count": 12,
   "projects": [
-    {
-      "name": "tbdc / brand-deck",
-      "path": "/Users/preedee/Desktop/Cowork/tbdc/brand-deck",
-      "stack": "Bun, TS, pptxgenjs",
-      "purpose": "Bilingual onboarding deck generator",
-      "createdAt": "2026-04-17T16:45:10.986Z",
-      "updatedAt": "2026-04-20T12:29:14.000Z",
-      "isGit": false
-    },
     {
       "name": "matchday",
       "path": "/Users/preedee/Desktop/Cowork/matchday",
       "stack": "Next.js + specs",
       "purpose": "Matchday product hub site + spec docs",
       "createdAt": "2026-04-16T07:53:31.954Z",
-      "updatedAt": "2026-04-19T15:28:46.000Z",
+      "updatedAt": "2026-04-21T02:48:08.000Z",
       "isGit": false
     },
     {
@@ -26,7 +17,16 @@
       "stack": "Bun, TypeScript, Playwright",
       "purpose": "Monthly multi-vendor invoice aggregator",
       "createdAt": "2026-04-13T09:57:20.746Z",
-      "updatedAt": "2026-04-19T05:45:05.000Z",
+      "updatedAt": "2026-04-21T02:47:41.000Z",
+      "isGit": false
+    },
+    {
+      "name": "tbdc / brand-deck",
+      "path": "/Users/preedee/Desktop/Cowork/tbdc/brand-deck",
+      "stack": "Bun, TS, pptxgenjs",
+      "purpose": "Bilingual onboarding deck generator",
+      "createdAt": "2026-04-17T16:45:10.986Z",
+      "updatedAt": "2026-04-21T02:46:52.000Z",
       "isGit": false
     },
     {

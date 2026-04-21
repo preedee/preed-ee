@@ -20,7 +20,9 @@ type LogoSpec =
   | { kind: "local"; file: string; as: string }
   | { kind: "monogram"; letter: string; bg: string; fg: string; as: string };
 
-type Meta = { stack: string; purpose: string; group: string; logo: LogoSpec };
+type ProjectStatus = "live" | "wip" | "paused" | "skill" | "fork" | "archived";
+
+type Meta = { stack: string; purpose: string; group: string; logo: LogoSpec; status: ProjectStatus };
 
 const GROUP_TBDC = "Tooth Boutique Dental Clinic";
 const GROUP_PADEL = "Padel";
@@ -32,18 +34,18 @@ const MATCHDAY_LOGO: LogoSpec = { kind: "local", file: "matchday-logo.png", as: 
 const AMITY_LOGO: LogoSpec = { kind: "copy", from: "amity-social-uikit-flutter/assets/images/ShareWorldLogo.png", as: "amity.png" };
 
 const META: Record<string, Meta> = {
-  "tbdc / web":                 { stack: "Next.js 16, React 19, TS",     purpose: "Clinic website for Tooth Boutique Dental Clinic", group: GROUP_TBDC, logo: TBDC_LOGO },
-  "tbdc / invoices":            { stack: "Bun, TypeScript, Playwright",   purpose: "Monthly multi-vendor invoice aggregator",         group: GROUP_TBDC, logo: TBDC_LOGO },
-  "tbdc / docs":                { stack: "Docs",                          purpose: "HR job descriptions (Thai + English)",            group: GROUP_TBDC, logo: TBDC_LOGO },
-  "tbdc / brand-deck":          { stack: "Bun, TS, pptxgenjs",            purpose: "Bilingual onboarding deck generator",             group: GROUP_TBDC, logo: TBDC_LOGO },
-  "matchday":                   { stack: "Next.js + specs",               purpose: "Matchday product hub site + spec docs",           group: GROUP_PADEL, logo: MATCHDAY_LOGO },
-  "mobile-app-padel":           { stack: "Flutter",                       purpose: "TPS mobile app",                                  group: GROUP_PADEL, logo: TPS_LOGO },
-  "padel-backend":              { stack: "Express / Node",                purpose: "Padel API backend",                               group: GROUP_PADEL, logo: TPS_LOGO },
-  "the-padel-society-admin":    { stack: "Next.js 14, React 18",          purpose: "Padel Society admin console",                     group: GROUP_PADEL, logo: TPS_LOGO },
-  "amity-social-uikit-flutter": { stack: "Flutter (fork)",                purpose: "Amity Social UIKit fork",                         group: GROUP_PADEL, logo: AMITY_LOGO },
-  "tps-monthly-reports":        { stack: "Skill",                         purpose: "The Padel Society monthly reports skill",         group: GROUP_PADEL, logo: TPS_LOGO },
-  "anthropic-course":           { stack: "Docs",                          purpose: "Anthropic course notes",                          group: GROUP_OTHER, logo: { kind: "monogram", letter: "A", bg: "#d97757", fg: "#ffffff", as: "anthropic.svg" } },
-  "convert-xlsx-to-sheets":     { stack: "Skill",                         purpose: "Scheduled skill definition",                      group: GROUP_OTHER, logo: { kind: "monogram", letter: "X", bg: "#475569", fg: "#f8fafc", as: "xlsx.svg" } },
+  "tbdc / web":                 { stack: "Next.js 16, React 19, TS",     purpose: "Clinic website for Tooth Boutique Dental Clinic", group: GROUP_TBDC, logo: TBDC_LOGO, status: "live" },
+  "tbdc / invoices":            { stack: "Bun, TypeScript, Playwright",   purpose: "Monthly multi-vendor invoice aggregator",         group: GROUP_TBDC, logo: TBDC_LOGO, status: "live" },
+  "tbdc / docs":                { stack: "Docs",                          purpose: "HR job descriptions (Thai + English)",            group: GROUP_TBDC, logo: TBDC_LOGO, status: "live" },
+  "tbdc / brand-deck":          { stack: "Bun, TS, pptxgenjs",            purpose: "Bilingual onboarding deck generator",             group: GROUP_TBDC, logo: TBDC_LOGO, status: "live" },
+  "matchday":                   { stack: "Next.js + specs",               purpose: "Matchday product hub site + spec docs",           group: GROUP_PADEL, logo: MATCHDAY_LOGO, status: "wip" },
+  "mobile-app-padel":           { stack: "Flutter",                       purpose: "TPS mobile app",                                  group: GROUP_PADEL, logo: TPS_LOGO, status: "wip" },
+  "padel-backend":              { stack: "Express / Node",                purpose: "Padel API backend",                               group: GROUP_PADEL, logo: TPS_LOGO, status: "live" },
+  "the-padel-society-admin":    { stack: "Next.js 14, React 18",          purpose: "Padel Society admin console",                     group: GROUP_PADEL, logo: TPS_LOGO, status: "live" },
+  "amity-social-uikit-flutter": { stack: "Flutter (fork)",                purpose: "Amity Social UIKit fork",                         group: GROUP_PADEL, logo: AMITY_LOGO, status: "fork" },
+  "tps-monthly-reports":        { stack: "Skill",                         purpose: "The Padel Society monthly reports skill",         group: GROUP_PADEL, logo: TPS_LOGO, status: "skill" },
+  "anthropic-course":           { stack: "Docs",                          purpose: "Anthropic course notes",                          group: GROUP_OTHER, logo: { kind: "monogram", letter: "A", bg: "#d97757", fg: "#ffffff", as: "anthropic.svg" }, status: "paused" },
+  "convert-xlsx-to-sheets":     { stack: "Skill",                         purpose: "Scheduled skill definition",                      group: GROUP_OTHER, logo: { kind: "monogram", letter: "X", bg: "#475569", fg: "#f8fafc", as: "xlsx.svg" }, status: "skill" },
 };
 
 const GROUP_ORDER = [GROUP_TBDC, GROUP_PADEL, GROUP_OTHER];
@@ -70,6 +72,7 @@ type Project = {
   isGit: boolean;
   group: string;
   logoPath: string;
+  status: ProjectStatus;
 };
 
 function monogramSvg(letter: string, bg: string, fg: string): string {
@@ -117,6 +120,7 @@ async function describe(name: string, path: string): Promise<Project | null> {
     isGit: Boolean(dates),
     group: meta.group,
     logoPath: `/logos/${meta.logo.as}`,
+    status: meta.status,
   };
 }
 

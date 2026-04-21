@@ -3,13 +3,27 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="color-scheme" content="dark">
+  <meta name="color-scheme" content="dark light">
   <meta name="robots" content="noindex, nofollow">
   <title>preed.ee / projects</title>
+  <script>
+    (function () {
+      try {
+        var saved = localStorage.getItem('preed-ee-theme');
+        var theme = saved || (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+      } catch (e) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }
+    })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600&family=Geist:wght@400;500;600&display=swap">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="stylesheet" href="/styles.css">
 </head>
-<body>
+<body class="dashboard">
   <a class="skip" href="#projects">skip to projects</a>
 
   <header class="page-head">
@@ -17,9 +31,25 @@
       <h1><span class="brand-mark">preedee</span> <span class="brand-sep">/</span> <span class="brand-section">projects</span></h1>
       <p class="tagline">projects, shipped and in progress</p>
     </div>
-    <div class="meta">
-      <span><span class="meta-label">last scanned</span> <span class="meta-value" data-scanned-at>&mdash;</span></span>
-      <span><span class="meta-label">total</span> <span class="meta-value"><span data-count>0</span> projects</span></span>
+    <div class="nav-controls">
+      <nav class="nav-links" aria-label="group navigation">
+        <a href="#group-tbdc">TBDC</a>
+        <a href="#group-padel">Padel</a>
+        <a href="#group-other">Other</a>
+      </nav>
+      <button type="button" class="theme-toggle" aria-label="Switch theme" data-theme-toggle>
+        <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="4"/>
+          <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
+        </svg>
+        <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+      </button>
+      <div class="page-meta">
+        <span><span class="meta-label">last scanned</span> <span class="meta-value" data-scanned-at>&mdash;</span></span>
+        <span><span class="meta-label">total</span> <span class="meta-value"><span data-count>0</span> projects</span></span>
+      </div>
     </div>
   </header>
 
@@ -40,6 +70,23 @@
 
   <script>
     (function () {
+      // Theme toggle
+      var toggle = document.querySelector('[data-theme-toggle]');
+      function updateToggleLabel(theme) {
+        if (!toggle) return;
+        toggle.setAttribute('aria-label', theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+      }
+      updateToggleLabel(document.documentElement.getAttribute('data-theme') || 'dark');
+      if (toggle) {
+        toggle.addEventListener('click', function () {
+          var current = document.documentElement.getAttribute('data-theme') || 'dark';
+          var next = current === 'dark' ? 'light' : 'dark';
+          document.documentElement.setAttribute('data-theme', next);
+          try { localStorage.setItem('preed-ee-theme', next); } catch (e) {}
+          updateToggleLabel(next);
+        });
+      }
+
       var groupsHost = document.querySelector('[data-groups]');
       var fallback = document.querySelector('[data-fallback]');
       var scannedEl = document.querySelector('[data-scanned-at]');
@@ -51,9 +98,9 @@
         if (groupsHost) groupsHost.hidden = true;
         main.setAttribute('aria-busy', 'false');
       }
-      function fmtDate(s) { return s ? String(s).slice(0, 10) : '\u2014'; }
+      function fmtDate(s) { return s ? String(s).slice(0, 10) : '—'; }
       function fmtScanned(s) {
-        if (!s) return '\u2014';
+        if (!s) return '—';
         var str = String(s);
         return str.length >= 16 ? str.slice(0, 10) + ' ' + str.slice(11, 16) : str;
       }
@@ -69,6 +116,7 @@
         cell.appendChild(el('span', 'date-value', fmtDate(dateStr)));
         return cell;
       }
+      function slug(s) { return String(s).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, ''); }
 
       var START = '<!-- DATA:START -->';
       var END = '<!-- DATA:END -->';
@@ -92,9 +140,36 @@
 
       var frag = document.createDocumentFragment();
       data.groups.forEach(function (g) {
-        var section = el('section', 'group');
-        var head = el('h2', 'group-name', g.name);
-        section.appendChild(head);
+        var groupId = 'group-' + slug(g.name.split(/\s+/)[0]);
+        var section = document.createElement('details');
+        section.className = 'group';
+        section.id = groupId;
+        var savedState = null;
+        try { savedState = sessionStorage.getItem('preed-ee-group-' + groupId); } catch (err) {}
+        // Default open; only closed if explicitly saved as "closed"
+        if (savedState === 'closed') {
+          section.open = false;
+        } else {
+          section.open = true;
+        }
+
+        var summary = document.createElement('summary');
+        var name = el('span', 'group-name', g.name);
+        var count = el('span', 'group-count', String((g.projects || []).length));
+        var chevronSvg = '<svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>';
+        summary.appendChild(name);
+        summary.appendChild(count);
+        var chevronWrap = document.createElement('span');
+        chevronWrap.innerHTML = chevronSvg;
+        summary.appendChild(chevronWrap.firstChild);
+        section.appendChild(summary);
+
+        section.addEventListener('toggle', function () {
+          try {
+            sessionStorage.setItem('preed-ee-group-' + groupId, section.open ? 'open' : 'closed');
+          } catch (err) {}
+        });
+
         var list = el('ol', 'project-list');
         (g.projects || []).forEach(function (p) {
           var li = el('li', 'project-row');
@@ -110,6 +185,11 @@
 
           var headEl = el('div', 'project-head');
           headEl.appendChild(el('span', 'project-name', p.name || 'untitled'));
+          if (p.status) {
+            var badge = el('span', 'project-status status-' + p.status, p.status);
+            badge.setAttribute('aria-label', 'status: ' + p.status);
+            headEl.appendChild(badge);
+          }
           if (p.stack) headEl.appendChild(el('span', 'project-stack', p.stack));
 
           var bodyEl = el('div', 'project-body');

@@ -27,8 +27,8 @@ const GROUP_PADEL = "Padel";
 const GROUP_OTHER = "Other";
 
 const TBDC_LOGO: LogoSpec = { kind: "copy", from: "tbdc/brand-deck/assets/logo-monogram.png", as: "tbdc.png" };
-const PADEL_APP_LOGO: LogoSpec = { kind: "copy", from: "mobile-app-padel/assets/images/logo.svg", as: "padel-app.svg" };
 const TPS_LOGO: LogoSpec = { kind: "local", file: "tps-logo.png", as: "tps.png" };
+const MATCHDAY_LOGO: LogoSpec = { kind: "local", file: "matchday-logo.png", as: "matchday.png" };
 const AMITY_LOGO: LogoSpec = { kind: "copy", from: "amity-social-uikit-flutter/assets/images/ShareWorldLogo.png", as: "amity.png" };
 
 const META: Record<string, Meta> = {
@@ -36,8 +36,8 @@ const META: Record<string, Meta> = {
   "tbdc / invoices":            { stack: "Bun, TypeScript, Playwright",   purpose: "Monthly multi-vendor invoice aggregator",         group: GROUP_TBDC, logo: TBDC_LOGO },
   "tbdc / docs":                { stack: "Docs",                          purpose: "HR job descriptions (Thai + English)",            group: GROUP_TBDC, logo: TBDC_LOGO },
   "tbdc / brand-deck":          { stack: "Bun, TS, pptxgenjs",            purpose: "Bilingual onboarding deck generator",             group: GROUP_TBDC, logo: TBDC_LOGO },
-  "matchday":                   { stack: "Next.js + specs",               purpose: "Matchday product hub site + spec docs",           group: GROUP_PADEL, logo: { kind: "monogram", letter: "M", bg: "#0f766e", fg: "#ecfeff", as: "matchday.svg" } },
-  "mobile-app-padel":           { stack: "Flutter",                       purpose: "Padel mobile app",                                group: GROUP_PADEL, logo: PADEL_APP_LOGO },
+  "matchday":                   { stack: "Next.js + specs",               purpose: "Matchday product hub site + spec docs",           group: GROUP_PADEL, logo: MATCHDAY_LOGO },
+  "mobile-app-padel":           { stack: "Flutter",                       purpose: "TPS mobile app",                                  group: GROUP_PADEL, logo: TPS_LOGO },
   "padel-backend":              { stack: "Express / Node",                purpose: "Padel API backend",                               group: GROUP_PADEL, logo: TPS_LOGO },
   "the-padel-society-admin":    { stack: "Next.js 14, React 18",          purpose: "Padel Society admin console",                     group: GROUP_PADEL, logo: TPS_LOGO },
   "amity-social-uikit-flutter": { stack: "Flutter (fork)",                purpose: "Amity Social UIKit fork",                         group: GROUP_PADEL, logo: AMITY_LOGO },
@@ -47,6 +47,19 @@ const META: Record<string, Meta> = {
 };
 
 const GROUP_ORDER = [GROUP_TBDC, GROUP_PADEL, GROUP_OTHER];
+
+const PADEL_ORDER = [
+  "the-padel-society-admin",
+  "padel-backend",
+  "mobile-app-padel",
+  "tps-monthly-reports",
+  "matchday",
+  "amity-social-uikit-flutter",
+];
+
+const GROUP_EXPLICIT_ORDER: Record<string, string[]> = {
+  [GROUP_PADEL]: PADEL_ORDER,
+};
 
 type Project = {
   name: string;
@@ -140,7 +153,24 @@ function groupProjects(projects: Project[]) {
   }
   return GROUP_ORDER
     .filter((g) => byGroup.has(g))
-    .map((g) => ({ name: g, projects: byGroup.get(g)! }));
+    .map((g) => ({ name: g, projects: applyGroupOrder(g, byGroup.get(g)!) }));
+}
+
+function applyGroupOrder(group: string, projects: Project[]): Project[] {
+  const explicit = GROUP_EXPLICIT_ORDER[group];
+  if (!explicit) return projects;
+  const indexOf = (name: string) => {
+    const i = explicit.indexOf(name);
+    return i === -1 ? Number.MAX_SAFE_INTEGER : i;
+  };
+  const missing = projects.filter((p) => !explicit.includes(p.name)).map((p) => p.name);
+  if (missing.length > 0) console.warn(`[${group}] not in explicit order, appended: ${missing.join(", ")}`);
+  return [...projects].sort((a, b) => {
+    const ia = indexOf(a.name);
+    const ib = indexOf(b.name);
+    if (ia !== ib) return ia - ib;
+    return b.updatedAt.localeCompare(a.updatedAt);
+  });
 }
 
 async function renderDashboard(inlineJson: string): Promise<void> {

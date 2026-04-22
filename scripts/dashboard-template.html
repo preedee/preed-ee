@@ -32,11 +32,7 @@
       <p class="tagline">projects, shipped and in progress</p>
     </div>
     <div class="nav-controls">
-      <nav class="nav-links" aria-label="group navigation">
-        <a href="#group-tbdc">TBDC</a>
-        <a href="#group-padel">Padel</a>
-        <a href="#group-other">Other</a>
-      </nav>
+      <nav class="nav-links" aria-label="group navigation" data-nav-links></nav>
       <button type="button" class="theme-toggle" aria-label="Switch theme" data-theme-toggle>
         <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <circle cx="12" cy="12" r="4"/>
@@ -88,6 +84,7 @@
       }
 
       var groupsHost = document.querySelector('[data-groups]');
+      var navHost = document.querySelector('[data-nav-links]');
       var fallback = document.querySelector('[data-fallback]');
       var scannedEl = document.querySelector('[data-scanned-at]');
       var countEl = document.querySelector('[data-count]');
@@ -139,8 +136,16 @@
       countEl.textContent = String(data.count != null ? data.count : 0);
 
       var frag = document.createDocumentFragment();
+      var navFrag = document.createDocumentFragment();
       data.groups.forEach(function (g) {
-        var groupId = 'group-' + slug(g.name.split(/\s+/)[0]);
+        var groupId = 'group-' + slug(g.name);
+
+        if (navHost) {
+          var navLink = document.createElement('a');
+          navLink.href = '#' + groupId;
+          navLink.textContent = g.navLabel || g.name;
+          navFrag.appendChild(navLink);
+        }
         var section = document.createElement('details');
         section.className = 'group';
         section.id = groupId;
@@ -205,6 +210,7 @@
         frag.appendChild(section);
       });
       groupsHost.appendChild(frag);
+      if (navHost) navHost.appendChild(navFrag);
       main.setAttribute('aria-busy', 'false');
     })();
   </script>

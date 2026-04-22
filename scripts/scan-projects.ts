@@ -53,6 +53,13 @@ const META: Record<string, Meta> = {
 
 const GROUP_ORDER = [GROUP_TBDC, GROUP_PADEL, GROUP_PADEL_THAILAND, GROUP_OTHER];
 
+const GROUP_NAV_LABELS: Record<string, string> = {
+  [GROUP_TBDC]: "TBDC",
+  [GROUP_PADEL]: "Padel",
+  [GROUP_PADEL_THAILAND]: "Padel TH",
+  [GROUP_OTHER]: "Other",
+};
+
 const PADEL_ORDER = [
   "the-padel-society-admin",
   "padel-backend",
@@ -160,7 +167,11 @@ function groupProjects(projects: Project[]) {
   }
   return GROUP_ORDER
     .filter((g) => byGroup.has(g))
-    .map((g) => ({ name: g, projects: applyGroupOrder(g, byGroup.get(g)!) }));
+    .map((g) => ({
+      name: g,
+      navLabel: GROUP_NAV_LABELS[g] ?? g,
+      projects: applyGroupOrder(g, byGroup.get(g)!),
+    }));
 }
 
 function applyGroupOrder(group: string, projects: Project[]): Project[] {

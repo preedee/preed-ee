@@ -195,15 +195,19 @@
             badge.setAttribute('aria-label', 'status: ' + p.status);
             headEl.appendChild(badge);
           }
-          if (p.stack) headEl.appendChild(el('span', 'project-stack', p.stack));
 
           var bodyEl = el('div', 'project-body');
           bodyEl.appendChild(headEl);
+          if (p.stack) bodyEl.appendChild(el('span', 'project-stack', p.stack));
           if (p.purpose) bodyEl.appendChild(el('p', 'project-purpose', p.purpose));
 
           if (Array.isArray(p.pendingActions) && p.pendingActions.length > 0) {
+            var pendingCount = p.pendingActions.length;
+            var chip = el('span', 'pending-chip', 'Pending · ' + pendingCount);
+            chip.setAttribute('aria-label', pendingCount + ' pending action' + (pendingCount === 1 ? '' : 's'));
+            headEl.appendChild(chip);
+
             var pending = el('div', 'project-pending');
-            pending.appendChild(el('span', 'pending-label', 'Pending'));
             var ulPending = el('ul', 'pending-list');
             p.pendingActions.forEach(function (action) {
               ulPending.appendChild(el('li', 'pending-item', action));

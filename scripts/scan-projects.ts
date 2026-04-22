@@ -22,7 +22,7 @@ type LogoSpec =
 
 type ProjectStatus = "live" | "wip" | "paused" | "skill" | "fork" | "archived";
 
-type Meta = { stack: string; purpose: string; group: string; logo: LogoSpec; status: ProjectStatus; pendingActions?: string[] };
+type Meta = { stack: string; purpose: string; group: string; logo: LogoSpec; status: ProjectStatus; pendingActions?: string[]; gitExcludePaths?: string[] };
 
 const GROUP_TBDC = "Tooth Boutique Dental Clinic";
 const GROUP_PADEL = "Padel";
@@ -40,15 +40,14 @@ const META: Record<string, Meta> = {
   "tbdc / invoices":            { stack: "Bun, TypeScript, Playwright",   purpose: "Monthly multi-vendor invoice aggregator",         group: GROUP_TBDC, logo: TBDC_LOGO, status: "live" },
   "tbdc / docs":                { stack: "Docs",                          purpose: "HR job descriptions (Thai + English)",            group: GROUP_TBDC, logo: TBDC_LOGO, status: "live" },
   "tbdc / brand-deck":          { stack: "Bun, TS, pptxgenjs",            purpose: "Bilingual onboarding deck generator",             group: GROUP_TBDC, logo: TBDC_LOGO, status: "live" },
-  "tbdc / ads-monitor":         { stack: "Bun, TS, google-ads-api",       purpose: "Google Ads spend/KPI monitor + weekly digest",    group: GROUP_TBDC, logo: TBDC_LOGO, status: "wip",
-                                  pendingActions: ["Move scheduled jobs from local launchd to GitHub Actions cron"] },
+  "tbdc / ads-monitor":         { stack: "Bun, TS, google-ads-api",       purpose: "Google Ads spend/KPI monitor + weekly digest",    group: GROUP_TBDC, logo: TBDC_LOGO, status: "wip" },
   "matchday":                   { stack: "Next.js + specs",               purpose: "Matchday product hub site + spec docs",           group: GROUP_PADEL, logo: MATCHDAY_LOGO, status: "wip" },
   "mobile-app-padel":           { stack: "Flutter",                       purpose: "TPS mobile app",                                  group: GROUP_PADEL, logo: TPS_LOGO, status: "wip" },
   "padel-backend":              { stack: "Express / Node",                purpose: "Padel API backend",                               group: GROUP_PADEL, logo: TPS_LOGO, status: "live" },
   "the-padel-society-admin":    { stack: "Next.js 14, React 18",          purpose: "Padel Society admin console",                     group: GROUP_PADEL, logo: TPS_LOGO, status: "live" },
   "amity-social-uikit-flutter": { stack: "Flutter (fork)",                purpose: "Amity Social UIKit fork",                         group: GROUP_PADEL, logo: AMITY_LOGO, status: "fork" },
   "tps-monthly-reports":        { stack: "Skill",                         purpose: "The Padel Society monthly reports skill",         group: GROUP_PADEL, logo: TPS_LOGO, status: "skill" },
-  "padelthailand":              { stack: "HTML/CSS/JS, Leaflet",          purpose: "Tournament calendar for padel in Thailand",       group: GROUP_PADEL_THAILAND, logo: PADEL_THAILAND_LOGO, status: "live" },
+  "padelthailand":              { stack: "HTML/CSS/JS, Leaflet",          purpose: "Tournament calendar for padel in Thailand",       group: GROUP_PADEL_THAILAND, logo: PADEL_THAILAND_LOGO, status: "live", gitExcludePaths: ["matchday", ".nojekyll"] },
   "anthropic-course":           { stack: "Docs",                          purpose: "Anthropic course notes",                          group: GROUP_OTHER, logo: { kind: "monogram", letter: "A", bg: "#d97757", fg: "#ffffff", as: "anthropic.svg" }, status: "paused" },
   "convert-xlsx-to-sheets":     { stack: "Skill",                         purpose: "Scheduled skill definition",                      group: GROUP_OTHER, logo: { kind: "monogram", letter: "X", bg: "#475569", fg: "#f8fafc", as: "xlsx.svg" }, status: "skill" },
 };
@@ -111,19 +110,35 @@ async function materializeLogos(): Promise<void> {
   }
 }
 
-async function gitDates(dir: string): Promise<{ first: string; last: string } | null> {
+async function gitDates(dir: string, excludePaths?: string[]): Promise<{ first: string; last: string } | null> {
   try {
-    const out = (await $`git -C ${dir} log --format=%aI`.quiet().text()).trim();
+    const pathspec = excludePaths && excludePaths.length > 0
+      ? ["--", ".", ...excludePaths.map((p) => `:(exclude)${p}`)]
+      : [];
+    const out = (await $`git -C ${dir} log --format=%aI ${pathspec}`.quiet().text()).trim();
     if (!out) return null;
     const lines = out.split("\n");
     return { first: lines[lines.length - 1]!, last: lines[0]! };
   } catch { return null; }
 }
 
+async function readNextMd(dir: string): Promise<string[] | undefined> {
+  try {
+    const raw = await readFile(join(dir, "NEXT.md"), "utf8");
+    const items = raw
+      .split("\n")
+      .map((l) => l.trim())
+      .filter((l) => /^[-*]\s+\S/.test(l))
+      .map((l) => l.replace(/^[-*]\s+/, "").trim())
+      .filter((l) => l.length > 0);
+    return items.length > 0 ? items : undefined;
+  } catch { return undefined; }
+}
+
 async function describe(name: string, path: string): Promise<Project | null> {
   const meta = META[name];
   if (!meta) return null;
-  const [dates, fs] = await Promise.all([gitDates(path), stat(path)]);
+  const [dates, fs, nextActions] = await Promise.all([gitDates(path, meta.gitExcludePaths), stat(path), readNextMd(path)]);
   return {
     name,
     stack: meta.stack,
@@ -134,7 +149,7 @@ async function describe(name: string, path: string): Promise<Project | null> {
     group: meta.group,
     logoPath: `/logos/${meta.logo.as}`,
     status: meta.status,
-    pendingActions: meta.pendingActions,
+    pendingActions: nextActions ?? meta.pendingActions,
   };
 }
 

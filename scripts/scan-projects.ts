@@ -22,7 +22,7 @@ type LogoSpec =
 
 type ProjectStatus = "live" | "wip" | "paused" | "skill" | "fork" | "archived";
 
-type Meta = { stack: string; purpose: string; group: string; logo: LogoSpec; status: ProjectStatus };
+type Meta = { stack: string; purpose: string; group: string; logo: LogoSpec; status: ProjectStatus; pendingActions?: string[] };
 
 const GROUP_TBDC = "Tooth Boutique Dental Clinic";
 const GROUP_PADEL = "Padel";
@@ -40,6 +40,8 @@ const META: Record<string, Meta> = {
   "tbdc / invoices":            { stack: "Bun, TypeScript, Playwright",   purpose: "Monthly multi-vendor invoice aggregator",         group: GROUP_TBDC, logo: TBDC_LOGO, status: "live" },
   "tbdc / docs":                { stack: "Docs",                          purpose: "HR job descriptions (Thai + English)",            group: GROUP_TBDC, logo: TBDC_LOGO, status: "live" },
   "tbdc / brand-deck":          { stack: "Bun, TS, pptxgenjs",            purpose: "Bilingual onboarding deck generator",             group: GROUP_TBDC, logo: TBDC_LOGO, status: "live" },
+  "tbdc / ads-monitor":         { stack: "Bun, TS, google-ads-api",       purpose: "Google Ads spend/KPI monitor + weekly digest",    group: GROUP_TBDC, logo: TBDC_LOGO, status: "wip",
+                                  pendingActions: ["Move scheduled jobs from local launchd to GitHub Actions cron"] },
   "matchday":                   { stack: "Next.js + specs",               purpose: "Matchday product hub site + spec docs",           group: GROUP_PADEL, logo: MATCHDAY_LOGO, status: "wip" },
   "mobile-app-padel":           { stack: "Flutter",                       purpose: "TPS mobile app",                                  group: GROUP_PADEL, logo: TPS_LOGO, status: "wip" },
   "padel-backend":              { stack: "Express / Node",                purpose: "Padel API backend",                               group: GROUP_PADEL, logo: TPS_LOGO, status: "live" },
@@ -83,6 +85,7 @@ type Project = {
   group: string;
   logoPath: string;
   status: ProjectStatus;
+  pendingActions?: string[];
 };
 
 function monogramSvg(letter: string, bg: string, fg: string): string {
@@ -131,6 +134,7 @@ async function describe(name: string, path: string): Promise<Project | null> {
     group: meta.group,
     logoPath: `/logos/${meta.logo.as}`,
     status: meta.status,
+    pendingActions: meta.pendingActions,
   };
 }
 

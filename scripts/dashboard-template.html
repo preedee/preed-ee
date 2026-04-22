@@ -201,6 +201,17 @@
           bodyEl.appendChild(headEl);
           if (p.purpose) bodyEl.appendChild(el('p', 'project-purpose', p.purpose));
 
+          if (Array.isArray(p.pendingActions) && p.pendingActions.length > 0) {
+            var pending = el('div', 'project-pending');
+            pending.appendChild(el('span', 'pending-label', 'Pending'));
+            var ulPending = el('ul', 'pending-list');
+            p.pendingActions.forEach(function (action) {
+              ulPending.appendChild(el('li', 'pending-item', action));
+            });
+            pending.appendChild(ulPending);
+            bodyEl.appendChild(pending);
+          }
+
           li.appendChild(bodyEl);
           li.appendChild(dateCell('project-created', 'created', p.createdAt));
           li.appendChild(dateCell('project-updated', 'updated', p.updatedAt));

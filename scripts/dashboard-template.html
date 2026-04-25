@@ -189,7 +189,28 @@
           li.appendChild(img);
 
           var headEl = el('div', 'project-head');
-          headEl.appendChild(el('span', 'project-name', p.name || 'untitled'));
+          if (p.website) {
+            var link = document.createElement('a');
+            link.className = 'project-name project-name-link';
+            link.href = p.website;
+            link.target = '_blank';
+            link.rel = 'noopener noreferrer';
+            link.textContent = p.name || 'untitled';
+            var arrow = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+            arrow.setAttribute('class', 'project-name-arrow');
+            arrow.setAttribute('viewBox', '0 0 24 24');
+            arrow.setAttribute('fill', 'none');
+            arrow.setAttribute('stroke', 'currentColor');
+            arrow.setAttribute('stroke-width', '2');
+            arrow.setAttribute('stroke-linecap', 'round');
+            arrow.setAttribute('stroke-linejoin', 'round');
+            arrow.setAttribute('aria-hidden', 'true');
+            arrow.innerHTML = '<path d="M7 17L17 7"/><path d="M8 7h9v9"/>';
+            link.appendChild(arrow);
+            headEl.appendChild(link);
+          } else {
+            headEl.appendChild(el('span', 'project-name', p.name || 'untitled'));
+          }
           if (p.status) {
             var badge = el('span', 'project-status status-' + p.status, p.status);
             badge.setAttribute('aria-label', 'status: ' + p.status);

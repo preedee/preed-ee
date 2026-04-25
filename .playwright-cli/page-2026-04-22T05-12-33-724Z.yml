@@ -1,0 +1,13 @@
+- generic [ref=e4]:
+  - generic [ref=e5]:
+    - paragraph [ref=e6]: preed.ee / projects
+    - paragraph [ref=e7]: enter password to continue
+  - separator [ref=e8]
+  - generic [ref=e9]:
+    - generic [ref=e10]:
+      - textbox "password" [active] [ref=e11]
+      - img "Show password" [ref=e12] [cursor=pointer]
+    - generic [ref=e13]:
+      - checkbox "remember this device for 30 days" [ref=e14]
+      - text: remember this device for 30 days
+    - button "unlock" [ref=e15] [cursor=pointer]

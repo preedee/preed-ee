@@ -1,0 +1,120 @@
+- generic [ref=e16]:
+  - link "skip to projects" [ref=e17] [cursor=pointer]:
+    - /url: "#projects"
+  - banner [ref=e18]:
+    - generic [ref=e19]:
+      - heading "preedee / projects" [level=1] [ref=e20]
+      - paragraph [ref=e21]: projects, shipped and in progress
+    - generic [ref=e22]:
+      - navigation "group navigation" [ref=e23]:
+        - link "TBDC" [ref=e24] [cursor=pointer]:
+          - /url: "#group-tooth-boutique-dental-clinic"
+        - link "Padel" [ref=e25] [cursor=pointer]:
+          - /url: "#group-padel"
+        - link "Padel TH" [ref=e26] [cursor=pointer]:
+          - /url: "#group-padel-thailand"
+        - link "Other" [ref=e27] [cursor=pointer]:
+          - /url: "#group-other"
+      - button "Switch to dark mode" [ref=e28] [cursor=pointer]:
+        - img [ref=e29]
+      - generic [ref=e31]:
+        - generic [ref=e32]: last scanned 2026-04-22 04:54
+        - generic [ref=e33]:
+          - text: total
+          - generic [ref=e34]: 13 projects
+  - main [ref=e35]:
+    - generic [ref=e36]:
+      - group [ref=e37]:
+        - generic "Tooth Boutique Dental Clinic 4" [ref=e38] [cursor=pointer]:
+          - generic [ref=e39]: Tooth Boutique Dental Clinic
+          - generic [ref=e40]: "4"
+          - img [ref=e41]
+        - list [ref=e43]:
+          - listitem [ref=e44]:
+            - img [ref=e45]
+            - generic [ref=e46]:
+              - generic [ref=e47]:
+                - generic [ref=e48]: tbdc / invoices
+                - 'generic "status: live" [ref=e49]': live
+                - generic [ref=e50]: Bun, TypeScript, Playwright
+              - paragraph [ref=e51]: Monthly multi-vendor invoice aggregator
+            - generic [ref=e52]: 2026-04-13
+            - generic [ref=e53]: 2026-04-21
+          - listitem [ref=e54]:
+            - img [ref=e55]
+            - generic [ref=e56]:
+              - generic [ref=e57]:
+                - generic [ref=e58]: tbdc / brand-deck
+                - 'generic "status: live" [ref=e59]': live
+                - generic [ref=e60]: Bun, TS, pptxgenjs
+              - paragraph [ref=e61]: Bilingual onboarding deck generator
+            - generic [ref=e62]: 2026-04-17
+            - generic [ref=e63]: 2026-04-21
+          - listitem [ref=e64]:
+            - img [ref=e65]
+            - generic [ref=e66]:
+              - generic [ref=e67]:
+                - generic [ref=e68]: tbdc / docs
+                - 'generic "status: live" [ref=e69]': live
+                - generic [ref=e70]: Docs
+              - paragraph [ref=e71]: HR job descriptions (Thai + English)
+            - generic [ref=e72]: 2026-04-17
+            - generic [ref=e73]: 2026-04-18
+          - listitem [ref=e74]:
+            - img [ref=e75]
+            - generic [ref=e76]:
+              - generic [ref=e77]:
+                - generic [ref=e78]: tbdc / web
+                - 'generic "status: live" [ref=e79]': live
+                - generic [ref=e80]: Next.js 16, React 19, TS
+              - paragraph [ref=e81]: Clinic website for Tooth Boutique Dental Clinic
+            - generic [ref=e82]: 2026-04-15
+            - generic [ref=e83]: 2026-04-15
+      - group [ref=e84]:
+        - generic "Padel 6" [active] [ref=e85] [cursor=pointer]:
+          - generic [ref=e86]: Padel
+          - generic [ref=e87]: "6"
+          - img [ref=e88]
+      - group [ref=e151]:
+        - generic "Padel Thailand 1" [ref=e152] [cursor=pointer]:
+          - generic [ref=e153]: Padel Thailand
+          - generic [ref=e154]: "1"
+          - img [ref=e155]
+        - list [ref=e157]:
+          - listitem [ref=e158]:
+            - img [ref=e159]
+            - generic [ref=e160]:
+              - generic [ref=e161]:
+                - generic [ref=e162]: padelthailand
+                - 'generic "status: live" [ref=e163]': live
+                - generic [ref=e164]: HTML/CSS/JS, Leaflet
+              - paragraph [ref=e165]: Tournament calendar for padel in Thailand
+            - generic [ref=e166]: 2026-02-07
+            - generic [ref=e167]: 2026-04-19
+      - group [ref=e168]:
+        - generic "Other 2" [ref=e169] [cursor=pointer]:
+          - generic [ref=e170]: Other
+          - generic [ref=e171]: "2"
+          - img [ref=e172]
+        - list [ref=e174]:
+          - listitem [ref=e175]:
+            - img [ref=e176]
+            - generic [ref=e177]:
+              - generic [ref=e178]:
+                - generic [ref=e179]: anthropic-course
+                - 'generic "status: paused" [ref=e180]': paused
+                - generic [ref=e181]: Docs
+              - paragraph [ref=e182]: Anthropic course notes
+            - generic [ref=e183]: 2026-04-07
+            - generic [ref=e184]: 2026-04-18
+          - listitem [ref=e185]:
+            - img [ref=e186]
+            - generic [ref=e187]:
+              - generic [ref=e188]:
+                - generic [ref=e189]: convert-xlsx-to-sheets
+                - 'generic "status: skill" [ref=e190]': skill
+                - generic [ref=e191]: Skill
+              - paragraph [ref=e192]: Scheduled skill definition
+            - generic [ref=e193]: 2026-04-04
+            - generic [ref=e194]: 2026-04-18
+  - contentinfo [ref=e195]: generated by a bun script running on my laptop

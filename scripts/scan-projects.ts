@@ -8,6 +8,7 @@ const SITE_ROOT = resolve(import.meta.dir, "../docs");
 const LOGOS_DIR = join(SITE_ROOT, "logos");
 const DASHBOARD_TEMPLATE = resolve(import.meta.dir, "dashboard-template.html");
 const DASHBOARD_HTML = join(SITE_ROOT, "projects", "index.html");
+const NOTES_FILE = resolve(import.meta.dir, "../NOTES.md");
 
 const TOP_EXCLUDE = new Set([".claude", ".DS_Store", "Plans", "libs", "preed-ee"]);
 const TBDC_EXCLUDE = new Set(["Plans"]);
@@ -22,10 +23,11 @@ type LogoSpec =
 
 type ProjectStatus = "live" | "wip" | "paused" | "skill" | "fork" | "archived";
 
-type Meta = { stack: string; purpose: string; group: string; logo: LogoSpec; status: ProjectStatus; pendingActions?: string[]; gitExcludePaths?: string[] };
+type Meta = { stack: string; purpose: string; group: string; logo: LogoSpec; status: ProjectStatus; pendingActions?: string[]; gitExcludePaths?: string[]; website?: string };
 
 const GROUP_TBDC = "Tooth Boutique Dental Clinic";
-const GROUP_PADEL = "Padel";
+const GROUP_MATCHDAY = "Matchday";
+const GROUP_PADEL = "The Padel Society";
 const GROUP_PADEL_THAILAND = "Padel Thailand";
 const GROUP_OTHER = "Other";
 
@@ -41,22 +43,31 @@ const META: Record<string, Meta> = {
   "tbdc / docs":                { stack: "Docs",                          purpose: "HR job descriptions (Thai + English)",            group: GROUP_TBDC, logo: TBDC_LOGO, status: "live" },
   "tbdc / brand-deck":          { stack: "Bun, TS, pptxgenjs",            purpose: "Bilingual onboarding deck generator",             group: GROUP_TBDC, logo: TBDC_LOGO, status: "live" },
   "tbdc / ads-monitor":         { stack: "Bun, TS, google-ads-api",       purpose: "Google Ads spend/KPI monitor + weekly digest",    group: GROUP_TBDC, logo: TBDC_LOGO, status: "wip" },
-  "matchday":                   { stack: "Next.js + specs",               purpose: "Matchday product hub site + spec docs",           group: GROUP_PADEL, logo: MATCHDAY_LOGO, status: "wip" },
+  "clinera":                    { stack: "Planning phase",                purpose: "Dental clinic ops + LINE booking + reminders",   group: GROUP_TBDC, logo: TBDC_LOGO, status: "wip" },
+  "matchday":                   { stack: "Next.js (product-hub), MD specs", purpose: "Matchday spec docs + product-hub marketing site", group: GROUP_MATCHDAY, logo: MATCHDAY_LOGO, status: "wip", website: "https://padelthailand.com/matchday/" },
+  "matchday-backend":           { stack: "Supabase (PG17 + Edge Fns)",    purpose: "Matchday backend — Postgres + Edge Functions + Realtime", group: GROUP_MATCHDAY, logo: MATCHDAY_LOGO, status: "wip" },
+  "matchday-web":               { stack: "Next.js 16, React 19, Tailwind 4", purpose: "Matchday Next.js frontend — single-elim padel tournaments", group: GROUP_MATCHDAY, logo: MATCHDAY_LOGO, status: "wip" },
+  "tps-scraping":               { stack: "Python",                        purpose: "Parse Thai Padel Series tournament PDFs → CSV",  group: GROUP_MATCHDAY, logo: MATCHDAY_LOGO, status: "wip" },
   "mobile-app-padel":           { stack: "Flutter",                       purpose: "TPS mobile app",                                  group: GROUP_PADEL, logo: TPS_LOGO, status: "wip" },
   "padel-backend":              { stack: "Express / Node",                purpose: "Padel API backend",                               group: GROUP_PADEL, logo: TPS_LOGO, status: "live" },
   "the-padel-society-admin":    { stack: "Next.js 14, React 18",          purpose: "Padel Society admin console",                     group: GROUP_PADEL, logo: TPS_LOGO, status: "live" },
   "amity-social-uikit-flutter": { stack: "Flutter (fork)",                purpose: "Amity Social UIKit fork",                         group: GROUP_PADEL, logo: AMITY_LOGO, status: "fork" },
   "tps-monthly-reports":        { stack: "Skill",                         purpose: "The Padel Society monthly reports skill",         group: GROUP_PADEL, logo: TPS_LOGO, status: "skill" },
-  "padelthailand":              { stack: "HTML/CSS/JS, Leaflet",          purpose: "Tournament calendar for padel in Thailand",       group: GROUP_PADEL_THAILAND, logo: PADEL_THAILAND_LOGO, status: "live", gitExcludePaths: ["matchday", ".nojekyll"] },
+  "tps-tournament-dashboard":   { stack: "HTML/CSS/JS",                   purpose: "Static tournament results dashboard",             group: GROUP_PADEL, logo: TPS_LOGO, status: "wip" },
+  "ptp-league-scheduler":       { stack: "Python",                        purpose: "Generate padel league round-robin schedule",      group: GROUP_PADEL, logo: TPS_LOGO, status: "wip" },
+  "padelthailand":              { stack: "HTML/CSS/JS, Leaflet",          purpose: "Tournament calendar for padel in Thailand",       group: GROUP_PADEL_THAILAND, logo: PADEL_THAILAND_LOGO, status: "live", gitExcludePaths: ["matchday", ".nojekyll"], website: "https://padelthailand.com/" },
+  "padel-clubs-scraper":        { stack: "Python, Google Places",         purpose: "Scrape Thailand padel clubs directory",           group: GROUP_PADEL_THAILAND, logo: PADEL_THAILAND_LOGO, status: "wip" },
   "anthropic-course":           { stack: "Docs",                          purpose: "Anthropic course notes",                          group: GROUP_OTHER, logo: { kind: "monogram", letter: "A", bg: "#d97757", fg: "#ffffff", as: "anthropic.svg" }, status: "paused" },
   "convert-xlsx-to-sheets":     { stack: "Skill",                         purpose: "Scheduled skill definition",                      group: GROUP_OTHER, logo: { kind: "monogram", letter: "X", bg: "#475569", fg: "#f8fafc", as: "xlsx.svg" }, status: "skill" },
+  "playbypoint":                { stack: "Docs",                          purpose: "PlayByPoint build specs and prompt templates",    group: GROUP_OTHER, logo: { kind: "monogram", letter: "P", bg: "#334155", fg: "#f8fafc", as: "playbypoint.svg" }, status: "wip" },
 };
 
-const GROUP_ORDER = [GROUP_TBDC, GROUP_PADEL, GROUP_PADEL_THAILAND, GROUP_OTHER];
+const GROUP_ORDER = [GROUP_TBDC, GROUP_MATCHDAY, GROUP_PADEL, GROUP_PADEL_THAILAND, GROUP_OTHER];
 
 const GROUP_NAV_LABELS: Record<string, string> = {
   [GROUP_TBDC]: "TBDC",
-  [GROUP_PADEL]: "Padel",
+  [GROUP_MATCHDAY]: "Matchday",
+  [GROUP_PADEL]: "TPS",
   [GROUP_PADEL_THAILAND]: "Padel TH",
   [GROUP_OTHER]: "Other",
 };
@@ -66,7 +77,8 @@ const PADEL_ORDER = [
   "padel-backend",
   "mobile-app-padel",
   "tps-monthly-reports",
-  "matchday",
+  "tps-tournament-dashboard",
+  "ptp-league-scheduler",
   "amity-social-uikit-flutter",
 ];
 
@@ -85,6 +97,7 @@ type Project = {
   logoPath: string;
   status: ProjectStatus;
   pendingActions?: string[];
+  website?: string;
 };
 
 function monogramSvg(letter: string, bg: string, fg: string): string {
@@ -122,23 +135,37 @@ async function gitDates(dir: string, excludePaths?: string[]): Promise<{ first: 
   } catch { return null; }
 }
 
-async function readNextMd(dir: string): Promise<string[] | undefined> {
-  try {
-    const raw = await readFile(join(dir, "NEXT.md"), "utf8");
-    const items = raw
-      .split("\n")
-      .map((l) => l.trim())
-      .filter((l) => /^[-*]\s+\S/.test(l))
-      .map((l) => l.replace(/^[-*]\s+/, "").trim())
-      .filter((l) => l.length > 0);
-    return items.length > 0 ? items : undefined;
-  } catch { return undefined; }
+async function readNotesMd(): Promise<Map<string, string[]>> {
+  const map = new Map<string, string[]>();
+  let raw: string;
+  try { raw = await readFile(NOTES_FILE, "utf8"); } catch { return map; }
+  let currentName: string | null = null;
+  let currentItems: string[] = [];
+  const flush = () => {
+    if (currentName && currentItems.length > 0) map.set(currentName, currentItems);
+    currentName = null;
+    currentItems = [];
+  };
+  for (const line of raw.split("\n")) {
+    const heading = /^##\s+(.+?)\s*$/.exec(line);
+    if (heading) {
+      flush();
+      currentName = heading[1]!.trim();
+      continue;
+    }
+    if (!currentName) continue;
+    const bullet = /^[-*]\s+(\S.*)$/.exec(line.trim());
+    if (bullet) currentItems.push(bullet[1]!.trim());
+  }
+  flush();
+  return map;
 }
 
-async function describe(name: string, path: string): Promise<Project | null> {
+async function describe(name: string, path: string, notes: Map<string, string[]>): Promise<Project | null> {
   const meta = META[name];
   if (!meta) return null;
-  const [dates, fs, nextActions] = await Promise.all([gitDates(path, meta.gitExcludePaths), stat(path), readNextMd(path)]);
+  const [dates, fs] = await Promise.all([gitDates(path, meta.gitExcludePaths), stat(path)]);
+  const nextActions = notes.get(name);
   return {
     name,
     stack: meta.stack,
@@ -150,6 +177,7 @@ async function describe(name: string, path: string): Promise<Project | null> {
     logoPath: `/logos/${meta.logo.as}`,
     status: meta.status,
     pendingActions: nextActions ?? meta.pendingActions,
+    website: meta.website,
   };
 }
 
@@ -161,15 +189,26 @@ async function listDirs(path: string, exclude: Set<string>) {
 }
 
 async function scan(): Promise<Project[]> {
+  const notes = await readNotesMd();
   const top = await listDirs(COWORK_ROOT, TOP_EXCLUDE);
   const jobs: Promise<Project | null>[] = [];
+  const knownNames: string[] = [];
   for (const { name, full } of top) {
     if (name === "tbdc") {
       const subs = await listDirs(full, TBDC_EXCLUDE);
-      for (const s of subs) jobs.push(describe(`tbdc / ${s.name}`, s.full));
+      for (const s of subs) {
+        const fullName = `tbdc / ${s.name}`;
+        knownNames.push(fullName);
+        jobs.push(describe(fullName, s.full, notes));
+      }
     } else {
-      jobs.push(describe(name, full));
+      knownNames.push(name);
+      jobs.push(describe(name, full, notes));
     }
+  }
+  const unknownHeadings = [...notes.keys()].filter((k) => !knownNames.includes(k));
+  if (unknownHeadings.length > 0) {
+    console.warn(`[NOTES.md] unknown project headings (not matched): ${unknownHeadings.join(", ")}`);
   }
   const resolved = await Promise.all(jobs);
   const projects = resolved.filter((p): p is Project => p !== null);

@@ -39,6 +39,9 @@ _(no pending items)_
 - Move scheduled daily + weekly jobs from local launchd to GitHub Actions cron
 - Unblock real-mode runs once Google Ads developer-token application is approved
 
+## tbdc / chatbot
+_(no pending items)_
+
 ---
 
 # Clinera

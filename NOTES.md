@@ -29,6 +29,9 @@ _(no pending items)_
 - Resolve open decisions in Plans/foundation.md §2 (framework / runtime / DB / ORM / auth / hosting)
 - Scaffold session — fresh Algorithm following matchday v0.1.0 pattern
 
+## dentsoft-strategy-deck
+_(no pending items)_
+
 ## matchday
 - Visual sanity check of magic-link flow once dev environment is fully wired
 - Native-Thai review of matchday-web/messages/th.json before any visible launch

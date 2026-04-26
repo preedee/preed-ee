@@ -45,7 +45,7 @@ const META: Record<string, Meta> = {
   "tbdc / brand-deck":          { stack: "Bun, TS, pptxgenjs",            purpose: "Bilingual onboarding deck generator",             group: GROUP_TBDC, logo: TBDC_LOGO, status: "live" },
   "tbdc / ads-monitor":         { stack: "Bun, TS, google-ads-api",       purpose: "Google Ads spend/KPI monitor + weekly digest",    group: GROUP_TBDC, logo: TBDC_LOGO, status: "wip" },
   "clinera":                    { stack: "Planning phase",                purpose: "Dental clinic ops + LINE booking + reminders",   group: GROUP_CLINERA, logo: { kind: "monogram", letter: "C", bg: "#5C8A5A", fg: "#ffffff", as: "clinera.svg" }, status: "wip" },
-  "dentsoft-strategy-deck":     { stack: "Bun, TS, pptxgenjs, HTML",      purpose: "Competitive strategy brief on Dentsoft (dentsoft.in) — PPTX deck + single-page web brief", group: GROUP_CLINERA, logo: { kind: "monogram", letter: "D", bg: "#0B2545", fg: "#ffffff", as: "dentsoft.svg" }, status: "live", website: "https://preed.ee/other/dentsoft/" },
+  "dentsoft-strategy-deck":     { stack: "Bun, TS, pptxgenjs, HTML",      purpose: "Competitive strategy brief on Dentsoft (dentsoft.in) — PPTX deck + single-page web brief", group: GROUP_CLINERA, logo: { kind: "monogram", letter: "D", bg: "#0B2545", fg: "#ffffff", as: "dentsoft.svg" }, status: "live", website: "https://preed.ee/clinera/dentsoft" },
   "matchday":                   { stack: "Next.js (product-hub), MD specs", purpose: "Matchday spec docs + product-hub marketing site", group: GROUP_MATCHDAY, logo: MATCHDAY_LOGO, status: "wip", website: "https://padelthailand.com/matchday/" },
   "matchday-backend":           { stack: "Supabase (PG17 + Edge Fns)",    purpose: "Matchday backend — Postgres + Edge Functions + Realtime", group: GROUP_MATCHDAY, logo: MATCHDAY_LOGO, status: "wip" },
   "matchday-web":               { stack: "Next.js 16, React 19, Tailwind 4", purpose: "Matchday Next.js frontend — single-elim padel tournaments", group: GROUP_MATCHDAY, logo: MATCHDAY_LOGO, status: "wip" },
@@ -74,20 +74,6 @@ const GROUP_NAV_LABELS: Record<string, string> = {
   [GROUP_PADEL]: "TPS",
   [GROUP_PADEL_THAILAND]: "Padel TH",
   [GROUP_OTHER]: "Other",
-};
-
-const PADEL_ORDER = [
-  "the-padel-society-admin",
-  "padel-backend",
-  "mobile-app-padel",
-  "tps-monthly-reports",
-  "tps-tournament-dashboard",
-  "ptp-league-scheduler",
-  "amity-social-uikit-flutter",
-];
-
-const GROUP_EXPLICIT_ORDER: Record<string, string[]> = {
-  [GROUP_PADEL]: PADEL_ORDER,
 };
 
 type Project = {
@@ -139,14 +125,17 @@ async function gitDates(dir: string, excludePaths?: string[]): Promise<{ first: 
   } catch { return null; }
 }
 
-async function readNotesMd(): Promise<Map<string, string[]>> {
-  const map = new Map<string, string[]>();
+type NotesData = { pending: Map<string, string[]>; order: string[] };
+
+async function readNotesMd(): Promise<NotesData> {
+  const pending = new Map<string, string[]>();
+  const order: string[] = [];
   let raw: string;
-  try { raw = await readFile(NOTES_FILE, "utf8"); } catch { return map; }
+  try { raw = await readFile(NOTES_FILE, "utf8"); } catch { return { pending, order }; }
   let currentName: string | null = null;
   let currentItems: string[] = [];
   const flush = () => {
-    if (currentName && currentItems.length > 0) map.set(currentName, currentItems);
+    if (currentName && currentItems.length > 0) pending.set(currentName, currentItems);
     currentName = null;
     currentItems = [];
   };
@@ -155,6 +144,7 @@ async function readNotesMd(): Promise<Map<string, string[]>> {
     if (heading) {
       flush();
       currentName = heading[1]!.trim();
+      order.push(currentName);
       continue;
     }
     if (!currentName) continue;
@@ -162,7 +152,7 @@ async function readNotesMd(): Promise<Map<string, string[]>> {
     if (bullet) currentItems.push(bullet[1]!.trim());
   }
   flush();
-  return map;
+  return { pending, order };
 }
 
 async function describe(name: string, path: string, notes: Map<string, string[]>): Promise<Project | null> {
@@ -192,7 +182,7 @@ async function listDirs(path: string, exclude: Set<string>) {
     .map((e) => ({ name: e.name, full: join(path, e.name) }));
 }
 
-async function scan(): Promise<Project[]> {
+async function scan(): Promise<{ projects: Project[]; notesOrder: string[] }> {
   const notes = await readNotesMd();
   const top = await listDirs(COWORK_ROOT, TOP_EXCLUDE);
   const jobs: Promise<Project | null>[] = [];
@@ -203,24 +193,24 @@ async function scan(): Promise<Project[]> {
       for (const s of subs) {
         const fullName = `tbdc / ${s.name}`;
         knownNames.push(fullName);
-        jobs.push(describe(fullName, s.full, notes));
+        jobs.push(describe(fullName, s.full, notes.pending));
       }
     } else {
       knownNames.push(name);
-      jobs.push(describe(name, full, notes));
+      jobs.push(describe(name, full, notes.pending));
     }
   }
-  const unknownHeadings = [...notes.keys()].filter((k) => !knownNames.includes(k));
+  const unknownHeadings = notes.order.filter((k) => !knownNames.includes(k));
   if (unknownHeadings.length > 0) {
     console.warn(`[NOTES.md] unknown project headings (not matched): ${unknownHeadings.join(", ")}`);
   }
   const resolved = await Promise.all(jobs);
   const projects = resolved.filter((p): p is Project => p !== null);
   projects.sort((a, b) => b.updatedAt.localeCompare(a.updatedAt));
-  return projects;
+  return { projects, notesOrder: notes.order };
 }
 
-function groupProjects(projects: Project[]) {
+function groupProjects(projects: Project[], notesOrder: string[]) {
   const byGroup = new Map<string, Project[]>();
   for (const p of projects) {
     const arr = byGroup.get(p.group) ?? [];
@@ -232,19 +222,17 @@ function groupProjects(projects: Project[]) {
     .map((g) => ({
       name: g,
       navLabel: GROUP_NAV_LABELS[g] ?? g,
-      projects: applyGroupOrder(g, byGroup.get(g)!),
+      projects: applyNotesOrder(g, byGroup.get(g)!, notesOrder),
     }));
 }
 
-function applyGroupOrder(group: string, projects: Project[]): Project[] {
-  const explicit = GROUP_EXPLICIT_ORDER[group];
-  if (!explicit) return projects;
+function applyNotesOrder(group: string, projects: Project[], notesOrder: string[]): Project[] {
   const indexOf = (name: string) => {
-    const i = explicit.indexOf(name);
+    const i = notesOrder.indexOf(name);
     return i === -1 ? Number.MAX_SAFE_INTEGER : i;
   };
-  const missing = projects.filter((p) => !explicit.includes(p.name)).map((p) => p.name);
-  if (missing.length > 0) console.warn(`[${group}] not in explicit order, appended: ${missing.join(", ")}`);
+  const missing = projects.filter((p) => !notesOrder.includes(p.name)).map((p) => p.name);
+  if (missing.length > 0) console.warn(`[${group}] not in NOTES.md, falling back to date-sort: ${missing.join(", ")}`);
   return [...projects].sort((a, b) => {
     const ia = indexOf(a.name);
     const ib = indexOf(b.name);
@@ -265,8 +253,8 @@ async function renderDashboard(inlineJson: string): Promise<void> {
 
 async function main() {
   await materializeLogos();
-  const projects = await scan();
-  const groups = groupProjects(projects);
+  const { projects, notesOrder } = await scan();
+  const groups = groupProjects(projects, notesOrder);
   const payload = {
     scannedAt: new Date().toISOString(),
     count: projects.length,

@@ -3,6 +3,11 @@
 Central pending-tasks file for the preed.ee/projects dashboard.
 Each `## {project name}` heading must match the dashboard project name exactly.
 Bullet lines (`-` or `*`) become pending items. Non-bullet lines are ignored.
+
+**Display order:** Within each group, cards appear in the order their `##` headings
+appear in this file. To reorder, just move a `##` section up or down. Projects
+missing from this file fall back to most-recently-updated first (and warn).
+
 Re-run `bun run build` to regenerate.
 
 ## tbdc / web

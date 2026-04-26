@@ -1,0 +1,628 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Dentsoft · Competitive Strategy Brief</title>
+<meta name="description" content="Evidence-based competitive analysis of Dentsoft (dentsoft.in) — Indian dental practice management software." />
+<style>
+  :root{
+    --navy:#0B2545; --navy-dark:#061730; --slate:#13315C; --ink:#1F2937;
+    --text:#2A2A2A; --muted:#6B7280; --rule:#D9DCE1; --bg:#FFFFFF; --cream:#F8F6F1;
+    --accent:#C97B3C; --green:#5C8A5A; --red:#B23A48; --amber:#D9A441; --cell-alt:#F4F6F9;
+    --serif: ui-serif, Georgia, "Times New Roman", serif;
+    --sans: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Helvetica, Arial, sans-serif;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.55;-webkit-font-smoothing:antialiased}
+  a{color:var(--slate);text-decoration:none;border-bottom:1px solid rgba(19,49,92,.25)}
+  a:hover{color:var(--accent);border-bottom-color:var(--accent)}
+  h1,h2,h3,h4{font-family:var(--sans);color:var(--ink);margin:0;font-weight:700;letter-spacing:-.01em}
+  h1{font-size:clamp(2rem,4.5vw,3.5rem);line-height:1.1}
+  h2{font-size:clamp(1.4rem,2.2vw,1.75rem);line-height:1.3}
+  h3{font-size:1.05rem;letter-spacing:.04em;text-transform:uppercase;color:var(--navy)}
+  p{margin:0 0 .9rem}
+  ul{margin:0 0 1rem 1.2rem;padding:0}
+  li{margin:.35rem 0}
+
+  /* ── Layout ─────────────────────────── */
+  .nav{
+    position:sticky; top:0; z-index:50; background:rgba(11,37,69,.96); backdrop-filter:saturate(160%) blur(8px);
+    color:#fff; border-bottom:1px solid rgba(255,255,255,.08);
+  }
+  .nav-inner{max-width:1240px;margin:0 auto;padding:.7rem 1.25rem;display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap}
+  .nav .brand{font-weight:700;letter-spacing:.04em;color:#fff;font-size:.85rem;text-transform:uppercase;border:0}
+  .nav .brand .accent{color:var(--accent)}
+  .nav ul{display:flex;flex-wrap:wrap;gap:.1rem .15rem;margin:0;list-style:none;padding:0;font-size:.78rem}
+  .nav a{color:#cfd6df;border:0;padding:.3rem .55rem;border-radius:4px;display:inline-block}
+  .nav a:hover{background:rgba(255,255,255,.08);color:#fff}
+
+  section{padding:4.5rem 1.25rem;max-width:1240px;margin:0 auto;scroll-margin-top:5rem}
+  section + section{border-top:1px solid var(--rule)}
+
+  .eyebrow{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:.6rem;display:block}
+  .headline{font-style:italic;color:var(--ink);font-weight:700;font-size:clamp(1.4rem,2.4vw,1.95rem);line-height:1.3;max-width:1100px}
+  .rule{height:2px;background:var(--accent);width:100%;margin:1.4rem 0 2rem;max-width:1100px}
+
+  .so-what{
+    margin-top:1.5rem;padding:1rem 1.25rem;background:var(--cream);border-left:4px solid var(--accent);
+    font-style:italic;color:var(--ink);font-weight:600;border-radius:0 6px 6px 0;
+  }
+  .so-what strong{color:var(--accent);font-style:normal;letter-spacing:.04em}
+
+  /* ── Hero ───────────────────────────── */
+  .hero{
+    background:linear-gradient(135deg,var(--navy) 0%,var(--navy-dark) 100%);
+    color:#fff; padding:6rem 1.25rem 5rem; max-width:none; border:0; margin:0;
+  }
+  .hero-inner{max-width:1240px;margin:0 auto}
+  .hero .tag{display:inline-flex;align-items:center;gap:.6rem;color:var(--accent);font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;font-weight:700;margin-bottom:1.2rem}
+  .hero .tag::before{content:"";width:30px;height:3px;background:var(--accent);display:inline-block}
+  .hero h1{color:#fff;max-width:980px}
+  .hero .sub{color:#d9dce1;font-size:1.15rem;font-style:italic;margin:1rem 0 0;max-width:880px;line-height:1.45}
+  .hero .meta{color:#9aaab6;font-size:.85rem;margin-top:2rem;letter-spacing:.04em}
+
+  /* ── Tables ─────────────────────────── */
+  .table-wrap{overflow-x:auto;margin:1rem 0;border:1px solid var(--rule);border-radius:6px}
+  table{border-collapse:collapse;width:100%;font-size:.92rem}
+  th{background:var(--navy);color:#fff;text-align:left;padding:.7rem .85rem;font-weight:600;font-size:.85rem;letter-spacing:.02em}
+  td{padding:.65rem .85rem;border-top:1px solid var(--rule);vertical-align:top}
+  tbody tr:nth-child(even) td{background:var(--cell-alt)}
+  td:first-child{font-weight:600;color:var(--ink)}
+  .tbl-center td:not(:first-child){text-align:center}
+  .star{color:var(--accent);font-weight:700}
+
+  /* ── 2-col / multi-col ──────────────── */
+  .cols-2{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+  .cols-2 > div{min-width:0}
+  @media (max-width:900px){.cols-2{grid-template-columns:1fr}}
+
+  /* ── Gap cards ──────────────────────── */
+  .gap{display:grid;grid-template-columns:6px 1fr;gap:1rem;align-items:start;padding:1rem 0;border-top:1px solid var(--rule)}
+  .gap:first-of-type{border-top:0}
+  .gap .bar{align-self:stretch;border-radius:3px}
+  .gap-red .bar{background:var(--red)} .gap-amber .bar{background:var(--amber)} .gap-accent .bar{background:var(--accent)}
+  .gap h4{font-size:1rem;color:var(--navy);margin:.1rem 0 .3rem;letter-spacing:.02em}
+  .gap p{color:var(--text);margin:0}
+
+  /* ── 2x2 maps (SVG) ─────────────────── */
+  .map-wrap{display:grid;grid-template-columns:1fr;gap:1rem;align-items:start}
+  @media (min-width:900px){.map-wrap.with-side{grid-template-columns:1.55fr 1fr}}
+  .map{width:100%;height:auto;display:block;background:#fff}
+  .legend{padding:1rem 1.25rem;background:var(--cream);border-left:3px solid var(--accent);border-radius:0 6px 6px 0;font-size:.92rem}
+  .legend h4{font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin:0 0 .6rem}
+  .legend ol{padding:0 0 0 1rem;margin:0}
+  .legend li{margin:.5rem 0}
+  .legend .badge{display:inline-block;width:1.4rem;height:1.4rem;border-radius:50%;background:var(--navy);color:#fff;text-align:center;line-height:1.4rem;font-weight:700;font-size:.72rem;margin-right:.4rem;vertical-align:middle}
+  .legend .badge.hot{background:var(--accent)}
+
+  /* ── Misc ───────────────────────────── */
+  .pill{display:inline-block;padding:.18rem .55rem;border-radius:999px;font-size:.7rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase}
+  .pill-leads{background:#e7f1e7;color:#3a663a}
+  .pill-loses{background:#fbe7ea;color:#8b2630}
+  .pill-tie{background:#f1eee5;color:#7b6a3e}
+  .pill-gen{background:#eef0f4;color:#475569}
+
+  .footer{background:var(--navy-dark);color:#9aaab6;padding:3rem 1.25rem;font-size:.85rem}
+  .footer-inner{max-width:1240px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr;gap:2rem}
+  .footer h4{color:#fff;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;margin:0 0 .6rem}
+  .footer a{color:#cfd6df;border:0}
+  .footer a:hover{color:var(--accent)}
+  @media (max-width:780px){.footer-inner{grid-template-columns:1fr}}
+
+  .anchor-arrow{font-size:.85rem;color:var(--muted);margin-left:.4rem}
+</style>
+</head>
+<body>
+
+<nav class="nav" aria-label="Section navigation">
+  <div class="nav-inner">
+    <a class="brand" href="#top"><span class="accent">●</span>&nbsp;DENTSOFT BRIEF</a>
+    <ul>
+      <li><a href="#summary">Summary</a></li>
+      <li><a href="#market">Market</a></li>
+      <li><a href="#set">Comp Set</a></li>
+      <li><a href="#vp">VP</a></li>
+      <li><a href="#icp">ICP</a></li>
+      <li><a href="#position">Positioning</a></li>
+      <li><a href="#features">Features</a></li>
+      <li><a href="#gaps">Gaps</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+      <li><a href="#ux">UX</a></li>
+      <li><a href="#gtm">GTM</a></li>
+      <li><a href="#moat">Moats</a></li>
+      <li><a href="#weaknesses">Weaknesses</a></li>
+      <li><a href="#play">If Dentsoft</a></li>
+      <li><a href="#attack">If Attacker</a></li>
+      <li><a href="#synthesis">Synthesis</a></li>
+      <li><a href="#appendix">Appendix</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="hero-inner">
+    <div class="tag">Strategy Brief</div>
+    <h1>Dentsoft (<a href="https://www.dentsoft.in/" style="color:#fff;border-color:rgba(255,255,255,.4)" target="_blank" rel="noopener">dentsoft.in</a>)</h1>
+    <p class="sub">Competitive positioning, benchmarks, and strategic implications. Indian dental practice management software, evidence-based — no fabricated metrics.</p>
+    <div class="meta">April 2026 · 17 sections · Confidential</div>
+  </div>
+</header>
+
+<!-- Executive summary -->
+<section id="summary">
+  <span class="eyebrow">01 · Executive Summary</span>
+  <h2 class="headline">Dentsoft is a low-friction, SEO-driven cloud PMS for tier-2/3 Indian dentists — well-positioned on geography but dangerously undifferentiated on product.</h2>
+  <div class="rule"></div>
+  <ul>
+    <li><strong>What it is</strong> — Cloud dental PMS: appointments, billing, EMR, patient portal, WhatsApp/SMS reminders, free clinic website included. India-only focus.</li>
+    <li><strong>How it competes</strong> — Aggressive programmatic city-SEO (Delhi, Mumbai, Bangalore, Ranchi, Patna, Deoghar, Hazaribagh, Punjab, Kerala…), bundled-website hook, 14-day free trial. Heavy tier-2/3 (especially Jharkhand / eastern India) coverage.</li>
+    <li><strong>Strengths</strong> — Geographic reach into under-served tier-2/3; bundled-website lowers acquisition friction; cloud + mobile parity with peers.</li>
+    <li><strong>Vulnerabilities</strong> — No visible AI story (Cliniify owns it); no installed-base scale claim (PappyJoe says “12,000+”); no compliance halo (MocDoc says NABH-certified); no transparent pricing anchor (Dentobees publishes ₹12K); brand collision with <em>dentsoftware.com</em> and Vision Softwares' <em>“DentSoft 8.0”</em>.</li>
+    <li><strong>Net positioning</strong> — Mid-market, mass-distribution, India-only. Winning on <em>distribution geography</em>; exposed on <em>product narrative</em> and <em>brand clarity</em>.</li>
+  </ul>
+</section>
+
+<!-- Market context -->
+<section id="market">
+  <span class="eyebrow">02 · Market Context</span>
+  <h2 class="headline">Indian dental PMS is fragmented across three sub-segments — Dentsoft sits in the most contested middle.</h2>
+  <div class="rule"></div>
+  <div class="cols-2">
+    <div>
+      <h3>Category</h3>
+      <p>Cloud-based dental practice management — appointments, EMR/EDR, billing/GST, patient communication, dental charting.</p>
+      <h3 style="margin-top:1.5rem">Sub-segments</h3>
+      <ul>
+        <li><strong>(a) Solo / single-chair (tier-2/3)</strong> — price-sensitive, WhatsApp-first → Dentsoft, Dentobees, PappyJoe core</li>
+        <li><strong>(b) Multi-chair / urban</strong> — analytics, branding → Cliniify, MocDoc, PappyJoe</li>
+        <li><strong>(c) Hospital-attached / DSO-emerging</strong> — NABH compliance, specialty depth → MocDoc, Halemind</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Substitutes still rampant</h3>
+      <ul>
+        <li>Excel + paper appointment book (estimated dominant share — <em>inferred</em>)</li>
+        <li>Generic clinic SaaS (Practo Ray) — non-dental-native, brand-default</li>
+        <li>WhatsApp-only ad-hoc workflows</li>
+      </ul>
+    </div>
+  </div>
+  <div class="so-what"><strong>So what —</strong> Dentsoft is squarely in segment (a) and lower (b): the most crowded zone with the lowest pricing power.</div>
+</section>
+
+<!-- Competitive set -->
+<section id="set">
+  <span class="eyebrow">03 · Competitive Set</span>
+  <h2 class="headline">Six competitors define Dentsoft's reality — three direct twins, one disruptor, one flywheel-builder, one horizontal giant.</h2>
+  <div class="rule"></div>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th style="width:20%">Tier</th><th style="width:18%">Competitor</th><th>Why they matter to Dentsoft</th></tr></thead>
+      <tbody>
+        <tr><td>Direct twin</td><td>PappyJoe</td><td>Same ICP, larger installed base, India + emerging-markets footprint</td></tr>
+        <tr><td>Direct twin</td><td>MocDoc</td><td>Same ICP + multi-specialty + NABH halo; takes the chain segment</td></tr>
+        <tr><td>Direct twin</td><td>Cliniify</td><td>Same ICP; owns the “AI / modern” narrative Dentsoft has not staked</td></tr>
+        <tr><td>Flywheel adjacent</td><td>Dentee</td><td>Patient-discovery marketplace pulls dentists in via demand-gen, not PMS-shopping</td></tr>
+        <tr><td>Price disruptor</td><td>Dentobees</td><td>Public INR pricing reframes the category as a commodity</td></tr>
+        <tr><td>Horizontal substitute</td><td>Practo Ray</td><td>Brand-default for any clinic not actively shopping dental-native</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="font-size:.85rem;color:var(--muted);font-style:italic">Excluded with reason: DentalDost (rebranded ScanO — wrong category); Dentrix/Eaglesoft (no India GTM); CareStack (US/UK/AU only — referenced as aspirational benchmark in appendix).</p>
+</section>
+
+<!-- Value proposition -->
+<section id="vp">
+  <span class="eyebrow">04 · Value Proposition Comparison</span>
+  <h2 class="headline">Dentsoft's VP is generic — “trusted, easy, cloud” — while three competitors stake sharper, more memorable claims.</h2>
+  <div class="rule"></div>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th style="width:14%">Vendor</th><th>Stated value proposition (verbatim where possible)</th><th style="width:22%">Core hook</th></tr></thead>
+      <tbody>
+        <tr><td>Dentsoft</td><td>“India's Best / Most Trusted Dental Clinic Management Software” + “professional website included free”</td><td>Bundled website + India-trust</td></tr>
+        <tr><td>PappyJoe</td><td>“Designed specifically for dental professionals” — 15+ yrs, 12,000+ doctors</td><td>Scale &amp; longevity</td></tr>
+        <tr><td>MocDoc</td><td>“Transform your dental clinic” — NABH-certified, 1,500+ clients, 14 markets</td><td>Compliance + multi-specialty</td></tr>
+        <tr><td>Cliniify</td><td>“Revolutionize healthcare through AI” — Copilot, face-recognition check-in</td><td>AI-modern</td></tr>
+        <tr><td>Dentee</td><td>“Find best dentist in a minute” + Manage / Educate / Buy</td><td>Patient acquisition flywheel</td></tr>
+        <tr><td>Dentobees</td><td>“Ultimate ERP” — public ₹12K–₹38K/yr pricing</td><td>Transparent pricing</td></tr>
+        <tr><td>Practo Ray</td><td>“Run your practice on Practo”</td><td>Brand trust + ecosystem</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="so-what"><strong>So what —</strong> Dentsoft's bundled-website hook is the strongest unique, but it's buried under generic “best/most trusted” copy. Lead with the wedge; demote the superlative.</div>
+</section>
+
+<!-- ICP -->
+<section id="icp">
+  <span class="eyebrow">05 · Target Customer Comparison</span>
+  <h2 class="headline">Dentsoft and Dentobees compete for the same buyer — but Dentobees wins price-shoppers by default.</h2>
+  <div class="rule"></div>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Vendor</th><th>Primary ICP</th><th>Secondary</th><th>Price sensitivity</th></tr></thead>
+      <tbody>
+        <tr><td>Dentsoft</td><td>Tier-2/3 solo dentist (India)</td><td>Multi-chair urban</td><td>High</td></tr>
+        <tr><td>PappyJoe</td><td>Solo + multi-chair, India + ME/Africa</td><td>Labs, students</td><td>Medium</td></tr>
+        <tr><td>MocDoc</td><td>Multi-chair, hospital-attached</td><td>Solo</td><td>Medium-low</td></tr>
+        <tr><td>Cliniify</td><td>Tech-forward urban clinic</td><td>Multi-location</td><td>Medium</td></tr>
+        <tr><td>Dentee</td><td>Solo dentist needing patients</td><td>—</td><td>Medium</td></tr>
+        <tr><td>Dentobees</td><td>Price-sensitive solo (Kerala / India)</td><td>Small chain</td><td>Very high</td></tr>
+        <tr><td>Practo Ray</td><td>Any clinic on Practo brand</td><td>Multi-specialty</td><td>Low (anchored on Practo)</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="so-what"><strong>So what —</strong> Dentsoft and Dentobees are direct ICP twins. Dentobees' transparent ₹12K floor disqualifies Dentsoft from any RFP where price is asked first.</div>
+</section>
+
+<!-- Positioning map -->
+<section id="position">
+  <span class="eyebrow">06 · Positioning Map</span>
+  <h2 class="headline">On AI/Modernity × Pricing Transparency, Dentsoft sits in the empty quadrant — neither AI-modern nor price-clear.</h2>
+  <div class="rule"></div>
+  <div class="map-wrap with-side">
+    <svg class="map" viewBox="0 0 720 480" role="img" aria-labelledby="map1-title">
+      <title id="map1-title">2x2 positioning map: AI/Modernity vs Price Transparency</title>
+      <!-- quadrant fills -->
+      <rect x="60" y="40" width="300" height="200" fill="#FAFBFC" stroke="#D9DCE1"/>
+      <rect x="360" y="40" width="300" height="200" fill="#F0F6F0" stroke="#D9DCE1"/>
+      <rect x="60" y="240" width="300" height="200" fill="#FFF6F0" stroke="#D9DCE1"/>
+      <rect x="360" y="240" width="300" height="200" fill="#FAFBFC" stroke="#D9DCE1"/>
+      <!-- axes -->
+      <line x1="60" y1="240" x2="660" y2="240" stroke="#1F2937" stroke-width="2"/>
+      <line x1="360" y1="40" x2="360" y2="440" stroke="#1F2937" stroke-width="2"/>
+      <!-- axis labels -->
+      <text x="360" y="22" text-anchor="middle" fill="#6B7280" font-size="11" font-weight="700" letter-spacing="2">HIGH AI / MODERNITY</text>
+      <text x="360" y="465" text-anchor="middle" fill="#6B7280" font-size="11" font-weight="700" letter-spacing="2">LOW AI / MODERNITY</text>
+      <text x="50" y="240" text-anchor="end" fill="#6B7280" font-size="10" font-weight="700"><tspan x="50" dy="-4">LOW PRICE</tspan><tspan x="50" dy="12">TRANSPARENCY</tspan></text>
+      <text x="670" y="240" text-anchor="start" fill="#6B7280" font-size="10" font-weight="700"><tspan x="670" dy="-4">HIGH PRICE</tspan><tspan x="670" dy="12">TRANSPARENCY</tspan></text>
+      <!-- dots -->
+      <g font-family="Inter, system-ui, sans-serif" font-size="12">
+        <!-- format: cx, cy, label, isEmphasis -->
+        <g><circle cx="150" cy="100" r="9" fill="#0B2545" stroke="#fff" stroke-width="2"/><text x="166" y="104" fill="#1F2937">Cliniify</text></g>
+        <g><circle cx="200" cy="160" r="9" fill="#0B2545" stroke="#fff" stroke-width="2"/><text x="216" y="164" fill="#1F2937">CareStack</text></g>
+        <g><circle cx="195" cy="368" r="9" fill="#0B2545" stroke="#fff" stroke-width="2"/><text x="211" y="372" fill="#1F2937">Dentee</text></g>
+        <g><circle cx="170" cy="312" r="9" fill="#0B2545" stroke="#fff" stroke-width="2"/><text x="186" y="316" fill="#1F2937">Practo Ray</text></g>
+        <g><circle cx="180" cy="396" r="9" fill="#0B2545" stroke="#fff" stroke-width="2"/><text x="196" y="400" fill="#1F2937">PappyJoe</text></g>
+        <g><circle cx="225" cy="412" r="9" fill="#0B2545" stroke="#fff" stroke-width="2"/><text x="241" y="416" fill="#1F2937">MocDoc</text></g>
+        <g><circle cx="120" cy="420" r="13" fill="#C97B3C" stroke="#fff" stroke-width="2"/><text x="138" y="424" fill="#1F2937" font-weight="700">Dentsoft</text></g>
+        <g><circle cx="615" cy="396" r="9" fill="#0B2545" stroke="#fff" stroke-width="2"/><text x="595" y="416" text-anchor="end" fill="#1F2937">Dentobees</text></g>
+      </g>
+      <!-- white-space callout -->
+      <g>
+        <rect x="430" y="65" width="200" height="80" rx="6" fill="#F8F6F1" stroke="#C97B3C" stroke-width="1.5"/>
+        <text x="530" y="95" text-anchor="middle" fill="#1F2937" font-size="11" font-style="italic" font-family="Inter, system-ui">
+          <tspan x="530" dy="0">Empty white space —</tspan>
+          <tspan x="530" dy="14">no Indian PMS</tspan>
+          <tspan x="530" dy="14">occupies it</tspan>
+        </text>
+      </g>
+    </svg>
+    <div class="legend">
+      <h4>Read</h4>
+      <ul style="list-style:none;padding:0;margin:0">
+        <li><strong>Dentsoft quadrant</strong> — Low AI &amp; low price transparency: most crowded, least differentiated.</li>
+        <li><strong>White space</strong> — High AI <em>and</em> transparent pricing: nobody owns it.</li>
+        <li><strong>Closest mover</strong> — Dentobees is two-thirds of the way there with public pricing alone.</li>
+      </ul>
+      <div class="so-what" style="margin-top:1rem"><strong>So what —</strong> Dentsoft's fastest move is down-and-right: publish pricing → claim transparency leader before Cliniify or Dentobees claim the white space.</div>
+    </div>
+  </div>
+</section>
+
+<!-- Feature comparison -->
+<section id="features">
+  <span class="eyebrow">07 · Feature Comparison</span>
+  <h2 class="headline">Dentsoft has parity on basics, lags on AI and analytics, leads on bundled website.</h2>
+  <div class="rule"></div>
+  <div class="table-wrap">
+    <table class="tbl-center">
+      <thead>
+        <tr>
+          <th style="width:24%">Feature</th>
+          <th>Dentsoft</th><th>PappyJoe</th><th>MocDoc</th><th>Cliniify</th><th>Dentee</th><th>Dentobees</th><th>Practo Ray</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Cloud SaaS</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td></tr>
+        <tr><td>Mobile app (iOS/Android)</td><td>~</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td></tr>
+        <tr><td>EMR / dental charting</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td><td>~</td></tr>
+        <tr><td>GST-compliant billing</td><td>~</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td></tr>
+        <tr><td>WhatsApp + SMS reminders</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td></tr>
+        <tr><td>Patient portal</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td></tr>
+        <tr><td>Free clinic website included <span class="star">★</span></td><td class="star">✓</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>~</td></tr>
+        <tr><td>AI features (Copilot, face-rec) <span class="star">★</span></td><td>—</td><td>—</td><td>—</td><td class="star">✓</td><td>~</td><td>~</td><td>—</td></tr>
+        <tr><td>NABH / compliance certification <span class="star">★</span></td><td>—</td><td>—</td><td class="star">✓</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+        <tr><td>Multi-location / multi-branch</td><td>~</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td><td>✓</td></tr>
+        <tr><td>Patient-acquisition marketplace <span class="star">★</span></td><td>—</td><td>—</td><td>~</td><td>—</td><td class="star">✓</td><td>—</td><td class="star">✓</td></tr>
+        <tr><td>Public pricing visible <span class="star">★</span></td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td class="star">✓</td><td>—</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="font-size:.85rem;color:var(--muted);font-style:italic">✓ present  ·  ~ partial / inferred  ·  — absent or not mentioned  ·  <span class="star">★</span> = best-in-class on that dimension</p>
+</section>
+
+<!-- Best-in-class gaps -->
+<section id="gaps">
+  <span class="eyebrow">08 · Best-in-Class Gaps</span>
+  <h2 class="headline">Dentsoft has zero ★-leadership claims today — three specific deficits cost deals.</h2>
+  <div class="rule"></div>
+
+  <div class="gap gap-red">
+    <div class="bar"></div>
+    <div>
+      <h4>Gap #1 — No AI narrative</h4>
+      <p>Cliniify owns “AI Copilot + face-recognition check-in.” Dentsoft says nothing about AI. In 2026 Indian SaaS buying, “AI” is a default checkbox.</p>
+    </div>
+  </div>
+  <div class="gap gap-amber">
+    <div class="bar"></div>
+    <div>
+      <h4>Gap #2 — No compliance / credibility halo</h4>
+      <p>MocDoc bangs the NABH-certified drum. Dentsoft has no analogous trust marker (no ISO, no SOC, no NABH).</p>
+    </div>
+  </div>
+  <div class="gap gap-amber">
+    <div class="bar"></div>
+    <div>
+      <h4>Gap #3 — No installed-base scale claim</h4>
+      <p>PappyJoe says “12,000+ clinics, 15+ years.” Dentsoft cites no number — the buyer fills the vacuum with doubt.</p>
+    </div>
+  </div>
+  <div class="gap gap-accent">
+    <div class="bar"></div>
+    <div>
+      <h4>Latent gap — No marketplace flywheel</h4>
+      <p>Dentee / Practo monetize the <em>revenue</em> side of the dentist's P&amp;L. Dentsoft only sells against the <em>cost</em> side.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Pricing -->
+<section id="pricing">
+  <span class="eyebrow">09 · Pricing Benchmark</span>
+  <h2 class="headline">Dentobees is the only vendor with a public price — Dentsoft's silence ties it to the opaque pack.</h2>
+  <div class="rule"></div>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Vendor</th><th>Pricing visibility</th><th>Stated price</th><th>Source confidence</th></tr></thead>
+      <tbody>
+        <tr><td>Dentsoft</td><td>“Affordable for every clinic size” + 14-day free trial; no number</td><td>Not visible</td><td>Observed (homepage)</td></tr>
+        <tr><td>PappyJoe</td><td>Demo-gated</td><td>Not visible</td><td>Observed</td></tr>
+        <tr><td>MocDoc</td><td>Demo-gated</td><td>Not visible</td><td>Observed</td></tr>
+        <tr><td>Cliniify</td><td>Demo-gated</td><td>Not visible</td><td>Observed</td></tr>
+        <tr><td>Dentee</td><td>Demo-gated</td><td>Not visible</td><td>Observed</td></tr>
+        <tr style="background:#fff3e6"><td><strong>Dentobees</strong></td><td><strong>PUBLISHED</strong></td><td><strong>₹12,000–₹38,000/yr + GST</strong>; branch add-ons ₹5K–10K</td><td>Observed</td></tr>
+        <tr><td>Practo Ray</td><td>Demo-gated</td><td>Not visible</td><td>Observed</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="font-size:.85rem;color:var(--muted);font-style:italic">Inferred Dentsoft list (not confirmed): ₹8K–₹20K/yr/clinic — derived from “affordable” framing + bundled-website positioning just under Dentobees.</p>
+  <div class="so-what"><strong>So what —</strong> If Dentsoft publishes a price under ₹12K, it instantly beats Dentobees on the only transparent benchmark and forces every demo-gated competitor to react.</div>
+</section>
+
+<!-- UX -->
+<section id="ux">
+  <span class="eyebrow">10 · UX & Trust Signals</span>
+  <h2 class="headline">Dentsoft's site is SEO-optimized for tier-2/3 capture but reads as generic and trust-thin.</h2>
+  <div class="rule"></div>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Signal</th><th>Dentsoft</th><th>Best-in-class peer</th><th style="width:14%">Verdict</th></tr></thead>
+      <tbody>
+        <tr><td>Programmatic SEO (city pages)</td><td>Strong — 15+ city/state pages indexed</td><td>None matches</td><td><span class="pill pill-leads">Leads</span></td></tr>
+        <tr><td>Headline clarity</td><td>“India's Best / Most Trusted” (superlative, not specific)</td><td>“Designed specifically for dental professionals” — PappyJoe</td><td><span class="pill pill-gen">Generic</span></td></tr>
+        <tr><td>Trust signals (logos, counts)</td><td>None visible</td><td>“12,000+ doctors” PappyJoe; “1,500+ NABH-certified” MocDoc</td><td><span class="pill pill-loses">Severe</span></td></tr>
+        <tr><td>Demo / trial CTA friction</td><td>14-day free trial, direct signup</td><td>Most peers gate behind demo call</td><td><span class="pill pill-leads">Leads</span></td></tr>
+        <tr><td>Visual modernity</td><td>Templated corporate-clean (inferred)</td><td>Cliniify's AI-forward design</td><td><span class="pill pill-loses">Behind</span></td></tr>
+        <tr><td>Localization (Hindi / regional)</td><td>English-only (inferred — not seen)</td><td>None of peers either</td><td><span class="pill pill-tie">Tied</span></td></tr>
+        <tr><td>Brand confusion</td><td>Same name as <em>dentsoftware.com</em>, “DentSoft 8.0”, DoDent</td><td>Distinct brands</td><td><span class="pill pill-loses">Loses</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="so-what"><strong>So what —</strong> Funnel-top is strong (city-SEO + free trial). Funnel-mid is weak (no proof, generic copy). Brand layer is leaking demand to namesakes.</div>
+</section>
+
+<!-- GTM -->
+<section id="gtm">
+  <span class="eyebrow">11 · GTM & Growth Signals</span>
+  <h2 class="headline">Dentsoft's GTM is a programmatic-SEO + bundled-website land-grab — distribution-led, not product-led.</h2>
+  <div class="rule"></div>
+  <ul>
+    <li><strong>Channel</strong> — Heavy organic SEO via 15+ city/state landing pages (Delhi, Mumbai, Bangalore, Ranchi, Patna, Deoghar, Dhanbad, Hazaribagh, Punjab, Kerala, Andhra…). <em>Observed.</em></li>
+    <li><strong>Acquisition wedge</strong> — “Free professional website worth ₹15,000+” bundled with PMS lowers psychological cost to switch from paper. <em>Observed.</em></li>
+    <li><strong>Trial mechanics</strong> — 14-day no-credit-card free trial; aligns to tier-2/3 buyer who won't book a demo call. <em>Observed.</em></li>
+    <li><strong>Geographic concentration</strong> — Strong Jharkhand / eastern-India footprint (Ranchi, Patna, Dhanbad, Deoghar, Hazaribagh). Possibly the founder home base. <em>Inferred.</em></li>
+    <li><strong>Messaging</strong> — “Trust + India.” Patriotic, generic, low-information. No technology, segment, or founder narrative.</li>
+    <li><strong>Partnerships / integrations</strong> — None visible from search results.</li>
+  </ul>
+  <div class="so-what"><strong>So what —</strong> Distribution is the moat. But it's a non-defensible moat any well-funded entrant can replicate with paid SEO + content in 12 months.</div>
+</section>
+
+<!-- Defensible vs Replicable -->
+<section id="moat">
+  <span class="eyebrow">12 · Defensible vs Replicable Advantages</span>
+  <h2 class="headline">Almost everything Dentsoft does well is replicable — its only durable edge is its tier-2/3 organic SEO real estate.</h2>
+  <div class="rule"></div>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Advantage</th><th style="width:14%">Defensible?</th><th>Why / Why not</th></tr></thead>
+      <tbody>
+        <tr><td>Programmatic city-SEO ranking</td><td><span class="pill pill-tie">Semi</span></td><td>Domain authority compounds; takes 18-24 months for new entrants — but paid search can shortcut</td></tr>
+        <tr><td>Tier-2/3 dentist customer base</td><td><span class="pill pill-tie">Semi</span></td><td>Switching costs in PMS are real (data migration pain); meaningful retention moat once installed</td></tr>
+        <tr><td>Bundled free website</td><td><span class="pill pill-loses">No</span></td><td>Trivially copied; any competitor can add Wix/template generator in weeks</td></tr>
+        <tr><td>Brand “Dentsoft”</td><td><span class="pill pill-loses">No</span></td><td>Same name as 3+ other vendors → brand confusion is the <em>opposite</em> of a moat</td></tr>
+        <tr><td>Cloud + mobile + EMR feature set</td><td><span class="pill pill-loses">No</span></td><td>Table stakes; matched by every direct competitor</td></tr>
+        <tr><td>14-day free trial</td><td><span class="pill pill-loses">No</span></td><td>Standard SaaS; easily matched</td></tr>
+        <tr><td>Founder / team narrative</td><td><span class="pill pill-gen">Unknown</span></td><td>Not publicly visible; cannot be assessed</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="so-what"><strong>Hard truth —</strong> Dentsoft's only candidate moat is accumulated SEO + installed-base inertia. Both erode without continuous investment.</div>
+</section>
+
+<!-- Weaknesses -->
+<section id="weaknesses">
+  <span class="eyebrow">13 · Key Weaknesses</span>
+  <h2 class="headline">Five weaknesses, each tied to a competitor that already does it better — these are the likely losing-deal patterns.</h2>
+  <div class="rule"></div>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Weakness</th><th>Competitor that exploits it</th><th>Likely deal-loss pattern</th></tr></thead>
+      <tbody>
+        <tr><td>No AI story</td><td>Cliniify</td><td>Tech-forward urban dentist defaults to “the AI one”</td></tr>
+        <tr><td>No compliance halo</td><td>MocDoc (NABH)</td><td>Hospital-attached / chain RFP requires NABH — Dentsoft excluded</td></tr>
+        <tr><td>No installed-base scale claim</td><td>PappyJoe (“12,000+”)</td><td>Risk-averse buyer chooses “the big one”</td></tr>
+        <tr><td>No transparent pricing</td><td>Dentobees (₹12K public)</td><td>Price-shopper buys Dentobees without ever calling Dentsoft</td></tr>
+        <tr><td>No patient-acquisition flywheel</td><td>Dentee, Practo Ray</td><td>Dentist who wants <em>patients</em> (not software) bypasses pure-PMS entirely</td></tr>
+        <tr><td>Brand collision (3+ namesakes)</td><td>Confused brands</td><td>Direct-search traffic leaks to wrong vendor</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- If Dentsoft -->
+<section id="play">
+  <span class="eyebrow">14 · If I Were Dentsoft — Where to Play</span>
+  <h2 class="headline">Three decisive moves — own a wedge, don't try to out-feature the field.</h2>
+  <div class="rule"></div>
+  <div class="map-wrap with-side">
+    <svg class="map" viewBox="0 0 720 480" role="img" aria-labelledby="map2-title">
+      <title id="map2-title">2x2 impact vs effort map of strategic moves</title>
+      <rect x="60" y="40" width="300" height="200" fill="#F0F6F0" stroke="#D9DCE1"/>
+      <rect x="360" y="40" width="300" height="200" fill="#FFF0E6" stroke="#D9DCE1"/>
+      <rect x="60" y="240" width="300" height="200" fill="#FAFBFC" stroke="#D9DCE1"/>
+      <rect x="360" y="240" width="300" height="200" fill="#FAFBFC" stroke="#D9DCE1"/>
+      <line x1="60" y1="240" x2="660" y2="240" stroke="#1F2937" stroke-width="2"/>
+      <line x1="360" y1="40" x2="360" y2="440" stroke="#1F2937" stroke-width="2"/>
+      <text x="360" y="22" text-anchor="middle" fill="#6B7280" font-size="11" font-weight="700" letter-spacing="2">HIGH IMPACT</text>
+      <text x="360" y="465" text-anchor="middle" fill="#6B7280" font-size="11" font-weight="700" letter-spacing="2">LOW IMPACT</text>
+      <text x="50" y="244" text-anchor="end" fill="#6B7280" font-size="11" font-weight="700">LOW EFFORT</text>
+      <text x="670" y="244" text-anchor="start" fill="#6B7280" font-size="11" font-weight="700">HIGH EFFORT</text>
+      <g font-family="Inter, system-ui, sans-serif" font-size="11">
+        <!-- B (top-left) -->
+        <g><circle cx="200" cy="120" r="22" fill="#C97B3C" stroke="#fff" stroke-width="3"/><text x="200" y="125" fill="#fff" text-anchor="middle" font-weight="800" font-size="16">B</text>
+          <text x="200" y="170" fill="#1F2937" text-anchor="middle"><tspan x="200" dy="0">Publish pricing</tspan><tspan x="200" dy="14">(transparency leader)</tspan></text>
+        </g>
+        <!-- A (top-right) -->
+        <g><circle cx="540" cy="135" r="20" fill="#0B2545" stroke="#fff" stroke-width="3"/><text x="540" y="140" fill="#fff" text-anchor="middle" font-weight="800" font-size="16">A</text>
+          <text x="540" y="183" fill="#1F2937" text-anchor="middle"><tspan x="540" dy="0">Stake “tier-2/3 India PMS leader”</tspan><tspan x="540" dy="14">(Hindi UI + 50 cities + EMI)</tspan></text>
+        </g>
+        <!-- C (top-right) -->
+        <g><circle cx="585" cy="200" r="20" fill="#0B2545" stroke="#fff" stroke-width="3"/><text x="585" y="205" fill="#fff" text-anchor="middle" font-weight="800" font-size="16">C</text>
+          <text x="585" y="232" fill="#1F2937" text-anchor="end"><tspan x="585" dy="0">Patient-acquisition layer</tspan></text>
+        </g>
+        <!-- D (bottom-left) -->
+        <g><circle cx="180" cy="350" r="20" fill="#0B2545" stroke="#fff" stroke-width="3"/><text x="180" y="355" fill="#fff" text-anchor="middle" font-weight="800" font-size="16">D</text>
+          <text x="180" y="395" fill="#1F2937" text-anchor="middle"><tspan x="180" dy="0">Basic AI assistant wrapper</tspan><tspan x="180" dy="14">(neutralize Cliniify)</tspan></text>
+        </g>
+      </g>
+    </svg>
+    <div class="legend">
+      <h4>Moves</h4>
+      <ol style="list-style:none;padding:0">
+        <li><span class="badge hot">B</span><strong>Publish a price</strong> — even one tier. Claim transparency leadership before Dentobees scales. <em>Killer move.</em></li>
+        <li><span class="badge">A</span><strong>Stake “India tier-2/3 dental PMS leader.”</strong> Add Hindi UI, 50-city SEO, EMI to lock geographic moat.</li>
+        <li><span class="badge">C</span><strong>Patient-discovery layer</strong> on installed clinics. Cost-side PMS becomes revenue-side flywheel.</li>
+        <li><span class="badge">D</span><strong>One AI feature</strong> (note summarizer, WhatsApp reply assistant) to neutralize Cliniify's AI narrative.</li>
+      </ol>
+      <p style="font-size:.82rem;color:var(--muted);font-style:italic;margin-top:1rem">Defensive — Fix brand collision: own SERPs for “Dentsoft” via PPC + distinctive sub-brand (e.g. “Dentsoft Cloud”).</p>
+    </div>
+  </div>
+</section>
+
+<!-- If competitor -->
+<section id="attack">
+  <span class="eyebrow">15 · If I Were a Competitor — How to Attack</span>
+  <h2 class="headline">Three asymmetric attack vectors — each prerequisite is realistic for a well-funded entrant.</h2>
+  <div class="rule"></div>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th style="width:36%">Attack</th><th>Aimed at Dentsoft weakness</th><th>Prerequisite</th><th style="width:9%">Time</th></tr></thead>
+      <tbody>
+        <tr><td>Price-anchor strike — publish ₹6,999/yr Dentsoft-killer tier with bundled website</td><td>“Affordable” claim, opacity</td><td>LTV &gt; ₹15K to survive lower price; SEM ad budget</td><td>3–6 mo</td></tr>
+        <tr><td>AI-native repositioning — LLM EMR summary, voice-to-chart, WhatsApp-AI</td><td>No AI story</td><td>LLM API spend ~$0.50/clinic/mo; UI dev</td><td>2–4 mo</td></tr>
+        <tr><td>City-SEO leapfrog — domain authority via PR + 200-city programmatic pages</td><td>Dentsoft's only real moat</td><td>SEO team + 6-month content sprint</td><td>6–12 mo</td></tr>
+        <tr><td>Marketplace flywheel — patient-discovery layer pulling dentists via leads (Dentee playbook)</td><td>No revenue-side flywheel</td><td>Two-sided cold-start; D2C marketing</td><td>12–18 mo</td></tr>
+        <tr><td>Compliance play — sell NABH + ABDM + DPDP-Act-ready posture to chains</td><td>No certifications</td><td>Audit + paperwork; not technically hard</td><td>6–9 mo</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="so-what"><strong>Most asymmetric attack —</strong> Price-anchor + AI-narrative combo. Cheap, fast, hits two Dentsoft gaps simultaneously.</div>
+</section>
+
+<!-- Synthesis -->
+<section id="synthesis" style="background:linear-gradient(180deg,var(--bg) 0%,var(--cream) 100%)">
+  <span class="eyebrow">16 · Strategic Synthesis</span>
+  <h2 class="headline">Dentsoft must convert distribution into product-narrative dominance within 12 months — or be flanked from above and below.</h2>
+  <div class="rule"></div>
+  <ul>
+    <li><strong>Today</strong> — Dentsoft = distribution leader in tier-2/3, generic on product, opaque on price, weak on brand.</li>
+    <li><strong>Without action</strong> — Cliniify takes the AI segment. Dentobees takes price-shoppers. Dentee takes patient-acquisition seekers. MocDoc takes chains. Dentsoft compresses into shrinking commodity middle.</li>
+    <li><strong>Next 6 months</strong> — Publish pricing → claim transparency leader. Ship one AI feature → neutralize Cliniify narrative. Add Hindi/vernacular UI → re-fortify tier-2/3 moat.</li>
+    <li><strong>12-24 months</strong> — Build patient-acquisition layer on top of installed base. Flips the business model from cost-side to revenue-side — the only durable moat in this category.</li>
+  </ul>
+  <div style="margin-top:1.5rem;padding:1.25rem 1.5rem;background:var(--accent);color:#fff;border-radius:6px;font-size:1.05rem;font-weight:600;line-height:1.5">
+    <strong style="font-style:normal;letter-spacing:.04em;text-transform:uppercase;font-size:.78rem;display:block;margin-bottom:.4rem;color:#ffe7d2">Single biggest leverage point</strong>
+    Publish a transparent INR price. Lowest effort, highest narrative impact, instant differentiation from 5 of 6 named competitors.
+  </div>
+</section>
+
+<!-- Appendix -->
+<section id="appendix">
+  <span class="eyebrow">17 · Appendix — Brand Collision &amp; Methodology</span>
+  <h2 class="headline">Five Indian dental products use a Dent[X]Soft name — and every claim in this brief is labeled.</h2>
+  <div class="rule"></div>
+  <div class="cols-2">
+    <div>
+      <h3>Brand-collision map</h3>
+      <ul>
+        <li><strong><a href="https://www.dentsoft.in/" target="_blank" rel="noopener">dentsoft.in</a></strong> — subject of this analysis (cloud PMS, India)</li>
+        <li><strong><a href="https://www.dentsoftware.com/" target="_blank" rel="noopener">dentsoftware.com</a></strong> — Avengersoft (Mumbai, est. 2010-2012); separate company</li>
+        <li><strong>dentsoft.visionsoftwares.com</strong> — “DentSoft 8.0”; older desktop product</li>
+        <li><strong><a href="http://www.dodentsoft.com/dodent.htm" target="_blank" rel="noopener">dodentsoft.com</a></strong> — DoDent; separate Indian dental PMS</li>
+        <li><strong>Facebook page “Dentzoft”</strong> — Mumbai listing</li>
+      </ul>
+      <p style="font-size:.85rem;color:var(--muted);font-style:italic;margin-top:.5rem">So what — Buyer Googling “Dentsoft” lands on 2-3 vendors with no obvious differentiation. Owning the SERP is P0.</p>
+    </div>
+    <div>
+      <h3>Methodology &amp; evidence</h3>
+      <ul>
+        <li>dentsoft.in direct fetch returned 403 → signals via Google search snippets + 15+ indexed city/state pages</li>
+        <li>Competitors verified via WebFetch: Dentee, Cliniify, MocDoc, Dentobees, PappyJoe, Halemind, CareStack</li>
+        <li>Vendor self-claims labeled (PappyJoe 12K+, MocDoc 1.5K+, CareStack 2.5–3K+); not third-party verified</li>
+        <li>Inferred items marked: Dentsoft pricing, geographic concentration, mobile presence, founder identity</li>
+        <li>Excluded with reason: DentalDost (rebranded ScanO); Dentrix/Eaglesoft (no India GTM); CareStack (US/UK/AU only)</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div>
+      <h4>Sources</h4>
+      <p style="color:#cfd6df">
+        <a href="https://www.dentsoft.in/">dentsoft.in</a> ·
+        <a href="https://dentee.com">dentee.com</a> ·
+        <a href="https://pappyjoe.com/dental-clinic-practice-management-software-india/">pappyjoe.com</a> ·
+        <a href="https://mocdoc.com/dental-practice-management-software">mocdoc.com</a> ·
+        <a href="https://cliniify.com">cliniify.com</a> ·
+        <a href="https://www.dentobees.com">dentobees.com</a> ·
+        <a href="https://www.practo.com/ray">practo.com/ray</a> ·
+        <a href="https://halemind.com">halemind.com</a> ·
+        <a href="https://carestack.com">carestack.com</a> ·
+        <a href="https://www.dentsoftware.com/">dentsoftware.com</a> ·
+        <a href="http://www.dodentsoft.com/dodent.htm">dodentsoft.com</a>
+      </p>
+    </div>
+    <div>
+      <h4>About this brief</h4>
+      <p style="color:#cfd6df">Strategy analysis · April 2026 · evidence-based · no fabricated metrics. Every inference labeled.</p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

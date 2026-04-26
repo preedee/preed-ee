@@ -26,6 +26,7 @@ type ProjectStatus = "live" | "wip" | "paused" | "skill" | "fork" | "archived";
 type Meta = { stack: string; purpose: string; group: string; logo: LogoSpec; status: ProjectStatus; pendingActions?: string[]; gitExcludePaths?: string[]; website?: string };
 
 const GROUP_TBDC = "Tooth Boutique Dental Clinic";
+const GROUP_CLINERA = "Clinera";
 const GROUP_MATCHDAY = "Matchday";
 const GROUP_PADEL = "The Padel Society";
 const GROUP_PADEL_THAILAND = "Padel Thailand";
@@ -43,7 +44,7 @@ const META: Record<string, Meta> = {
   "tbdc / docs":                { stack: "Docs",                          purpose: "HR job descriptions (Thai + English)",            group: GROUP_TBDC, logo: TBDC_LOGO, status: "live" },
   "tbdc / brand-deck":          { stack: "Bun, TS, pptxgenjs",            purpose: "Bilingual onboarding deck generator",             group: GROUP_TBDC, logo: TBDC_LOGO, status: "live" },
   "tbdc / ads-monitor":         { stack: "Bun, TS, google-ads-api",       purpose: "Google Ads spend/KPI monitor + weekly digest",    group: GROUP_TBDC, logo: TBDC_LOGO, status: "wip" },
-  "clinera":                    { stack: "Planning phase",                purpose: "Dental clinic ops + LINE booking + reminders",   group: GROUP_TBDC, logo: TBDC_LOGO, status: "wip" },
+  "clinera":                    { stack: "Planning phase",                purpose: "Dental clinic ops + LINE booking + reminders",   group: GROUP_CLINERA, logo: TBDC_LOGO, status: "wip" },
   "matchday":                   { stack: "Next.js (product-hub), MD specs", purpose: "Matchday spec docs + product-hub marketing site", group: GROUP_MATCHDAY, logo: MATCHDAY_LOGO, status: "wip", website: "https://padelthailand.com/matchday/" },
   "matchday-backend":           { stack: "Supabase (PG17 + Edge Fns)",    purpose: "Matchday backend — Postgres + Edge Functions + Realtime", group: GROUP_MATCHDAY, logo: MATCHDAY_LOGO, status: "wip" },
   "matchday-web":               { stack: "Next.js 16, React 19, Tailwind 4", purpose: "Matchday Next.js frontend — single-elim padel tournaments", group: GROUP_MATCHDAY, logo: MATCHDAY_LOGO, status: "wip" },
@@ -60,12 +61,14 @@ const META: Record<string, Meta> = {
   "anthropic-course":           { stack: "Docs",                          purpose: "Anthropic course notes",                          group: GROUP_OTHER, logo: { kind: "monogram", letter: "A", bg: "#d97757", fg: "#ffffff", as: "anthropic.svg" }, status: "paused" },
   "convert-xlsx-to-sheets":     { stack: "Skill",                         purpose: "Scheduled skill definition",                      group: GROUP_OTHER, logo: { kind: "monogram", letter: "X", bg: "#475569", fg: "#f8fafc", as: "xlsx.svg" }, status: "skill" },
   "playbypoint":                { stack: "Docs",                          purpose: "PlayByPoint build specs and prompt templates",    group: GROUP_OTHER, logo: { kind: "monogram", letter: "P", bg: "#334155", fg: "#f8fafc", as: "playbypoint.svg" }, status: "wip" },
+  "new-project":                { stack: "PAI skill (in design)",         purpose: "/new-project slash command — auto-register a new Cowork project on this dashboard", group: GROUP_OTHER, logo: { kind: "monogram", letter: "N", bg: "#7dd3c0", fg: "#0a0a0a", as: "new-project.svg" }, status: "wip" },
 };
 
-const GROUP_ORDER = [GROUP_TBDC, GROUP_MATCHDAY, GROUP_PADEL, GROUP_PADEL_THAILAND, GROUP_OTHER];
+const GROUP_ORDER = [GROUP_TBDC, GROUP_CLINERA, GROUP_PADEL, GROUP_MATCHDAY, GROUP_PADEL_THAILAND, GROUP_OTHER];
 
 const GROUP_NAV_LABELS: Record<string, string> = {
   [GROUP_TBDC]: "TBDC",
+  [GROUP_CLINERA]: "Clinera",
   [GROUP_MATCHDAY]: "Matchday",
   [GROUP_PADEL]: "TPS",
   [GROUP_PADEL_THAILAND]: "Padel TH",

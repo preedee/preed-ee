@@ -83,3 +83,8 @@ _(no pending items)_
 
 ## playbypoint
 _(no pending items)_
+
+## new-project
+- Resume design — confirm 3 defaults (group prompt, status default, idempotency)
+- Build skill at `~/.claude/skills/new-project/` (SKILL.md + run.ts)
+- See PRD at `MEMORY/WORK/20260426-175239_build-new-project-skill/`

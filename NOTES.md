@@ -79,6 +79,9 @@ _(no pending items)_
 ## amity-social-uikit-flutter
 _(no pending items)_
 
+## tps-data-analytics
+_(no pending items)_
+
 ---
 
 # Matchday

@@ -58,6 +58,7 @@ const META: Record<string, Meta> = {
   "tps-monthly-reports":        { stack: "Skill",                         purpose: "The Padel Society monthly reports skill",         group: GROUP_PADEL, logo: TPS_LOGO, status: "skill" },
   "tps-tournament-dashboard":   { stack: "HTML/CSS/JS",                   purpose: "Static tournament results dashboard",             group: GROUP_PADEL, logo: TPS_LOGO, status: "wip" },
   "ptp-league-scheduler":       { stack: "Python",                        purpose: "Generate padel league round-robin schedule",      group: GROUP_PADEL, logo: TPS_LOGO, status: "wip" },
+  "tps-data-analytics":         { stack: "Planning phase",                purpose: "Data analytics for The Padel Society",            group: GROUP_PADEL, logo: TPS_LOGO, status: "wip" },
   "padelthailand":              { stack: "HTML/CSS/JS, Leaflet",          purpose: "Tournament calendar for padel in Thailand",       group: GROUP_PADEL_THAILAND, logo: PADEL_THAILAND_LOGO, status: "live", gitExcludePaths: ["matchday", ".nojekyll"], website: "https://padelthailand.com/" },
   "padel-clubs-scraper":        { stack: "Python, Google Places",         purpose: "Scrape Thailand padel clubs directory",           group: GROUP_PADEL_THAILAND, logo: PADEL_THAILAND_LOGO, status: "wip" },
   "anthropic-course":           { stack: "Docs",                          purpose: "Anthropic course notes",                          group: GROUP_OTHER, logo: { kind: "monogram", letter: "A", bg: "#d97757", fg: "#ffffff", as: "anthropic.svg" }, status: "paused" },

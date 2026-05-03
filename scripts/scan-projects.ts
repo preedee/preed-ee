@@ -42,7 +42,7 @@ const META: Record<string, Meta> = {
   "tbdc / web":                 { stack: "Next.js 16, React 19, TS",     purpose: "Clinic website for Tooth Boutique Dental Clinic", group: GROUP_TBDC, logo: TBDC_LOGO, status: "live" },
   "tbdc / invoices":            { stack: "Bun, TypeScript, Playwright",   purpose: "Monthly multi-vendor invoice aggregator",         group: GROUP_TBDC, logo: TBDC_LOGO, status: "live" },
   "tbdc / docs":                { stack: "Docs",                          purpose: "HR job descriptions (Thai + English)",            group: GROUP_TBDC, logo: TBDC_LOGO, status: "live" },
-  "tbdc / brand-deck":          { stack: "Bun, TS, pptxgenjs",            purpose: "Bilingual onboarding deck generator",             group: GROUP_TBDC, logo: TBDC_LOGO, status: "live" },
+  "tbdc / brand-deck":          { stack: "Bun, TS, pptxgenjs",            purpose: "Bilingual deck generators: onboarding, team profiles, monthly schedule, operations manual", group: GROUP_TBDC, logo: TBDC_LOGO, status: "live" },
   "tbdc / ads-monitor":         { stack: "Bun, TS, google-ads-api",       purpose: "Google Ads spend/KPI monitor + weekly digest",    group: GROUP_TBDC, logo: TBDC_LOGO, status: "wip" },
   "tbdc / chatbot":             { stack: "Planning phase",                purpose: "AI chatbot for TBDC patient inquiries",           group: GROUP_TBDC, logo: TBDC_LOGO, status: "wip" },
   "tbdc / payroll":             { stack: "Python, gspread, weasyprint",   purpose: "Payroll automation for Tooth Boutique Dental Clinic", group: GROUP_TBDC, logo: TBDC_LOGO, status: "live" },

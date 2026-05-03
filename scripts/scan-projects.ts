@@ -66,6 +66,7 @@ const META: Record<string, Meta> = {
   "convert-xlsx-to-sheets":     { stack: "Skill",                         purpose: "Scheduled skill definition",                      group: GROUP_OTHER, logo: { kind: "monogram", letter: "X", bg: "#475569", fg: "#f8fafc", as: "xlsx.svg" }, status: "skill" },
   "playbypoint":                { stack: "Docs",                          purpose: "PlayByPoint build specs and prompt templates",    group: GROUP_OTHER, logo: { kind: "monogram", letter: "P", bg: "#334155", fg: "#f8fafc", as: "playbypoint.svg" }, status: "wip" },
   "new-project":                { stack: "PAI skill (in design)",         purpose: "/new-project slash command — auto-register a new Cowork project on this dashboard", group: GROUP_OTHER, logo: { kind: "monogram", letter: "N", bg: "#7dd3c0", fg: "#0a0a0a", as: "new-project.svg" }, status: "wip" },
+  "organize-folder":            { stack: "Bun, TypeScript",               purpose: "Reusable CLI: dedupe + translate Thai filenames + route into folder structure", group: GROUP_OTHER, logo: { kind: "monogram", letter: "O", bg: "#475569", fg: "#f8fafc", as: "organize-folder.svg" }, status: "live" },
 };
 
 const GROUP_ORDER = [GROUP_TBDC, GROUP_CLINERA, GROUP_PADEL, GROUP_MATCHDAY, GROUP_PADEL_THAILAND, GROUP_OTHER];

@@ -48,6 +48,13 @@ _(no pending items)_
 ## tbdc / df
 _(no pending items)_
 
+## tbdc / inventory
+- Migrate "All Stock 2026" sheet to 3-tab design (ITEMS / LOG / ORDERS)
+- Build SKU master from existing items in current sheet
+- Set conditional formatting: ITEMS rows red when on_hand ≤ min
+- Saved Filter View "Reorder" on ITEMS (Status=REORDER)
+- Walk Sara/Gif/Dr.Win through new LOG-row workflow
+
 ---
 
 # Clinera

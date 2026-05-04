@@ -49,11 +49,11 @@ _(no pending items)_
 _(no pending items)_
 
 ## tbdc / inventory
-- Migrate "All Stock 2026" sheet to 3-tab design (ITEMS / LOG / ORDERS)
-- Build SKU master from existing items in current sheet
-- Set conditional formatting: ITEMS rows red when on_hand ≤ min
-- Saved Filter View "Reorder" on ITEMS (Status=REORDER)
-- Walk Sara/Gif/Dr.Win through new LOG-row workflow
+- Share new Sheet `1kEpppBZrQfIC9aM2OmEDQvUgTNko63UhKBSUiaIAK1U` with service account `claude-cowork@tbdc-salary-slips.iam.gserviceaccount.com` as Editor
+- Run `bun run init` from `~/Desktop/Cowork/tbdc/inventory/` (creates 3 tabs + writes seed)
+- Walk the clinic, log opening-balance Adjust transactions for items with on-hand stock
+- Saved Filter View "Reorder" on ITEMS (Status=REORDER) for the orderer
+- Train Owner/Manager/Admin/Dental Assistant/Housekeeper roles on the LOG-row workflow
 
 ---
 

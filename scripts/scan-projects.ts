@@ -3,7 +3,7 @@ import { readdir, stat, readFile, writeFile, rm, mkdir, copyFile } from "node:fs
 import { join, resolve, dirname } from "node:path";
 import { $ } from "bun";
 
-const COWORK_ROOT = "/Users/preedee/Desktop/Cowork";
+const COWORK_ROOT = "/Users/preedee/Cowork";
 const SITE_ROOT = resolve(import.meta.dir, "../docs");
 const LOGOS_DIR = join(SITE_ROOT, "logos");
 const DASHBOARD_TEMPLATE = resolve(import.meta.dir, "dashboard-template.html");

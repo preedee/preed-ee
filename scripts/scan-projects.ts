@@ -23,7 +23,9 @@ type LogoSpec =
 
 type ProjectStatus = "live" | "wip" | "paused" | "skill" | "fork" | "archived";
 
-type Meta = { stack: string; purpose: string; group: string; logo: LogoSpec; status: ProjectStatus; pendingActions?: string[]; gitExcludePaths?: string[]; website?: string };
+type Meta = { stack: string; purpose: string; group: string; logo: LogoSpec; status: ProjectStatus; pendingActions?: string[]; gitExcludePaths?: string[]; website?: string; commandsInclude?: string[]; commandsExclude?: string[] };
+
+const DEFAULT_COMMAND_EXCLUDES = new Set(["typecheck", "prebuild", "postinstall", "preinstall", "prepare"]);
 
 const GROUP_TBDC = "Tooth Boutique Dental Clinic";
 const GROUP_CLINERA = "Clinera";
@@ -32,7 +34,7 @@ const GROUP_PADEL = "The Padel Society";
 const GROUP_PADEL_THAILAND = "Padel Thailand";
 const GROUP_OTHER = "Other";
 
-const TBDC_LOGO: LogoSpec = { kind: "copy", from: "tbdc/brand-deck/assets/logo-monogram.png", as: "tbdc.png" };
+const TBDC_LOGO: LogoSpec = { kind: "copy", from: "tbdc/clinicdocs/assets/logo-monogram.png", as: "tbdc.png" };
 const TPS_LOGO: LogoSpec = { kind: "local", file: "tps-logo.png", as: "tps.png" };
 const MATCHDAY_LOGO: LogoSpec = { kind: "local", file: "matchday-logo.png", as: "matchday.png" };
 const AMITY_LOGO: LogoSpec = { kind: "copy", from: "amity-social-uikit-flutter/assets/images/ShareWorldLogo.png", as: "amity.png" };
@@ -42,12 +44,13 @@ const META: Record<string, Meta> = {
   "tbdc / web":                 { stack: "Next.js 16, React 19, TS",     purpose: "Clinic website for Tooth Boutique Dental Clinic", group: GROUP_TBDC, logo: TBDC_LOGO, status: "live" },
   "tbdc / invoices":            { stack: "Bun, TypeScript, Playwright",   purpose: "Monthly multi-vendor invoice aggregator",         group: GROUP_TBDC, logo: TBDC_LOGO, status: "live" },
   "tbdc / docs":                { stack: "Docs",                          purpose: "HR job descriptions (Thai + English)",            group: GROUP_TBDC, logo: TBDC_LOGO, status: "live" },
-  "tbdc / brand-deck":          { stack: "Bun, TS, pptxgenjs",            purpose: "Bilingual deck generators: onboarding, team profiles, monthly schedule, operations manual", group: GROUP_TBDC, logo: TBDC_LOGO, status: "live" },
+  "tbdc / clinicdocs":          { stack: "Bun, TS, pptxgenjs",            purpose: "Bilingual deck generators: onboarding, team profiles, monthly schedule, operations manual", group: GROUP_TBDC, logo: TBDC_LOGO, status: "live", commandsExclude: ["build:2025", "build:2026", "bootstrap:kv-hashes", "clean"] },
   "tbdc / ads-monitor":         { stack: "Bun, TS, google-ads-api",       purpose: "Google Ads spend/KPI monitor + weekly digest",    group: GROUP_TBDC, logo: TBDC_LOGO, status: "wip" },
   "tbdc / chatbot":             { stack: "Planning phase",                purpose: "AI chatbot for TBDC patient inquiries",           group: GROUP_TBDC, logo: TBDC_LOGO, status: "wip" },
   "tbdc / payroll":             { stack: "Python, gspread, weasyprint",   purpose: "Payroll automation for Tooth Boutique Dental Clinic", group: GROUP_TBDC, logo: TBDC_LOGO, status: "live" },
   "tbdc / df":                  { stack: "Planning phase",                purpose: "Doctor fee tracking and payout management for TBDC clinic", group: GROUP_TBDC, logo: TBDC_LOGO, status: "wip" },
   "tbdc / inventory":           { stack: "Google Sheets, conditional formatting", purpose: "Sheets-based clinic inventory — 3 tabs, live stock, role-based", group: GROUP_TBDC, logo: TBDC_LOGO, status: "wip", website: "https://docs.google.com/spreadsheets/d/1kEpppBZrQfIC9aM2OmEDQvUgTNko63UhKBSUiaIAK1U/edit" },
+  "tbdc / workpro-queries":     { stack: "Bun, TS, tbqdc.com session",    purpose: "Ad-hoc queries against Workpro (tbqdc.com) clinic data", group: GROUP_TBDC, logo: TBDC_LOGO, status: "wip" },
   "clinera":                    { stack: "Planning phase",                purpose: "Dental clinic ops + LINE booking + reminders",   group: GROUP_CLINERA, logo: { kind: "monogram", letter: "C", bg: "#5C8A5A", fg: "#ffffff", as: "clinera.svg" }, status: "wip" },
   "dentsoft-strategy-deck":     { stack: "Bun, TS, pptxgenjs, HTML",      purpose: "Competitive strategy brief on Dentsoft (dentsoft.in) — PPTX deck + single-page web brief", group: GROUP_CLINERA, logo: { kind: "monogram", letter: "D", bg: "#0B2545", fg: "#ffffff", as: "dentsoft.svg" }, status: "live", website: "https://preed.ee/clinera/dentsoft" },
   "matchday":                   { stack: "Next.js (product-hub), MD specs", purpose: "Matchday spec docs + product-hub marketing site", group: GROUP_MATCHDAY, logo: MATCHDAY_LOGO, status: "wip", website: "https://padelthailand.com/matchday/" },
@@ -94,6 +97,7 @@ type Project = {
   status: ProjectStatus;
   pendingActions?: string[];
   website?: string;
+  commands?: string[];
 };
 
 function monogramSvg(letter: string, bg: string, fg: string): string {
@@ -131,6 +135,26 @@ async function gitDates(dir: string, excludePaths?: string[]): Promise<{ first: 
   } catch { return null; }
 }
 
+async function readCommands(dir: string, meta: Meta): Promise<string[] | undefined> {
+  try {
+    const raw = await readFile(join(dir, "package.json"), "utf8");
+    const pkg = JSON.parse(raw);
+    const scripts = pkg?.scripts;
+    if (!scripts || typeof scripts !== "object" || Array.isArray(scripts)) return undefined;
+    let names = Object.keys(scripts);
+    if (meta.commandsInclude && meta.commandsInclude.length > 0) {
+      const inc = new Set(meta.commandsInclude);
+      names = names.filter((n) => inc.has(n));
+    } else {
+      const exc = new Set([...DEFAULT_COMMAND_EXCLUDES, ...(meta.commandsExclude ?? [])]);
+      names = names.filter((n) => !exc.has(n));
+    }
+    return names.length > 0 ? names : undefined;
+  } catch {
+    return undefined;
+  }
+}
+
 type NotesData = { pending: Map<string, string[]>; order: string[] };
 
 async function readNotesMd(): Promise<NotesData> {
@@ -164,7 +188,7 @@ async function readNotesMd(): Promise<NotesData> {
 async function describe(name: string, path: string, notes: Map<string, string[]>): Promise<Project | null> {
   const meta = META[name];
   if (!meta) return null;
-  const [dates, fs] = await Promise.all([gitDates(path, meta.gitExcludePaths), stat(path)]);
+  const [dates, fs, commands] = await Promise.all([gitDates(path, meta.gitExcludePaths), stat(path), readCommands(path, meta)]);
   const nextActions = notes.get(name);
   return {
     name,
@@ -178,6 +202,7 @@ async function describe(name: string, path: string, notes: Map<string, string[]>
     status: meta.status,
     pendingActions: nextActions ?? meta.pendingActions,
     website: meta.website,
+    commands,
   };
 }
 

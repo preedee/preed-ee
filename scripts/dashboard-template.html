@@ -237,6 +237,21 @@
             bodyEl.appendChild(pending);
           }
 
+          if (Array.isArray(p.commands) && p.commands.length > 0) {
+            var commandsCount = p.commands.length;
+            var commandsChip = el('span', 'commands-chip', 'Commands · ' + commandsCount);
+            commandsChip.setAttribute('aria-label', commandsCount + ' command' + (commandsCount === 1 ? '' : 's'));
+            headEl.appendChild(commandsChip);
+
+            var commands = el('div', 'project-commands');
+            var ulCommands = el('ul', 'commands-list');
+            p.commands.forEach(function (cmd) {
+              ulCommands.appendChild(el('li', 'command-item', 'bun run ' + cmd));
+            });
+            commands.appendChild(ulCommands);
+            bodyEl.appendChild(commands);
+          }
+
           li.appendChild(bodyEl);
           li.appendChild(dateCell('project-created', 'created', p.createdAt));
           li.appendChild(dateCell('project-updated', 'updated', p.updatedAt));

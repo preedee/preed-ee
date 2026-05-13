@@ -3,7 +3,7 @@
 # Runs under launchd — must avoid getcwd() on protected paths (macOS TCC blocks it under Desktop).
 # Strategy: stay at cwd=/, pass absolute paths + --git-dir/--work-tree to every git call.
 set -e
-R=/Users/preedee/Desktop/Cowork/preed-ee
+R=/Users/preedee/Cowork/preed-ee
 cd /
 
 /Users/preedee/.bun/bin/bun "$R/scripts/scan-projects.ts"

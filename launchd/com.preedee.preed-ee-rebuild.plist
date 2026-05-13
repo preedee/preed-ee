@@ -8,7 +8,7 @@
     <key>ProgramArguments</key>
     <array>
         <string>/Users/preedee/.bun/bin/bun</string>
-        <string>/Users/preedee/Desktop/Cowork/preed-ee/scripts/rebuild.ts</string>
+        <string>/Users/preedee/Cowork/preed-ee/scripts/rebuild.ts</string>
     </array>
 
     <key>StartCalendarInterval</key>
@@ -20,9 +20,9 @@
     </dict>
 
     <key>StandardOutPath</key>
-    <string>/Users/preedee/Desktop/Cowork/preed-ee/launchd/rebuild.log</string>
+    <string>/Users/preedee/Cowork/preed-ee/launchd/rebuild.log</string>
     <key>StandardErrorPath</key>
-    <string>/Users/preedee/Desktop/Cowork/preed-ee/launchd/rebuild.err.log</string>
+    <string>/Users/preedee/Cowork/preed-ee/launchd/rebuild.err.log</string>
 
     <key>EnvironmentVariables</key>
     <dict>

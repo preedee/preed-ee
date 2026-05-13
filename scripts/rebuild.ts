@@ -1,7 +1,7 @@
 #!/usr/bin/env bun
 import { $ } from "bun";
 
-const R = "/Users/preedee/Desktop/Cowork/preed-ee";
+const R = "/Users/preedee/Cowork/preed-ee";
 
 await $`/Users/preedee/.bun/bin/bun ${R}/scripts/scan-projects.ts`;
 await $`/Users/preedee/.bun/bin/bun ${R}/scripts/encrypt.ts`;

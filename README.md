@@ -1,6 +1,6 @@
 # preed.ee
 
-Personal projects dashboard. Scans `~/Desktop/Cowork/`, emits a static site, deploys to GitHub Pages on the apex domain `preed.ee`.
+Personal projects dashboard. Scans `~/Cowork/`, emits a static site, deploys to GitHub Pages on the apex domain `preed.ee`.
 
 ## Structure
 
@@ -33,7 +33,7 @@ One-time setup (replace `YOUR-USER` with your GitHub username):
 1. **Create the repo** on github.com — `YOUR-USER/preed-ee`, public.
 2. **Push this folder:**
    ```bash
-   cd ~/Desktop/Cowork/preed-ee
+   cd ~/Cowork/preed-ee
    git init
    git add .
    git commit -m "initial"
@@ -69,13 +69,13 @@ launchctl load ~/Library/LaunchAgents/com.preedee.preed-ee-rebuild.plist
 
 It runs daily at 09:00 local. To trigger manually: `launchctl start com.preedee.preed-ee-rebuild`.
 
-Logs: `~/Desktop/Cowork/preed-ee/launchd/rebuild.log`.
+Logs: `~/Cowork/preed-ee/launchd/rebuild.log`.
 
 **Auth note:** launchd runs without your interactive shell env. For `git push` to work non-interactively, your remote must be SSH with a key that's unlocked at login (add it to the Keychain via `ssh-add --apple-use-keychain ~/.ssh/id_ed25519`), OR use an HTTPS remote with credentials cached by `osxkeychain`. If pushes fail silently, check the log.
 
 ## Adding a new project
 
-The scanner reads `~/Desktop/Cowork/` dynamically, so new directories show up automatically. To get a nicer stack/purpose label, add an entry to the `META` map in `scripts/scan-projects.ts`. Otherwise it shows `—`.
+The scanner reads `~/Cowork/` dynamically, so new directories show up automatically. To get a nicer stack/purpose label, add an entry to the `META` map in `scripts/scan-projects.ts`. Otherwise it shows `—`.
 
 ## Anti-scope
 

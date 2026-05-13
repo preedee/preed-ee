@@ -51,7 +51,7 @@ _(no pending items)_
 
 ## tbdc / inventory
 - Share new Sheet `1kEpppBZrQfIC9aM2OmEDQvUgTNko63UhKBSUiaIAK1U` with service account `claude-cowork@tbdc-salary-slips.iam.gserviceaccount.com` as Editor
-- Run `bun run init` from `~/Desktop/Cowork/tbdc/inventory/` (creates 3 tabs + writes seed)
+- Run `bun run init` from `~/Cowork/tbdc/inventory/` (creates 3 tabs + writes seed)
 - Walk the clinic, log opening-balance Adjust transactions for items with on-hand stock
 - Saved Filter View "Reorder" on ITEMS (Status=REORDER) for the orderer
 - Train Owner/Manager/Admin/Dental Assistant/Housekeeper roles on the LOG-row workflow

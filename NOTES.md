@@ -31,7 +31,7 @@ Re-run `bun run build` to regenerate.
 ## tbdc / docs
 _(no pending items)_
 
-## tbdc / brand-deck
+## tbdc / clinicdocs
 - Split into brand deck and training deck
 - Enhance training deck to add daily checklist, TBDC contact info
 
@@ -40,7 +40,8 @@ _(no pending items)_
 - Unblock real-mode runs once Google Ads developer-token application is approved
 
 ## tbdc / chatbot
-_(no pending items)_
+- Add Meta Business Suite
+- Add machine learning for continuous improvement
 
 ## tbdc / payroll
 _(no pending items)_
@@ -54,6 +55,9 @@ _(no pending items)_
 - Walk the clinic, log opening-balance Adjust transactions for items with on-hand stock
 - Saved Filter View "Reorder" on ITEMS (Status=REORDER) for the orderer
 - Train Owner/Manager/Admin/Dental Assistant/Housekeeper roles on the LOG-row workflow
+
+## tbdc / workpro-queries
+_(no pending items)_
 
 ---
 

@@ -15,7 +15,7 @@
 <link rel="icon" href="favicon.svg" type="image/svg+xml" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
 <style>
   :root {
     --deep-green: #173F35;
@@ -71,6 +71,13 @@
   h4 { font-size: clamp(18px, 1.4vw, 22px); }
   p  { margin: 0 0 1em; }
   .lead { font-size: clamp(16px, 1.4vw, 22px); line-height: 1.55; color: var(--graphite); }
+  .lead.narrow { max-width: 62ch; }
+  .lead.wide { max-width: 64ch; }
+  a:focus-visible, button:focus-visible {
+    outline: 2px solid var(--apricot);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
   .eyebrow {
     font-size: 11px;
     font-weight: 600;
@@ -107,7 +114,7 @@
     backdrop-filter: saturate(180%) blur(14px);
     -webkit-backdrop-filter: saturate(180%) blur(14px);
     border-bottom: 1px solid var(--record);
-    transition: all .35s var(--ease);
+    transition: background .35s var(--ease), box-shadow .35s var(--ease);
   }
   .nav.scrolled {
     background: rgba(255, 253, 252, 0.97);
@@ -175,6 +182,8 @@
     border: 1.5px solid var(--deep-green);
   }
   .cta-btn.ghost:hover { background: var(--deep-green); color: var(--paper); }
+  .cta-btn.ghost.on-dark { border-color: var(--ivory); color: var(--paper); }
+  .cta-btn.ghost.on-dark:hover { background: var(--ivory); color: var(--deep-green); }
 
   .menu-btn {
     display: none; background: transparent; border: 0;
@@ -730,9 +739,9 @@
     color: var(--paper);
     font-size: clamp(15px, 1.6vw, 18px);
     line-height: 1.5;
-    transition: padding .3s var(--ease);
+    transition: transform .3s var(--ease);
   }
-  .why-list li:hover { padding-left: 8px; }
+  .why-list li:hover { transform: translateX(8px); }
   .why-list li:nth-last-child(-n+2) { border-bottom: 1px solid rgba(244,239,230,0.15); }
   .why-list li:nth-child(odd) { padding-right: 24px; border-right: 1px solid rgba(244,239,230,0.08); }
   .why-list li:nth-child(even) { padding-left: 24px; }
@@ -872,7 +881,7 @@
 <nav class="nav" id="nav">
   <div class="nav-inner">
     <a href="#top" class="brand">
-      <svg class="brand-mark" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+      <svg class="brand-mark" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
         <circle cx="32" cy="32" r="28" fill="none" stroke="#173F35" stroke-width="2.5"/>
         <circle cx="32" cy="32" r="18" fill="none" stroke="#173F35" stroke-width="2"/>
         <circle cx="32" cy="32" r="9"  fill="none" stroke="#173F35" stroke-width="1.5"/>
@@ -907,7 +916,7 @@
     </p>
     <div class="hero-ctas">
       <a href="#strategy" class="cta-btn light">View Strategy &rarr;</a>
-      <a href="#partnerships" class="cta-btn ghost" style="border-color:#F4EFE6;color:#FFFDFC;">Partnership Opportunities</a>
+      <a href="#partnerships" class="cta-btn ghost on-dark">Partnership Opportunities</a>
     </div>
 
     <div class="hero-tagline-stack">
@@ -925,7 +934,7 @@
     <span class="eyebrow" data-reveal>Market Opportunity</span>
     <h2 data-reveal data-delay="1">An underserved expat<br/>market in plain sight.</h2>
     <hr class="accent-line" data-reveal data-delay="2" />
-    <p class="lead" data-reveal data-delay="2" style="max-width: 62ch;">
+    <p class="lead narrow" data-reveal data-delay="2">
       The Sukhumvit corridor &mdash; Phrom Phong, Thong Lo, Asok, Rama&nbsp;4 &mdash; is one of the densest concentrations of insured international residents in Southeast Asia. They have access to world-class care everywhere except, often, the clinic on their own street.
     </p>
 
@@ -964,7 +973,7 @@
     <span class="eyebrow" data-reveal>Our Differentiator</span>
     <h2 data-reveal data-delay="1">Eight ways Nest becomes<br/>the easiest dental choice in Sukhumvit.</h2>
     <hr class="accent-line" data-reveal data-delay="2" />
-    <p class="lead" data-reveal data-delay="2" style="max-width: 62ch;">
+    <p class="lead narrow" data-reveal data-delay="2">
       Each advantage compounds. Together they make Nest the obvious answer when a Sukhumvit expat thinks <em>&ldquo;I need a dentist.&rdquo;</em>
     </p>
 
@@ -1026,7 +1035,7 @@
     <span class="eyebrow" data-reveal>Marketing Strategy</span>
     <h2 data-reveal data-delay="1">Three phases.<br/>One compounding flywheel.</h2>
     <hr class="accent-line" data-reveal data-delay="2" />
-    <p class="lead" data-reveal data-delay="2" style="max-width: 64ch;">
+    <p class="lead wide" data-reveal data-delay="2">
       We don't chase patients. We build infrastructure that brings the right ones to Nest's door &mdash; in a sequence where each phase makes the next one easier.
     </p>
 
@@ -1131,7 +1140,7 @@
     <span class="eyebrow" data-reveal>Strategic Partnerships</span>
     <h2 data-reveal data-delay="1">Trusted by the people<br/>expats trust first.</h2>
     <hr class="accent-line" data-reveal data-delay="2" />
-    <p class="lead" data-reveal data-delay="2" style="max-width: 64ch;">
+    <p class="lead wide" data-reveal data-delay="2">
       Expats don't find a new dentist on Google. They ask the people who helped them settle. We make Nest the answer those people give &mdash; before the question is even fully formed.
     </p>
 
@@ -1183,7 +1192,7 @@
     <span class="eyebrow" data-reveal>Long-Term Vision</span>
     <h2 data-reveal data-delay="1">From one Sukhumvit clinic<br/>to Thailand's international dental brand.</h2>
     <hr class="accent-line" data-reveal data-delay="2" />
-    <p class="lead" data-reveal data-delay="2" style="max-width: 62ch;">
+    <p class="lead narrow" data-reveal data-delay="2">
       Each stage compounds &mdash; brand into insurance, insurance into expansion, expansion into medical tourism, medical tourism into a category-defining Thai dental brand.
     </p>
 
@@ -1223,7 +1232,7 @@
     <span class="eyebrow" data-reveal>Why This Works</span>
     <h2 data-reveal data-delay="1">Six structural advantages.<br/>One inevitable outcome.</h2>
     <hr class="accent-line" data-reveal data-delay="2" />
-    <p class="lead" data-reveal data-delay="2" style="max-width: 62ch;">
+    <p class="lead narrow" data-reveal data-delay="2">
       None of these advantages is dependent on luck or hype. Each is a structural feature of how expats actually choose, trust, and stay with healthcare in Bangkok.
     </p>
 
@@ -1264,7 +1273,7 @@
     <div class="footer-grid">
       <div>
         <a href="#top" class="brand">
-          <svg class="brand-mark" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" style="width:28px;height:28px;">
+          <svg class="brand-mark" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" style="width:28px;height:28px;">
             <circle cx="32" cy="32" r="28" fill="none" stroke="#F4EFE6" stroke-width="2.5"/>
             <circle cx="32" cy="32" r="18" fill="none" stroke="#F4EFE6" stroke-width="2"/>
             <circle cx="32" cy="32" r="9"  fill="none" stroke="#F4EFE6" stroke-width="1.5"/>
@@ -1304,35 +1313,43 @@
 </footer>
 
 <script>
-  // ---------- Smooth scroll ----------
+  const menuBtn = document.getElementById('menuBtn');
+  const navLinks = document.getElementById('navLinks');
+  const nav = document.getElementById('nav');
+  const yearEl = document.getElementById('year');
+
+  const closeMenu = () => {
+    if (!navLinks || !menuBtn) return;
+    navLinks.classList.remove('open');
+    menuBtn.classList.remove('open');
+    menuBtn.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  };
+
   document.querySelectorAll('a[href^="#"]').forEach(a => {
     a.addEventListener('click', e => {
-      const t = document.querySelector(a.getAttribute('href'));
-      if (t) {
-        e.preventDefault();
-        t.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        document.getElementById('navLinks').classList.remove('open');
-        document.getElementById('menuBtn').classList.remove('open');
-        document.getElementById('menuBtn').setAttribute('aria-expanded', 'false');
-      }
+      const href = a.getAttribute('href');
+      if (!href || href.length < 2) return;
+      const t = document.querySelector(href);
+      if (!t) return;
+      e.preventDefault();
+      t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      closeMenu();
     });
   });
 
-  // ---------- Mobile menu toggle ----------
-  const menuBtn = document.getElementById('menuBtn');
-  const navLinks = document.getElementById('navLinks');
-  menuBtn.addEventListener('click', () => {
-    const open = navLinks.classList.toggle('open');
-    menuBtn.classList.toggle('open');
-    menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
-    document.body.style.overflow = open ? 'hidden' : '';
-  });
+  if (menuBtn && navLinks) {
+    menuBtn.addEventListener('click', () => {
+      const open = navLinks.classList.toggle('open');
+      menuBtn.classList.toggle('open');
+      menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+  }
 
-  // ---------- Scroll-reveal (with safety fallback) ----------
   const revealEls = document.querySelectorAll('[data-reveal]');
-  const failSafe = setTimeout(() => {
-    revealEls.forEach(el => el.classList.add('in'));
-  }, 2500);
+  // Safety net: force-show every reveal element after 2.5s if observer never fires
+  setTimeout(() => revealEls.forEach(el => el.classList.add('in')), 2500);
   if ('IntersectionObserver' in window) {
     try {
       const observer = new IntersectionObserver((entries) => {
@@ -1344,12 +1361,6 @@
         });
       }, { threshold: 0.08, rootMargin: '0px 0px -10% 0px' });
       revealEls.forEach(el => observer.observe(el));
-      requestAnimationFrame(() => {
-        revealEls.forEach(el => {
-          const rect = el.getBoundingClientRect();
-          if (rect.top < window.innerHeight) el.classList.add('in');
-        });
-      });
     } catch (e) {
       revealEls.forEach(el => el.classList.add('in'));
     }
@@ -1357,17 +1368,19 @@
     revealEls.forEach(el => el.classList.add('in'));
   }
 
-  // ---------- Nav scrolled state ----------
-  const nav = document.getElementById('nav');
-  const onScroll = () => {
-    if (window.scrollY > 30) nav.classList.add('scrolled');
-    else nav.classList.remove('scrolled');
-  };
-  window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
+  if (nav) {
+    let scrolled = false;
+    const onScroll = () => {
+      const shouldBe = window.scrollY > 30;
+      if (shouldBe === scrolled) return;
+      scrolled = shouldBe;
+      nav.classList.toggle('scrolled', shouldBe);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  }
 
-  // ---------- Year ----------
-  document.getElementById('year').textContent = new Date().getFullYear();
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
 </script>
 
 </body>

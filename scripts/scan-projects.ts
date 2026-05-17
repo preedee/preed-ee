@@ -76,7 +76,7 @@ const META: Record<string, Meta> = {
   "nest-dental":                { stack: "TBD",                           purpose: "Nest International Marketing Proposal",           group: GROUP_NEST, logo: { kind: "monogram", letter: "N", bg: "#ef4444", fg: "#f8fafc", as: "nest-dental.svg" }, status: "wip" },
 };
 
-const GROUP_ORDER = [GROUP_TBDC, GROUP_CLINERA, GROUP_PADEL, GROUP_MATCHDAY, GROUP_PADEL_THAILAND, GROUP_NEST, GROUP_OTHER];
+const GROUP_ORDER = [GROUP_TBDC, GROUP_NEST, GROUP_CLINERA, GROUP_PADEL, GROUP_MATCHDAY, GROUP_PADEL_THAILAND, GROUP_OTHER];
 
 const GROUP_NAV_LABELS: Record<string, string> = {
   [GROUP_TBDC]: "TBDC",

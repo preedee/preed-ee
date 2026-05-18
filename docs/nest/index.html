@@ -202,7 +202,14 @@
   @media (max-width: 880px) {
     .menu-btn { display: block; }
     .nav-links {
-      position: fixed; inset: 64px 0 0 0;
+      /* Explicit height bypasses the containing-block trap caused by .nav's backdrop-filter
+         (backdrop-filter creates a new containing block for fixed descendants — so bottom:0
+         would resolve relative to the 64px nav, collapsing the panel). */
+      position: fixed;
+      top: 64px; left: 0; right: 0;
+      height: calc(100dvh - 64px);
+      max-height: calc(100vh - 64px);
+      overflow-y: auto;
       background: var(--paper);
       flex-direction: column; gap: 0; align-items: stretch;
       padding: 24px var(--gutter) 40px;

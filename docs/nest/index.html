@@ -633,6 +633,99 @@
     line-height: 1.4;
   }
 
+  /* ---------- Video content library ---------- */
+  .video-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: clamp(16px, 2vw, 20px);
+    margin-top: clamp(40px, 6vw, 56px);
+  }
+  .video-card {
+    background: var(--paper);
+    padding: clamp(24px, 2.8vw, 30px);
+    border-top: 3px solid var(--apricot-deep);
+    transition: transform .3s var(--ease), box-shadow .3s var(--ease);
+    display: flex; flex-direction: column;
+    min-height: 220px;
+  }
+  .video-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 18px 30px -18px rgba(23,63,53,0.18);
+  }
+  .video-card.cat-tech { border-top-color: var(--watch); }
+  .video-card.cat-experience { border-top-color: var(--deep-green); }
+  .video-card .v-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 14px;
+  }
+  .video-card .v-num {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: clamp(24px, 2.4vw, 28px);
+    line-height: 1;
+    color: var(--apricot-deep);
+  }
+  .video-card.cat-tech .v-num { color: var(--watch); }
+  .video-card.cat-experience .v-num { color: var(--deep-green); }
+  .video-card .v-dur {
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 600;
+  }
+  .video-card .v-cat {
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--apricot-deep);
+    margin: 0 0 12px;
+    display: inline-block;
+  }
+  .video-card.cat-tech .v-cat { color: var(--watch); }
+  .video-card.cat-experience .v-cat { color: var(--deep-green); }
+  .video-card h3 {
+    font-size: clamp(17px, 1.6vw, 20px);
+    color: var(--deep-green);
+    margin: 0 0 10px;
+    line-height: 1.2;
+  }
+  .video-card p {
+    font-size: clamp(13px, 1.3vw, 14px);
+    color: var(--graphite);
+    line-height: 1.5;
+    margin: 0;
+  }
+  @media (max-width: 1024px) { .video-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 540px) { .video-grid { grid-template-columns: 1fr; } }
+
+  .video-meta {
+    margin-top: clamp(40px, 5vw, 48px);
+    padding: clamp(20px, 2.5vw, 28px) clamp(22px, 3vw, 32px);
+    background: var(--paper);
+    border-left: 3px solid var(--apricot-deep);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(20px, 3vw, 32px);
+  }
+  .video-meta .meta-cell .lbl {
+    display: block;
+    font-family: var(--sans);
+    font-size: 10px; letter-spacing: 0.25em;
+    text-transform: uppercase; font-weight: 600;
+    color: var(--apricot-deep); margin-bottom: 6px;
+  }
+  .video-meta .meta-cell .val {
+    font-family: var(--serif);
+    font-size: clamp(15px, 1.4vw, 17px);
+    color: var(--graphite);
+    line-height: 1.35;
+  }
+  @media (max-width: 720px) { .video-meta { grid-template-columns: 1fr; } }
+
   /* ---------- Strategic partnerships ---------- */
   .partner-grid {
     display: grid;
@@ -914,6 +1007,7 @@
       <a href="#market">Market</a>
       <a href="#differentiator">Differentiator</a>
       <a href="#strategy">Strategy</a>
+      <a href="#content">Content</a>
       <a href="#partnerships">Partnerships</a>
       <a href="#vision">Vision</a>
       <a href="#why" class="cta-btn">Why It Works</a>
@@ -1151,6 +1245,115 @@
   </div>
 </section>
 
+<!-- ====================== VIDEO CONTENT LIBRARY ====================== -->
+<section id="content" class="ivory">
+  <div class="container">
+    <span class="eyebrow" data-reveal>Content Library</span>
+    <h2 data-reveal data-delay="1">Education that earns trust<br/>before the first visit.</h2>
+    <hr class="accent-line" data-reveal data-delay="2" />
+    <p class="lead narrow" data-reveal data-delay="2">
+      A library of short, English-language videos that answer the questions expat patients are already searching &mdash; so Nest becomes the answer they find, not just the clinic they discover.
+    </p>
+
+    <div class="video-grid">
+      <article class="video-card" data-reveal data-delay="1">
+        <div class="v-head">
+          <span class="v-num">01</span>
+          <span class="v-dur">45s &middot; English</span>
+        </div>
+        <span class="v-cat">Treatment</span>
+        <h3>Introduction to Invisalign</h3>
+        <p>What it is, who it's for, what the experience actually feels like.</p>
+      </article>
+
+      <article class="video-card" data-reveal data-delay="2">
+        <div class="v-head">
+          <span class="v-num">02</span>
+          <span class="v-dur">45s &middot; English</span>
+        </div>
+        <span class="v-cat">Treatment</span>
+        <h3>Invisalign First</h3>
+        <p>The early-intervention pathway for children &mdash; alignment done gently and right on time.</p>
+      </article>
+
+      <article class="video-card" data-reveal data-delay="3">
+        <div class="v-head">
+          <span class="v-num">03</span>
+          <span class="v-dur">1 min &middot; English</span>
+        </div>
+        <span class="v-cat">Treatment</span>
+        <h3>Braces &mdash; Introduction &amp; Specialist Care</h3>
+        <p>When traditional orthodontics still wins, and what specialist treatment really involves.</p>
+      </article>
+
+      <article class="video-card" data-reveal data-delay="4">
+        <div class="v-head">
+          <span class="v-num">04</span>
+          <span class="v-dur">1 min &middot; English</span>
+        </div>
+        <span class="v-cat">Treatment</span>
+        <h3>Miniscrews &mdash; Advanced Anchoring</h3>
+        <p>Retract, protract, intrude &mdash; the precision tool that makes complex cases possible.</p>
+      </article>
+
+      <article class="video-card cat-tech" data-reveal data-delay="1">
+        <div class="v-head">
+          <span class="v-num">05</span>
+          <span class="v-dur">1 min &middot; English</span>
+        </div>
+        <span class="v-cat">Technology</span>
+        <h3>iTero Scanner</h3>
+        <p>Ortho simulation and smile design &mdash; a 3D preview of the result, before treatment begins.</p>
+      </article>
+
+      <article class="video-card cat-experience" data-reveal data-delay="2">
+        <div class="v-head">
+          <span class="v-num">06</span>
+          <span class="v-dur">1 min &middot; English</span>
+        </div>
+        <span class="v-cat">Experience</span>
+        <h3>Clinic Introduction</h3>
+        <p>Meet the team, see the space, understand the international-standard environment.</p>
+      </article>
+
+      <article class="video-card cat-experience" data-reveal data-delay="3">
+        <div class="v-head">
+          <span class="v-num">07</span>
+          <span class="v-dur">1 min &middot; English</span>
+        </div>
+        <span class="v-cat">Experience</span>
+        <h3>The Patient's Journey</h3>
+        <p>From first visit through the long-term care rhythm &mdash; what continuity actually looks like.</p>
+      </article>
+
+      <article class="video-card cat-experience" data-reveal data-delay="4">
+        <div class="v-head">
+          <span class="v-num">08</span>
+          <span class="v-dur">1 min &middot; English</span>
+        </div>
+        <span class="v-cat">Experience</span>
+        <h3>The Insurance Process</h3>
+        <p>How direct billing and claim help actually work &mdash; explained in plain English, end to end.</p>
+      </article>
+    </div>
+
+    <div class="video-meta" data-reveal>
+      <div class="meta-cell">
+        <span class="lbl">Format</span>
+        <span class="val">45-second to 1-minute, optimised for short-form discovery.</span>
+      </div>
+      <div class="meta-cell">
+        <span class="lbl">Language</span>
+        <span class="val">English-first, with Thai subtitle versions for accessibility.</span>
+      </div>
+      <div class="meta-cell">
+        <span class="lbl">Distribution</span>
+        <span class="val">YouTube, Instagram, LINE Official, and the Nest patient site.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ====================== STRATEGIC PARTNERSHIPS ====================== -->
 <section id="partnerships">
   <div class="container">
@@ -1313,6 +1516,7 @@
           <li><a href="#market">Market Opportunity</a></li>
           <li><a href="#differentiator">Differentiator</a></li>
           <li><a href="#strategy">Marketing Strategy</a></li>
+          <li><a href="#content">Content Library</a></li>
         </ul>
       </div>
       <div>

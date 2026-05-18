@@ -647,7 +647,17 @@
     transition: transform .3s var(--ease), box-shadow .3s var(--ease);
     display: flex; flex-direction: column;
     min-height: 220px;
+    overflow: hidden;
   }
+  .video-card .v-thumb {
+    width: calc(100% + 2 * clamp(24px, 2.8vw, 30px));
+    height: clamp(150px, 16vw, 180px);
+    margin: calc(-1 * clamp(24px, 2.8vw, 30px)) calc(-1 * clamp(24px, 2.8vw, 30px)) clamp(18px, 2.2vw, 22px);
+    object-fit: cover;
+    display: block;
+    transition: transform .6s var(--ease);
+  }
+  .video-card:hover .v-thumb { transform: scale(1.04); }
   .video-card:hover {
     transform: translateY(-4px);
     box-shadow: 0 18px 30px -18px rgba(23,63,53,0.18);
@@ -1261,6 +1271,7 @@
 
     <div class="video-grid">
       <article class="video-card" data-reveal data-delay="1">
+        <img class="v-thumb" src="img/content/v01.jpg" alt="Clear dental aligner tray on cream linen and a sage-green ceramic plate" loading="lazy" width="800" height="500" />
         <div class="v-head">
           <span class="v-num">01</span>
           <span class="v-dur">45s &middot; English</span>
@@ -1271,6 +1282,7 @@
       </article>
 
       <article class="video-card" data-reveal data-delay="2">
+        <img class="v-thumb" src="img/content/v02.jpg" alt="Adult hands gently holding a clear pediatric aligner case" loading="lazy" width="800" height="500" />
         <div class="v-head">
           <span class="v-num">02</span>
           <span class="v-dur">45s &middot; English</span>
@@ -1281,6 +1293,7 @@
       </article>
 
       <article class="video-card" data-reveal data-delay="3">
+        <img class="v-thumb" src="img/content/v03.jpg" alt="Macro of a single brushed silver orthodontic bracket on ivory linen with warm apricot bokeh" loading="lazy" width="800" height="500" />
         <div class="v-head">
           <span class="v-num">03</span>
           <span class="v-dur">1 min &middot; English</span>
@@ -1291,6 +1304,7 @@
       </article>
 
       <article class="video-card" data-reveal data-delay="4">
+        <img class="v-thumb" src="img/content/v04.jpg" alt="Macro of a polished titanium dental miniscrew on dark sage-green velvet" loading="lazy" width="800" height="500" />
         <div class="v-head">
           <span class="v-num">04</span>
           <span class="v-dur">1 min &middot; English</span>
@@ -1301,6 +1315,7 @@
       </article>
 
       <article class="video-card cat-tech" data-reveal data-delay="1">
+        <img class="v-thumb" src="img/content/v05.jpg" alt="Sleek modern intraoral dental scanner wand on its charging dock with warm apricot LED" loading="lazy" width="800" height="500" />
         <div class="v-head">
           <span class="v-num">05</span>
           <span class="v-dur">1 min &middot; English</span>
@@ -1311,6 +1326,7 @@
       </article>
 
       <article class="video-card cat-experience" data-reveal data-delay="2">
+        <img class="v-thumb" src="img/content/v06.jpg" alt="Minimal premium dental clinic reception with sage-green walls and terracotta ottoman" loading="lazy" width="800" height="500" />
         <div class="v-head">
           <span class="v-num">06</span>
           <span class="v-dur">1 min &middot; English</span>
@@ -1321,6 +1337,7 @@
       </article>
 
       <article class="video-card cat-experience" data-reveal data-delay="3">
+        <img class="v-thumb" src="img/content/v07.jpg" alt="Open notebook with handwritten dental care notes beside a sage-green ceramic teacup" loading="lazy" width="800" height="500" />
         <div class="v-head">
           <span class="v-num">07</span>
           <span class="v-dur">1 min &middot; English</span>
@@ -1331,6 +1348,7 @@
       </article>
 
       <article class="video-card cat-experience" data-reveal data-delay="4">
+        <img class="v-thumb" src="img/content/v08.jpg" alt="Stack of cream document folders with a black fountain pen and sage-green leather coaster on travertine" loading="lazy" width="800" height="500" />
         <div class="v-head">
           <span class="v-num">08</span>
           <span class="v-dur">1 min &middot; English</span>

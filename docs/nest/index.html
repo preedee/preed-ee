@@ -415,7 +415,7 @@
     transition: background .3s var(--ease), color .3s var(--ease);
   }
   .diff-card:hover .diff-icon { background: var(--apricot); color: var(--paper); }
-  .diff-card h4 {
+  .diff-card h3 {
     font-size: clamp(17px, 1.6vw, 19px);
     color: var(--deep-green);
     margin: 0 0 10px;
@@ -468,7 +468,7 @@
     font-size: 10px;
     letter-spacing: 0.25em;
     text-transform: uppercase;
-    color: rgba(216,214,207,0.7);
+    color: var(--record);
     font-weight: 600;
     margin-top: 12px;
   }
@@ -529,7 +529,8 @@
     font-style: normal;
     font-size: 12px;
     letter-spacing: 0.04em;
-    color: var(--apricot);
+    color: var(--record);
+    font-weight: 600;
   }
 
   /* Insurance flow */
@@ -647,7 +648,7 @@
     box-shadow: 0 18px 30px -18px rgba(23,63,53,0.18);
   }
   .partner-card .mono-label { color: var(--apricot); margin-bottom: 12px; display: block; }
-  .partner-card h4 {
+  .partner-card h3 {
     color: var(--deep-green);
     font-size: clamp(18px, 1.9vw, 22px);
     margin: 0 0 10px;
@@ -708,7 +709,7 @@
   .v-stage:nth-child(2) .dot,
   .v-stage:nth-child(4) .dot { background: var(--apricot); border-color: var(--apricot); color: var(--deep-green); }
   .v-stage:nth-child(5) .dot { background: var(--watch); border-color: var(--watch); }
-  .v-stage h4 {
+  .v-stage h3 {
     font-family: var(--serif);
     font-size: clamp(16px, 1.6vw, 19px);
     color: var(--deep-green);
@@ -840,7 +841,7 @@
     padding-bottom: clamp(32px, 4vw, 40px);
     border-bottom: 1px solid rgba(216, 214, 207, 0.15);
   }
-  footer h5 {
+  footer h3 {
     color: var(--apricot);
     font-size: 11px; letter-spacing: 0.25em;
     text-transform: uppercase; margin: 0 0 18px;
@@ -912,6 +913,8 @@
     </div>
   </div>
 </nav>
+
+<main>
 
 <!-- ====================== HERO ====================== -->
 <header class="hero" id="top">
@@ -987,42 +990,42 @@
     <div class="diff-grid">
       <div class="diff-card" data-reveal data-delay="1">
         <div class="diff-icon">EN</div>
-        <h4>English-first experience</h4>
+        <h3>English-first experience</h3>
         <p>Reception, dentists, and coordination &mdash; native-level English at every touchpoint, not a translator on call.</p>
       </div>
       <div class="diff-card" data-reveal data-delay="2">
         <div class="diff-icon">$</div>
-        <h4>Insurance support</h4>
+        <h3>Insurance support</h3>
         <p>Claim help built into the visit &mdash; not an afterthought. We make reimbursement the easiest part.</p>
       </div>
       <div class="diff-card" data-reveal data-delay="3">
         <div class="diff-icon">◇</div>
-        <h4>International communication standards</h4>
+        <h3>International communication standards</h3>
         <p>Written plans, fee transparency, photos and X-rays explained the way Singapore and Tokyo patients expect.</p>
       </div>
       <div class="diff-card" data-reveal data-delay="4">
         <div class="diff-icon">★</div>
-        <h4>Premium patient experience</h4>
+        <h3>Premium patient experience</h3>
         <p>Calm interiors, quiet rooms, a coordinator who remembers your name &mdash; soft experience, serious care.</p>
       </div>
       <div class="diff-card" data-reveal data-delay="1">
         <div class="diff-icon">◉</div>
-        <h4>Central Sukhumvit location</h4>
+        <h3>Central Sukhumvit location</h3>
         <p>Soi 24, next to Sterling &mdash; walking distance from the condos, schools, and clubs where expats already are.</p>
       </div>
       <div class="diff-card" data-reveal data-delay="2">
         <div class="diff-icon">♥</div>
-        <h4>Family-friendly care</h4>
+        <h3>Family-friendly care</h3>
         <p>One trusted clinic for parents and children &mdash; the dental home expat families want and rarely find.</p>
       </div>
       <div class="diff-card" data-reveal data-delay="3">
         <div class="diff-icon">+</div>
-        <h4>Orthodontics &amp; general dentistry</h4>
+        <h3>Orthodontics &amp; general dentistry</h3>
         <p>One roof, one record, one team &mdash; cleanings to clear aligners without the handoff to a different clinic.</p>
       </div>
       <div class="diff-card" data-reveal data-delay="4">
         <div class="diff-icon">→</div>
-        <h4>Future medical tourism</h4>
+        <h3>Future medical tourism</h3>
         <p>Built to scale into Bangkok's medical-tourism flywheel &mdash; international standards, international audience.</p>
       </div>
     </div>
@@ -1154,33 +1157,33 @@
     <div class="partner-grid">
       <div class="partner-card" data-reveal data-delay="1">
         <span class="mono-label">Relocation</span>
-        <h4>Relocation agencies</h4>
+        <h3>Relocation agencies</h3>
         <p>The first relationship most expats build in Bangkok. We become a default healthcare recommendation in their welcome packets.</p>
         <div class="examples">Asian Tigers  ·  Thai Relo Services  ·  Pacific Orientation</div>
       </div>
       <div class="partner-card" data-reveal data-delay="2">
         <span class="mono-label">Education</span>
-        <h4>International schools</h4>
+        <h3>International schools</h3>
         <p>Family-care referrals from school nurses, parent reps, and community boards. One trusted clinic for the whole family.</p>
       </div>
       <div class="partner-card" data-reveal data-delay="3">
         <span class="mono-label">Residence</span>
-        <h4>Condo communities</h4>
+        <h3>Condo communities</h3>
         <p>Sukhumvit's premium residences host concierge-style recommendations. We earn a spot on the trusted-provider list.</p>
       </div>
       <div class="partner-card" data-reveal data-delay="1">
         <span class="mono-label">Wellness</span>
-        <h4>Wellness clubs</h4>
+        <h3>Wellness clubs</h3>
         <p>Patients who invest in fitness, recovery, and longevity already think systemically about health. They are Nest's natural audience.</p>
       </div>
       <div class="partner-card" data-reveal data-delay="2">
         <span class="mono-label">Sports</span>
-        <h4>Sports communities</h4>
+        <h3>Sports communities</h3>
         <p>Padel, pickleball, tennis, running, golf. Real Bangkok expat life happens here &mdash; and brand-building happens through showing up.</p>
       </div>
       <div class="partner-card" data-reveal data-delay="3">
         <span class="mono-label">Community</span>
-        <h4>Expat organisations</h4>
+        <h3>Expat organisations</h3>
         <p>Chambers of commerce, national associations, alumni networks. The institutional layer of expat life, hungry for trusted local partners.</p>
       </div>
     </div>
@@ -1206,27 +1209,27 @@
     <div class="vision-journey" data-reveal data-delay="3">
       <div class="v-stage">
         <div class="dot">1</div>
-        <h4>Trusted Sukhumvit brand</h4>
+        <h3>Trusted Sukhumvit brand</h3>
         <div class="feeling">Earn the expat community's first recommendation.</div>
       </div>
       <div class="v-stage">
         <div class="dot">2</div>
-        <h4>Insurance-preferred</h4>
+        <h3>Insurance-preferred</h3>
         <div class="feeling">Become the default reimbursement partner for premium insurers.</div>
       </div>
       <div class="v-stage">
         <div class="dot">3</div>
-        <h4>Multi-location</h4>
+        <h3>Multi-location</h3>
         <div class="feeling">Expand to a second &amp; third Bangkok corridor &mdash; same standard, same brand.</div>
       </div>
       <div class="v-stage">
         <div class="dot">4</div>
-        <h4>Medical tourism</h4>
+        <h3>Medical tourism</h3>
         <div class="feeling">Productise the international experience for inbound dental travellers.</div>
       </div>
       <div class="v-stage">
         <div class="dot">5</div>
-        <h4>International dental brand</h4>
+        <h3>International dental brand</h3>
         <div class="feeling">Scalable, repeatable, recognisably Thai-made for the international patient.</div>
       </div>
     </div>
@@ -1274,6 +1277,8 @@
   </div>
 </section>
 
+</main>
+
 <!-- ====================== FOOTER ====================== -->
 <footer>
   <div class="container">
@@ -1296,7 +1301,7 @@
         </p>
       </div>
       <div>
-        <h5>Strategy</h5>
+        <h3>Strategy</h3>
         <ul>
           <li><a href="#market">Market Opportunity</a></li>
           <li><a href="#differentiator">Differentiator</a></li>
@@ -1304,7 +1309,7 @@
         </ul>
       </div>
       <div>
-        <h5>Partnership</h5>
+        <h3>Partnership</h3>
         <ul>
           <li><a href="#partnerships">Partnerships</a></li>
           <li><a href="#vision">Long-Term Vision</a></li>

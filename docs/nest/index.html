@@ -845,10 +845,14 @@
     line-height: 1.5;
     transition: transform .3s var(--ease);
   }
-  .why-list li, .why-list li span, .why-list li strong { color: #FFFDFC; }
+  .why-list, .why-list li, .why-list li span, .why-list li strong { color: #FFFDFC !important; }
   .why-list strong { font-weight: 700; }
-  #why .lead { color: #FFFDFC; }
-  #why h2 { color: #FFFDFC; }
+  .why-list .tick { color: #173F35 !important; }
+  #why h2, #why .lead, #why .big-quote p { color: #FFFDFC !important; }
+  #why .big-quote p .apricot { color: #F0BC97 !important; }
+  @media print {
+    #why, #why * { color: #FFFDFC !important; background: #173F35 !important; }
+  }
   .why-list li:hover { transform: translateX(8px); }
   .why-list li:nth-last-child(-n+2) { border-bottom: 1px solid rgba(244,239,230,0.15); }
   .why-list li:nth-child(odd) { padding-right: 24px; border-right: 1px solid rgba(244,239,230,0.08); }

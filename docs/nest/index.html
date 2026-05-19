@@ -447,38 +447,38 @@
     margin-top: clamp(40px, 6vw, 56px);
   }
   .phase {
-    background: rgba(244,239,230,0.06);
-    border: 1px solid rgba(216,214,207,0.18);
+    background: var(--paper);
+    border: 1px solid rgba(23,63,53,0.08);
     border-left: 3px solid var(--apricot);
     padding: clamp(32px, 4vw, 44px) clamp(28px, 4vw, 40px);
     display: grid;
     grid-template-columns: 200px 1fr;
     gap: clamp(28px, 4vw, 48px);
     align-items: start;
-    transition: border-color .3s var(--ease), background .3s var(--ease);
+    transition: border-color .3s var(--ease), background .3s var(--ease), box-shadow .3s var(--ease);
   }
-  .phase:hover { background: rgba(244,239,230,0.1); }
+  .phase:hover { box-shadow: 0 20px 40px -22px rgba(23,63,53,0.18); }
   .phase:nth-child(2) { border-left-color: var(--watch); }
-  .phase:nth-child(3) { border-left-color: var(--paper); }
+  .phase:nth-child(3) { border-left-color: var(--deep-green); }
   .phase .phase-head .num {
     font-family: var(--serif);
     font-size: clamp(48px, 6vw, 72px);
     line-height: 1;
-    color: var(--apricot);
+    color: var(--apricot-deep);
     font-weight: 600;
   }
-  .phase:nth-child(2) .phase-head .num { color: var(--watch-bright); }
-  .phase:nth-child(3) .phase-head .num { color: var(--paper); }
+  .phase:nth-child(2) .phase-head .num { color: var(--watch); }
+  .phase:nth-child(3) .phase-head .num { color: var(--deep-green); }
   .phase .phase-head .ph-label {
     font-size: 10px;
     letter-spacing: 0.25em;
     text-transform: uppercase;
-    color: var(--record);
+    color: var(--graphite);
     font-weight: 600;
     margin-top: 12px;
   }
   .phase h3 {
-    color: var(--paper);
+    color: var(--deep-green);
     margin: 0 0 16px;
     font-size: clamp(24px, 2.8vw, 32px);
   }
@@ -486,7 +486,7 @@
     font-family: var(--serif);
     font-style: italic;
     font-size: clamp(16px, 1.6vw, 19px);
-    color: rgba(216,214,207,0.92);
+    color: var(--graphite);
     margin: 0 0 24px;
     line-height: 1.5;
   }
@@ -497,9 +497,9 @@
   }
   .phase .phase-list li {
     padding: 8px 0;
-    color: var(--record);
+    color: var(--graphite);
     font-size: clamp(13.5px, 1.35vw, 14.5px);
-    border-top: 1px solid rgba(216,214,207,0.12);
+    border-top: 1px solid rgba(23,63,53,0.08);
     position: relative;
     padding-left: 18px;
   }
@@ -507,10 +507,10 @@
     content: ""; position: absolute;
     left: 0; top: 17px;
     width: 8px; height: 1.5px;
-    background: var(--apricot);
+    background: var(--apricot-deep);
   }
-  .phase:nth-child(2) .phase-list li::before { background: var(--watch-bright); }
-  .phase:nth-child(3) .phase-list li::before { background: var(--paper); }
+  .phase:nth-child(2) .phase-list li::before { background: var(--watch); }
+  .phase:nth-child(3) .phase-list li::before { background: var(--deep-green); }
   @media (max-width: 880px) {
     .phase { grid-template-columns: 1fr; gap: 16px; padding: 32px 24px; }
     .phase .phase-list { grid-template-columns: 1fr; }
@@ -519,11 +519,11 @@
   .seo-callout {
     margin-top: 24px;
     padding: 18px 22px;
-    background: rgba(229,167,126,0.1);
-    border-left: 2px solid var(--apricot);
+    background: rgba(229,167,126,0.14);
+    border-left: 2px solid var(--apricot-deep);
     font-family: var(--serif);
     font-style: italic;
-    color: var(--record);
+    color: var(--graphite);
     font-size: clamp(14px, 1.4vw, 16px);
     line-height: 1.5;
   }
@@ -534,7 +534,7 @@
     font-style: normal;
     font-size: 12px;
     letter-spacing: 0.04em;
-    color: var(--record);
+    color: var(--deep-green);
     font-weight: 600;
   }
 
@@ -549,20 +549,20 @@
   .flow-node {
     text-align: center;
     padding: 22px 14px;
-    border: 1.5px solid rgba(216,214,207,0.25);
-    background: rgba(244,239,230,0.04);
+    border: 1.5px solid rgba(23,63,53,0.12);
+    background: var(--paper);
     border-radius: 4px;
     transition: transform .3s var(--ease), border-color .3s var(--ease), background .3s var(--ease);
   }
   .flow-node:hover {
     transform: translateY(-3px);
-    border-color: var(--apricot);
+    border-color: var(--apricot-deep);
     background: rgba(229,167,126,0.08);
   }
   .flow-node .flow-label {
     font-family: var(--serif);
     font-size: clamp(17px, 1.8vw, 20px);
-    color: var(--paper);
+    color: var(--deep-green);
     font-weight: 600;
   }
   .flow-node .flow-sub {
@@ -570,11 +570,11 @@
     font-size: 11px;
     letter-spacing: 0.15em;
     text-transform: uppercase;
-    color: var(--apricot-bright);
+    color: var(--apricot-deep);
     font-weight: 600;
   }
   .flow-arrow {
-    color: var(--apricot);
+    color: var(--apricot-deep);
     font-size: 18px;
     padding: 0 12px;
     user-select: none;
@@ -597,7 +597,7 @@
     gap: 10px;
     margin-top: 28px;
     padding-top: 28px;
-    border-top: 1px solid rgba(216,214,207,0.18);
+    border-top: 1px solid rgba(23,63,53,0.1);
   }
   .channel-bar.cols-6 { grid-template-columns: repeat(6, 1fr); }
   .channel {
@@ -607,12 +607,12 @@
     justify-content: center;
     gap: 6px;
     height: 64px;
-    background: var(--paper);
+    background: transparent;
     border-radius: 4px;
     padding: 10px 12px;
     transition: transform .25s var(--ease), background .25s var(--ease);
   }
-  .channel:hover { transform: translateY(-2px); background: #FFFEFB; }
+  .channel:hover { transform: translateY(-2px); background: rgba(23,63,53,0.04); }
   .channel img {
     max-height: 28px;
     max-width: 100%;
@@ -640,15 +640,15 @@
   .trust-callout {
     margin-top: 36px;
     padding: 28px 32px;
-    border-left: 3px solid var(--apricot);
-    background: rgba(229,167,126,0.06);
+    border-left: 3px solid var(--apricot-deep);
+    background: rgba(229,167,126,0.1);
   }
   .trust-callout p {
     margin: 0;
     font-family: var(--serif);
     font-style: italic;
     font-size: clamp(18px, 2vw, 24px);
-    color: var(--paper);
+    color: var(--deep-green);
     line-height: 1.4;
   }
 
@@ -1174,7 +1174,7 @@
 </section>
 
 <!-- ====================== MARKETING STRATEGY ====================== -->
-<section id="strategy" class="dark">
+<section id="strategy" class="ivory">
   <div class="container">
     <span class="eyebrow" data-reveal>Marketing Strategy</span>
     <h2 data-reveal data-delay="1">Three phases.<br/>One compounding flywheel.</h2>

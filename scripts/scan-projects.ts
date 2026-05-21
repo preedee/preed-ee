@@ -34,6 +34,7 @@ const GROUP_PADEL = "The Padel Society";
 const GROUP_PADEL_THAILAND = "Padel Thailand";
 const GROUP_OTHER = "Other";
 const GROUP_NEST = "Nest";
+const GROUP_PERSONAL = "Personal";
 
 const TBDC_LOGO: LogoSpec = { kind: "copy", from: "tbdc/clinicdocs/assets/logo-monogram.png", as: "tbdc.png" };
 const TPS_LOGO: LogoSpec = { kind: "local", file: "tps-logo.png", as: "tps.png" };
@@ -74,9 +75,10 @@ const META: Record<string, Meta> = {
   "new-project":                { stack: "PAI skill (in design)",         purpose: "/new-project slash command — auto-register a new Cowork project on this dashboard", group: GROUP_OTHER, logo: { kind: "monogram", letter: "N", bg: "#7dd3c0", fg: "#0a0a0a", as: "new-project.svg" }, status: "wip" },
   "organize-folder":            { stack: "Bun, TypeScript",               purpose: "Reusable CLI: dedupe + translate Thai filenames + route into folder structure", group: GROUP_OTHER, logo: { kind: "monogram", letter: "O", bg: "#475569", fg: "#f8fafc", as: "organize-folder.svg" }, status: "live" },
   "nest-dental":                { stack: "TBD",                           purpose: "Nest International Marketing Proposal",           group: GROUP_NEST, logo: { kind: "monogram", letter: "N", bg: "#ef4444", fg: "#f8fafc", as: "nest-dental.svg" }, status: "wip" },
+  "superassistant":             { stack: "Claude Code, PAI, Bun, MCP",    purpose: "Assistant 'Mike' — memory, agents, cadence, life-OS", group: GROUP_PERSONAL, logo: { kind: "monogram", letter: "S", bg: "#334155", fg: "#f8fafc", as: "superassistant.svg" }, status: "wip" },
 };
 
-const GROUP_ORDER = [GROUP_TBDC, GROUP_NEST, GROUP_CLINERA, GROUP_PADEL, GROUP_MATCHDAY, GROUP_PADEL_THAILAND, GROUP_OTHER];
+const GROUP_ORDER = [GROUP_TBDC, GROUP_NEST, GROUP_CLINERA, GROUP_PADEL, GROUP_MATCHDAY, GROUP_PADEL_THAILAND, GROUP_PERSONAL, GROUP_OTHER];
 
 const GROUP_NAV_LABELS: Record<string, string> = {
   [GROUP_TBDC]: "TBDC",
@@ -85,6 +87,7 @@ const GROUP_NAV_LABELS: Record<string, string> = {
   [GROUP_PADEL]: "TPS",
   [GROUP_PADEL_THAILAND]: "Padel TH",
   [GROUP_NEST]: "Nest",
+  [GROUP_PERSONAL]: "Personal",
   [GROUP_OTHER]: "Other",
 };
 

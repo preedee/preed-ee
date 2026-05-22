@@ -166,3 +166,6 @@ _(no pending items)_
 
 ## superassistant
 _(no pending items)_
+
+## instagram-notion-sync
+_(no pending items)_

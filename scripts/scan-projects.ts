@@ -76,6 +76,7 @@ const META: Record<string, Meta> = {
   "organize-folder":            { stack: "Bun, TypeScript",               purpose: "Reusable CLI: dedupe + translate Thai filenames + route into folder structure", group: GROUP_OTHER, logo: { kind: "monogram", letter: "O", bg: "#475569", fg: "#f8fafc", as: "organize-folder.svg" }, status: "live" },
   "nest-dental":                { stack: "TBD",                           purpose: "Nest International Marketing Proposal",           group: GROUP_NEST, logo: { kind: "monogram", letter: "N", bg: "#ef4444", fg: "#f8fafc", as: "nest-dental.svg" }, status: "wip" },
   "superassistant":             { stack: "Claude Code, PAI, Bun, MCP",    purpose: "Assistant 'Mike' — memory, agents, cadence, life-OS", group: GROUP_PERSONAL, logo: { kind: "monogram", letter: "S", bg: "#334155", fg: "#f8fafc", as: "superassistant.svg" }, status: "wip" },
+  "instagram-notion-sync":      { stack: "Python, Notion API, launchd",   purpose: "Auto-syncs Instagram saves into grouped Notion pages + photo-wall", group: GROUP_PERSONAL, logo: { kind: "local", file: "instagram.svg", as: "instagram-notion-sync.svg" }, status: "live" },
 };
 
 const GROUP_ORDER = [GROUP_TBDC, GROUP_NEST, GROUP_CLINERA, GROUP_PADEL, GROUP_MATCHDAY, GROUP_PADEL_THAILAND, GROUP_PERSONAL, GROUP_OTHER];

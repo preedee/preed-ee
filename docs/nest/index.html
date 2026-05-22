@@ -6,10 +6,10 @@
 <meta name="theme-color" content="#173F35" />
 <meta name="robots" content="noindex, nofollow" />
 <script>document.documentElement.classList.add('js');</script>
-<title>Nest · Partnership Proposal — Building Bangkok's International Dental Experience</title>
-<meta name="description" content="A go-to-market strategy for Nest, Sukhumvit's lifestyle dental clinic — designed for Bangkok's international community. Confidential proposal for current shareholders." />
-<meta property="og:title" content="Nest · Partnership Proposal" />
-<meta property="og:description" content="Building Bangkok's international dental experience — go-to-market strategy for Nest." />
+<title>Nest · Launch &amp; Growth Strategy — Premium, English-First Dentistry in Bangkok</title>
+<meta name="description" content="A complete launch and growth strategy for Nest — premium, transparent, English-first dentistry in Bangkok, designed for expats, families, and international patients. Confidential." />
+<meta property="og:title" content="Nest · Launch &amp; Growth Strategy" />
+<meta property="og:description" content="Premium, transparent, English-first dentistry in Bangkok — a launch and growth strategy for Nest, built for international residents." />
 <meta property="og:type" content="website" />
 <meta property="og:image" content="https://preed.ee/nest/og.png" />
 <link rel="icon" href="favicon.svg" type="image/svg+xml" />
@@ -1005,6 +1005,299 @@
     footer .footer-grid { grid-template-columns: 1fr; }
   }
 
+  /* ---------- Section intro helpers ---------- */
+  .section-num {
+    font-family: var(--serif);
+    font-size: clamp(13px, 1.3vw, 15px);
+    letter-spacing: 0.25em;
+    color: var(--apricot-deep);
+    font-weight: 600;
+    margin-right: 10px;
+  }
+  section.dark .section-num { color: var(--apricot-bright); }
+
+  /* ---------- Executive summary ---------- */
+  .summary-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 1fr;
+    gap: clamp(32px, 5vw, 72px);
+    align-items: start;
+    margin-top: clamp(36px, 5vw, 52px);
+  }
+  .summary-pillars { display: grid; gap: 14px; }
+  .summary-pillar {
+    background: var(--paper);
+    border-left: 3px solid var(--apricot-deep);
+    padding: 20px 24px;
+    transition: transform .3s var(--ease), box-shadow .3s var(--ease);
+  }
+  .summary-pillar:nth-child(2) { border-left-color: var(--watch); }
+  .summary-pillar:nth-child(3) { border-left-color: var(--deep-green); }
+  .summary-pillar:nth-child(4) { border-left-color: var(--apricot-deep); }
+  .summary-pillar:hover { transform: translateX(6px); box-shadow: 0 14px 28px -20px rgba(23,63,53,0.25); }
+  .summary-pillar h3 { color: var(--deep-green); margin: 0 0 6px; font-size: clamp(16px,1.6vw,19px); line-height: 1.2; }
+  .summary-pillar p { margin: 0; font-size: clamp(13px,1.3vw,14.5px); color: var(--graphite); line-height: 1.5; }
+  @media (max-width: 880px) { .summary-grid { grid-template-columns: 1fr; } }
+
+  /* ---------- Personas ---------- */
+  .persona-row {
+    display: flex; flex-wrap: wrap; gap: 10px;
+    margin-top: clamp(32px, 4vw, 44px);
+  }
+  .persona {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--paper);
+    border: 1px solid rgba(23,63,53,0.12);
+    border-radius: 100px;
+    padding: 10px 18px;
+    font-size: clamp(13px, 1.3vw, 14.5px);
+    color: var(--graphite);
+    transition: transform .25s var(--ease), border-color .25s var(--ease), background .25s var(--ease);
+  }
+  .persona:hover { transform: translateY(-2px); border-color: var(--apricot-deep); background: rgba(229,167,126,0.08); }
+  .persona .dot { width: 7px; height: 7px; border-radius: 100px; background: var(--apricot-deep); flex-shrink: 0; }
+  section.ivory .persona { background: var(--paper); }
+
+  /* ---------- Why Bangkok reasons ---------- */
+  .reason-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: clamp(16px, 2vw, 22px);
+    margin-top: clamp(40px, 6vw, 56px);
+  }
+  .reason {
+    padding: clamp(24px, 2.8vw, 30px);
+    background: rgba(255,253,252,0.06);
+    border: 1px solid rgba(244,239,230,0.16);
+    border-radius: 4px;
+    transition: transform .3s var(--ease), background .3s var(--ease);
+  }
+  .reason:hover { transform: translateY(-4px); background: rgba(255,253,252,0.1); }
+  .reason .r-num { font-family: var(--serif); font-size: clamp(22px,2.2vw,26px); color: var(--apricot-bright); font-weight: 600; }
+  .reason h3 { color: var(--paper); margin: 12px 0 8px; font-size: clamp(16px,1.6vw,19px); line-height: 1.2; }
+  .reason p { margin: 0; color: rgba(216,214,207,0.92); font-size: clamp(13px,1.3vw,14px); line-height: 1.5; }
+  @media (max-width: 880px) { .reason-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 540px) { .reason-grid { grid-template-columns: 1fr; } }
+
+  /* ---------- Growth engines ---------- */
+  .engine-stack { display: grid; gap: clamp(20px, 3vw, 28px); margin-top: clamp(40px, 6vw, 56px); }
+  .engine {
+    background: var(--paper);
+    border: 1px solid rgba(23,63,53,0.08);
+    border-top: 4px solid var(--apricot-deep);
+    padding: clamp(30px, 4vw, 44px);
+    display: grid;
+    grid-template-columns: 88px 1fr;
+    gap: clamp(20px, 3vw, 40px);
+    transition: box-shadow .3s var(--ease);
+  }
+  .engine:hover { box-shadow: 0 22px 44px -26px rgba(23,63,53,0.22); }
+  .engine:nth-child(2) { border-top-color: var(--watch); }
+  .engine:nth-child(3) { border-top-color: var(--deep-green); }
+  .engine:nth-child(4) { border-top-color: var(--apricot-deep); }
+  .engine .e-letter {
+    font-family: var(--serif);
+    font-size: clamp(48px, 6vw, 76px);
+    line-height: 0.9;
+    color: var(--apricot-deep);
+    font-weight: 600;
+  }
+  .engine:nth-child(2) .e-letter { color: var(--watch); }
+  .engine:nth-child(3) .e-letter { color: var(--deep-green); }
+  .engine .e-tag {
+    font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+    font-weight: 600; color: var(--graphite); margin-top: 10px; display: block;
+  }
+  .engine h3 { color: var(--deep-green); font-size: clamp(22px,2.4vw,28px); margin: 0 0 6px; }
+  .engine .e-lead {
+    font-family: var(--serif); font-style: italic;
+    font-size: clamp(16px,1.6vw,19px); color: var(--graphite);
+    margin: 0 0 22px; line-height: 1.5;
+  }
+  .e-cols { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(20px,3vw,36px); }
+  .e-cols.three { grid-template-columns: repeat(3, 1fr); }
+  .e-block .e-block-label {
+    font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+    font-weight: 600; color: var(--apricot-deep); margin-bottom: 10px; display: block;
+  }
+  .e-list { list-style: none; padding: 0; margin: 0; }
+  .e-list li {
+    padding: 6px 0 6px 16px; position: relative;
+    font-size: clamp(13px,1.3vw,14px); color: var(--graphite); line-height: 1.45;
+  }
+  .e-list li::before {
+    content: ""; position: absolute; left: 0; top: 13px;
+    width: 7px; height: 1.5px; background: var(--apricot-deep);
+  }
+  .e-note {
+    margin-top: 18px; padding: 14px 18px;
+    background: rgba(229,167,126,0.12);
+    border-left: 2px solid var(--apricot-deep);
+    font-family: var(--serif); font-style: italic;
+    font-size: clamp(13.5px,1.4vw,15px); color: var(--graphite); line-height: 1.45;
+  }
+  @media (max-width: 880px) {
+    .engine { grid-template-columns: 1fr; gap: 14px; padding: 28px 22px; }
+    .e-cols, .e-cols.three { grid-template-columns: 1fr; }
+  }
+
+  /* Credentialing roadmap mini-timeline */
+  .cred-steps {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 10px; margin-top: 18px;
+  }
+  .cred-step {
+    border: 1px solid rgba(23,63,53,0.12); border-radius: 4px;
+    padding: 14px 14px; background: var(--paper);
+  }
+  .cred-step .cs-when { font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--watch); font-weight: 600; }
+  .cred-step .cs-what { font-family: var(--serif); font-size: clamp(13px,1.3vw,15px); color: var(--deep-green); margin-top: 6px; line-height: 1.3; }
+  @media (max-width: 880px) { .cred-steps { grid-template-columns: 1fr 1fr; } }
+
+  /* Pillar cards */
+  .pillar-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(16px,2vw,20px); }
+  .pillar {
+    background: var(--ivory); padding: clamp(24px,2.8vw,30px);
+    border-top: 3px solid var(--apricot-deep);
+  }
+  .pillar:nth-child(2) { border-top-color: var(--watch); }
+  .pillar:nth-child(3) { border-top-color: var(--deep-green); }
+  .pillar .p-eyebrow { font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; font-weight: 600; color: var(--apricot-deep); }
+  .pillar h4 { color: var(--deep-green); margin: 8px 0 12px; font-size: clamp(18px,1.9vw,21px); }
+  .pillar ul { list-style: none; padding: 0; margin: 0; }
+  .pillar li { padding: 5px 0; font-size: clamp(12.5px,1.25vw,13.5px); color: var(--graphite); line-height: 1.4; border-top: 1px solid var(--record); }
+  .pillar li:first-child { border-top: 0; }
+  @media (max-width: 880px) { .pillar-grid { grid-template-columns: 1fr; } }
+
+  /* ---------- Funnel infrastructure ---------- */
+  .funnel-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(28px,4vw,56px); margin-top: clamp(40px,6vw,56px); align-items: start; }
+  .source-cloud { display: flex; flex-wrap: wrap; gap: 8px; }
+  .source-chip {
+    background: var(--paper); border: 1px solid rgba(23,63,53,0.12);
+    border-radius: 4px; padding: 8px 14px;
+    font-size: clamp(12px,1.2vw,13.5px); color: var(--graphite);
+  }
+  .crm-core {
+    margin-top: 20px; text-align: center;
+    background: var(--deep-green); color: var(--paper);
+    border-radius: 6px; padding: 26px;
+  }
+  .crm-core .cc-label { font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--apricot-bright); font-weight: 600; }
+  .crm-core .cc-title { font-family: var(--serif); font-size: clamp(20px,2.2vw,26px); color: var(--paper); margin: 8px 0 4px; }
+  .crm-core .cc-sub { font-size: clamp(12.5px,1.3vw,14px); color: rgba(216,214,207,0.9); margin: 0; }
+  .auto-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
+  .auto-list li {
+    display: flex; align-items: flex-start; gap: 12px;
+    padding: 12px 16px; background: var(--paper);
+    border: 1px solid rgba(23,63,53,0.08); border-radius: 4px;
+    font-size: clamp(12.5px,1.3vw,14px); color: var(--graphite); line-height: 1.45;
+  }
+  .auto-list li .auto-tick { color: var(--apricot-deep); font-weight: 700; flex-shrink: 0; }
+  @media (max-width: 880px) { .funnel-wrap { grid-template-columns: 1fr; } }
+
+  /* ---------- Competitive analysis table ---------- */
+  .comp-table { margin-top: clamp(40px,6vw,56px); display: grid; gap: 12px; }
+  .comp-row {
+    display: grid;
+    grid-template-columns: 1.1fr 1.4fr 1.4fr;
+    gap: 0;
+    background: var(--paper);
+    border: 1px solid rgba(23,63,53,0.1);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .comp-row.head {
+    background: var(--deep-green); border-color: var(--deep-green);
+  }
+  .comp-row.head .comp-cell { color: var(--paper); font-family: var(--sans); font-weight: 600; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; }
+  .comp-cell { padding: 18px 20px; border-left: 1px solid rgba(23,63,53,0.08); }
+  .comp-cell:first-child { border-left: 0; }
+  .comp-cell .c-name { font-family: var(--serif); font-size: clamp(16px,1.7vw,20px); color: var(--deep-green); font-weight: 600; }
+  .comp-cell .c-style { font-size: 11px; letter-spacing: 0.04em; color: var(--apricot-deep); font-weight: 600; margin-top: 4px; }
+  .comp-cell p { margin: 0; font-size: clamp(12.5px,1.25vw,13.5px); color: var(--graphite); line-height: 1.45; }
+  .comp-cell .c-cell-label { display: none; }
+  .comp-row.nest { border: 2px solid var(--apricot-deep); background: rgba(229,167,126,0.08); }
+  .comp-row.nest .comp-cell .c-name { color: var(--apricot-deep); }
+  .whitespace {
+    margin-top: clamp(36px,5vw,48px);
+    padding: clamp(28px,3.5vw,40px);
+    background: var(--deep-green); color: var(--paper);
+    border-radius: 6px; text-align: center;
+  }
+  .whitespace .ws-label { font-size: 11px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--apricot-bright); font-weight: 600; }
+  .whitespace p { font-family: var(--serif); font-style: italic; font-size: clamp(20px,2.6vw,32px); color: var(--paper); margin: 14px auto 0; max-width: 26ch; line-height: 1.35; }
+  @media (max-width: 880px) {
+    .comp-row { grid-template-columns: 1fr; }
+    .comp-row.head { display: none; }
+    .comp-cell { border-left: 0; border-top: 1px solid rgba(23,63,53,0.08); }
+    .comp-cell:first-child { border-top: 0; }
+    .comp-cell .c-cell-label { display: block; font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--apricot-deep); font-weight: 600; margin-bottom: 6px; }
+  }
+
+  /* ---------- KPI framework ---------- */
+  .kpi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(16px,2vw,22px); margin-top: clamp(40px,6vw,56px); }
+  .kpi-col {
+    background: var(--paper); border-top: 4px solid var(--apricot-deep);
+    padding: clamp(26px,3vw,32px);
+  }
+  .kpi-col:nth-child(2) { border-top-color: var(--watch); }
+  .kpi-col:nth-child(3) { border-top-color: var(--deep-green); }
+  .kpi-col .k-phase { font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; font-weight: 600; color: var(--apricot-deep); }
+  .kpi-col:nth-child(2) .k-phase { color: var(--watch); }
+  .kpi-col:nth-child(3) .k-phase { color: var(--deep-green); }
+  .kpi-col h3 { color: var(--deep-green); font-size: clamp(19px,2vw,23px); margin: 8px 0 4px; }
+  .kpi-col .k-window { font-size: 12px; color: var(--muted); font-weight: 600; margin-bottom: 14px; }
+  .kpi-col ul { list-style: none; padding: 0; margin: 0; }
+  .kpi-col li { padding: 8px 0 8px 18px; position: relative; font-size: clamp(12.5px,1.3vw,14px); color: var(--graphite); border-top: 1px solid var(--record); line-height: 1.4; }
+  .kpi-col li:first-child { border-top: 0; }
+  .kpi-col li::before { content: ""; position: absolute; left: 0; top: 15px; width: 7px; height: 1.5px; background: var(--apricot-deep); }
+  @media (max-width: 880px) { .kpi-grid { grid-template-columns: 1fr; } }
+
+  /* ---------- Roadmap timeline ---------- */
+  .roadmap { display: grid; gap: clamp(16px,2vw,20px); margin-top: clamp(40px,6vw,56px); }
+  .road-stage {
+    display: grid; grid-template-columns: 150px 1fr; gap: clamp(20px,3vw,40px);
+    background: var(--paper); border: 1px solid rgba(23,63,53,0.08);
+    border-left: 3px solid var(--apricot-deep);
+    padding: clamp(24px,3vw,32px);
+    transition: box-shadow .3s var(--ease);
+  }
+  .road-stage:hover { box-shadow: 0 18px 36px -24px rgba(23,63,53,0.2); }
+  .road-stage:nth-child(2) { border-left-color: var(--watch); }
+  .road-stage:nth-child(3) { border-left-color: var(--deep-green); }
+  .road-stage:nth-child(4) { border-left-color: var(--apricot-deep); }
+  .road-stage:nth-child(5) { border-left-color: var(--watch); }
+  .road-when { font-family: var(--serif); font-size: clamp(20px,2.2vw,26px); color: var(--deep-green); font-weight: 600; line-height: 1.1; }
+  .road-when .rw-sub { display: block; font-family: var(--sans); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--apricot-deep); margin-top: 8px; font-weight: 600; }
+  .road-body .rb-obj { font-family: var(--serif); font-style: italic; font-size: clamp(15px,1.5vw,18px); color: var(--graphite); margin: 0 0 12px; }
+  .road-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 28px; }
+  .road-cols ul { list-style: none; padding: 0; margin: 0; }
+  .road-cols li { padding: 5px 0 5px 16px; position: relative; font-size: clamp(12.5px,1.25vw,13.5px); color: var(--graphite); line-height: 1.4; }
+  .road-cols li::before { content: ""; position: absolute; left: 0; top: 12px; width: 7px; height: 1.5px; background: var(--apricot-deep); }
+  @media (max-width: 880px) { .road-stage { grid-template-columns: 1fr; gap: 12px; } .road-cols { grid-template-columns: 1fr; } }
+
+  /* ---------- Deliverables ---------- */
+  .deliv-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(14px,1.8vw,18px); margin-top: clamp(40px,6vw,56px); }
+  .deliv {
+    background: var(--paper); border: 1px solid rgba(23,63,53,0.1);
+    padding: clamp(22px,2.6vw,28px); border-radius: 4px;
+    display: flex; flex-direction: column; gap: 8px;
+    transition: transform .3s var(--ease), box-shadow .3s var(--ease);
+  }
+  .deliv:hover { transform: translateY(-4px); box-shadow: 0 18px 30px -20px rgba(23,63,53,0.18); }
+  .deliv .d-num { font-family: var(--serif); font-size: clamp(20px,2vw,24px); color: var(--apricot-deep); font-weight: 600; }
+  .deliv h3 { color: var(--deep-green); margin: 0; font-size: clamp(16px,1.6vw,18px); line-height: 1.2; }
+  .deliv p { margin: 0; font-size: clamp(12.5px,1.25vw,13.5px); color: var(--graphite); line-height: 1.45; }
+  @media (max-width: 880px) { .deliv-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 540px) { .deliv-grid { grid-template-columns: 1fr; } }
+
+  /* ---------- Doctor profile dims ---------- */
+  .dim-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+  .dim {
+    font-size: 11px; letter-spacing: 0.04em;
+    background: rgba(61,111,142,0.1); color: var(--watch);
+    border-radius: 100px; padding: 6px 14px; font-weight: 600;
+  }
+
   /* Reduced motion */
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
@@ -1038,12 +1331,12 @@
       <span class="bar"></span><span class="bar"></span><span class="bar"></span>
     </button>
     <div class="nav-links" id="navLinks">
-      <a href="#market">Market</a>
-      <a href="#differentiator">Differentiator</a>
-      <a href="#strategy">Strategy</a>
-      <a href="#content">Content</a>
-      <a href="#partnerships">Partnerships</a>
-      <a href="#vision">Vision</a>
+      <a href="#summary">Summary</a>
+      <a href="#positioning">Positioning</a>
+      <a href="#engines">Growth Engines</a>
+      <a href="#competition">Competition</a>
+      <a href="#kpi">KPIs</a>
+      <a href="#roadmap">Roadmap</a>
       <a href="#why" class="cta-btn">Why It Works</a>
     </div>
   </div>
@@ -1054,74 +1347,93 @@
 <!-- ====================== HERO ====================== -->
 <header class="hero" id="top">
   <div class="container">
-    <span class="eyebrow">Partnership Proposal · Confidential</span>
-    <h1>Building Bangkok's <span class="apricot">international dental experience.</span></h1>
+    <span class="eyebrow">Launch &amp; Growth Strategy · Confidential</span>
+    <h1>Premium, transparent, <span class="apricot">English-first dentistry</span> in Bangkok.</h1>
     <p class="lead">
-      A modern English-first dental clinic strategy built specifically for international residents living in Bangkok &mdash; designed around how expats actually choose, trust, and stay with healthcare.
+      Designed for expats, families, and international patients &mdash; a dental home built around how people who live between countries actually choose, trust, and stay with healthcare.
     </p>
     <div class="hero-ctas">
-      <a href="#strategy" class="cta-btn light">View Strategy &rarr;</a>
-      <a href="#partnerships" class="cta-btn ghost on-dark">Partnership Opportunities</a>
+      <a href="#engines" class="cta-btn light">The Growth Engines &rarr;</a>
+      <a href="#roadmap" class="cta-btn ghost on-dark">Launch Roadmap</a>
     </div>
 
     <div class="hero-tagline-stack">
-      <div><div class="pill">English-First</div><div class="val">Built into every touchpoint.</div></div>
-      <div><div class="pill">Insurance-Ready</div><div class="val">Trust infrastructure from day one.</div></div>
-      <div><div class="pill">Community-Led</div><div class="val">Padel, wellness, expat networks.</div></div>
-      <div><div class="pill">Sukhumvit-Rooted</div><div class="val">Where international Bangkok lives.</div></div>
+      <div><div class="pill">English-First</div><div class="val">A service standard, not a slogan.</div></div>
+      <div><div class="pill">Transparent</div><div class="val">Clear pricing, plans, and timelines.</div></div>
+      <div><div class="pill">Hospitality-Led</div><div class="val">Calm, premium, continuity of care.</div></div>
+      <div><div class="pill">Community-Rooted</div><div class="val">Where international Bangkok lives.</div></div>
     </div>
   </div>
 </header>
 
-<!-- ====================== MARKET OPPORTUNITY ====================== -->
-<section id="market">
+<!-- ====================== 1 · EXECUTIVE SUMMARY ====================== -->
+<section id="summary">
   <div class="container">
-    <span class="eyebrow" data-reveal>Market Opportunity</span>
-    <h2 data-reveal data-delay="1">An underserved expat<br/>market in plain sight.</h2>
+    <span class="eyebrow" data-reveal><span class="section-num">01</span>Executive Summary</span>
+    <h2 data-reveal data-delay="1">A dental home for the people<br/>who live between countries.</h2>
     <hr class="accent-line" data-reveal data-delay="2" />
-    <p class="lead narrow" data-reveal data-delay="2">
-      The Sukhumvit corridor &mdash; Phrom Phong, Thong Lo, Asok, Rama&nbsp;4 &mdash; is one of the densest concentrations of insured international residents in Southeast Asia. They have access to world-class care everywhere except, often, the clinic on their own street.
-    </p>
+
+    <div class="summary-grid">
+      <div data-reveal data-delay="2">
+        <p class="lead">
+          Nest is a premium, transparent, English-first dental clinic in Bangkok &mdash; built not for the medical tourist who flies in once, but for the expat, the international family, and the long-stay resident who needs a dentist they can return to for years.
+        </p>
+        <p style="color:var(--graphite); font-size:clamp(14px,1.4vw,16px); line-height:1.6;">
+          Bangkok already wins on quality, hospitality, and value relative to Western markets. The opportunity isn&rsquo;t to be cheaper &mdash; it&rsquo;s to be the clinic that <em>understands</em> an international patient: clear communication, predictable pricing, help with insurance, and continuity of care. The highest-value segment is the resident, not the tourist, because residents return, refer their families, and bring their networks. And the relationships that feed them &mdash; insurers, employers, relocation agencies, international schools &mdash; are slow to build and hard for a competitor to copy, which is where long-term defensibility actually lives.
+        </p>
+      </div>
+      <div class="summary-pillars" data-reveal data-delay="3">
+        <div class="summary-pillar"><h3>The vision</h3><p>Become the default dental home for international Bangkok &mdash; then a broader healthcare-navigation brand for expats.</p></div>
+        <div class="summary-pillar"><h3>Why Bangkok</h3><p>World-class care, hospitality culture, short waits, and strong value versus London, Sydney, or New York.</p></div>
+        <div class="summary-pillar"><h3>The highest-value segment</h3><p>Long-term residents and families &mdash; high lifetime value, high referral rate, low churn versus one-time tourists.</p></div>
+        <div class="summary-pillar"><h3>The defensibility</h3><p>Relationship density with insurers, HR teams, schools, and relocation agents compounds and resists copying.</p></div>
+      </div>
+    </div>
 
     <div class="stat-grid" data-reveal data-delay="3">
       <div class="stat-card">
-        <div class="stat-num">~120k</div>
-        <div class="stat-label">Long-term foreign residents in Bangkok, concentrated along the Sukhumvit BTS corridor.</div>
+        <div class="stat-num">~800k+</div>
+        <div class="stat-label">Estimated foreign residents in greater Bangkok, concentrated along the Sukhumvit corridor.<sup>*</sup></div>
       </div>
       <div class="stat-card">
-        <div class="stat-num">70%+</div>
-        <div class="stat-label">Of premium-segment expats carry international health insurance with dental cover.</div>
+        <div class="stat-num">Riders</div>
+        <div class="stat-label">Most premium expat health plans carry dental as an add-on benefit &mdash; reimbursement, not yet cashless.</div>
       </div>
       <div class="stat-card">
         <div class="stat-num">5 min</div>
-        <div class="stat-label">From Sukhumvit Soi 24 to international schools, premium condos, and wellness clubs.</div>
+        <div class="stat-label">From the Sukhumvit corridor to international schools, premium condos, and wellness clubs.</div>
       </div>
       <div class="stat-card">
-        <div class="stat-num">0</div>
-        <div class="stat-label">Dental clinics in the corridor that lead with a true international-experience promise.</div>
+        <div class="stat-num">Gap</div>
+        <div class="stat-label">Few clinics own &ldquo;warm, transparent, English-first dentistry for residents&rdquo; &mdash; the rest skew hospital or tourist.</div>
       </div>
     </div>
-
-    <div class="market-context" data-reveal data-delay="4">
-      <div class="ctx"><span class="lbl">Where they live</span>Premium condo communities &mdash; Phrom Phong, Thong Lo, Asok, Sukhumvit&nbsp;24.</div>
-      <div class="ctx"><span class="lbl">Where they raise families</span>International schools, expat parent networks, family-care WhatsApp groups.</div>
-      <div class="ctx"><span class="lbl">Where they spend evenings</span>Sterling, padel clubs, pickleball courts, tennis communities, wellness studios.</div>
-      <div class="ctx"><span class="lbl">Where they work</span>Remote-first executives, regional HQs, agencies, founders, long-term professionals.</div>
-      <div class="ctx"><span class="lbl">What they share</span>A quiet preference for clinics that simply <em>get them</em> &mdash; without explanation.</div>
-    </div>
+    <p style="margin-top:18px; font-size:11px; color:var(--muted); letter-spacing:0.02em;"><sup>*</sup> Population figures are directional estimates from secondary sources, not census data &mdash; used to size opportunity, not to forecast.</p>
   </div>
 </section>
 
-<!-- ====================== DIFFERENTIATOR ====================== -->
-<section id="differentiator" class="ivory">
+<!-- ====================== 2 · CORE POSITIONING ====================== -->
+<section id="positioning" class="ivory">
   <div class="container">
-    <span class="eyebrow" data-reveal>Our Differentiator</span>
-    <h2 data-reveal data-delay="1">Eight ways Nest becomes<br/>the easiest dental choice in Sukhumvit.</h2>
+    <span class="eyebrow" data-reveal><span class="section-num">02</span>Core Positioning</span>
+    <h2 data-reveal data-delay="1">International patients don&rsquo;t need<br/>cheaper care. They need a different<br/>healthcare experience.</h2>
     <hr class="accent-line" data-reveal data-delay="2" />
-    <p class="lead narrow" data-reveal data-delay="2">
-      Each advantage compounds. Together they make Nest the obvious answer when a Sukhumvit expat thinks <em>&ldquo;I need a dentist.&rdquo;</em>
+    <p class="lead wide" data-reveal data-delay="2">
+      People living between countries carry a quiet anxiety about healthcare abroad: <em>Will they understand me? What will it actually cost? Can I trust the plan I&rsquo;m being sold?</em> Nest answers that anxiety with three things Bangkok&rsquo;s big hospitals and tourist-volume clinics rarely combine &mdash; communication, transparency, and continuity. &ldquo;English-first&rdquo; here is a measurable standard: native-fluency clinicians, written treatment plans in English, and billing and insurance paperwork that need no translation &mdash; not a sign on the door.
     </p>
 
+    <div class="persona-row" data-reveal data-delay="3">
+      <span class="persona"><span class="dot"></span>Expats &amp; long-stay residents</span>
+      <span class="persona"><span class="dot"></span>Mixed-nationality families</span>
+      <span class="persona"><span class="dot"></span>International-school parents</span>
+      <span class="persona"><span class="dot"></span>Digital nomads &amp; remote workers</span>
+      <span class="persona"><span class="dot"></span>Startup founders &amp; executives</span>
+      <span class="persona"><span class="dot"></span>Airline crew</span>
+      <span class="persona"><span class="dot"></span>Embassy &amp; org staff</span>
+      <span class="persona"><span class="dot"></span>Long-stay tourists</span>
+    </div>
+
+    <h3 data-reveal style="margin-top:clamp(48px,6vw,64px); color:var(--deep-green);">Eight ways that promise becomes the easiest dental choice in Bangkok.</h3>
     <div class="diff-grid">
       <div class="diff-card" data-reveal data-delay="1">
         <div class="diff-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
@@ -1167,142 +1479,280 @@
 
     <div class="diff-anchor" data-reveal>
       <p class="italic-quote">
-        The goal is not only clinical excellence &mdash; but becoming<br/>
-        <em>the easiest dental clinic in Bangkok for expats.</em>
+        The goal is not only clinical excellence &mdash; it is to become<br/>
+        <em>the most trusted, most understandable dental clinic<br/>for international Bangkok.</em>
       </p>
     </div>
   </div>
 </section>
 
-<!-- ====================== MARKETING STRATEGY ====================== -->
-<section id="strategy" class="ivory">
+<!-- ====================== 3 · WHY PATIENTS CHOOSE BANGKOK ====================== -->
+<section id="bangkok" class="dark">
   <div class="container">
-    <span class="eyebrow" data-reveal>Marketing Strategy</span>
-    <h2 data-reveal data-delay="1">Three phases.<br/>One compounding flywheel.</h2>
+    <span class="eyebrow" data-reveal><span class="section-num">03</span>Why Patients Choose Bangkok</span>
+    <h2 data-reveal data-delay="1">It was never really<br/>about the price.</h2>
     <hr class="accent-line" data-reveal data-delay="2" />
-    <p class="lead wide" data-reveal data-delay="2">
-      We don't chase patients. We build infrastructure that brings the right ones to Nest's door &mdash; in a sequence where each phase makes the next one easier.
+    <p class="lead narrow" data-reveal data-delay="2">
+      Low cost is what gets written about. It&rsquo;s rarely what makes someone stay. International patients choose Bangkok &mdash; and stay with a clinic &mdash; for a combination Western markets struggle to match: quality, speed, hospitality, and value, in one place.
     </p>
 
-    <div class="phase-stack">
-      <!-- Phase 1 -->
-      <div class="phase" data-reveal data-delay="1">
-        <div class="phase-head">
-          <div class="num">01</div>
-          <div class="ph-label">Foundation</div>
-        </div>
-        <div class="phase-body">
-          <h3>Build the brand that earns the first click.</h3>
-          <p class="phase-lead">Premium positioning, English-first storytelling, professional clinic photography, native English video content, and a search presence that meets expats where they already look.</p>
-          <ul class="phase-list">
-            <li>Premium landing page &amp; brand system</li>
-            <li>Native English clinic photography</li>
-            <li>English-language patient video content</li>
-            <li>Refined wordmark &amp; identity rollout</li>
-            <li>SEO-focused naming &amp; domain strategy</li>
-            <li>Social presence &mdash; Instagram, LINE, Google</li>
-          </ul>
-          <div class="seo-callout">
-            SEO microsites funnel discovery to Nest &mdash; not new brands.<br/>
-            Lightweight landing pages on intent-matched domains, each redirecting trust to the main Nest experience.
-            <span class="domains">SukhumvitDental.com  ·  DentalSmile24.com  ·  SukhumvitSmile24.com</span>
-          </div>
-          <div class="channel-bar">
-            <div class="channel"><img src="img/logos/instagram.svg" alt="Instagram" /></div>
-            <div class="channel"><img src="img/logos/facebook.svg" alt="Facebook" /></div>
-            <div class="channel"><img src="img/logos/youtube.svg" alt="YouTube" /></div>
-            <div class="channel"><img src="img/logos/line.svg" alt="LINE" /></div>
-            <div class="channel"><img src="img/logos/google.svg" alt="Google" /></div>
-          </div>
-        </div>
-      </div>
+    <div class="reason-grid">
+      <div class="reason" data-reveal data-delay="1"><div class="r-num">01</div><h3>Quality of care</h3><p>Internationally trained dentists, modern equipment, and standards that hold up against Singapore or Tokyo.</p></div>
+      <div class="reason" data-reveal data-delay="2"><div class="r-num">02</div><h3>Shorter wait times</h3><p>Treatment in days, not the weeks or months patients face at home &mdash; without sacrificing thoroughness.</p></div>
+      <div class="reason" data-reveal data-delay="3"><div class="r-num">03</div><h3>Hospitality culture</h3><p>Thailand&rsquo;s service ethos turns a clinical visit into a calm, cared-for experience.</p></div>
+      <div class="reason" data-reveal data-delay="1"><div class="r-num">04</div><h3>Modern facilities</h3><p>Clean, contemporary clinics with digital scanning and same-day workflows.</p></div>
+      <div class="reason" data-reveal data-delay="2"><div class="r-num">05</div><h3>Integrated treatment</h3><p>General, cosmetic, and orthodontic care under one roof &mdash; one record, one team, no handoffs.</p></div>
+      <div class="reason" data-reveal data-delay="3"><div class="r-num">06</div><h3>Convenience</h3><p>Central locations on the BTS, evening and weekend slots, and easy rebooking around busy lives.</p></div>
+      <div class="reason" data-reveal data-delay="1"><div class="r-num">07</div><h3>English communication</h3><p>Care explained clearly, in English, end to end &mdash; the friction most expats fear, removed.</p></div>
+      <div class="reason" data-reveal data-delay="2"><div class="r-num">08</div><h3>Care &amp; recovery in one trip</h3><p>For visiting patients, treatment pairs naturally with a comfortable, low-stress recovery setting.</p></div>
+      <div class="reason" data-reveal data-delay="3"><div class="r-num">09</div><h3>Strong relative value</h3><p>Home-country quality at a fraction of London, Sydney, or New York pricing &mdash; savings, not &ldquo;cheap.&rdquo;</p></div>
+    </div>
 
-      <!-- Phase 2 -->
-      <div class="phase" data-reveal data-delay="2">
-        <div class="phase-head">
-          <div class="num">02</div>
-          <div class="ph-label">Expat Community Growth</div>
-        </div>
-        <div class="phase-body">
-          <h3>Get inside the rooms expats already trust.</h3>
-          <p class="phase-lead">Expat decisions move through community &mdash; Facebook groups, padel chats, school parent threads, Sunday brunches. Nest shows up where conversations already happen.</p>
-          <ul class="phase-list">
-            <li>Bangkok expat Facebook groups</li>
-            <li>LinkedIn presence for professionals</li>
-            <li>Padel, pickleball &amp; tennis communities</li>
-            <li>Wellness club partnerships</li>
-            <li>International school parent networks</li>
-            <li>Sponsored community events &amp; tournaments</li>
-          </ul>
-          <div class="channel-bar cols-6">
-            <div class="channel"><img src="img/logos/facebook.svg" alt="Facebook Groups" /></div>
-            <div class="channel"><img src="img/logos/linkedin.svg" alt="LinkedIn" /></div>
-            <div class="channel"><img src="img/logos/sterling.webp" alt="Sterling Sport &amp; Wellness" class="invert-light" /></div>
-            <div class="channel"><img src="img/logos/padelbangkok.png" alt="Padel Bangkok" /></div>
-            <div class="channel"><img src="img/logos/patana.png" alt="Bangkok Patana School" /></div>
-            <div class="channel"><img src="img/logos/bambi.png" alt="BAMBI Bangkok" /></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Phase 3 -->
-      <div class="phase" data-reveal data-delay="3">
-        <div class="phase-head">
-          <div class="num">03</div>
-          <div class="ph-label">Insurance Partnerships</div>
-        </div>
-        <div class="phase-body">
-          <h3>Become the clinic insurance recommends first.</h3>
-          <p class="phase-lead">Insurance is where expat trust crystallises. Direct billing, claim help, and preferred-provider relationships turn one-time visits into long-term loyalty.</p>
-
-          <div class="insurance-flow">
-            <div class="flow-node">
-              <div class="flow-label">Patient</div>
-              <div class="flow-sub">Books</div>
-            </div>
-            <div class="flow-arrow">&rarr;</div>
-            <div class="flow-node">
-              <div class="flow-label">Insurance</div>
-              <div class="flow-sub">Verifies</div>
-            </div>
-            <div class="flow-arrow">&rarr;</div>
-            <div class="flow-node">
-              <div class="flow-label">Clinic</div>
-              <div class="flow-sub">Bills Direct</div>
-            </div>
-            <div class="flow-arrow">&rarr;</div>
-            <div class="flow-node">
-              <div class="flow-label">Seamless</div>
-              <div class="flow-sub">Returns</div>
-            </div>
-          </div>
-
-          <div class="channel-bar partners">
-            <div class="channel"><img src="img/logos/cigna.svg" alt="Cigna" /><span class="channel-sub">Global</span></div>
-            <div class="channel"><img src="img/logos/allianz.svg" alt="Allianz" /><span class="channel-sub">Ayudhya</span></div>
-            <div class="channel"><img src="img/logos/luma.png" alt="Luma" /><span class="channel-sub">Health</span></div>
-            <div class="channel"><img src="img/logos/pacificcross.avif" alt="Pacific Cross" /><span class="channel-sub">Thailand</span></div>
-            <div class="channel"><img src="img/logos/axa.svg" alt="AXA" /><span class="channel-sub">Thailand</span></div>
-          </div>
-
-          <div class="trust-callout">
-            <p>Insurance partnerships are not just marketing channels &mdash;<br/>they are <em>trust infrastructure.</em></p>
-          </div>
-        </div>
-      </div>
+    <div class="big-quote" data-reveal>
+      <p>Bangkok&rsquo;s advantage is real. Nest&rsquo;s job is to make it <span class="apricot">legible, trustworthy, and repeatable</span> for international patients.</p>
     </div>
   </div>
 </section>
 
-<!-- ====================== VIDEO CONTENT LIBRARY ====================== -->
-<section id="content" class="ivory">
+<!-- ====================== 4 · THE FOUR GROWTH ENGINES ====================== -->
+<section id="engines">
   <div class="container">
-    <span class="eyebrow" data-reveal>Content Library</span>
-    <h2 data-reveal data-delay="1">Education that earns trust<br/>before the first visit.</h2>
+    <span class="eyebrow" data-reveal><span class="section-num">04</span>The Four Growth Engines</span>
+    <h2 data-reveal data-delay="1">Four acquisition systems.<br/>One compounding flywheel.</h2>
     <hr class="accent-line" data-reveal data-delay="2" />
-    <p class="lead narrow" data-reveal data-delay="2">
-      A library of short, English-language videos that answer the questions expat patients are already searching &mdash; so Nest becomes the answer they find, not just the clinic they discover.
+    <p class="lead wide" data-reveal data-delay="2">
+      Nest doesn&rsquo;t chase patients with ads. It builds four systems that bring the right ones to the door &mdash; each one making the next easier. Residents prove the unit economics; insurance and partnerships lower the cost of acquisition; trust infrastructure converts; content compounds it all over time.
     </p>
+
+    <div class="engine-stack">
+
+      <!-- Engine A -->
+      <div class="engine" data-reveal data-delay="1">
+        <div><div class="e-letter">A</div><span class="e-tag">Highest ROI &middot; Highest LTV</span></div>
+        <div>
+          <h3>Local International Residents</h3>
+          <p class="e-lead">The beachhead &mdash; not the ceiling. Residents return for years, bring their families, and refer their networks. They are the cheapest patients to reach and the most valuable to keep.</p>
+          <div class="e-cols">
+            <div class="e-block">
+              <span class="e-block-label">Who they are</span>
+              <ul class="e-list">
+                <li>Expats &amp; long-term residents</li>
+                <li>Embassy &amp; organisation staff</li>
+                <li>Airline crew</li>
+                <li>International-school parents</li>
+                <li>Startup founders &amp; executives</li>
+                <li>Remote workers &amp; digital nomads</li>
+                <li>Long-stay tourists</li>
+              </ul>
+            </div>
+            <div class="e-block">
+              <span class="e-block-label">Where we meet them</span>
+              <ul class="e-list">
+                <li>International schools &amp; parent groups</li>
+                <li>Premium condo communities</li>
+                <li>Coworking spaces</li>
+                <li>Padel, pickleball &amp; tennis clubs</li>
+                <li>CrossFit &amp; wellness studios</li>
+                <li>Women&rsquo;s &amp; parenting groups</li>
+                <li>Relocation agencies &amp; embassy communities</li>
+              </ul>
+            </div>
+          </div>
+          <div class="e-note">
+            Signature offers: a <strong>&ldquo;Welcome to Bangkok&rdquo; dental package</strong> for new arrivals, <strong>family check-up plans</strong>, hands-on <strong>insurance navigation</strong>, an <strong>expat emergency line</strong>, and airport-to-chair convenience messaging.
+          </div>
+        </div>
+      </div>
+
+      <!-- Engine B -->
+      <div class="engine" data-reveal data-delay="2">
+        <div><div class="e-letter">B</div><span class="e-tag">Lead source &middot; Trust signal &middot; Moat</span></div>
+        <div>
+          <h3>Insurance Partnerships</h3>
+          <p class="e-lead">Insurance is where expat trust crystallises. Becoming a recognised, claim-friendly provider turns &ldquo;how much will this cost me?&rdquo; into &ldquo;my plan works here&rdquo; &mdash; and that answer is a referral engine.</p>
+          <div class="e-cols">
+            <div class="e-block">
+              <span class="e-block-label">Target insurers</span>
+              <ul class="e-list">
+                <li>Cigna &middot; Allianz &middot; Aetna</li>
+                <li>GeoBlue &middot; AXA</li>
+                <li>Luma &middot; April International</li>
+                <li>William Russell &middot; Morgan Price</li>
+              </ul>
+            </div>
+            <div class="e-block">
+              <span class="e-block-label">What it takes operationally</span>
+              <ul class="e-list">
+                <li>Clinic &amp; clinician credentialing</li>
+                <li>Agreed fee schedules &amp; documentation</li>
+                <li>Multilingual claims workflows</li>
+                <li>Pre-authorisation &amp; Letter-of-Guarantee handling</li>
+                <li>Reimbursement-ready paperwork in English</li>
+                <li>Admin training on each insurer&rsquo;s process</li>
+              </ul>
+            </div>
+          </div>
+          <span class="e-block-label" style="margin-top:22px;">Credentialing roadmap</span>
+          <div class="cred-steps">
+            <div class="cred-step"><div class="cs-when">Weeks 0&ndash;4</div><div class="cs-what">Licensing, credentials &amp; document pack assembled</div></div>
+            <div class="cred-step"><div class="cs-when">Weeks 4&ndash;8</div><div class="cs-what">Fee schedules agreed; apply to insurers &amp; TPAs</div></div>
+            <div class="cred-step"><div class="cs-when">Weeks 8&ndash;16</div><div class="cs-what">Claims workflow &amp; staff training; first reimbursements</div></div>
+            <div class="cred-step"><div class="cs-when">Months 4&ndash;9+</div><div class="cs-what">Pursue direct-billing / preferred-provider status</div></div>
+          </div>
+          <div class="e-note">
+            Most clinics market to patients. Few build relationships with <strong>HR departments, relocation agencies, insurers, embassies, and international schools.</strong> That relationship density is the real moat &mdash; it compounds, resists copying, and feeds patients long after any single ad stops. <em>(In Thailand, outpatient dental is usually reimbursed, not cashless &mdash; so Nest leads with claim assistance and works toward direct billing where insurers and TPAs allow.)</em>
+          </div>
+        </div>
+      </div>
+
+      <!-- Engine C -->
+      <div class="engine" data-reveal data-delay="3">
+        <div><div class="e-letter">C</div><span class="e-tag">Reassurance &middot; Predictability</span></div>
+        <div>
+          <h3>Trust Infrastructure</h3>
+          <p class="e-lead">International patients are reassured by predictability more than persuaded by advertising. Trust is built with systems &mdash; consistent evidence, knowable doctors, and pricing with nothing hidden.</p>
+          <div class="e-cols three">
+            <div class="e-block">
+              <span class="e-block-label">Before &amp; after system</span>
+              <ul class="e-list">
+                <li>Standardised photography &amp; backgrounds</li>
+                <li>Consistent lighting &amp; timestamps</li>
+                <li>Doctor commentary on each case</li>
+                <li>Categorised treatment libraries</li>
+              </ul>
+              <div class="dim-row">
+                <span class="dim">Invisalign</span><span class="dim">Veneers</span><span class="dim">Whitening</span><span class="dim">Crowns</span><span class="dim">Implants</span><span class="dim">Pediatric</span><span class="dim">Family</span><span class="dim">Emergencies</span><span class="dim">Orthodontics</span><span class="dim">Smile makeovers</span>
+              </div>
+            </div>
+            <div class="e-block">
+              <span class="e-block-label">Doctor profiles</span>
+              <ul class="e-list">
+                <li>Treatment philosophy</li>
+                <li>Languages spoken</li>
+                <li>Communication style</li>
+                <li>Continuing education</li>
+                <li>Treatment interests</li>
+                <li>Personality</li>
+                <li>Personal interests</li>
+              </ul>
+            </div>
+            <div class="e-block">
+              <span class="e-block-label">Pricing transparency</span>
+              <ul class="e-list">
+                <li>Transparent price ranges</li>
+                <li>Financing explained plainly</li>
+                <li>Realistic treatment timelines</li>
+                <li>Honest expectation-setting</li>
+                <li>Consultations with no surprises</li>
+              </ul>
+            </div>
+          </div>
+          <div class="e-note">
+            The most common expat complaints &mdash; suspected dual pricing, perceived over-treatment, inconsistent quality &mdash; are exactly what a transparent, no-upsell, continuity-of-care system neutralises.
+          </div>
+        </div>
+      </div>
+
+      <!-- Engine D -->
+      <div class="engine" data-reveal data-delay="4">
+        <div><div class="e-letter">D</div><span class="e-tag">Compounding &middot; Authority</span></div>
+        <div>
+          <h3>Content &amp; Media Engine</h3>
+          <p class="e-lead">Nest behaves like a media company and a trusted local authority &mdash; not just a clinic. Content is a trust-support function with hard conversion goals, built on three pillars.</p>
+          <div class="pillar-grid">
+            <div class="pillar">
+              <span class="p-eyebrow">Pillar 1</span>
+              <h4>Education</h4>
+              <ul>
+                <li>Invisalign cost in Bangkok</li>
+                <li>Dental insurance in Thailand</li>
+                <li>How reimbursement works</li>
+                <li>Veneers &amp; implants explained</li>
+                <li>Emergency &amp; family dentistry</li>
+                <li>Braces timelines</li>
+                <li>Whitening safety</li>
+                <li>Thailand vs. US pricing</li>
+              </ul>
+            </div>
+            <div class="pillar">
+              <span class="p-eyebrow">Pillar 2</span>
+              <h4>Lifestyle + Bangkok</h4>
+              <ul>
+                <li>Living in Bangkok as an expat</li>
+                <li>Healthcare in Bangkok</li>
+                <li>Best neighbourhoods</li>
+                <li>Raising children in Bangkok</li>
+                <li>Bangkok routines &amp; wellness culture</li>
+                <li>Padel &amp; sports communities</li>
+                <li>Coworking &amp; family life</li>
+              </ul>
+            </div>
+            <div class="pillar">
+              <span class="p-eyebrow">Pillar 3</span>
+              <h4>Transformation Stories</h4>
+              <ul>
+                <li>Confidence &amp; self-esteem</li>
+                <li>Weddings</li>
+                <li>Career confidence</li>
+                <li>Moving abroad</li>
+                <li>Parenting moments</li>
+                <li>Lifestyle change</li>
+                <li>Smile transformations</li>
+              </ul>
+            </div>
+          </div>
+          <div class="e-note">
+            Pillar 1 makes Nest the answer in search &mdash; SEO, YouTube, TikTok, Instagram, Reddit, Google Discovery, and AI search visibility. Pillar 2 makes Nest a trusted local guide and community brand. Pillar 3 sells emotionally, never clinically. <strong>Measured by consult bookings, not views.</strong>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ====================== 5 · VIDEO STRATEGY ====================== -->
+<section id="video" class="ivory">
+  <div class="container">
+    <span class="eyebrow" data-reveal><span class="section-num">05</span>Video Strategy</span>
+    <h2 data-reveal data-delay="1">Long-form builds authority.<br/>Short-form earns discovery.</h2>
+    <hr class="accent-line" data-reveal data-delay="2" />
+    <p class="lead wide" data-reveal data-delay="2">
+      Video is how trust scales before a patient ever calls. Long-form pieces &mdash; clinic tours, patient journeys, insurance explainers, dentist commentary &mdash; build authority and answer the real questions. Each one is cut into short-form clips that earn discovery, then repurposed across every channel an expat already uses. <strong>Shoot once, distribute everywhere.</strong>
+    </p>
+
+    <div class="e-cols" data-reveal data-delay="3" style="margin-top:clamp(36px,5vw,48px);">
+      <div class="e-block">
+        <span class="e-block-label" style="color:var(--apricot-deep);">Core formats</span>
+        <ul class="e-list">
+          <li>&ldquo;A Day in Bangkok Dentistry&rdquo;</li>
+          <li>Patient-journey films</li>
+          <li>&ldquo;Moving to Bangkok&rdquo; guides</li>
+          <li>Insurance explained, end to end</li>
+          <li>Dentist commentary on real cases</li>
+          <li>Family-dentistry content</li>
+          <li>Orthodontic transformation stories</li>
+          <li>Clinic behind-the-scenes</li>
+          <li>Staff introductions</li>
+          <li>FAQ videos</li>
+        </ul>
+      </div>
+      <div class="e-block">
+        <span class="e-block-label" style="color:var(--apricot-deep);">Repurposed across</span>
+        <ul class="e-list">
+          <li>YouTube &mdash; long-form authority &amp; SEO</li>
+          <li>TikTok &mdash; discovery &amp; reach</li>
+          <li>Instagram Reels &mdash; community &amp; saves</li>
+          <li>Website &mdash; conversion &amp; reassurance</li>
+          <li>Google Business Profile &mdash; local intent</li>
+          <li>LINE &mdash; existing-patient nurture</li>
+          <li>Email &mdash; recalls &amp; follow-ups</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 data-reveal style="margin-top:clamp(48px,6vw,64px); color:var(--deep-green);">The opening content slate.</h3>
+    <p class="lead narrow" data-reveal style="margin-top:8px;">Short, English-first videos answering what expat patients already search &mdash; so Nest is the answer they find, not just the clinic they stumble on.</p>
 
     <div class="video-grid">
       <article class="video-card" data-reveal data-delay="1">
@@ -1411,66 +1861,186 @@
   </div>
 </section>
 
-<!-- ====================== STRATEGIC PARTNERSHIPS ====================== -->
-<section id="partnerships">
+<!-- ====================== 6 · FUNNEL INFRASTRUCTURE ====================== -->
+<section id="funnel">
   <div class="container">
-    <span class="eyebrow" data-reveal>Strategic Partnerships</span>
-    <h2 data-reveal data-delay="1">Trusted by the people<br/>expats trust first.</h2>
+    <span class="eyebrow" data-reveal><span class="section-num">06</span>Funnel Infrastructure</span>
+    <h2 data-reveal data-delay="1">Many doors in.<br/>One patient timeline.</h2>
     <hr class="accent-line" data-reveal data-delay="2" />
     <p class="lead wide" data-reveal data-delay="2">
-      Expats don't find a new dentist on Google. They ask the people who helped them settle. We make Nest the answer those people give &mdash; before the question is even fully formed.
+      Leads arrive from everywhere &mdash; a DM, a LINE message, a Google Maps tap. The failure mode isn&rsquo;t too few leads; it&rsquo;s leads that fall through the cracks. Every channel flows into one CRM, one patient timeline, and one follow-up system &mdash; so no enquiry is forgotten and every patient is recalled on schedule.
     </p>
 
-    <div class="partner-grid">
-      <div class="partner-card" data-reveal data-delay="1">
-        <span class="mono-label">Relocation</span>
-        <h3>Relocation agencies</h3>
-        <p>The first relationship most expats build in Bangkok. We become a default healthcare recommendation in their welcome packets.</p>
-        <div class="examples">Asian Tigers  ·  Thai Relo Services  ·  Pacific Orientation</div>
+    <div class="funnel-wrap">
+      <div data-reveal data-delay="2">
+        <span class="e-block-label" style="color:var(--apricot-deep);">Lead sources</span>
+        <div class="source-cloud">
+          <span class="source-chip">Instagram DM</span>
+          <span class="source-chip">WhatsApp</span>
+          <span class="source-chip">LINE</span>
+          <span class="source-chip">Website forms</span>
+          <span class="source-chip">Web chat</span>
+          <span class="source-chip">Google Maps</span>
+          <span class="source-chip">Phone calls</span>
+          <span class="source-chip">Email</span>
+        </div>
+        <div class="crm-core">
+          <div class="cc-label">Everything flows into</div>
+          <div class="cc-title">One CRM &middot; One Timeline &middot; One Follow-up System</div>
+          <p class="cc-sub">Every patient&rsquo;s full history and next action in a single place.</p>
+        </div>
       </div>
-      <div class="partner-card" data-reveal data-delay="2">
-        <span class="mono-label">Education</span>
-        <h3>International schools</h3>
-        <p>Family-care referrals from school nurses, parent reps, and community boards. One trusted clinic for the whole family.</p>
+      <div data-reveal data-delay="3">
+        <span class="e-block-label" style="color:var(--apricot-deep);">Automations that run quietly in the background</span>
+        <ul class="auto-list">
+          <li><span class="auto-tick">&#8594;</span>Missed-consultation reminders</li>
+          <li><span class="auto-tick">&#8594;</span>No-show follow-ups</li>
+          <li><span class="auto-tick">&#8594;</span>Annual check-up reminders</li>
+          <li><span class="auto-tick">&#8594;</span>Whitening top-up reminders</li>
+          <li><span class="auto-tick">&#8594;</span>Invisalign refinement reminders</li>
+          <li><span class="auto-tick">&#8594;</span>Family recall reminders</li>
+          <li><span class="auto-tick">&#8594;</span>Review requests after positive visits</li>
+          <li><span class="auto-tick">&#8594;</span>Insurance &amp; reimbursement follow-ups</li>
+        </ul>
       </div>
-      <div class="partner-card" data-reveal data-delay="3">
-        <span class="mono-label">Residence</span>
-        <h3>Condo communities</h3>
-        <p>Sukhumvit's premium residences host concierge-style recommendations. We earn a spot on the trusted-provider list.</p>
-      </div>
-      <div class="partner-card" data-reveal data-delay="1">
-        <span class="mono-label">Wellness</span>
-        <h3>Wellness clubs</h3>
-        <p>Patients who invest in fitness, recovery, and longevity already think systemically about health. They are Nest's natural audience.</p>
-      </div>
-      <div class="partner-card" data-reveal data-delay="2">
-        <span class="mono-label">Sports</span>
-        <h3>Sports communities</h3>
-        <p>Padel, pickleball, tennis, running, golf. Real Bangkok expat life happens here &mdash; and brand-building happens through showing up.</p>
-      </div>
-      <div class="partner-card" data-reveal data-delay="3">
-        <span class="mono-label">Community</span>
-        <h3>Expat organisations</h3>
-        <p>Chambers of commerce, national associations, alumni networks. The institutional layer of expat life, hungry for trusted local partners.</p>
-      </div>
-    </div>
-
-    <div data-reveal style="margin-top: clamp(48px, 6vw, 60px); padding: 32px; background: var(--ivory); border-left: 3px solid var(--apricot); max-width: 800px;">
-      <p class="italic-quote" style="margin: 0;">
-        Relocation agencies, schools, clubs, and condos already do the work of finding expats. Our job is to be the obvious answer when they're asked <em>&ldquo;where should I go for a dentist?&rdquo;</em>
-      </p>
     </div>
   </div>
 </section>
 
-<!-- ====================== LONG-TERM VISION ====================== -->
-<section id="vision" class="ivory">
+<!-- ====================== 7 · COMPETITIVE ANALYSIS ====================== -->
+<section id="competition" class="ivory">
   <div class="container">
-    <span class="eyebrow" data-reveal>Long-Term Vision</span>
-    <h2 data-reveal data-delay="1">From one Sukhumvit clinic<br/>to Thailand's international dental brand.</h2>
+    <span class="eyebrow" data-reveal><span class="section-num">07</span>Competitive Analysis</span>
+    <h2 data-reveal data-delay="1">Everyone serves international patients.<br/>No one owns this position.</h2>
     <hr class="accent-line" data-reveal data-delay="2" />
-    <p class="lead narrow" data-reveal data-delay="2">
-      Each stage compounds &mdash; brand into insurance, insurance into expansion, expansion into medical tourism, medical tourism into a category-defining Thai dental brand.
+    <p class="lead wide" data-reveal data-delay="2">
+      Bangkok&rsquo;s leading international clinics are excellent &mdash; but they cluster at two poles: impersonal hospital scale, or tourist-and-cosmetic volume. The warm, transparent, relationship-based option built for <em>residents</em> is the gap.
+    </p>
+
+    <div class="comp-table">
+      <div class="comp-row head">
+        <div class="comp-cell">Clinic / Category</div>
+        <div class="comp-cell">Strengths</div>
+        <div class="comp-cell">Gaps for a resident dental home</div>
+      </div>
+      <div class="comp-row" data-reveal>
+        <div class="comp-cell"><div class="c-name">Bumrungrad</div><div class="c-style">Hospital-style premium</div></div>
+        <div class="comp-cell"><span class="c-cell-label">Strengths</span><p>Institutional trust, full hospital backstop, concierge international-patient services.</p></div>
+        <div class="comp-cell"><span class="c-cell-label">Gaps</span><p>Impersonal scale &mdash; you&rsquo;re a &ldquo;case,&rdquo; not a regular; bureaucratic admin; premium hospital pricing.</p></div>
+      </div>
+      <div class="comp-row" data-reveal>
+        <div class="comp-cell"><div class="c-name">BIDH / BIDC</div><div class="c-style">Specialist dental hospital</div></div>
+        <div class="comp-cell"><span class="c-cell-label">Strengths</span><p>Fluent-English specialists, modern facilities, in-house lab, strong tourism logistics.</p></div>
+        <div class="comp-cell"><span class="c-cell-label">Gaps</span><p>Volume / tourism orientation; large multi-site chain feel; less of a single-relationship &ldquo;my dentist.&rdquo;</p></div>
+      </div>
+      <div class="comp-row" data-reveal>
+        <div class="comp-cell"><div class="c-name">Bangkok Smile</div><div class="c-style">Luxury cosmetic / implants</div></div>
+        <div class="comp-cell"><span class="c-cell-label">Strengths</span><p>Cosmetic &amp; implant specialism, same-day restorations, long track record, many locations.</p></div>
+        <div class="comp-cell"><span class="c-cell-label">Gaps</span><p>Branch-quality inconsistency; cosmetic-sales orientation can read as upsell-driven.</p></div>
+      </div>
+      <div class="comp-row" data-reveal>
+        <div class="comp-cell"><div class="c-name">Truth Dental</div><div class="c-style">Transparent boutique</div></div>
+        <div class="comp-cell"><span class="c-cell-label">Strengths</span><p>Excellent English, explicitly transparent pricing, clean and professional &mdash; closest in spirit to Nest.</p></div>
+        <div class="comp-cell"><span class="c-cell-label">Gaps</span><p>Smaller brand footprint; not built around family or expat-community belonging.</p></div>
+      </div>
+      <div class="comp-row" data-reveal>
+        <div class="comp-cell"><div class="c-name">Language-niche clinics</div><div class="c-style">Japanese / Arabic-focused</div></div>
+        <div class="comp-cell"><span class="c-cell-label">Strengths</span><p>Native-language care for specific communities (e.g. Phrom Phong Japanese, Nana Arabic corridors).</p></div>
+        <div class="comp-cell"><span class="c-cell-label">Gaps</span><p>Serve one nationality; no broad English-first home for mixed-nationality international Bangkok.</p></div>
+      </div>
+      <div class="comp-row nest" data-reveal>
+        <div class="comp-cell"><div class="c-name">Nest</div><div class="c-style">Warm, transparent, English-first &mdash; for residents</div></div>
+        <div class="comp-cell"><span class="c-cell-label">Strengths</span><p>Continuity of care, price transparency, no-upsell ethos, hospitality experience, insurance navigation.</p></div>
+        <div class="comp-cell"><span class="c-cell-label">Position</span><p>The dental <em>home</em> &mdash; not a hospital, not a tourist factory &mdash; for people who live here.</p></div>
+      </div>
+    </div>
+
+    <div class="whitespace" data-reveal>
+      <div class="ws-label">The white space</div>
+      <p>Modern, warm, transparent, English-first dentistry for international residents in Bangkok.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== 8 · KPI FRAMEWORK ====================== -->
+<section id="kpi">
+  <div class="container">
+    <span class="eyebrow" data-reveal><span class="section-num">08</span>KPI Framework</span>
+    <h2 data-reveal data-delay="1">Measure what proves the model &mdash;<br/>before measuring what scales it.</h2>
+    <hr class="accent-line" data-reveal data-delay="2" />
+    <p class="lead wide" data-reveal data-delay="2">
+      Year one lives or dies on demand generation and chair utilisation, so the early KPIs are about reach, responsiveness, and conversion &mdash; not vanity reach. Each phase unlocks the next set of metrics only once the prior ones hold.
+    </p>
+
+    <div class="kpi-grid">
+      <div class="kpi-col" data-reveal data-delay="1">
+        <span class="k-phase">Phase 1</span>
+        <h3>Foundation</h3>
+        <div class="k-window">0&ndash;3 months</div>
+        <ul>
+          <li>Website traffic</li>
+          <li>Google Business interactions</li>
+          <li>Reviews (volume &amp; rating)</li>
+          <li>Response time to enquiries</li>
+          <li>Lead-capture rate</li>
+          <li>Booking rate</li>
+          <li>CRM implemented &amp; adopted</li>
+          <li>Content-publishing consistency</li>
+        </ul>
+      </div>
+      <div class="kpi-col" data-reveal data-delay="2">
+        <span class="k-phase">Phase 2</span>
+        <h3>Growth</h3>
+        <div class="k-window">3&ndash;6 months</div>
+        <ul>
+          <li>Active partnerships</li>
+          <li>Referral rate</li>
+          <li>Repeat-patient rate</li>
+          <li>Insurance inquiries</li>
+          <li>Organic search growth</li>
+          <li>Social engagement &rarr; bookings</li>
+          <li>Consultation volume</li>
+        </ul>
+      </div>
+      <div class="kpi-col" data-reveal data-delay="3">
+        <span class="k-phase">Phase 3</span>
+        <h3>Scale</h3>
+        <div class="k-window">6&ndash;12 months</div>
+        <ul>
+          <li>Multilingual expansion</li>
+          <li>Medical-tourism funnel volume</li>
+          <li>Paid-ad scaling (with CAC targets)</li>
+          <li>Employer partnerships</li>
+          <li>Satellite referral network</li>
+          <li>Insurer relationships &amp; direct billing</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== 9 · HEALTHCARE ECOSYSTEM VISION ====================== -->
+<section id="ecosystem" class="ivory">
+  <div class="container">
+    <span class="eyebrow" data-reveal><span class="section-num">09</span>Healthcare Ecosystem Vision</span>
+    <h2 data-reveal data-delay="1">From a dental home<br/>to a healthcare-navigation brand.</h2>
+    <hr class="accent-line" data-reveal data-delay="2" />
+    <p class="lead wide" data-reveal data-delay="2">
+      The same trust that makes Nest an expat&rsquo;s dentist makes it a natural front door to the rest of their healthcare. Over time, Nest can evolve into a <strong>healthcare concierge</strong>, an <strong>expat healthcare platform</strong>, and ultimately a <strong>trusted healthcare-navigation brand</strong> &mdash; the name international residents ask first, for far more than teeth.
+    </p>
+
+    <div class="persona-row" data-reveal data-delay="3" style="margin-bottom:clamp(8px,2vw,16px);">
+      <span class="persona"><span class="dot"></span>Dermatology</span>
+      <span class="persona"><span class="dot"></span>Pediatrics</span>
+      <span class="persona"><span class="dot"></span>Fertility</span>
+      <span class="persona"><span class="dot"></span>Wellness</span>
+      <span class="persona"><span class="dot"></span>Physiotherapy</span>
+      <span class="persona"><span class="dot"></span>Mental health</span>
+      <span class="persona"><span class="dot"></span>Insurance brokers</span>
+      <span class="persona"><span class="dot"></span>Relocation services</span>
+    </div>
+    <p class="lead narrow" data-reveal style="margin-top:8px;">
+      Each stage compounds &mdash; brand into insurance, insurance into expansion, expansion into medical tourism, and a category-defining international healthcare brand.
     </p>
 
     <div class="vision-journey" data-reveal data-delay="3">
@@ -1503,6 +2073,134 @@
   </div>
 </section>
 
+<!-- ====================== 10 · LAUNCH & GROWTH ROADMAP ====================== -->
+<section id="roadmap">
+  <div class="container">
+    <span class="eyebrow" data-reveal><span class="section-num">10</span>Launch &amp; Growth Roadmap</span>
+    <h2 data-reveal data-delay="1">A sequenced launch &mdash;<br/>each stage earning the next.</h2>
+    <hr class="accent-line" data-reveal data-delay="2" />
+    <p class="lead wide" data-reveal data-delay="2">
+      The first 90 days decide whether the chairs fill. The plan front-loads the systems and relationships that take longest to build, then turns on demand once the foundation can convert it.
+    </p>
+
+    <div class="roadmap">
+      <div class="road-stage" data-reveal data-delay="1">
+        <div class="road-when">Pre-Launch<span class="rw-sub">Before doors open</span></div>
+        <div class="road-body">
+          <p class="rb-obj">Objective: be findable, credible, and ready to convert on day one.</p>
+          <div class="road-cols">
+            <ul>
+              <li>Brand, landing site &amp; booking live</li>
+              <li>Google Business Profile &amp; Maps optimised</li>
+              <li>Clinic photography &amp; opening content slate</li>
+              <li>CRM, timeline &amp; automations configured</li>
+            </ul>
+            <ul>
+              <li>Credentialing document pack assembled</li>
+              <li>First partnership conversations opened</li>
+              <li>Staff trained on English-first standards</li>
+              <li>Pricing &amp; treatment-plan templates ready</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="road-stage" data-reveal data-delay="2">
+        <div class="road-when">Launch Week<span class="rw-sub">Days 1&ndash;7</span></div>
+        <div class="road-body">
+          <p class="rb-obj">Objective: a confident, well-run opening that generates first reviews.</p>
+          <div class="road-cols">
+            <ul>
+              <li>Soft-launch event for community partners</li>
+              <li>&ldquo;Welcome to Bangkok&rdquo; offer goes live</li>
+              <li>First short-form content published daily</li>
+            </ul>
+            <ul>
+              <li>Review requests after every positive visit</li>
+              <li>Response-time discipline on every channel</li>
+              <li>Daily lead &amp; booking tracking begins</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="road-stage" data-reveal data-delay="3">
+        <div class="road-when">First 30 Days<span class="rw-sub">Foundation</span></div>
+        <div class="road-body">
+          <p class="rb-obj">Objective: prove the funnel converts and the brand earns reviews.</p>
+          <div class="road-cols">
+            <ul>
+              <li>Marketing: SEO + Google Maps dominance for &ldquo;dentist Sukhumvit&rdquo;</li>
+              <li>Partnerships: schools, condos, coworking outreach</li>
+              <li>Systems: tune automations &amp; follow-ups</li>
+            </ul>
+            <ul>
+              <li>Staffing: refine English-first service playbook</li>
+              <li>KPIs: response time, lead capture, booking rate, reviews</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="road-stage" data-reveal data-delay="4">
+        <div class="road-when">First 60 Days<span class="rw-sub">Traction</span></div>
+        <div class="road-body">
+          <p class="rb-obj">Objective: turn first patients into referrals and repeat visits.</p>
+          <div class="road-cols">
+            <ul>
+              <li>Marketing: lifestyle + education content cadence</li>
+              <li>Partnerships: insurer &amp; relocation-agency applications</li>
+              <li>Systems: family-recall &amp; review loops running</li>
+            </ul>
+            <ul>
+              <li>Staffing: add capacity where utilisation justifies</li>
+              <li>KPIs: referral rate, repeat-patient rate, consult volume</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="road-stage" data-reveal data-delay="5">
+        <div class="road-when">First 90 Days<span class="rw-sub">Compounding</span></div>
+        <div class="road-body">
+          <p class="rb-obj">Objective: a repeatable engine ready to scale spend with confidence.</p>
+          <div class="road-cols">
+            <ul>
+              <li>Marketing: scale paid only against proven CAC</li>
+              <li>Partnerships: first preferred-provider relationships</li>
+              <li>Systems: dashboard reporting &amp; cohort retention</li>
+            </ul>
+            <ul>
+              <li>Staffing: hiring plan tied to chair utilisation</li>
+              <li>KPIs: insurance inquiries, organic growth, LTV signals</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== 11 · DELIVERABLES & ASSET STRATEGY ====================== -->
+<section id="deliverables" class="ivory">
+  <div class="container">
+    <span class="eyebrow" data-reveal><span class="section-num">11</span>Deliverables &amp; Asset Strategy</span>
+    <h2 data-reveal data-delay="1">The assets that make<br/>the strategy executable.</h2>
+    <hr class="accent-line" data-reveal data-delay="2" />
+    <p class="lead wide" data-reveal data-delay="2">
+      Strategy only matters if it ships. These are the concrete assets &mdash; each tailored to a specific audience &mdash; that turn this plan into something a team can run from on Monday morning.
+    </p>
+
+    <div class="deliv-grid">
+      <div class="deliv" data-reveal data-delay="1"><div class="d-num">01</div><h3>One-page landing site</h3><p>Fast, English-first, conversion-focused &mdash; the front door for every channel.</p></div>
+      <div class="deliv" data-reveal data-delay="2"><div class="d-num">02</div><h3>Polished pitch deck</h3><p>Investor-ready narrative of vision, market, model, and roadmap.</p></div>
+      <div class="deliv" data-reveal data-delay="3"><div class="d-num">03</div><h3>Partnership PDF</h3><p>A clean leave-behind for schools, condos, clubs, and relocation agencies.</p></div>
+      <div class="deliv" data-reveal data-delay="1"><div class="d-num">04</div><h3>Insurer-facing version</h3><p>Credentialing-oriented document for insurer &amp; TPA conversations.</p></div>
+      <div class="deliv" data-reveal data-delay="2"><div class="d-num">05</div><h3>Patient-facing version</h3><p>Warm, plain-English explainer of experience, pricing, and insurance.</p></div>
+      <div class="deliv" data-reveal data-delay="3"><div class="d-num">06</div><h3>Relocation-agency version</h3><p>Welcome-packet-ready summary that fits how agents onboard new arrivals.</p></div>
+      <div class="deliv" data-reveal data-delay="1"><div class="d-num">07</div><h3>Content calendar</h3><p>Three-pillar publishing plan mapped across channels and formats.</p></div>
+      <div class="deliv" data-reveal data-delay="2"><div class="d-num">08</div><h3>Doctor media kit</h3><p>Profiles, photography, and commentary that make each clinician knowable.</p></div>
+      <div class="deliv" data-reveal data-delay="3"><div class="d-num">09</div><h3>Before-and-after asset system</h3><p>Standardised, categorised, doctor-annotated case library &mdash; the trust engine.</p></div>
+    </div>
+  </div>
+</section>
+
 <!-- ====================== WHY THIS WORKS ====================== -->
 <section id="why" class="dark">
   <div class="container">
@@ -1516,7 +2214,7 @@
     <ul class="why-list">
       <li data-reveal data-delay="1"><span class="tick">✓</span><span><strong>Expats value trust over discounts.</strong> Premium positioning isn't a price tactic &mdash; it's a trust signal.</span></li>
       <li data-reveal data-delay="2"><span class="tick">✓</span><span><strong>English communication reduces friction.</strong> Friction is the silent killer of expat patient relationships.</span></li>
-      <li data-reveal data-delay="1"><span class="tick">✓</span><span><strong>Insurance compatibility drives loyalty.</strong> Direct-bill once, patient returns for ten years.</span></li>
+      <li data-reveal data-delay="1"><span class="tick">✓</span><span><strong>Insurance support drives loyalty.</strong> Help with one claim, and a patient returns for years.</span></li>
       <li data-reveal data-delay="2"><span class="tick">✓</span><span><strong>Sukhumvit concentration creates density advantage.</strong> A single location reaches an entire international community.</span></li>
       <li data-reveal data-delay="1"><span class="tick">✓</span><span><strong>Community integration creates organic referrals.</strong> The most trusted marketing channel is a friend's mention.</span></li>
       <li data-reveal data-delay="2"><span class="tick">✓</span><span><strong>Premium positioning supports long-term brand equity.</strong> Every visit reinforces the same brand promise &mdash; compounding over years.</span></li>
@@ -1570,18 +2268,21 @@
       <div>
         <h3>Strategy</h3>
         <ul>
-          <li><a href="#market">Market Opportunity</a></li>
-          <li><a href="#differentiator">Differentiator</a></li>
-          <li><a href="#strategy">Marketing Strategy</a></li>
-          <li><a href="#content">Content Library</a></li>
+          <li><a href="#summary">Executive Summary</a></li>
+          <li><a href="#positioning">Core Positioning</a></li>
+          <li><a href="#bangkok">Why Bangkok</a></li>
+          <li><a href="#engines">Growth Engines</a></li>
+          <li><a href="#video">Video Strategy</a></li>
         </ul>
       </div>
       <div>
-        <h3>Partnership</h3>
+        <h3>Execution</h3>
         <ul>
-          <li><a href="#partnerships">Partnerships</a></li>
-          <li><a href="#vision">Long-Term Vision</a></li>
-          <li><a href="#why">Why It Works</a></li>
+          <li><a href="#funnel">Funnel Infrastructure</a></li>
+          <li><a href="#competition">Competitive Analysis</a></li>
+          <li><a href="#kpi">KPI Framework</a></li>
+          <li><a href="#roadmap">Launch Roadmap</a></li>
+          <li><a href="#deliverables">Deliverables</a></li>
         </ul>
       </div>
     </div>

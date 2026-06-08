@@ -65,6 +65,9 @@ _(no pending items)_
 ## tbdc / tbqdc-com
 _(no pending items)_
 
+## tbdc / google-ads
+_(no pending items)_
+
 ---
 
 # Clinera

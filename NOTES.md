@@ -162,9 +162,6 @@ _(no pending items)_
 ## organize-folder
 _(no pending items)_
 
-## email-newsletters
-_(no pending items)_
-
 ---
 
 # Nest
@@ -181,3 +178,9 @@ _(no pending items)_
 
 ## instagram-notion-sync
 _(no pending items)_
+
+## email-newsletters
+- v0.1 live: IMAP read + HTML digest + SMTP send, confirmed delivered
+- Add ANTHROPIC_API_KEY for real Claude Haiku summaries (snippets for now)
+- Wire daily launchd schedule (~7am ICT)
+- Review/prune the ~24-sender allowlist in config.ts

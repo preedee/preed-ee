@@ -10,7 +10,7 @@ const DASHBOARD_TEMPLATE = resolve(import.meta.dir, "dashboard-template.html");
 const DASHBOARD_HTML = join(SITE_ROOT, "projects", "index.html");
 const NOTES_FILE = resolve(import.meta.dir, "../NOTES.md");
 
-const TOP_EXCLUDE = new Set([".claude", ".DS_Store", "Plans", "libs", "preed-ee"]);
+const TOP_EXCLUDE = new Set([".claude", ".DS_Store", "libs", "preed-ee"]);
 const TBDC_EXCLUDE = new Set(["Plans"]);
 
 const DATA_START = "<!-- DATA:START -->";

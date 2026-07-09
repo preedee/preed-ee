@@ -68,6 +68,11 @@ _(no pending items)_
 ## tbdc / google-ads
 _(no pending items)_
 
+## tbdc / meta
+- Identify which entity is restricted (Page / ad account / Business Portfolio / personal) via Business Support Home
+- Decide: keep existing Page followers vs. fresh Page
+- Then: draft reinstatement/rebuild runbook + one-time appeal + compliant creative guidelines
+
 ---
 
 # Clinera

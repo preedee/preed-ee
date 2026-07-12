@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎾</text></svg>">
+<title>Samui × Phangan — Padel Weekend · 31 Jul–4 Aug 2026</title>
+</head>
+<body>
+<style>
+  :root{
+    --bg:#F5F4EF; --surface:#FFFFFF; --ink:#1D2B2D; --muted:#5D6B69;
+    --accent:#1F6FA3; --accent-soft:#E3EDF4; --line:#E2E1D9;
+    --warn:#8A5A0B; --warn-bg:#F5EBD6; --ok:#2C6E49; --ok-bg:#E1EEE6;
+    --track:#EBEAE3;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#0F1618; --surface:#172124; --ink:#E5EBE9; --muted:#97A6A3;
+      --accent:#4A9BCE; --accent-soft:#1C2E3B; --line:#24312F;
+      --warn:#D9A94E; --warn-bg:#2C2415; --ok:#7FBF9A; --ok-bg:#16281E;
+      --track:#1E292B;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#0F1618; --surface:#172124; --ink:#E5EBE9; --muted:#97A6A3;
+    --accent:#4A9BCE; --accent-soft:#1C2E3B; --line:#24312F;
+    --warn:#D9A94E; --warn-bg:#2C2415; --ok:#7FBF9A; --ok-bg:#16281E;
+    --track:#1E292B;
+  }
+  :root[data-theme="light"]{
+    --bg:#F5F4EF; --surface:#FFFFFF; --ink:#1D2B2D; --muted:#5D6B69;
+    --accent:#1F6FA3; --accent-soft:#E3EDF4; --line:#E2E1D9;
+    --warn:#8A5A0B; --warn-bg:#F5EBD6; --ok:#2C6E49; --ok-bg:#E1EEE6;
+    --track:#EBEAE3;
+  }
+  body{
+    background:var(--bg); color:var(--ink);
+    font:16px/1.6 -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Segoe UI", sans-serif;
+    margin:0; padding:0 20px 80px;
+  }
+  .wrap{max-width:720px; margin:0 auto;}
+  .display{
+    font-family:"Avenir Next Condensed","Helvetica Neue","Arial Narrow",sans-serif;
+    font-weight:700; text-transform:uppercase; letter-spacing:.04em;
+  }
+  .mono{font-family:ui-monospace,"SF Mono",Menlo,monospace; font-variant-numeric:tabular-nums;}
+
+  header{padding:56px 0 28px; border-bottom:2px solid var(--ink);}
+  .eyebrow{font-size:12px; letter-spacing:.18em; text-transform:uppercase; color:var(--accent); font-weight:600; margin:0 0 10px;}
+  h1{font-family:"Avenir Next Condensed","Helvetica Neue","Arial Narrow",sans-serif;
+     font-weight:700; text-transform:uppercase; letter-spacing:.02em;
+     font-size:clamp(34px,7vw,54px); line-height:1.02; margin:0; text-wrap:balance;}
+  h1 .x{color:var(--accent);}
+  .subline{display:flex; flex-wrap:wrap; gap:8px 20px; margin-top:16px; color:var(--muted); font-size:14px;}
+  .subline b{color:var(--ink); font-weight:600;}
+
+  h2{font-family:"Avenir Next Condensed","Helvetica Neue","Arial Narrow",sans-serif;
+     font-weight:700; text-transform:uppercase; letter-spacing:.05em;
+     font-size:22px; margin:52px 0 6px; display:flex; align-items:baseline; gap:10px;}
+  h2 .tick{color:var(--accent); font-size:18px;}
+  .sectionnote{color:var(--muted); font-size:14px; margin:0 0 18px; max-width:60ch;}
+
+  .glance{display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:10px; margin-top:20px;}
+  .tile{background:var(--surface); border:1px solid var(--line); border-radius:6px; padding:14px 16px;}
+  .tile .k{font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); margin-bottom:4px;}
+  .tile .v{font-size:20px; font-weight:650; line-height:1.2;}
+  .tile .v small{font-size:13px; color:var(--muted); font-weight:400;}
+
+  .assume{background:var(--accent-soft); border-left:3px solid var(--accent); border-radius:0 6px 6px 0;
+          padding:12px 16px; margin:18px 0 0; font-size:14px; color:var(--ink);}
+  .assume b{font-weight:650;}
+
+  .day{background:var(--surface); border:1px solid var(--line); border-radius:8px; margin:16px 0; overflow:hidden;}
+  .dayhead{display:flex; align-items:baseline; gap:12px; padding:14px 18px; border-bottom:1px solid var(--line); flex-wrap:wrap;}
+  .daynum{font-size:12px; letter-spacing:.14em; color:var(--accent); font-weight:700;}
+  .dayname{font-size:18px; margin:0;}
+  .daywhere{margin-left:auto; font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted);}
+  .slots{list-style:none; margin:0; padding:8px 0;}
+  .slots li{display:grid; grid-template-columns:64px 1fr; gap:14px; padding:8px 18px; align-items:baseline;}
+  .slots li:hover{background:var(--accent-soft);}
+  .t{color:var(--accent); font-weight:600; font-size:13px; padding-top:2px;}
+  .what b{font-weight:650;}
+  .what .d{display:block; color:var(--muted); font-size:13.5px;}
+  .chip{display:inline-block; font-size:11px; font-weight:600; letter-spacing:.05em; border-radius:99px;
+        padding:1px 9px; vertical-align:1px; white-space:nowrap;}
+  .chip.ok{color:var(--ok); background:var(--ok-bg);}
+  .chip.warn{color:var(--warn); background:var(--warn-bg);}
+  .daynote{padding:10px 18px 14px; font-size:13px; color:var(--muted); border-top:1px dashed var(--line);}
+
+  .budget{background:var(--surface); border:1px solid var(--line); border-radius:8px; padding:18px; margin-top:16px;}
+  .brow{display:grid; grid-template-columns:minmax(140px,200px) 1fr 92px; gap:12px; align-items:center; padding:7px 0;}
+  .brow:hover{background:var(--accent-soft);}
+  .brow .lbl{font-size:14px;}
+  .brow .lbl small{display:block; color:var(--muted); font-size:12px;}
+  .barwrap{height:14px; background:var(--track); border-radius:4px; overflow:hidden;}
+  .bar{height:100%; background:var(--accent); border-radius:4px 3px 3px 4px; min-width:3px;}
+  .brow .amt{text-align:right; font-size:14px; font-weight:600;}
+  .btotal{display:flex; justify-content:space-between; border-top:2px solid var(--ink); margin-top:12px; padding-top:12px; font-weight:700; font-size:16px;}
+
+  .gauge{margin-top:22px;}
+  .gauge .glabel{display:flex; justify-content:space-between; font-size:13px; color:var(--muted); margin-bottom:6px;}
+  .gbar{display:flex; height:22px; border-radius:5px; overflow:hidden; background:var(--track);}
+  .gseg{height:100%;}
+  .gseg.core{background:var(--accent);}
+  .gseg.buf{background:var(--accent); opacity:.38;}
+  .glegend{display:flex; gap:18px; margin-top:8px; font-size:12.5px; color:var(--muted); flex-wrap:wrap;}
+  .glegend .sw{display:inline-block; width:10px; height:10px; border-radius:2px; margin-right:5px; vertical-align:-1px;}
+
+  table{width:100%; border-collapse:collapse; background:var(--surface); border:1px solid var(--line); border-radius:8px; overflow:hidden; font-size:14px;}
+  .tablewrap{overflow-x:auto; margin-top:16px; border-radius:8px;}
+  th{font-size:11px; letter-spacing:.12em; text-transform:uppercase; text-align:left; color:var(--muted);
+     padding:10px 14px; border-bottom:1px solid var(--line); font-weight:600;}
+  td{padding:10px 14px; border-bottom:1px solid var(--line); vertical-align:top;}
+  tr:last-child td{border-bottom:none;}
+  td .d{color:var(--muted); font-size:12.5px; display:block;}
+
+  .check{list-style:none; margin:16px 0 0; padding:0;}
+  .check li{background:var(--surface); border:1px solid var(--line); border-radius:6px; padding:12px 16px; margin:8px 0;
+            display:grid; grid-template-columns:26px 1fr; gap:10px; font-size:14.5px;}
+  .check .n{color:var(--accent); font-weight:700;}
+  .check b{font-weight:650;}
+  .check .d{color:var(--muted); font-size:13px; display:block;}
+
+  .fine{color:var(--muted); font-size:13px; margin-top:40px; border-top:1px solid var(--line); padding-top:18px; max-width:65ch;}
+  .fine p{margin:8px 0;}
+  a{color:var(--accent);}
+  .maplink{font-size:11px; font-weight:600; letter-spacing:.02em; color:var(--accent); text-decoration:none;
+           border:1px solid var(--line); border-radius:99px; padding:1px 8px; margin-left:6px;
+           white-space:nowrap; vertical-align:1px;}
+  .maplink:hover{background:var(--accent-soft); border-color:var(--accent);}
+  @media (max-width:560px){
+    .brow{grid-template-columns:1fr 72px; }
+    .brow .barwrap{display:none;}
+    .daywhere{margin-left:0; width:100%;}
+  }
+  @media (prefers-reduced-motion: no-preference){
+    .slots li, .brow{transition:background .15s ease;}
+  }
+</style>
+
+<div class="wrap">
+<header>
+  <p class="eyebrow">Trip Plan · Fri 31 Jul – Tue 4 Aug 2026</p>
+  <h1>Samui <span class="x">×</span> Phangan<br>Padel Weekend</h1>
+  <div class="subline">
+    <span><b>Mission 1</b> · tournament at Padel Tropical, Bangrak</span>
+    <span><b>Mission 2</b> · scout the friend's rental on Phangan</span>
+    <span><b>Budget</b> · <span class="mono">30,000 THB</span></span>
+  </div>
+</header>
+
+<h2><span class="tick">■</span> At a glance</h2>
+<div class="glance">
+  <div class="tile"><div class="k">Trip cost, planned</div><div class="v mono">฿18,700 <small>incl. ฿3,000 buffer</small></div></div>
+  <div class="tile"><div class="k">Headroom vs budget</div><div class="v mono">฿11,300 <small>worst case still ≤ ฿22,300</small></div></div>
+  <div class="tile"><div class="k">Nights</div><div class="v">2 + 2 <small>Bangrak · friend's rental</small></div></div>
+  <div class="tile"><div class="k">Weather, early Aug</div><div class="v">~32°C <small>sunny AM, short PM showers; calm seas</small></div></div>
+</div>
+<div class="assume"><b>Assumptions:</b> departing from Bangkok (Suvarnabhumi); tournament entry fee already paid and not in this budget; you sleep at the friend's rental on Phangan (a paid fallback is budgeted-for below if that changes). Prices researched 11 Jul 2026 — flights and rooms are live-market estimates, ferries are published tariffs.</div>
+
+<h2><span class="tick">■</span> Day by day</h2>
+<p class="sectionnote">Tournament blocks are protected — nothing is scheduled against play. Ferry and flight legs carry generous buffers for August squalls.</p>
+
+<div class="day">
+  <div class="dayhead"><span class="daynum display">Day 1 · Fri 31 Jul</span><span class="dayname display">Fly in, first matches</span><span class="daywhere">Bangkok → Samui</span></div>
+  <ul class="slots">
+    <li><span class="t mono">06:30</span><span class="what"><b>Grab to Suvarnabhumi</b><span class="d">~45 min · ฿300</span></span></li>
+    <li><span class="t mono">08:00</span><span class="what"><b>Bangkok Airways BKK → USM</b> <span class="chip ok">only nonstop carrier</span><span class="d">1 h 10 · lands 09:10 · ~฿3,500 (range 2,500–4,500) · ~25 flights/day, any 07:00–10:00 departure works</span></span></li>
+    <li><span class="t mono">09:40</span><span class="what"><b>Airport taxi to Bangrak</b><span class="d">10–15 min · ฿500 fixed-rate · the club and hotel are the airport's neighbors</span></span></li>
+    <li><span class="t mono">10:00</span><span class="what"><b>Bag drop — Secret Garden Beach Resort</b> <a class="maplink" href="https://www.google.com/maps/search/?api=1&amp;query=Secret+Garden+Beach+Resort+Bangrak+Koh+Samui" target="_blank" rel="noopener">map ↗</a><span class="d">฿1,350–2,050/night, 12-bungalow beachfront oasis an 8-min walk from Big Buddha pier, ~1 km from the club · budget alternate: Samui Mermaid Resort <a class="maplink" href="https://www.google.com/maps/search/?api=1&amp;query=Samui+Mermaid+Resort+Bangrak+Koh+Samui" target="_blank" rel="noopener">map ↗</a> ฿700–1,500, 5-min walk to the pier (3 pools; expect aircraft noise — it's under the flight path)</span></span></li>
+    <li><span class="t mono">11:30</span><span class="what"><b>Lunch — Khao Hom, Bangrak</b> <a class="maplink" href="https://www.google.com/maps/search/?api=1&amp;query=Khao+Horm+Restaurant+Bangrak+Koh+Samui" target="_blank" rel="noopener">map ↗</a> <span class="chip ok">open daily</span><span class="d">Michelin-Guide-listed southern Thai · ฿200–400 · closes 21:00–22:00 (sources disagree — eat early)</span></span></li>
+    <li><span class="t mono">13:00</span><span class="what"><b>Padel Tropical — check in, warm up, day-1 matches</b> <a class="maplink" href="https://www.google.com/maps/search/?api=1&amp;query=Padel+Tropical+Koh+Samui" target="_blank" rel="noopener">map ↗</a> <span class="chip ok">open daily 07:00–23:00</span><span class="d">9 Bangrak 69, Bo Put · 5 courts (3 covered — rain-proof)</span></span></li>
+    <li><span class="t mono">18:30</span><span class="what"><b>Dinner — Fisherman's Village Friday Walking Street</b> <a class="maplink" href="https://www.google.com/maps/search/?api=1&amp;query=Fisherman%27s+Village+Walking+Street+Bophut+Koh+Samui" target="_blank" rel="noopener">map ↗</a> <span class="chip ok">runs Fridays 17:00–23:00</span><span class="d">street-food crawl in Bophut, 10 min from Bangrak · ~฿300</span></span></li>
+  </ul>
+  <div class="daynote">Tonight is the Full Moon Party on Phangan (moved to 31 Jul for Buddhist Lent) — you're on the right island for an early tournament night, but expect a lively Bangrak pier.</div>
+</div>
+
+<div class="day">
+  <div class="dayhead"><span class="daynum display">Day 2 · Sat 1 Aug</span><span class="dayname display">Full tournament day</span><span class="daywhere">Samui</span></div>
+  <ul class="slots">
+    <li><span class="t mono">07:30</span><span class="what"><b>Breakfast near the hotel</b><span class="d">~฿150</span></span></li>
+    <li><span class="t mono">08:30</span><span class="what"><b>Tournament — Padel Tropical</b><span class="d">all day; club restaurant and recovery zone on site for between-match lunch (~฿300)</span></span></li>
+    <li><span class="t mono">19:00</span><span class="what"><b>Dinner — Sabienglae, Bangrak beachfront</b> <a class="maplink" href="https://www.google.com/maps/search/?api=1&amp;query=Sabienglae+Restaurant+Bang+Rak+Koh+Samui" target="_blank" rel="noopener">map ↗</a> <span class="chip ok">open daily 10:00–22:00</span><span class="d">Samui's famous Thai-seafood house · ฿400–600</span></span></li>
+  </ul>
+</div>
+
+<div class="day">
+  <div class="dayhead"><span class="daynum display">Day 3 · Sun 2 Aug</span><span class="dayname display">Finals, then cross</span><span class="daywhere">Samui → Phangan</span></div>
+  <ul class="slots">
+    <li><span class="t mono">08:00</span><span class="what"><b>Check out, store bags at hotel</b></span></li>
+    <li><span class="t mono">08:30</span><span class="what"><b>Finals day — Padel Tropical</b><span class="d">planned finish ~15:30; the ferry plan below survives a finish as late as ~17:45</span></span></li>
+    <li><span class="t mono">16:15</span><span class="what"><b>Collect bags → Big Buddha Pier</b> <a class="maplink" href="https://www.google.com/maps/search/?api=1&amp;query=Big+Buddha+Pier+Bangrak+Koh+Samui" target="_blank" rel="noopener">map ↗</a><span class="d">walking distance from the club</span></span></li>
+    <li><span class="t mono">17:00</span><span class="what"><b>Haad Rin Queen ferry → Haad Rin</b> <a class="maplink" href="https://www.google.com/maps/search/?api=1&amp;query=Haad+Rin+Queen+Pier+Koh+Phangan" target="_blank" rel="noopener">map ↗</a> <span class="chip warn">confirm locally</span><span class="d">50 min · ฿199 · last cheap boat; 18:30 speedboat backstop (฿495) · one aggregator disputes this route is running — verify at the pier on Friday (☎ +66 77 484 668); fallback: Lomprayah from Bangrak Mon 08:00</span></span></li>
+    <li><span class="t mono">18:15</span><span class="what"><b>Songthaew to the friend's rental</b><span class="d">Haad Rin → Baan Tai/Srithanu 30–45 min · ฿150–300 · post-party exodus flows the other way</span></span></li>
+    <li><span class="t mono">20:00</span><span class="what"><b>Dinner — Thong Sala night market (Phantip)</b> <a class="maplink" href="https://www.google.com/maps/search/?api=1&amp;query=Phantip+Night+Market+Thong+Sala+Koh+Phangan" target="_blank" rel="noopener">map ↗</a> <span class="chip ok">open daily ~16:00–22:00</span><span class="d">฿100–200 all-in street feast</span></span></li>
+  </ul>
+</div>
+
+<div class="day">
+  <div class="dayhead"><span class="daynum display">Day 4 · Mon 3 Aug</span><span class="dayname display">Free day + the rental</span><span class="daywhere">Phangan</span></div>
+  <ul class="slots">
+    <li><span class="t mono">08:00</span><span class="what"><b>Breakfast — Bubba's Coffee</b> <a class="maplink" href="https://www.google.com/maps/search/?api=1&amp;query=Bubba%27s+Coffee+Baan+Tai+Koh+Phangan" target="_blank" rel="noopener">map ↗</a> <span class="chip ok">open daily 07:00–17:00</span><span class="d">own roastery, Baan Tai &amp; Thong Sala branches · ~฿250</span></span></li>
+    <li><span class="t mono">09:30</span><span class="what"><b>Scooter (฿200/day) → Koh Ma / Mae Haad snorkeling</b> <a class="maplink" href="https://www.google.com/maps/search/?api=1&amp;query=Mae+Haad+Beach+Koh+Ma+Koh+Phangan" target="_blank" rel="noopener">map ↗</a> <span class="chip warn">go at high tide</span><span class="d">best reef on the island + sandbar walk to Koh Ma · gear ~฿100 · check Monday's tide table first — August middays run shallow</span></span></li>
+    <li><span class="t mono">12:30</span><span class="what"><b>Lunch — Eat.Co, Srithanu</b> <a class="maplink" href="https://www.google.com/maps/search/?api=1&amp;query=Eat.co+Srithanu+Koh+Phangan" target="_blank" rel="noopener">map ↗</a> <span class="chip ok">closed Thu only — open Mon</span><span class="d">09:00–22:00 · ฿150–250 · (skip Karma Cafe — closed Mondays)</span></span></li>
+    <li><span class="t mono">14:00</span><span class="what"><b>Option — Than Sadet waterfall</b> <a class="maplink" href="https://www.google.com/maps/search/?api=1&amp;query=Than+Sadet+Waterfall+Koh+Phangan" target="_blank" rel="noopener">map ↗</a><span class="d">rainy season = best flow · ~฿100 entrance · 45-min ride, steep sections — skip if wet</span></span></li>
+    <li><span class="t mono">15:30</span><span class="what"><b>Rental walkthrough with your friend</b><span class="d">the trip's second mission — unhurried 2-hour slot for the property, the street, the numbers</span></span></li>
+    <li><span class="t mono">17:45</span><span class="what"><b>Sunset — Srithanu / Hin Kong beach</b> <a class="maplink" href="https://www.google.com/maps/search/?api=1&amp;query=Hin+Kong+Beach+Koh+Phangan" target="_blank" rel="noopener">map ↗</a></span></li>
+    <li><span class="t mono">19:00</span><span class="what"><b>Dinner — Orion Cafe, Srithanu beachfront</b> <a class="maplink" href="https://www.google.com/maps/search/?api=1&amp;query=Orion+Healing+Centre+Srithanu+Koh+Phangan" target="_blank" rel="noopener">map ↗</a> <span class="chip ok">open daily 07:30–23:00</span><span class="d">~฿250 · or night market round two</span></span></li>
+  </ul>
+  <div class="daynote">Big-swing alternative: Ang Thong Marine Park full-day trip (~฿1,700–2,200 + ฿300 fee, open in August, runs Mondays) — but it consumes the whole day, so only if the weather is perfect and the rental visit moves to Sunday evening. Fits the budget either way.</div>
+</div>
+
+<div class="day">
+  <div class="dayhead"><span class="daynum display">Day 5 · Tue 4 Aug</span><span class="dayname display">Home run</span><span class="daywhere">Phangan → Bangkok</span></div>
+  <ul class="slots">
+    <li><span class="t mono">07:15</span><span class="what"><b>Songthaew to Thong Sala pier</b> <a class="maplink" href="https://www.google.com/maps/search/?api=1&amp;query=Thong+Sala+Pier+Koh+Phangan" target="_blank" rel="noopener">map ↗</a><span class="d">~฿150</span></span></li>
+    <li><span class="t mono">08:00</span><span class="what"><b>Ferry Thong Sala → Samui</b><span class="d">Lomprayah / Lomlahkkhirin · ~30–40 min · ~฿350 · arrives Bangrak/Nathon ~08:40</span></span></li>
+    <li><span class="t mono">09:15</span><span class="what"><b>Taxi to Samui airport</b> <a class="maplink" href="https://www.google.com/maps/search/?api=1&amp;query=Samui+International+Airport" target="_blank" rel="noopener">map ↗</a><span class="d">10–20 min · ~฿300</span></span></li>
+    <li><span class="t mono">11:30</span><span class="what"><b>Bangkok Airways USM → BKK</b><span class="d">~฿3,000 (range 2,400–3,500) · booked ≥2.5 h after ferry arrival as squall buffer · land ~12:40</span></span></li>
+    <li><span class="t mono">13:30</span><span class="what"><b>Grab home</b><span class="d">~฿300</span></span></li>
+  </ul>
+  <div class="daynote">If you end up staying near Haad Rin instead: the 09:30 Haad Rin Queen reaches Big Buddha pier at ~10:20 — book an afternoon flight in that case.</div>
+</div>
+
+<h2><span class="tick">■</span> Budget</h2>
+<p class="sectionnote">Planned figures in Thai baht; hover a row for context. Ranges reflect the honest spread of live prices as of 11 Jul 2026.</p>
+<div class="budget">
+  <div class="brow"><span class="lbl">Flight BKK → USM<small>range 2,500–4,500</small></span><span class="barwrap"><span class="bar" style="width:100%"></span></span><span class="amt mono">3,500</span></div>
+  <div class="brow"><span class="lbl">Flight USM → BKK<small>range 2,400–3,500</small></span><span class="barwrap"><span class="bar" style="width:86%"></span></span><span class="amt mono">3,000</span></div>
+  <div class="brow"><span class="lbl">Hotel Bangrak ×2 nights<small>Secret Garden 2,700–4,100 · Mermaid 1,400–3,000</small></span><span class="barwrap"><span class="bar" style="width:91%"></span></span><span class="amt mono">3,200</span></div>
+  <div class="brow"><span class="lbl">Food &amp; drink, 5 days<small>range 2,500–3,500</small></span><span class="barwrap"><span class="bar" style="width:86%"></span></span><span class="amt mono">3,000</span></div>
+  <div class="brow"><span class="lbl">BKK airport transfers ×2</span><span class="barwrap"><span class="bar" style="width:17%"></span></span><span class="amt mono">600</span></div>
+  <div class="brow"><span class="lbl">Taxi USM → Bangrak</span><span class="barwrap"><span class="bar" style="width:14%"></span></span><span class="amt mono">500</span></div>
+  <div class="brow"><span class="lbl">Samui scooter / hops ×2 days</span><span class="barwrap"><span class="bar" style="width:11%"></span></span><span class="amt mono">400</span></div>
+  <div class="brow"><span class="lbl">Ferry Tue → Samui</span><span class="barwrap"><span class="bar" style="width:10%"></span></span><span class="amt mono">350</span></div>
+  <div class="brow"><span class="lbl">Taxi pier → airport Tue</span><span class="barwrap"><span class="bar" style="width:9%"></span></span><span class="amt mono">300</span></div>
+  <div class="brow"><span class="lbl">Songthaew Haad Rin → rental</span><span class="barwrap"><span class="bar" style="width:7%"></span></span><span class="amt mono">250</span></div>
+  <div class="brow"><span class="lbl">Ferry Sun → Phangan<small>range 199–495</small></span><span class="barwrap"><span class="bar" style="width:6%"></span></span><span class="amt mono">200</span></div>
+  <div class="brow"><span class="lbl">Phangan scooter, Mon</span><span class="barwrap"><span class="bar" style="width:6%"></span></span><span class="amt mono">200</span></div>
+  <div class="brow"><span class="lbl">Snorkel gear + waterfall fee</span><span class="barwrap"><span class="bar" style="width:6%"></span></span><span class="amt mono">200</span></div>
+  <div class="btotal"><span>Core plan</span><span class="mono">฿15,700</span></div>
+
+  <div class="gauge">
+    <div class="glabel"><span>Against the 30,000 THB budget</span><span class="mono">18,700 / 30,000</span></div>
+    <div class="gbar">
+      <span class="gseg core" style="width:52.3%"></span>
+      <span class="gseg buf" style="width:10%"></span>
+    </div>
+    <div class="glegend">
+      <span><span class="sw" style="background:var(--accent)"></span>Core plan ฿15,700</span>
+      <span><span class="sw" style="background:var(--accent); opacity:.38"></span>Contingency ฿3,000</span>
+      <span><span class="sw" style="background:var(--track)"></span>Headroom ฿11,300</span>
+    </div>
+  </div>
+</div>
+<p class="sectionnote" style="margin-top:14px">Worst-case check: every item at its top of range totals ~฿19,300; add the buffer and you're still at ~฿22,300 — comfortably inside budget. If the friend's rental falls through, two fallback nights at Bunkhouse or Sandee Bungalow (Baan Tai/Thong Sala, ฿800–1,500/night) add ≤฿3,000 and the plan still clears 30k.</p>
+
+<h2><span class="tick">■</span> The eat sheet</h2>
+<div class="tablewrap"><table>
+  <tr><th>Place</th><th>Where · when</th><th>Hours on your dates</th><th>฿/meal</th></tr>
+  <tr><td><b>Khao Hom</b> <a class="maplink" href="https://www.google.com/maps/search/?api=1&amp;query=Khao+Horm+Restaurant+Bangrak+Koh+Samui" target="_blank" rel="noopener">map ↗</a><span class="d">Michelin-listed southern Thai</span></td><td>Bangrak · Fri lunch</td><td>Daily, closes 21:00–22:00</td><td class="mono">200–400</td></tr>
+  <tr><td><b>Fisherman's Village Walking Street</b> <a class="maplink" href="https://www.google.com/maps/search/?api=1&amp;query=Fisherman%27s+Village+Walking+Street+Bophut+Koh+Samui" target="_blank" rel="noopener">map ↗</a><span class="d">Friday night market</span></td><td>Bophut · Fri dinner</td><td>Fridays 17:00–23:00 ✓ 31 Jul</td><td class="mono">~300</td></tr>
+  <tr><td><b>Sabienglae</b> <a class="maplink" href="https://www.google.com/maps/search/?api=1&amp;query=Sabienglae+Restaurant+Bang+Rak+Koh+Samui" target="_blank" rel="noopener">map ↗</a><span class="d">beachfront Thai seafood</span></td><td>Bangrak · Sat dinner</td><td>Daily 10:00–22:00</td><td class="mono">400–600</td></tr>
+  <tr><td><b>Thong Sala night market</b> <a class="maplink" href="https://www.google.com/maps/search/?api=1&amp;query=Phantip+Night+Market+Thong+Sala+Koh+Phangan" target="_blank" rel="noopener">map ↗</a><span class="d">street food by the pier</span></td><td>Phangan · Sun dinner</td><td>Daily ~16:00–22:00</td><td class="mono">100–200</td></tr>
+  <tr><td><b>Bubba's Coffee</b> <a class="maplink" href="https://www.google.com/maps/search/?api=1&amp;query=Bubba%27s+Coffee+Baan+Tai+Koh+Phangan" target="_blank" rel="noopener">map ↗</a><span class="d">roastery brunch</span></td><td>Baan Tai · Mon breakfast</td><td>Daily 07:00–17:00</td><td class="mono">~250</td></tr>
+  <tr><td><b>Eat.Co</b> <a class="maplink" href="https://www.google.com/maps/search/?api=1&amp;query=Eat.co+Srithanu+Koh+Phangan" target="_blank" rel="noopener">map ↗</a><span class="d">Srithanu health cafe</span></td><td>Srithanu · Mon lunch</td><td>09:00–22:00, closed Thu only</td><td class="mono">150–250</td></tr>
+  <tr><td><b>Orion Cafe</b> <a class="maplink" href="https://www.google.com/maps/search/?api=1&amp;query=Orion+Healing+Centre+Srithanu+Koh+Phangan" target="_blank" rel="noopener">map ↗</a><span class="d">beachfront, sunset spot</span></td><td>Srithanu · Mon dinner</td><td>Daily 07:30–23:00</td><td class="mono">~250</td></tr>
+</table></div>
+<p class="sectionnote" style="margin-top:10px">All venues publish daily-open schedules covering 31 Jul–4 Aug; none has a weekly closing day that touches your dates (Karma Cafe, closed Mondays, was excluded for exactly that reason). Island places do close ad-hoc — a same-day Google Maps glance is cheap insurance.</p>
+
+<h2><span class="tick">■</span> Verify before you go</h2>
+<ul class="check">
+  <li><span class="n">1</span><span><b>Haad Rin Queen status</b> — aggregators show it running (17:00 &amp; 18:30 from Big Buddha pier) but DirectFerries disputes it. Call ☎ +66 77 484 668 or ask at the pier Friday. Plan B: Lomprayah from its own Bangrak pier, or Monday 08:00.<span class="d">This is the plan's only single-point dependency.</span></span></li>
+  <li><span class="n">2</span><span><b>Book Bangkok Airways now</b> — it's a monopoly route in peak European-holiday season; the ฿2,500–4,500 range hardens the longer you wait.</span></li>
+  <li><span class="n">3</span><span><b>Tournament schedule from Padel Tropical</b> — the itinerary assumes a ~15:30 Sunday finish; anything past ~17:45 shifts the crossing to Monday 08:00 (budget already absorbs this).</span></li>
+  <li><span class="n">4</span><span><b>Tide table for Monday 3 Aug</b> — Koh Ma snorkeling wants high tide; August middays run shallow.</span></li>
+  <li><span class="n">5</span><span><b>Full Moon Party date</b> — scheduled 31 Jul but flagged as movable around Buddhist Lent; re-check ~25 Jul. It only affects Friday-night noise and Sunday ferry crowds, not your plan.</span></li>
+  <li><span class="n">6</span><span><b>Hotel rate for the exact nights</b> — Bangrak Pier Bungalow is already sold out for these dates; Secret Garden (12 bungalows only) will go next. Lock it on Booking/Agoda now, with Samui Mermaid as the roomier 77-room fallback.</span></li>
+</ul>
+
+<div class="fine">
+  <p><b>Weather, early August:</b> green season at its gentlest — ~32°C, sunny mornings, short sharp late-afternoon showers, calm seas (the Gulf's rough months are Oct–Dec). Three of Padel Tropical's five courts are covered, so rain won't stop play. Plan outdoor Phangan things for mornings.</p>
+  <p><b>Provenance:</b> researched 11 Jul 2026 across operator sites, schedule databases (flightsfrom.com, flightconnections.com), ferry aggregators (thailandlife.info, ferrysamui.com, directferries.com, siamtickets.com, 12go), Michelin Guide, TripAdvisor, Agoda/Kayak, fullmoonpartythailand.com, and Thai national-park sources. Ferry times are aggregator-published (operator sites block bots) — hence checklist item 1. Flight prices are converted route averages, not booked fares.</p>
+  <p><b>Not included:</b> tournament entry fee (assumed paid), travel insurance, shopping.</p>
+</div>
+</div>
+</body>
+</html>

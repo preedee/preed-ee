@@ -2,6 +2,8 @@
 
 Defaults for every trip itinerary page under `docs/trips/<slug>/`. Established 2026-07-12 from the Designer-agent review of `202607-singapore` (the reference implementation).
 
+**Start every new trip by copying `docs/trips/TEMPLATE/`** — a renderable scaffold implementing everything below, with a HOWTO comment at the top and exemplar units (day block, hotel tile, scoped tables, parallax bands) to duplicate and fill. Preview at preed.ee/trips/TEMPLATE/.
+
 ## Document structure
 - Semantic outline: one `<h1>` (trip title) → `<h2 class="section-h">` per major section (Flights, Hotels, Budget, Activities, Checklist) → `<h3>` for day titles and hotel names.
 - Landmarks: `<header>` (masthead + facts strip + theme toggle), `<main>` (all content), `<footer>` (caveats).

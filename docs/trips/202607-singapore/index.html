@@ -139,6 +139,26 @@
     content: ""; position: absolute; left: 0; top: 0.62rem;
     width: 0.75rem; height: 0.75rem; border: 2px solid var(--accent); border-radius: 2px;
   }
+  .tag.opt { background: transparent; border: 1px solid var(--line); color: var(--muted); }
+  .hint { font-size: 0.82rem; color: var(--muted); margin: -0.5rem 0 1rem; font-style: italic; }
+  .hotels { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; }
+  .hotel {
+    background: var(--card); border: 1px solid var(--line); border-radius: 4px;
+    overflow: hidden; cursor: pointer; transition: box-shadow 0.15s ease;
+  }
+  .hotel:hover, .hotel:focus-visible { box-shadow: 0 2px 12px rgba(0,0,0,0.12); outline: 2px solid var(--accent); outline-offset: 1px; }
+  .hotel .gallery { display: grid; grid-template-columns: 1fr; gap: 2px; }
+  .hotel .gallery img { width: 100%; height: 160px; object-fit: cover; display: block; }
+  .hotel .gallery img:nth-child(n+2) { display: none; }
+  .hotel.expanded { grid-column: 1 / -1; }
+  .hotel.expanded .gallery { grid-template-columns: repeat(3, 1fr); }
+  .hotel.expanded .gallery img { display: block; height: 240px; }
+  .hotel-body { padding: 0.9rem 1.1rem 1.1rem; }
+  .hotel-body h3 { font-family: var(--display); font-size: 0.95rem; letter-spacing: 0.04em; margin: 0 0 0.2rem; }
+  .hotel-body p { margin: 0.3rem 0; font-size: 0.9rem; }
+  .hotel:not(.expanded) .hotel-body p:nth-of-type(2) { display: none; }
+  @media (prefers-reduced-motion: reduce) { .hotel { transition: none; } }
+  @media (max-width: 560px) { .hotel.expanded .gallery { grid-template-columns: 1fr; } .hotel.expanded .gallery img { height: 200px; } }
   .caveat { font-size: 0.85rem; color: var(--muted); margin-top: 2.5rem; border-top: 1px solid var(--line); padding-top: 1rem; }
   .caveat strong { color: var(--red); }
 
@@ -175,8 +195,8 @@
   <div class="day">
     <div class="datepost"><div class="dow">Sun</div><div class="num">26</div><div class="mon">Jul</div></div>
     <div>
-      <h2>Padel at The Padel Co <span class="tag">Padel №1</span> &amp; Gardens by the Bay</h2>
-      <div class="slot"><div class="t">Morning</div><p>Rooftop padel at <strong>The Padel Co</strong>, Fortune Centre L6B, Bugis (open 07:00 — book early slot on <span class="mono">Playtomic</span>). Family browses Bugis Junction next door. <span class="cost">~฿2,340–3,380/court/hr (S$90–130)</span></p></div>
+      <h2>Gardens by the Bay &amp; Marina Bay <span class="tag opt">optional padel</span></h2>
+      <div class="slot"><div class="t">Morning</div><p>Slow breakfast, hotel pool, or a browse around Bugis Junction. <em>Optional padel:</em> rooftop court at <strong>The Padel Co</strong>, Fortune Centre L6B, Bugis — open 07:00, book on <span class="mono">Playtomic</span>, family welcome to watch from the café. <span class="cost">~฿2,340–3,380/court/hr (S$90–130)</span></p></div>
       <div class="slot"><div class="t">Afternoon</div><p>Cloud Forest + Flower Dome at Gardens by the Bay — air-conditioned domes for the hot hours. <span class="cost">฿1,250 adult / ฿730 child (S$48 / 28)</span></p></div>
       <div class="slot"><div class="t">Evening</div><p>Free Garden Rhapsody light show at Supertree Grove (19:45), Marina Bay waterfront stroll, dinner at Marina Bay or Clarke Quay.</p></div>
     </div>
@@ -197,8 +217,8 @@
   <div class="day">
     <div class="datepost"><div class="dow">Tue</div><div class="num">28</div><div class="mon">Jul</div></div>
     <div>
-      <h2>Padel at Pop Padel <span class="tag">Padel №2</span> &amp; Singapore Zoo</h2>
-      <div class="slot"><div class="t">Morning</div><p>90 minutes at <strong>Pop Padel</strong>, 8A Lengkok Bahru, Redhill — 10 min from the hotel, covered courts, flat rate. Book via Pop Padel app or WhatsApp <span class="mono">+65 8024 5700</span>. Family sleeps in / pool. <span class="cost">฿4,060 / 90 min (S$156)</span></p></div>
+      <h2>Singapore Zoo &amp; Chinatown <span class="tag opt">optional padel</span></h2>
+      <div class="slot"><div class="t">Morning</div><p>Lazy morning — sleep in and hit the hotel pool before the zoo. <em>Optional padel:</em> 90 minutes at <strong>Pop Padel</strong>, 8A Lengkok Bahru, Redhill — 10 min from the hotel, covered courts, book via the Pop Padel app or WhatsApp <span class="mono">+65 8024 5700</span>. <span class="cost">฿4,060 / 90 min (S$156)</span></p></div>
       <div class="slot"><div class="t">Afternoon</div><p>Singapore Zoo with unlimited tram — arrive by 13:30, last entry 17:00. <span class="cost">฿1,270 adult / ฿880 child (S$49 / 34)</span> Optional upgrade: Mandai Xperience Pass adds Night Safari + River Wonders <span class="cost">฿2,470 / ฿1,690 (S$95 / 65)</span>.</p></div>
       <div class="slot"><div class="t">Evening</div><p>Chinatown wander and dinner at Maxwell Food Centre (Tian Tian chicken rice) — or stay north for Night Safari if you took the pass.</p></div>
     </div>
@@ -216,20 +236,67 @@
   </div>
 
   <!-- Hotel -->
-  <p class="section-h">Where You're Staying</p>
-  <div class="grid2">
-    <div class="card">
-      <h3>Furama RiverFront — 4★ · Havelock / Clarke Quay</h3>
-      <p>One Family Room with two queen beds sleeps all four; kids 12 &amp; under stay and eat free. Riverside location covers Chinatown and Clarke Quay on foot, HarbourFront/Sentosa is 15 minutes, and Pop Padel is 10 minutes away.</p>
-      <p class="k mono">~฿3,900–5,460 / night (S$150–210) · ≈ ฿15,600–21,840 for 4 nights</p>
-    </div>
-    <div class="card">
-      <h3>Runners-up</h3>
-      <p><strong>Bay Hotel / Travelodge Harbourfront</strong> (4★, ~฿4,680–6,760/night) — best if Sentosa is the priority.</p>
-      <p><strong>Village Hotel Bugis</strong> (4★, ~฿5,980–7,540/night) — breakfast for 4 included.</p>
-      <p><strong>Hotel Boss</strong> (~฿2,860–4,160/night) — the budget lever.</p>
-    </div>
+  <p class="section-h">Where You're Staying — 3 Options</p>
+  <p class="hint">Tap a property to expand it across the page.</p>
+  <div class="hotels">
+
+    <article class="hotel" tabindex="0" role="button" aria-expanded="false">
+      <div class="gallery">
+        <img src="img/furama-1.jpg" alt="Furama RiverFront exterior" loading="lazy" onerror="this.remove()">
+        <img src="img/furama-2.jpg" alt="Furama RiverFront family room" loading="lazy" onerror="this.remove()">
+        <img src="img/furama-3.jpg" alt="Furama RiverFront pool" loading="lazy" onerror="this.remove()">
+      </div>
+      <div class="hotel-body">
+        <h3>Furama RiverFront <span class="tag">recommended</span></h3>
+        <p class="k">4★ · Havelock / Clarke Quay</p>
+        <p>One Family Room with two queen beds sleeps all four; kids 12 &amp; under stay and eat free. Riverside location covers Chinatown and Clarke Quay on foot, HarbourFront/Sentosa is 15 minutes away.</p>
+        <p class="k mono">~฿3,900–5,460 / night (S$150–210) · ≈ ฿15,600–21,840 for 4 nights</p>
+      </div>
+    </article>
+
+    <article class="hotel" tabindex="0" role="button" aria-expanded="false">
+      <div class="gallery">
+        <img src="img/travelodge-1.jpg" alt="Travelodge Harbourfront exterior" loading="lazy" onerror="this.remove()">
+        <img src="img/travelodge-2.jpg" alt="Travelodge Harbourfront family room" loading="lazy" onerror="this.remove()">
+        <img src="img/travelodge-3.jpg" alt="Travelodge Harbourfront pool" loading="lazy" onerror="this.remove()">
+      </div>
+      <div class="hotel-body">
+        <h3>Travelodge Harbourfront</h3>
+        <p class="k">4★ · HarbourFront (ex Bay Hotel)</p>
+        <p>Spacious family rooms with VivoCity and the Sentosa monorail on the doorstep — the pick if Universal Studios and Sentosa are the heart of the trip, while staying on the MRT for downtown days.</p>
+        <p class="k mono">~฿4,680–6,760 / night (S$180–260) · ≈ ฿18,700–27,000 for 4 nights</p>
+      </div>
+    </article>
+
+    <article class="hotel" tabindex="0" role="button" aria-expanded="false">
+      <div class="gallery">
+        <img src="img/village-1.jpg" alt="Village Hotel Bugis exterior" loading="lazy" onerror="this.remove()">
+        <img src="img/village-2.jpg" alt="Village Hotel Bugis family room" loading="lazy" onerror="this.remove()">
+        <img src="img/village-3.jpg" alt="Village Hotel Bugis pool" loading="lazy" onerror="this.remove()">
+      </div>
+      <div class="hotel-body">
+        <h3>Village Hotel Bugis</h3>
+        <p class="k">4★ · Bugis</p>
+        <p>Purpose-built 32 sqm Family Room with breakfast for all four included. Most central for sightseeing and next door to The Padel Co; direct MRT line toward HarbourFront for the Sentosa day.</p>
+        <p class="k mono">~฿5,980–7,540 / night (S$230–290) · ≈ ฿23,900–30,200 for 4 nights</p>
+      </div>
+    </article>
+
   </div>
+  <p class="k" style="font-size:0.85rem">Budget lever: Hotel Boss (Lavender, ~฿2,860–4,160/night) if the dates price high.</p>
+
+  <script>
+    document.querySelectorAll('.hotel').forEach(function (card) {
+      function toggle() {
+        var open = card.classList.toggle('expanded');
+        card.setAttribute('aria-expanded', open);
+      }
+      card.addEventListener('click', toggle);
+      card.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
+      });
+    });
+  </script>
 
   <!-- Budget -->
   <p class="section-h">Budget Estimate</p>
@@ -255,8 +322,8 @@
     <li>Flights — morning BKK→SIN Sat 25 Jul, afternoon/evening SIN→BKK Wed 29 Jul (~6,500–9,500 THB pp roundtrip on Scoot / Thai AirAsia)</li>
     <li>Furama RiverFront Family Room, 25–29 Jul</li>
     <li>USS tickets for Mon 27 Jul — <strong>check the RWS calendar first</strong> (some Tuesdays close for maintenance; Monday is the safer pick)</li>
-    <li>The Padel Co — Playtomic slot, Sunday morning</li>
-    <li>Pop Padel — app or WhatsApp +65 8024 5700, Tuesday morning, 90 min</li>
+    <li>Optional — The Padel Co, Playtomic slot, Sunday morning</li>
+    <li>Optional — Pop Padel, app or WhatsApp +65 8024 5700, Tuesday morning, 90 min</li>
     <li>River cruise + Gardens + Zoo tickets on Klook or official sites (Jun–Aug cruise promo)</li>
   </ul>
 

@@ -26,6 +26,11 @@ Defaults for every trip itinerary page under `docs/trips/<slug>/`. Established 2
 - Visible affordance badge ("＋2 photos · details" ↔ "Show less").
 - Collapsed state shows the persuasive pitch line; fine print (`.fine`) is what collapses.
 
+## Parallax destination photo bands (default)
+- Every trip page gets 3–4 full-bleed photo bands of destination landmarks between major sections, revealing a fixed background layer (`#bg-stage`, `position:fixed; z-index:-1`) that crossfades per band via IntersectionObserver — never `background-attachment:fixed` (broken on iOS Safari).
+- Content lives in `.sheet` wrappers (`display:flow-root`, solid theme background + spread box-shadow to cover body padding); bands are transparent windows with a caption chip naming the place.
+- Photos: Wikimedia Commons (CC0/CC BY/CC BY-SA), visually verified before publishing, ≤1400px and ≈150–300KB each, attribution links in the footer. Only the first background loads at page-open; the rest defer ~1.5s via `data-img` swap. Crossfade respects `prefers-reduced-motion`.
+
 ## Mobile
 - `.tablewrap` gets pure-CSS scroll shadows (local/scroll background-attachment recipe) so cut-off columns are discoverable.
 - Phone numbers are tappable links (`https://wa.me/<number>` and/or `tel:`).

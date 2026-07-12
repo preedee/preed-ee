@@ -59,7 +59,7 @@
   #bg-stage .bg{position:absolute; inset:0; background-size:cover; background-position:center; opacity:0; transition:opacity .9s ease;}
   #bg-stage .bg.active{opacity:1;}
   @media (prefers-reduced-motion: reduce){ #bg-stage .bg{transition:none;} }
-  header, footer, .sheet{background:var(--bg); box-shadow:0 0 0 2.5rem var(--bg);}
+  header, footer, .sheet{background:var(--bg); box-shadow:20px 0 0 var(--bg), -20px 0 0 var(--bg);}
   .sheet{display:flow-root;}
   .photo-band{min-height:46vh; position:relative; margin-left:calc(50% - 50vw); margin-right:calc(50% - 50vw);
               display:flex; align-items:flex-end; justify-content:center;}
@@ -154,7 +154,8 @@
   .check b{font-weight:650;}
   .check .d{color:var(--muted); font-size:13px; display:block;}
 
-  .fine{color:var(--muted); font-size:13px; margin-top:40px; border-top:1px solid var(--line); padding-top:18px; max-width:65ch;}
+  .fine{color:var(--muted); font-size:13px; margin-top:40px; border-top:1px solid var(--line); padding-top:18px;}
+  .fine p{max-width:65ch;}
   .fine p{margin:8px 0;}
   a{color:var(--accent);}
   .maplink{font-size:11px; font-weight:600; letter-spacing:.02em; color:var(--accent); text-decoration:none;

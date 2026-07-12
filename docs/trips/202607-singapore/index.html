@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🇸🇬</text></svg>">
+<title>Singapore · 25–29 July 2026 — Family Itinerary</title>
+</head>
+<body>
+<style>
+  :root {
+    --ground: #F7F8F3;
+    --card: #EDF0E7;
+    --line: #D8DECF;
+    --ink: #1E2A23;
+    --muted: #5F6E63;
+    --accent: #0E7A5F;
+    --accent-soft: #DCEBE3;
+    --red: #C0392B;
+    --red-soft: #F3E0DC;
+    --display: "Futura", "Avenir Next", "Trebuchet MS", sans-serif;
+    --body: "Charter", "Georgia", serif;
+    --mono: "SF Mono", "Menlo", "Consolas", monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --ground: #121A15; --card: #1A241D; --line: #2C3A30;
+      --ink: #E7EDE5; --muted: #96A599;
+      --accent: #43BD94; --accent-soft: #1D3229;
+      --red: #E06A5B; --red-soft: #3A241F;
+    }
+  }
+  :root[data-theme="dark"] {
+    --ground: #121A15; --card: #1A241D; --line: #2C3A30;
+    --ink: #E7EDE5; --muted: #96A599;
+    --accent: #43BD94; --accent-soft: #1D3229;
+    --red: #E06A5B; --red-soft: #3A241F;
+  }
+  :root[data-theme="light"] {
+    --ground: #F7F8F3; --card: #EDF0E7; --line: #D8DECF;
+    --ink: #1E2A23; --muted: #5F6E63;
+    --accent: #0E7A5F; --accent-soft: #DCEBE3;
+    --red: #C0392B; --red-soft: #F3E0DC;
+  }
+  body {
+    background: var(--ground); color: var(--ink);
+    font-family: var(--body); line-height: 1.55;
+    margin: 0; padding: 2.5rem 1.25rem 4rem;
+  }
+  .wrap { max-width: 860px; margin: 0 auto; }
+
+  /* Masthead */
+  .eyebrow {
+    font-family: var(--display); text-transform: uppercase;
+    letter-spacing: 0.22em; font-size: 0.72rem; color: var(--accent);
+    margin: 0 0 0.5rem;
+  }
+  h1 {
+    font-family: var(--display); font-weight: 600;
+    font-size: clamp(2.2rem, 6vw, 3.4rem); line-height: 1.04;
+    letter-spacing: 0.01em; margin: 0 0 1.25rem; text-wrap: balance;
+  }
+  .facts {
+    display: flex; flex-wrap: wrap; gap: 0.5rem 2rem;
+    border-top: 2px solid var(--ink); border-bottom: 1px solid var(--line);
+    padding: 0.7rem 0; margin-bottom: 2.5rem;
+  }
+  .fact { font-size: 0.85rem; }
+  .fact b { font-family: var(--display); text-transform: uppercase; letter-spacing: 0.12em; font-size: 0.68rem; font-weight: 600; color: var(--muted); display: block; }
+
+  /* Day rail */
+  .day {
+    display: grid; grid-template-columns: 96px 1fr; gap: 1.25rem;
+    padding: 1.5rem 0; border-bottom: 1px solid var(--line);
+  }
+  .datepost { text-align: left; }
+  .datepost .dow {
+    font-family: var(--display); text-transform: uppercase;
+    letter-spacing: 0.18em; font-size: 0.68rem; color: var(--muted);
+  }
+  .datepost .num {
+    font-family: var(--display); font-size: 2.6rem; font-weight: 600;
+    line-height: 1; color: var(--accent); font-variant-numeric: tabular-nums;
+  }
+  .day.uss .datepost .num { color: var(--red); }
+  .datepost .mon { font-family: var(--display); text-transform: uppercase; letter-spacing: 0.18em; font-size: 0.68rem; color: var(--muted); }
+
+  .day h2 {
+    font-family: var(--display); font-weight: 600; font-size: 1.15rem;
+    letter-spacing: 0.03em; margin: 0 0 0.75rem; text-wrap: balance;
+  }
+  .slot { display: grid; grid-template-columns: 5.2rem 1fr; gap: 0.9rem; padding: 0.45rem 0; }
+  .slot .t {
+    font-family: var(--display); text-transform: uppercase; letter-spacing: 0.14em;
+    font-size: 0.66rem; color: var(--muted); padding-top: 0.28rem;
+  }
+  .slot p { margin: 0; font-size: 0.95rem; }
+  .slot .cost { font-family: var(--mono); font-size: 0.78rem; color: var(--muted); white-space: nowrap; }
+
+  .tag {
+    display: inline-block; font-family: var(--display); font-size: 0.64rem;
+    text-transform: uppercase; letter-spacing: 0.12em; font-weight: 600;
+    padding: 0.15rem 0.5rem; border-radius: 2px; margin-left: 0.4rem;
+    background: var(--accent-soft); color: var(--accent); vertical-align: 0.1em;
+  }
+  .tag.red { background: var(--red-soft); color: var(--red); }
+
+  /* Sections */
+  .section-h {
+    font-family: var(--display); font-weight: 600; font-size: 1rem;
+    text-transform: uppercase; letter-spacing: 0.16em;
+    margin: 3rem 0 1rem; color: var(--ink);
+  }
+  .card {
+    background: var(--card); border: 1px solid var(--line);
+    border-radius: 4px; padding: 1.1rem 1.3rem; margin-bottom: 1rem;
+  }
+  .card h3 { font-family: var(--display); font-size: 0.95rem; letter-spacing: 0.04em; margin: 0 0 0.4rem; }
+  .card p { margin: 0.25rem 0; font-size: 0.92rem; }
+  .grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; }
+  .k { color: var(--muted); }
+  .mono { font-family: var(--mono); font-size: 0.85em; }
+
+  .tablewrap { overflow-x: auto; }
+  table { border-collapse: collapse; width: 100%; font-size: 0.9rem; }
+  th {
+    font-family: var(--display); text-transform: uppercase; letter-spacing: 0.1em;
+    font-size: 0.66rem; text-align: left; color: var(--muted);
+    border-bottom: 2px solid var(--ink); padding: 0.45rem 0.75rem 0.45rem 0;
+  }
+  td { border-bottom: 1px solid var(--line); padding: 0.5rem 0.75rem 0.5rem 0; vertical-align: top; }
+  td.n { font-family: var(--mono); font-size: 0.8rem; white-space: nowrap; font-variant-numeric: tabular-nums; }
+  tr.total td { border-bottom: none; border-top: 2px solid var(--ink); font-weight: 700; }
+
+  ul.check { list-style: none; padding: 0; margin: 0; }
+  ul.check li { padding: 0.4rem 0 0.4rem 1.7rem; position: relative; font-size: 0.93rem; border-bottom: 1px solid var(--line); }
+  ul.check li::before {
+    content: ""; position: absolute; left: 0; top: 0.62rem;
+    width: 0.75rem; height: 0.75rem; border: 2px solid var(--accent); border-radius: 2px;
+  }
+  .caveat { font-size: 0.85rem; color: var(--muted); margin-top: 2.5rem; border-top: 1px solid var(--line); padding-top: 1rem; }
+  .caveat strong { color: var(--red); }
+
+  @media (max-width: 560px) {
+    .day { grid-template-columns: 64px 1fr; gap: 0.9rem; }
+    .datepost .num { font-size: 2rem; }
+    .slot { grid-template-columns: 1fr; gap: 0.1rem; }
+  }
+</style>
+
+<div class="wrap">
+  <p class="eyebrow">Family Trip · 2 Adults + 2 Kids · 4 Nights</p>
+  <h1>Singapore<br>25 – 29 July 2026</h1>
+
+  <div class="facts">
+    <div class="fact"><b>Hotel</b>Furama RiverFront · 4★ · all 4 nights</div>
+    <div class="fact"><b>Flights</b>BKK ⇄ SIN · ~2h25 nonstop</div>
+    <div class="fact"><b>Budget</b>≈ S$3.0–4.2k all-in (THB 78–110k)</div>
+    <div class="fact"><b>Weather</b>31°C · brief showers ~1pm</div>
+  </div>
+
+  <!-- Saturday -->
+  <div class="day">
+    <div class="datepost"><div class="dow">Sat</div><div class="num">25</div><div class="mon">Jul</div></div>
+    <div>
+      <h2>Arrival &amp; Riverside Evening</h2>
+      <div class="slot"><div class="t">Morning</div><p>Fly Bangkok → Singapore (Scoot / Thai AirAsia, morning departure). Land around midday Singapore time.</p></div>
+      <div class="slot"><div class="t">Afternoon</div><p>Grab XL to Furama RiverFront <span class="cost">S$20–35</span> — check in to the Family Room (two queens, kids eat free). Hotel pool while the heat peaks.</p></div>
+      <div class="slot"><div class="t">Evening</div><p>Singapore River Cruise from Clarke Quay to Marina Bay <span class="cost">~S$80 family, summer promo may halve it</span>, Merlion photo stop, then satay dinner at Lau Pa Sat — Satay Street fires up from 7pm.</p></div>
+    </div>
+  </div>
+
+  <!-- Sunday -->
+  <div class="day">
+    <div class="datepost"><div class="dow">Sun</div><div class="num">26</div><div class="mon">Jul</div></div>
+    <div>
+      <h2>Padel at The Padel Co <span class="tag">Padel №1</span> &amp; Gardens by the Bay</h2>
+      <div class="slot"><div class="t">Morning</div><p>Rooftop padel at <strong>The Padel Co</strong>, Fortune Centre L6B, Bugis (open 07:00 — book early slot on <span class="mono">Playtomic</span>). Family browses Bugis Junction next door. <span class="cost">~S$90–130/court/hr</span></p></div>
+      <div class="slot"><div class="t">Afternoon</div><p>Cloud Forest + Flower Dome at Gardens by the Bay — air-conditioned domes for the hot hours. <span class="cost">S$48 adult / S$28 child</span></p></div>
+      <div class="slot"><div class="t">Evening</div><p>Free Garden Rhapsody light show at Supertree Grove (19:45), Marina Bay waterfront stroll, dinner at Marina Bay or Clarke Quay.</p></div>
+    </div>
+  </div>
+
+  <!-- Monday -->
+  <div class="day uss">
+    <div class="datepost"><div class="dow">Mon</div><div class="num">27</div><div class="mon">Jul</div></div>
+    <div>
+      <h2>Universal Studios Singapore <span class="tag red">Full Day</span></h2>
+      <div class="slot"><div class="t">Morning</div><p>Arrive 09:45 for the 10:00 open — straight to Sci-Fi City and Minion Land before queues build. Grab to Sentosa <span class="cost">S$15–25</span> or MRT + Sentosa Express <span class="cost">S$4 pp</span>.</p></div>
+      <div class="slot"><div class="t">Afternoon</div><p>Full park day (typical close 20:00). Late July isn't a Singapore school holiday — Monday crowds are light, so skip the Express Pass and save ~S$360. Indoor rides when the 1pm shower passes through. <span class="cost">tickets ~S$290 family</span></p></div>
+      <div class="slot"><div class="t">Evening</div><p>Dinner at VivoCity on the way home, or collapse gratefully at the hotel.</p></div>
+    </div>
+  </div>
+
+  <!-- Tuesday -->
+  <div class="day">
+    <div class="datepost"><div class="dow">Tue</div><div class="num">28</div><div class="mon">Jul</div></div>
+    <div>
+      <h2>Padel at Pop Padel <span class="tag">Padel №2</span> &amp; Singapore Zoo</h2>
+      <div class="slot"><div class="t">Morning</div><p>90 minutes at <strong>Pop Padel</strong>, 8A Lengkok Bahru, Redhill — 10 min from the hotel, covered courts, flat rate. Book via Pop Padel app or WhatsApp <span class="mono">+65 8024 5700</span>. Family sleeps in / pool. <span class="cost">S$156 / 90 min</span></p></div>
+      <div class="slot"><div class="t">Afternoon</div><p>Singapore Zoo with unlimited tram — arrive by 13:30, last entry 17:00. <span class="cost">S$49 adult / S$34 child</span> Optional upgrade: Mandai Xperience Pass adds Night Safari + River Wonders <span class="cost">S$95 / S$65</span>.</p></div>
+      <div class="slot"><div class="t">Evening</div><p>Chinatown wander and dinner at Maxwell Food Centre (Tian Tian chicken rice) — or stay north for Night Safari if you took the pass.</p></div>
+    </div>
+  </div>
+
+  <!-- Wednesday -->
+  <div class="day">
+    <div class="datepost"><div class="dow">Wed</div><div class="num">29</div><div class="mon">Jul</div></div>
+    <div>
+      <h2>Jewel Changi &amp; Fly Home</h2>
+      <div class="slot"><div class="t">Morning</div><p>Check out. Easy morning — hotel pool or a quick Chinatown souvenir run.</p></div>
+      <div class="slot"><div class="t">Afternoon</div><p>Head to Changi early: Rain Vortex and Forest Valley are free; kids bounce the Sky Nets at Canopy Park. Late lunch at Jewel. <span class="cost">~S$40–60 family</span></p></div>
+      <div class="slot"><div class="t">Evening</div><p>Fly Singapore → Bangkok, afternoon or early evening — land the same evening (Bangkok is 1h behind).</p></div>
+    </div>
+  </div>
+
+  <!-- Hotel -->
+  <p class="section-h">Where You're Staying</p>
+  <div class="grid2">
+    <div class="card">
+      <h3>Furama RiverFront — 4★ · Havelock / Clarke Quay</h3>
+      <p>One Family Room with two queen beds sleeps all four; kids 12 &amp; under stay and eat free. Riverside location covers Chinatown and Clarke Quay on foot, HarbourFront/Sentosa is 15 minutes, and Pop Padel is 10 minutes away.</p>
+      <p class="k mono">~S$150–210 / night · ≈ S$600–840 for 4 nights</p>
+    </div>
+    <div class="card">
+      <h3>Runners-up</h3>
+      <p><strong>Bay Hotel / Travelodge Harbourfront</strong> (4★, ~S$180–260) — best if Sentosa is the priority.</p>
+      <p><strong>Village Hotel Bugis</strong> (4★, ~S$230–290) — breakfast for 4 included.</p>
+      <p><strong>Hotel Boss</strong> (~S$110–160) — the budget lever.</p>
+    </div>
+  </div>
+
+  <!-- Budget -->
+  <p class="section-h">Budget Estimate</p>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>Item</th><th>Low</th><th>High</th></tr></thead>
+      <tbody>
+        <tr><td>Flights BKK ⇄ SIN × 4 (LCC)</td><td class="n">S$1,000</td><td class="n">S$1,450</td></tr>
+        <tr><td>Hotel · 4 nights</td><td class="n">S$600</td><td class="n">S$840</td></tr>
+        <tr><td>Universal Studios (2A + 2C)</td><td class="n">S$290</td><td class="n">S$310</td></tr>
+        <tr><td>Gardens by the Bay · Zoo · cruise · Jewel</td><td class="n">S$398</td><td class="n">S$612</td></tr>
+        <tr><td>Padel · both sessions</td><td class="n">S$256</td><td class="n">S$336</td></tr>
+        <tr><td>Food (hawker-forward, 5 days)</td><td class="n">S$300</td><td class="n">S$450</td></tr>
+        <tr><td>Local transport + airport Grabs</td><td class="n">S$150</td><td class="n">S$220</td></tr>
+        <tr class="total"><td>Total (≈ THB 78,000–110,000)</td><td class="n">S$2,994</td><td class="n">S$4,218</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Checklist -->
+  <p class="section-h">Booking Checklist</p>
+  <ul class="check">
+    <li>Flights — morning BKK→SIN Sat 25 Jul, afternoon/evening SIN→BKK Wed 29 Jul (~6,500–9,500 THB pp roundtrip on Scoot / Thai AirAsia)</li>
+    <li>Furama RiverFront Family Room, 25–29 Jul</li>
+    <li>USS tickets for Mon 27 Jul — <strong>check the RWS calendar first</strong> (some Tuesdays close for maintenance; Monday is the safer pick)</li>
+    <li>The Padel Co — Playtomic slot, Sunday morning</li>
+    <li>Pop Padel — app or WhatsApp +65 8024 5700, Tuesday morning, 90 min</li>
+    <li>River cruise + Gardens + Zoo tickets on Klook or official sites (Jun–Aug cruise promo)</li>
+  </ul>
+
+  <p class="caveat"><strong>Verify before booking:</strong> prices are indicative from July 2026 research. The Padel Co uses dynamic Playtomic pricing; Pop Padel's opening hours aren't published — confirm on WhatsApp. Origin assumed Bangkok.</p>
+</div>
+
+</body>
+</html>

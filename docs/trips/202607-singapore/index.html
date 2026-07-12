@@ -9,18 +9,22 @@
 </head>
 <body>
 <style>
+  @font-face { font-family: "Jost"; src: url("../fonts/jost-v20-latin-regular.woff2") format("woff2"); font-weight: 400; font-display: swap; }
+  @font-face { font-family: "Jost"; src: url("../fonts/jost-v20-latin-600.woff2") format("woff2"); font-weight: 600; font-display: swap; }
+  @font-face { font-family: "Source Serif 4"; src: url("../fonts/source-serif-4-v14-latin-regular.woff2") format("woff2"); font-weight: 400; font-display: swap; }
+  @font-face { font-family: "Source Serif 4"; src: url("../fonts/source-serif-4-v14-latin-600.woff2") format("woff2"); font-weight: 600; font-display: swap; }
   :root {
     --ground: #F7F8F3;
     --card: #EDF0E7;
     --line: #D8DECF;
     --ink: #1E2A23;
     --muted: #5F6E63;
-    --accent: #0E7A5F;
+    --accent: #0B6B52;
     --accent-soft: #DCEBE3;
     --red: #C0392B;
     --red-soft: #F3E0DC;
-    --display: "Futura", "Avenir Next", "Trebuchet MS", sans-serif;
-    --body: "Charter", "Georgia", serif;
+    --display: "Jost", "Futura", "Avenir Next", "Trebuchet MS", sans-serif;
+    --body: "Source Serif 4", "Charter", "Georgia", serif;
     --mono: "SF Mono", "Menlo", "Consolas", monospace;
   }
   @media (prefers-color-scheme: dark) {
@@ -40,7 +44,7 @@
   :root[data-theme="light"] {
     --ground: #F7F8F3; --card: #EDF0E7; --line: #D8DECF;
     --ink: #1E2A23; --muted: #5F6E63;
-    --accent: #0E7A5F; --accent-soft: #DCEBE3;
+    --accent: #0B6B52; --accent-soft: #DCEBE3;
     --red: #C0392B; --red-soft: #F3E0DC;
   }
   body {
@@ -51,6 +55,13 @@
   .wrap { max-width: 860px; margin: 0 auto; }
 
   /* Masthead */
+  header { position: relative; }
+  #theme-toggle {
+    position: absolute; top: -0.6rem; right: 0; width: 2.4rem; height: 2.4rem;
+    border-radius: 50%; border: 1px solid var(--line); background: var(--card);
+    color: var(--ink); font-size: 1.05rem; line-height: 1; cursor: pointer;
+  }
+  #theme-toggle:hover, #theme-toggle:focus-visible { border-color: var(--accent); outline: none; }
   .eyebrow {
     font-family: var(--display); text-transform: uppercase;
     letter-spacing: 0.22em; font-size: 0.72rem; color: var(--accent);
@@ -86,7 +97,7 @@
   .day.uss .datepost .num { color: var(--red); }
   .datepost .mon { font-family: var(--display); text-transform: uppercase; letter-spacing: 0.18em; font-size: 0.68rem; color: var(--muted); }
 
-  .day h2 {
+  .day h3 {
     font-family: var(--display); font-weight: 600; font-size: 1.15rem;
     letter-spacing: 0.03em; margin: 0 0 0.75rem; text-wrap: balance;
   }
@@ -123,14 +134,24 @@
   .k { color: var(--muted); }
   .mono { font-family: var(--mono); font-size: 0.85em; }
 
-  .tablewrap { overflow-x: auto; }
+  .tablewrap {
+    overflow-x: auto;
+    background:
+      linear-gradient(to right, var(--ground) 30%, rgba(255,255,255,0)) left/40px 100%,
+      linear-gradient(to left, var(--ground) 30%, rgba(255,255,255,0)) right/40px 100%,
+      radial-gradient(farthest-side at 0 50%, rgba(0,0,0,0.22), transparent) left/14px 100%,
+      radial-gradient(farthest-side at 100% 50%, rgba(0,0,0,0.22), transparent) right/14px 100%;
+    background-repeat: no-repeat;
+    background-attachment: local, local, scroll, scroll;
+  }
   table { border-collapse: collapse; width: 100%; font-size: 0.9rem; }
-  th {
+  thead th {
     font-family: var(--display); text-transform: uppercase; letter-spacing: 0.1em;
     font-size: 0.66rem; text-align: left; color: var(--muted);
     border-bottom: 2px solid var(--ink); padding: 0.45rem 0.75rem 0.45rem 0;
   }
   td { border-bottom: 1px solid var(--line); padding: 0.5rem 0.75rem 0.5rem 0; vertical-align: top; }
+  tbody th { border-bottom: 1px solid var(--line); padding: 0.5rem 0.75rem 0.5rem 0; vertical-align: top; text-align: left; font-weight: 400; }
   td.n { font-family: var(--mono); font-size: 0.8rem; white-space: nowrap; font-variant-numeric: tabular-nums; }
   tr.total td { border-bottom: none; border-top: 2px solid var(--ink); font-weight: 700; }
 
@@ -145,11 +166,24 @@
   .hotels { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; }
   .hotel {
     background: var(--card); border: 1px solid var(--line); border-radius: 4px;
-    overflow: hidden; cursor: pointer; transition: box-shadow 0.15s ease;
+    overflow: hidden; transition: box-shadow 0.15s ease;
   }
-  .hotel:hover, .hotel:focus-visible { box-shadow: 0 2px 12px rgba(0,0,0,0.12); outline: 2px solid var(--accent); outline-offset: 1px; }
+  .hotel:hover { box-shadow: 0 2px 12px rgba(0,0,0,0.12); }
+  .hotel-toggle {
+    display: block; width: 100%; padding: 0; margin: 0; border: 0; background: none;
+    cursor: pointer; position: relative; font: inherit; color: inherit; text-align: left;
+  }
+  .hotel-toggle:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .expand-badge {
+    position: absolute; right: 0.6rem; bottom: 0.6rem;
+    font-family: var(--display); font-size: 0.64rem; font-weight: 600;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    background: rgba(20,26,21,0.62); color: #fff;
+    padding: 0.22rem 0.55rem; border-radius: 2px; pointer-events: none;
+  }
+  .fine { font-size: 0.82rem; }
   .hotel .gallery { display: grid; grid-template-columns: 1fr; gap: 2px; }
-  .hotel .gallery img { width: 100%; height: 160px; object-fit: cover; display: block; }
+  .hotel .gallery img { width: 100%; height: 160px; object-fit: cover; display: block; background: var(--line); }
   .hotel .gallery img:nth-child(n+2) { display: none; }
   .hotel.expanded { grid-column: 1 / -1; }
   .hotel.expanded .gallery { grid-template-columns: repeat(3, 1fr); }
@@ -157,7 +191,7 @@
   .hotel-body { padding: 0.9rem 1.1rem 1.1rem; }
   .hotel-body h3 { font-family: var(--display); font-size: 0.95rem; letter-spacing: 0.04em; margin: 0 0 0.2rem; }
   .hotel-body p { margin: 0.3rem 0; font-size: 0.9rem; }
-  .hotel:not(.expanded) .hotel-body p:nth-of-type(2) { display: none; }
+  .hotel:not(.expanded) .fine { display: none; }
   @media (prefers-reduced-motion: reduce) { .hotel { transition: none; } }
   @media (max-width: 560px) { .hotel.expanded .gallery { grid-template-columns: 1fr; } .hotel.expanded .gallery img { height: 200px; } }
   .caveat { font-size: 0.85rem; color: var(--muted); margin-top: 2.5rem; border-top: 1px solid var(--line); padding-top: 1rem; }
@@ -171,6 +205,8 @@
 </style>
 
 <div class="wrap">
+  <header>
+  <button id="theme-toggle" type="button" aria-label="Toggle dark or light theme" title="Toggle theme">◐</button>
   <p class="eyebrow">Family Trip · 2 Adults + 2 Kids · 4 Nights</p>
   <h1>Singapore<br>25 – 29 July 2026</h1>
 
@@ -180,12 +216,14 @@
     <div class="fact"><b>Budget</b>≈ ฿76–108k all-in (S$2.9–4.2k)</div>
     <div class="fact"><b>Weather</b>31°C · brief showers ~1pm</div>
   </div>
+  </header>
+  <main>
 
   <!-- Saturday -->
   <div class="day">
     <div class="datepost"><div class="dow">Sat</div><div class="num">25</div><div class="mon">Jul</div></div>
     <div>
-      <h2>Arrival &amp; Riverside Evening</h2>
+      <h3>Arrival &amp; Riverside Evening</h3>
       <div class="slot"><div class="t">Morning</div><p>Fly Bangkok → Singapore — pick: <strong>Thai Airways TG403, 08:00 → 11:15</strong> (checked bags included). Budget alternatives in the flights table below.</p></div>
       <div class="slot"><div class="t">Afternoon</div><p>Grab XL to Furama RiverFront <span class="cost">฿520–910 (S$20–35)</span> — check in to the Family Room (two queens, kids eat free). Hotel pool while the heat peaks.</p></div>
       <div class="slot"><div class="t">Evening</div><p><a href="https://www.rivercruise.com.sg" target="_blank" rel="noopener">Singapore River Cruise</a> from Clarke Quay to Marina Bay <span class="cost">~฿2,080 family (S$80), summer promo may halve it</span>, Merlion photo stop, then satay dinner at <a href="https://www.laupasat.sg" target="_blank" rel="noopener">Lau Pa Sat</a> — Satay Street fires up from 7pm.</p></div>
@@ -196,7 +234,7 @@
   <div class="day">
     <div class="datepost"><div class="dow">Sun</div><div class="num">26</div><div class="mon">Jul</div></div>
     <div>
-      <h2>Gardens by the Bay &amp; Marina Bay <span class="tag opt">optional padel</span></h2>
+      <h3>Gardens by the Bay &amp; Marina Bay <span class="tag opt">optional padel</span></h3>
       <div class="slot"><div class="t">Morning</div><p>Slow breakfast, hotel pool, or a browse around Bugis Junction. <em>Optional padel:</em> rooftop court at <strong><a href="https://thepadel.co" target="_blank" rel="noopener">The Padel Co</a></strong>, Fortune Centre L6B, Bugis — open 07:00, book on <span class="mono"><a href="https://playtomic.com" target="_blank" rel="noopener">Playtomic</a></span>, family welcome to watch from the café. <span class="cost">~฿2,340–3,380/court/hr (S$90–130)</span></p></div>
       <div class="slot"><div class="t">Afternoon</div><p>Cloud Forest + Flower Dome at <a href="https://www.gardensbythebay.com.sg" target="_blank" rel="noopener">Gardens by the Bay</a> — air-conditioned domes for the hot hours. <span class="cost">฿1,250 adult / ฿730 child (S$48 / 28)</span></p></div>
       <div class="slot"><div class="t">Evening</div><p>Free Garden Rhapsody light show at Supertree Grove (19:45), Marina Bay waterfront stroll, dinner at Marina Bay or Clarke Quay.</p></div>
@@ -207,7 +245,7 @@
   <div class="day uss">
     <div class="datepost"><div class="dow">Mon</div><div class="num">27</div><div class="mon">Jul</div></div>
     <div>
-      <h2><a href="https://www.rwsentosa.com/en/play/universal-studios-singapore" target="_blank" rel="noopener">Universal Studios Singapore</a> <span class="tag red">Full Day</span></h2>
+      <h3><a href="https://www.rwsentosa.com/en/play/universal-studios-singapore" target="_blank" rel="noopener">Universal Studios Singapore</a> <span class="tag red">Full Day</span></h3>
       <div class="slot"><div class="t">Morning</div><p>Arrive 09:45 for the 10:00 open — straight to Sci-Fi City and Minion Land before queues build. Grab to Sentosa <span class="cost">฿390–650 (S$15–25)</span> or MRT + Sentosa Express <span class="cost">฿104 pp (S$4)</span>.</p></div>
       <div class="slot"><div class="t">Afternoon</div><p>Full park day (typical close 20:00). Late July isn't a Singapore school holiday — Monday crowds are light, so skip the Express Pass and save ~฿9,400 (S$360). Indoor rides when the 1pm shower passes through. <span class="cost">tickets ~฿7,550 family (S$290)</span></p></div>
       <div class="slot"><div class="t">Evening</div><p>Dinner at VivoCity on the way home, or collapse gratefully at the hotel.</p></div>
@@ -218,8 +256,8 @@
   <div class="day">
     <div class="datepost"><div class="dow">Tue</div><div class="num">28</div><div class="mon">Jul</div></div>
     <div>
-      <h2>Singapore Zoo &amp; Chinatown <span class="tag opt">optional padel</span></h2>
-      <div class="slot"><div class="t">Morning</div><p>Lazy morning — sleep in and hit the hotel pool before the zoo. <em>Optional padel:</em> 90 minutes at <strong><a href="https://pop-padel.com" target="_blank" rel="noopener">Pop Padel</a></strong>, 8A Lengkok Bahru, Redhill — 10 min from the hotel, covered courts, book via the Pop Padel app or WhatsApp <span class="mono">+65 8024 5700</span>. <span class="cost">฿4,060 / 90 min (S$156)</span></p></div>
+      <h3>Singapore Zoo &amp; Chinatown <span class="tag opt">optional padel</span></h3>
+      <div class="slot"><div class="t">Morning</div><p>Lazy morning — sleep in and hit the hotel pool before the zoo. <em>Optional padel:</em> 90 minutes at <strong><a href="https://pop-padel.com" target="_blank" rel="noopener">Pop Padel</a></strong>, 8A Lengkok Bahru, Redhill — 10 min from the hotel, covered courts, book via the Pop Padel app or WhatsApp <a class="mono" href="https://wa.me/6580245700" target="_blank" rel="noopener">+65 8024 5700</a>. <span class="cost">฿4,060 / 90 min (S$156)</span></p></div>
       <div class="slot"><div class="t">Afternoon</div><p><a href="https://www.mandai.com/en/singapore-zoo" target="_blank" rel="noopener">Singapore Zoo</a> with unlimited tram — arrive by 13:30, last entry 17:00. <span class="cost">฿1,270 adult / ฿880 child (S$49 / 34)</span> Optional upgrade: Mandai Xperience Pass adds Night Safari + River Wonders <span class="cost">฿2,470 / ฿1,690 (S$95 / 65)</span>.</p></div>
       <div class="slot"><div class="t">Evening</div><p>Chinatown wander and dinner at Maxwell Food Centre (Tian Tian chicken rice) — or stay north for Night Safari if you took the pass.</p></div>
     </div>
@@ -229,7 +267,7 @@
   <div class="day">
     <div class="datepost"><div class="dow">Wed</div><div class="num">29</div><div class="mon">Jul</div></div>
     <div>
-      <h2>Jewel Changi &amp; Fly Home</h2>
+      <h3>Jewel Changi &amp; Fly Home</h3>
       <div class="slot"><div class="t">Morning</div><p>Check out. Easy morning — hotel pool or a quick Chinatown souvenir run.</p></div>
       <div class="slot"><div class="t">Afternoon</div><p>Head to Changi early: Rain Vortex and Forest Valley are free; kids bounce the Sky Nets at <a href="https://www.jewelchangiairport.com" target="_blank" rel="noopener">Canopy Park</a>. Late lunch at Jewel. <span class="cost">~฿1,040–1,560 family (S$40–60)</span></p></div>
       <div class="slot"><div class="t">Evening</div><p>Fly Singapore → Bangkok, afternoon or early evening — land the same evening (Bangkok is 1h behind).</p></div>
@@ -237,68 +275,77 @@
   </div>
 
   <!-- Hotel -->
-  <p class="section-h">Flights — BKK &#8646; SIN</p>
+  <h2 class="section-h">Flights — BKK &#8646; SIN</h2>
   <div class="tablewrap">
     <table>
-      <thead><tr><th>Airline</th><th>Outbound Sat 25 Jul</th><th>Indicative price</th><th>Bags</th></tr></thead>
+      <thead><tr><th scope="col">Airline</th><th scope="col">Outbound Sat 25 Jul</th><th scope="col">Indicative price</th><th scope="col">Bags</th></tr></thead>
       <tbody>
-        <tr><td><strong>Thai Airways</strong> <span class="tag">pick</span></td><td class="n">TG403 · BKK 08:00 → 11:15</td><td class="n">~฿6,500–9,000 pp RT</td><td>~20kg included</td></tr>
-        <tr><td>Thai Lion Air</td><td class="n">DMK 07:45 → 11:10</td><td class="n">~฿3,400 pp/leg</td><td>checked extra</td></tr>
-        <tr><td>Scoot</td><td class="n">TR607 · BKK 11:50 → 15:30</td><td class="n">~฿3,000–3,100 pp/leg</td><td>10kg cabin free</td></tr>
-        <tr><td>Thai AirAsia</td><td class="n">DMK 10:40 → 14:05</td><td class="n">฿3,710 pp/leg</td><td>checked extra</td></tr>
-        <tr><td>Singapore Airlines</td><td class="n">BKK 13:35 → 17:05</td><td class="n">from ~฿3,150 pp/leg</td><td>included</td></tr>
-        <tr><td>Thai Vietjet</td><td class="n">~5×/week — verify dates</td><td class="n">sale from ~฿930 pp/leg</td><td>checked extra</td></tr>
+        <tr><th scope="row"><strong>Thai Airways</strong> <span class="tag">pick</span></th><td class="n">TG403 · BKK 08:00 → 11:15</td><td class="n">~฿6,500–9,000 pp RT</td><td>~20kg included</td></tr>
+        <tr><th scope="row">Thai Lion Air</th><td class="n">DMK 07:45 → 11:10</td><td class="n">~฿3,400 pp/leg</td><td>checked extra</td></tr>
+        <tr><th scope="row">Scoot</th><td class="n">TR607 · BKK 11:50 → 15:30</td><td class="n">~฿3,000–3,100 pp/leg</td><td>10kg cabin free</td></tr>
+        <tr><th scope="row">Thai AirAsia</th><td class="n">DMK 10:40 → 14:05</td><td class="n">฿3,710 pp/leg</td><td>checked extra</td></tr>
+        <tr><th scope="row">Singapore Airlines</th><td class="n">BKK 13:35 → 17:05</td><td class="n">from ~฿3,150 pp/leg</td><td>included</td></tr>
+        <tr><th scope="row">Thai Vietjet</th><td class="n">~5×/week — verify dates</td><td class="n">sale from ~฿930 pp/leg</td><td>checked extra</td></tr>
       </tbody>
     </table>
   </div>
   <p class="k" style="font-size:0.85rem">Recommended: TG403 out + Wednesday-afternoon TG return ≈ <strong>฿28,000–36,000 for 4</strong>, bags included, land 11:15 with the whole first day ahead. Budget play: Lion Air out + Scoot/AirAsia back ≈ ฿24,000–25,000 before checked bags (฿500–900 per bag per leg erodes the gap). Fares are published July-2026 samples, not locked quotes — a Saturday departure for 4 will price higher. Note: Jetstar Asia shut down in 2025.</p>
 
-  <p class="section-h">Where You're Staying — 3 Options</p>
-  <p class="hint">Tap a property to expand it across the page. Rates shown are indicative — live exact-date totals (incl. 9% GST + 10% service charge) via each tile’s link; hotel-site "from S$" rates are ++ (add ~19.9%).</p>
+  <h2 class="section-h">Where You're Staying — 3 Options</h2>
+  <p class="hint">Tap a property for photos and full details. Rates shown are indicative — live exact-date totals (incl. 9% GST + 10% service charge) via each tile’s link; hotel-site "from S$" rates are ++ (add ~19.9%).</p>
   <div class="hotels">
 
-    <article class="hotel" tabindex="0" role="button" aria-expanded="false">
-      <div class="gallery">
-        <img src="img/furama-1.jpg" alt="Furama RiverFront exterior" loading="lazy" onerror="this.remove()">
-        <img src="img/furama-2.jpg" alt="Furama RiverFront family room" loading="lazy" onerror="this.remove()">
-        <img src="img/furama-3.jpg" alt="Furama RiverFront lobby" loading="lazy" onerror="this.remove()">
-      </div>
+    <article class="hotel">
+      <button class="hotel-toggle" type="button" aria-expanded="false" aria-label="Show all photos and details for Furama RiverFront">
+        <span class="gallery">
+          <img src="img/furama-1.jpg" width="640" height="479" alt="Furama RiverFront exterior" loading="lazy" onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 4 3%22><rect width=%224%22 height=%223%22 fill=%22%23aab5aa%22/></svg>'">
+          <img data-src="img/furama-2.jpg" width="640" height="427" alt="Furama RiverFront family room" loading="lazy" onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 4 3%22><rect width=%224%22 height=%223%22 fill=%22%23aab5aa%22/></svg>'">
+          <img data-src="img/furama-3.jpg" width="640" height="426" alt="Furama RiverFront lobby" loading="lazy" onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 4 3%22><rect width=%224%22 height=%223%22 fill=%22%23aab5aa%22/></svg>'">
+        </span>
+        <span class="expand-badge">＋2 photos · details</span>
+      </button>
       <div class="hotel-body">
         <h3>Furama RiverFront <span class="tag">recommended</span></h3>
         <p class="k">4★ · Havelock / Clarke Quay</p>
         <p>One Family Room with two queen beds sleeps all four; kids 12 &amp; under stay and eat free. Riverside location covers Chinatown and Clarke Quay on foot, HarbourFront/Sentosa is 15 minutes away.</p>
         <p class="k mono">~฿3,900–5,460 / night (S$150–210) · ≈ ฿15,600–21,840 for 4 nights — indicative</p>
-        <p class="k" style="font-size:0.82rem">Family Room sleeps 4; kids ≤12 stay &amp; eat free with paying adults, but buffet breakfast is not in the base rate. <a href="https://us.trip.com/hotels/singapore-hotel-detail-995051/furama-riverfront/?checkIn=2026-07-25&checkOut=2026-07-29&adult=2&children=2&crn=1" target="_blank" rel="noopener">Live price for these dates →</a></p>
+        <p class="k fine">Family Room sleeps 4; kids ≤12 stay &amp; eat free with paying adults, but buffet breakfast is not in the base rate. <a href="https://us.trip.com/hotels/singapore-hotel-detail-995051/furama-riverfront/?checkIn=2026-07-25&checkOut=2026-07-29&adult=2&children=2&crn=1" target="_blank" rel="noopener">Live price for these dates →</a></p>
       </div>
     </article>
 
-    <article class="hotel" tabindex="0" role="button" aria-expanded="false">
-      <div class="gallery">
-        <img src="img/travelodge-1.jpg" alt="Travelodge Harbourfront exterior" loading="lazy" onerror="this.remove()">
-        <img src="img/travelodge-2.jpg" alt="Travelodge Harbourfront twin room with harbour view" loading="lazy" onerror="this.remove()">
-        <img src="img/travelodge-3.jpg" alt="Travelodge Harbourfront lobby" loading="lazy" onerror="this.remove()">
-      </div>
+    <article class="hotel">
+      <button class="hotel-toggle" type="button" aria-expanded="false" aria-label="Show all photos and details for Travelodge Harbourfront">
+        <span class="gallery">
+          <img src="img/travelodge-1.jpg" width="640" height="521" alt="Travelodge Harbourfront exterior" loading="lazy" onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 4 3%22><rect width=%224%22 height=%223%22 fill=%22%23aab5aa%22/></svg>'">
+          <img data-src="img/travelodge-2.jpg" width="640" height="427" alt="Travelodge Harbourfront twin room with harbour view" loading="lazy" onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 4 3%22><rect width=%224%22 height=%223%22 fill=%22%23aab5aa%22/></svg>'">
+          <img data-src="img/travelodge-3.jpg" width="640" height="427" alt="Travelodge Harbourfront lobby" loading="lazy" onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 4 3%22><rect width=%224%22 height=%223%22 fill=%22%23aab5aa%22/></svg>'">
+        </span>
+        <span class="expand-badge">＋2 photos · details</span>
+      </button>
       <div class="hotel-body">
         <h3>Travelodge Harbourfront</h3>
         <p class="k">4★ · HarbourFront (ex Bay Hotel)</p>
         <p>Spacious family rooms with VivoCity and the Sentosa monorail on the doorstep — the pick if Universal Studios and Sentosa are the heart of the trip, while staying on the MRT for downtown days.</p>
         <p class="k mono">~฿4,680–6,760 / night (S$180–260) · ≈ ฿18,700–27,000 for 4 nights — indicative</p>
-        <p class="k" style="font-size:0.82rem">"Friends &amp; Family" quad (30 sqm) has fixed bedding, no extra beds; kids 13+ count as adults — check ages fit. <a href="https://us.trip.com/hotels/singapore-hotel-detail-995010/bay-hotel-singapore/?checkIn=2026-07-25&checkOut=2026-07-29&adult=2&children=2&crn=1" target="_blank" rel="noopener">Live price for these dates →</a></p>
+        <p class="k fine">"Friends &amp; Family" quad (30 sqm) has fixed bedding, no extra beds; kids 13+ count as adults — check ages fit. <a href="https://us.trip.com/hotels/singapore-hotel-detail-995010/bay-hotel-singapore/?checkIn=2026-07-25&checkOut=2026-07-29&adult=2&children=2&crn=1" target="_blank" rel="noopener">Live price for these dates →</a></p>
       </div>
     </article>
 
-    <article class="hotel" tabindex="0" role="button" aria-expanded="false">
-      <div class="gallery">
-        <img src="img/village-1.jpg" alt="Village Hotel Bugis exterior with pool deck" loading="lazy" onerror="this.remove()">
-        <img src="img/village-2.jpg" alt="Village Hotel Bugis family room" loading="lazy" onerror="this.remove()">
-        <img src="img/village-3.jpg" alt="Village Hotel Bugis lobby" loading="lazy" onerror="this.remove()">
-      </div>
+    <article class="hotel">
+      <button class="hotel-toggle" type="button" aria-expanded="false" aria-label="Show all photos and details for Village Hotel Bugis">
+        <span class="gallery">
+          <img src="img/village-1.jpg" width="426" height="640" alt="Village Hotel Bugis exterior with pool deck" loading="lazy" onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 4 3%22><rect width=%224%22 height=%223%22 fill=%22%23aab5aa%22/></svg>'">
+          <img data-src="img/village-2.jpg" width="640" height="420" alt="Village Hotel Bugis family room" loading="lazy" onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 4 3%22><rect width=%224%22 height=%223%22 fill=%22%23aab5aa%22/></svg>'">
+          <img data-src="img/village-3.jpg" width="640" height="430" alt="Village Hotel Bugis lobby" loading="lazy" onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 4 3%22><rect width=%224%22 height=%223%22 fill=%22%23aab5aa%22/></svg>'">
+        </span>
+        <span class="expand-badge">＋2 photos · details</span>
+      </button>
       <div class="hotel-body">
         <h3>Village Hotel Bugis</h3>
         <p class="k">4★ · Bugis</p>
         <p>Purpose-built 32 sqm Family Room with breakfast for all four included. Most central for sightseeing and next door to The Padel Co; direct MRT line toward HarbourFront for the Sentosa day.</p>
         <p class="k mono">~฿5,980–7,540 / night (S$230–290) · ≈ ฿23,900–30,200 for 4 nights — indicative</p>
-        <p class="k" style="font-size:0.82rem">Family Room 32–35 sqm; one child ≤11 free on existing bed, rollaway ฿2,180 (S$83.93)/night if needed. <a href="https://us.trip.com/hotels/singapore-hotel-detail-996333/village-hotel-bugis-by-far-east-hospitality/?checkIn=2026-07-25&checkOut=2026-07-29&adult=2&children=2&crn=1" target="_blank" rel="noopener">Live price for these dates →</a></p>
+        <p class="k fine">Family Room 32–35 sqm; one child ≤11 free on existing bed, rollaway ฿2,180 (S$83.93)/night if needed. <a href="https://us.trip.com/hotels/singapore-hotel-detail-996333/village-hotel-bugis-by-far-east-hospitality/?checkIn=2026-07-25&checkOut=2026-07-29&adult=2&children=2&crn=1" target="_blank" rel="noopener">Live price for these dates →</a></p>
       </div>
     </article>
 
@@ -306,23 +353,37 @@
   <p class="k" style="font-size:0.85rem">Budget lever: Hotel Boss (Lavender, ~฿2,860–4,160/night) if the dates price high.</p>
 
   <script>
-    document.querySelectorAll('.hotel').forEach(function (card) {
-      function toggle() {
+    document.querySelectorAll('.hotel-toggle').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var card = btn.closest('.hotel');
         var open = card.classList.toggle('expanded');
-        card.setAttribute('aria-expanded', open);
-      }
-      card.addEventListener('click', toggle);
-      card.addEventListener('keydown', function (e) {
-        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
+        btn.setAttribute('aria-expanded', open);
+        var badge = btn.querySelector('.expand-badge');
+        if (badge) badge.textContent = open ? 'Show less' : '＋2 photos · details';
+        if (open) card.querySelectorAll('img[data-src]').forEach(function (im) {
+          im.src = im.getAttribute('data-src'); im.removeAttribute('data-src');
+        });
       });
     });
+    (function () {
+      var root = document.documentElement;
+      var saved = localStorage.getItem('trip-theme');
+      if (saved) root.dataset.theme = saved;
+      document.getElementById('theme-toggle').addEventListener('click', function () {
+        var dark = root.dataset.theme ? root.dataset.theme === 'dark'
+          : window.matchMedia('(prefers-color-scheme: dark)').matches;
+        var next = dark ? 'light' : 'dark';
+        root.dataset.theme = next;
+        localStorage.setItem('trip-theme', next);
+      });
+    })();
   </script>
 
   <!-- Budget -->
-  <p class="section-h">Budget Estimate</p>
+  <h2 class="section-h">Budget Estimate</h2>
   <div class="tablewrap">
     <table>
-      <thead><tr><th>Item</th><th>Low</th><th>High</th></tr></thead>
+      <thead><tr><th scope="col">Item</th><th scope="col">Low</th><th scope="col">High</th></tr></thead>
       <tbody>
         <tr><td>Flights BKK ⇄ SIN × 4 (LCC → TG)</td><td class="n">฿24,000</td><td class="n">฿36,000</td></tr>
         <tr><td>Hotel · 4 nights</td><td class="n">฿15,600</td><td class="n">฿21,840</td></tr>
@@ -336,36 +397,38 @@
     </table>
   </div>
 
-  <p class="section-h">More Family Activity Ideas</p>
+  <h2 class="section-h">More Family Activity Ideas</h2>
   <p class="hint">Swaps for the Tuesday zoo slot, rainy-day covers, or a longer trip. Tourist rates.</p>
   <div class="tablewrap">
     <table>
-      <thead><tr><th>Activity</th><th>Adult</th><th>Child</th><th>Notes</th></tr></thead>
+      <thead><tr><th scope="col">Activity</th><th scope="col">Adult</th><th scope="col">Child</th><th scope="col">Notes</th></tr></thead>
       <tbody>
-        <tr><td><strong><a href="https://www.marinabaysands.com" target="_blank" rel="noopener">ArtScience Museum — Future World</a></strong> <span class="tag">top swap</span></td><td class="n">฿910</td><td class="n">฿750</td><td>teamLab immersive rooms at Marina Bay; air-con, 1.5–2h — best Tuesday-afternoon zoo swap</td></tr>
-        <tr><td><a href="https://www.mandai.com/en/bird-paradise" target="_blank" rel="noopener">Bird Paradise</a> (Mandai)</td><td class="n">฿1,270</td><td class="n">฿880</td><td>Walk-through aviaries, penguin feedings; strongest zoo substitute but needs its own morning</td></tr>
-        <tr><td><a href="https://www.science.edu.sg" target="_blank" rel="noopener">Science Centre</a> + Omni-Theatre</td><td class="n">฿620</td><td class="n">฿570</td><td>Hands-on exhibits, Jurong East; open Tuesdays, great value indoors</td></tr>
-        <tr><td><a href="https://www.mountfaberleisure.com" target="_blank" rel="noopener">SkyHelix Sentosa</a></td><td class="n">฿520</td><td class="n">฿440</td><td>Open-air rotating gondola, drink included; pair with free Fort Siloso Skywalk</td></tr>
-        <tr><td><a href="https://www.mountfaberleisure.com" target="_blank" rel="noopener">Cable car SkyOrb cabins</a></td><td class="n">฿1,250</td><td class="n">฿960</td><td>Chrome bubble pods, Mount Faber + Sentosa lines, sunset run</td></tr>
-        <tr><td><a href="https://www.museumoficecream.com/singapore" target="_blank" rel="noopener">Museum of Ice Cream</a></td><td class="n">~฿1,220</td><td class="n">varies</td><td>Unlimited scoops + sprinkle pool, Dempsey; indoor</td></tr>
-        <tr><td><a href="https://hydrodash.com.sg" target="_blank" rel="noopener">HydroDash aqua park</a></td><td class="n" colspan="2">฿780 / hr</td><td>Floating obstacle course, Palawan Beach; swimmers 8+</td></tr>
-        <tr><td><a href="https://www.sentosa.com.sg" target="_blank" rel="noopener">Fort Siloso Skywalk · Sensoryscape · beaches</a></td><td class="n" colspan="2">free</td><td>Treetop walk, dusk light garden, Palawan sand — zero-cost Sentosa half-day</td></tr>
-        <tr><td><a href="https://www.superpark.com.sg" target="_blank" rel="noopener">SuperPark</a> / <a href="https://www.bounceinc.com.sg" target="_blank" rel="noopener">BOUNCE</a> (Suntec)</td><td class="n" colspan="2">from ~฿490</td><td>Trampolines and climbing — the rainy-day energy burner</td></tr>
+        <tr><th scope="row"><strong><a href="https://www.marinabaysands.com" target="_blank" rel="noopener">ArtScience Museum — Future World</a></strong> <span class="tag">top swap</span></th><td class="n">฿910</td><td class="n">฿750</td><td>teamLab immersive rooms at Marina Bay; air-con, 1.5–2h — best Tuesday-afternoon zoo swap</td></tr>
+        <tr><th scope="row"><a href="https://www.mandai.com/en/bird-paradise" target="_blank" rel="noopener">Bird Paradise</a> (Mandai)</th><td class="n">฿1,270</td><td class="n">฿880</td><td>Walk-through aviaries, penguin feedings; strongest zoo substitute but needs its own morning</td></tr>
+        <tr><th scope="row"><a href="https://www.science.edu.sg" target="_blank" rel="noopener">Science Centre</a> + Omni-Theatre</th><td class="n">฿620</td><td class="n">฿570</td><td>Hands-on exhibits, Jurong East; open Tuesdays, great value indoors</td></tr>
+        <tr><th scope="row"><a href="https://www.mountfaberleisure.com" target="_blank" rel="noopener">SkyHelix Sentosa</a></th><td class="n">฿520</td><td class="n">฿440</td><td>Open-air rotating gondola, drink included; pair with free Fort Siloso Skywalk</td></tr>
+        <tr><th scope="row"><a href="https://www.mountfaberleisure.com" target="_blank" rel="noopener">Cable car SkyOrb cabins</a></th><td class="n">฿1,250</td><td class="n">฿960</td><td>Chrome bubble pods, Mount Faber + Sentosa lines, sunset run</td></tr>
+        <tr><th scope="row"><a href="https://www.museumoficecream.com/singapore" target="_blank" rel="noopener">Museum of Ice Cream</a></th><td class="n">~฿1,220</td><td class="n">varies</td><td>Unlimited scoops + sprinkle pool, Dempsey; indoor</td></tr>
+        <tr><th scope="row"><a href="https://hydrodash.com.sg" target="_blank" rel="noopener">HydroDash aqua park</a></th><td class="n" colspan="2">฿780 / hr</td><td>Floating obstacle course, Palawan Beach; swimmers 8+</td></tr>
+        <tr><th scope="row"><a href="https://www.sentosa.com.sg" target="_blank" rel="noopener">Fort Siloso Skywalk · Sensoryscape · beaches</a></th><td class="n" colspan="2">free</td><td>Treetop walk, dusk light garden, Palawan sand — zero-cost Sentosa half-day</td></tr>
+        <tr><th scope="row"><a href="https://www.superpark.com.sg" target="_blank" rel="noopener">SuperPark</a> / <a href="https://www.bounceinc.com.sg" target="_blank" rel="noopener">BOUNCE</a> (Suntec)</th><td class="n" colspan="2">from ~฿490</td><td>Trampolines and climbing — the rainy-day energy burner</td></tr>
       </tbody>
     </table>
   </div>
 
   <!-- Checklist -->
-  <p class="section-h">Booking Checklist</p>
+  <h2 class="section-h">Booking Checklist</h2>
   <ul class="check">
     <li>Flights — Thai Airways TG403 out Sat 25 Jul, afternoon TG return Wed 29 Jul (~฿28–36k for 4, bags incl.); LCC fallback ~฿24–25k before bags</li>
     <li>Furama RiverFront Family Room, 25–29 Jul</li>
     <li>USS tickets for Mon 27 Jul — <strong>check the RWS calendar first</strong> (some Tuesdays close for maintenance; Monday is the safer pick)</li>
     <li>Optional — The Padel Co, Playtomic slot, Sunday morning</li>
-    <li>Optional — Pop Padel, app or WhatsApp +65 8024 5700, Tuesday morning, 90 min</li>
+    <li>Optional — Pop Padel, app or WhatsApp <a class="mono" href="https://wa.me/6580245700" target="_blank" rel="noopener">+65 8024 5700</a>, Tuesday morning, 90 min</li>
     <li>River cruise + Gardens + Zoo tickets on Klook or official sites (Jun–Aug cruise promo)</li>
   </ul>
 
+  </main>
+  <footer>
   <p class="caveat"><strong>Verify before booking:</strong> prices are indicative from July 2026 research; THB converted at ≈26 THB per SGD. The Padel Co uses dynamic Playtomic pricing; Pop Padel's opening hours aren't published — confirm on WhatsApp. Origin assumed Bangkok.</p>
 </div>
 

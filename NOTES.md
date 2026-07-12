@@ -149,6 +149,9 @@ _(no pending items)_
 ## padel-clubs-scraper
 - Scrape padel clubs in Bangkok
 
+## padel-season-map
+_(no pending items)_
+
 ---
 
 # Other

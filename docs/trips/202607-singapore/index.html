@@ -8,6 +8,12 @@
 <title>Singapore · 25–29 July 2026 — Family Itinerary</title>
 </head>
 <body>
+<div id="bg-stage" aria-hidden="true">
+  <div class="bg" data-bg-i="0" style="background-image:url('img/bg-marina.jpg')"></div>
+  <div class="bg" data-bg-i="1" data-img="img/bg-supertrees.jpg"></div>
+  <div class="bg" data-bg-i="2" data-img="img/bg-uss.jpg"></div>
+  <div class="bg" data-bg-i="3" data-img="img/bg-quay.jpg"></div>
+</div>
 <style>
   @font-face { font-family: "Jost"; src: url("../fonts/jost-v20-latin-regular.woff2") format("woff2"); font-weight: 400; font-display: swap; }
   @font-face { font-family: "Jost"; src: url("../fonts/jost-v20-latin-600.woff2") format("woff2"); font-weight: 600; font-display: swap; }
@@ -49,12 +55,34 @@
   }
   body {
     background: var(--ground); color: var(--ink);
+    /* padding areas around header/footer are covered by their spread shadows */
     font-family: var(--body); line-height: 1.55;
     margin: 0; padding: 2.5rem 1.25rem 4rem;
   }
   .wrap { max-width: 860px; margin: 0 auto; }
 
   /* Masthead */
+  #bg-stage { position: fixed; inset: 0; z-index: -1; }
+  #bg-stage .bg {
+    position: absolute; inset: 0; background-size: cover; background-position: center;
+    opacity: 0; transition: opacity 0.9s ease;
+  }
+  #bg-stage .bg.active { opacity: 1; }
+  @media (prefers-reduced-motion: reduce) { #bg-stage .bg { transition: none; } }
+  header, footer, .sheet { background: var(--ground); box-shadow: 0 0 0 2.5rem var(--ground); }
+  .sheet { box-shadow: 1.25rem 0 0 0 var(--ground), -1.25rem 0 0 0 var(--ground); }
+  .sheet { display: flow-root; }
+  .photo-band {
+    min-height: 46vh; position: relative;
+    margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw);
+    display: flex; align-items: flex-end; justify-content: center;
+  }
+  .band-caption {
+    font-family: var(--display); font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.18em; font-size: 0.68rem; color: #fff;
+    background: rgba(20,26,21,0.55); padding: 0.3rem 0.8rem; border-radius: 2px;
+    margin-bottom: 1.2rem;
+  }
   header { position: relative; }
   #theme-toggle {
     position: absolute; top: -0.6rem; right: 0; width: 2.4rem; height: 2.4rem;
@@ -218,6 +246,8 @@
   </div>
   </header>
   <main>
+  <section class="photo-band" data-bg="0"><span class="band-caption">Marina Bay</span></section>
+  <div class="sheet">
 
   <!-- Saturday -->
   <div class="day">
@@ -275,6 +305,9 @@
   </div>
 
   <!-- Hotel -->
+  </div>
+  <section class="photo-band" data-bg="1"><span class="band-caption">Supertree Grove · Gardens by the Bay</span></section>
+  <div class="sheet">
   <h2 class="section-h">Flights — BKK &#8646; SIN</h2>
   <div class="tablewrap">
     <table>
@@ -352,34 +385,12 @@
   </div>
   <p class="k" style="font-size:0.85rem">Budget lever: Hotel Boss (Lavender, ~฿2,860–4,160/night) if the dates price high.</p>
 
-  <script>
-    document.querySelectorAll('.hotel-toggle').forEach(function (btn) {
-      btn.addEventListener('click', function () {
-        var card = btn.closest('.hotel');
-        var open = card.classList.toggle('expanded');
-        btn.setAttribute('aria-expanded', open);
-        var badge = btn.querySelector('.expand-badge');
-        if (badge) badge.textContent = open ? 'Show less' : '＋2 photos · details';
-        if (open) card.querySelectorAll('img[data-src]').forEach(function (im) {
-          im.src = im.getAttribute('data-src'); im.removeAttribute('data-src');
-        });
-      });
-    });
-    (function () {
-      var root = document.documentElement;
-      var saved = localStorage.getItem('trip-theme');
-      if (saved) root.dataset.theme = saved;
-      document.getElementById('theme-toggle').addEventListener('click', function () {
-        var dark = root.dataset.theme ? root.dataset.theme === 'dark'
-          : window.matchMedia('(prefers-color-scheme: dark)').matches;
-        var next = dark ? 'light' : 'dark';
-        root.dataset.theme = next;
-        localStorage.setItem('trip-theme', next);
-      });
-    })();
-  </script>
+  
 
   <!-- Budget -->
+  </div>
+  <section class="photo-band" data-bg="2"><span class="band-caption">Universal Studios Singapore</span></section>
+  <div class="sheet">
   <h2 class="section-h">Budget Estimate</h2>
   <div class="tablewrap">
     <table>
@@ -417,6 +428,9 @@
   </div>
 
   <!-- Checklist -->
+  </div>
+  <section class="photo-band" data-bg="3"><span class="band-caption">Clarke Quay</span></section>
+  <div class="sheet">
   <h2 class="section-h">Booking Checklist</h2>
   <ul class="check">
     <li>Flights — Thai Airways TG403 out Sat 25 Jul, afternoon TG return Wed 29 Jul (~฿28–36k for 4, bags incl.); LCC fallback ~฿24–25k before bags</li>
@@ -427,11 +441,59 @@
     <li>River cruise + Gardens + Zoo tickets on Klook or official sites (Jun–Aug cruise promo)</li>
   </ul>
 
+  </div>
   </main>
   <footer>
   <p class="caveat"><strong>Verify before booking:</strong> prices are indicative from July 2026 research; THB converted at ≈26 THB per SGD. The Padel Co uses dynamic Playtomic pricing; Pop Padel's opening hours aren't published — confirm on WhatsApp. Origin assumed Bangkok.</p>
+  <p class="caveat" style="margin-top:0.6rem">Background photos via Wikimedia Commons: <a href="https://commons.wikimedia.org/wiki/File:Singapore_Marina_Bay_Dusk_2018-02-27.jpg" target="_blank" rel="noopener">Marina Bay</a> (CC BY-SA 4.0) · <a href="https://commons.wikimedia.org/wiki/File:Supertree_Grove,_Gardens_by_the_Bay,_Singapore1.jpg" target="_blank" rel="noopener">Supertree Grove</a> (CC0) · <a href="https://commons.wikimedia.org/wiki/File:Globe,_Universal_Studios_Singapore_(Unsplash).jpg" target="_blank" rel="noopener">Universal globe</a> (CC0) · <a href="https://commons.wikimedia.org/wiki/File:Clarke_Quay_and_Singapore_River_(3170376941).jpg" target="_blank" rel="noopener">Clarke Quay</a> (CC BY 2.0).</p>
   </footer>
 </div>
 
+<script>
+    document.querySelectorAll('.hotel-toggle').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var card = btn.closest('.hotel');
+        var open = card.classList.toggle('expanded');
+        btn.setAttribute('aria-expanded', open);
+        var badge = btn.querySelector('.expand-badge');
+        if (badge) badge.textContent = open ? 'Show less' : '＋2 photos · details';
+        if (open) card.querySelectorAll('img[data-src]').forEach(function (im) {
+          im.src = im.getAttribute('data-src'); im.removeAttribute('data-src');
+        });
+      });
+    });
+    (function () {
+      var bgs = document.querySelectorAll('#bg-stage .bg');
+      if (bgs.length) {
+        bgs[0].classList.add('active');
+        setTimeout(function () {
+          bgs.forEach(function (b) {
+            var u = b.getAttribute('data-img');
+            if (u) { b.style.backgroundImage = "url('" + u + "')"; b.removeAttribute('data-img'); }
+          });
+        }, 1500);
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (!e.isIntersecting) return;
+            var i = +e.target.getAttribute('data-bg');
+            bgs.forEach(function (b, j) { b.classList.toggle('active', i === j); });
+          });
+        }, { threshold: 0.4 });
+        document.querySelectorAll('.photo-band').forEach(function (b) { io.observe(b); });
+      }
+    })();
+    (function () {
+      var root = document.documentElement;
+      var saved = localStorage.getItem('trip-theme');
+      if (saved) root.dataset.theme = saved;
+      document.getElementById('theme-toggle').addEventListener('click', function () {
+        var dark = root.dataset.theme ? root.dataset.theme === 'dark'
+          : window.matchMedia('(prefers-color-scheme: dark)').matches;
+        var next = dark ? 'light' : 'dark';
+        root.dataset.theme = next;
+        localStorage.setItem('trip-theme', next);
+      });
+    })();
+  </script>
 </body>
 </html>

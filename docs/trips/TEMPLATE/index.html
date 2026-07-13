@@ -20,7 +20,10 @@
      button/badge/fine structure. Link every activity to its official site (HEAD-verify URLs).
      Fill the Citi ThankYou points card: re-verify transfer ratios + portal cpp, write
      research/points.md, and recommend portal vs transfer for this destination.
-  6. Deploy: git add + commit + push in ~/Cowork/preed-ee (Pages serves /docs). Verify live.
+  6. All section boxes are <details class="secbox"> — collapsed by default, summary shows the
+     h2 title plus a one-line .sum-desc description. Keep that pattern; each day is its own
+     collapsible details.day-box inside Day by Day.
+  7. Deploy: git add + commit + push in ~/Cowork/preed-ee (Pages serves /docs). Verify live.
 -->
 <body>
 <div id="bg-stage" aria-hidden="true">
@@ -236,6 +239,15 @@
   .hotel:not(.expanded) .fine { display: none; }
   @media (prefers-reduced-motion: reduce) { .hotel { transition: none; } }
   @media (max-width: 560px) { .hotel.expanded .gallery { grid-template-columns: 1fr; } .hotel.expanded .gallery img { height: 200px; } }
+  details.secbox { background: var(--card); border: 1px solid var(--line); border-radius: 4px; margin: 1rem 0; padding: 0 1.1rem 0.3rem; }
+  details.secbox > summary { cursor: pointer; list-style: none; display: grid; grid-template-columns: auto 1fr; column-gap: 0.6rem; align-items: baseline; padding: 0.2rem 0; }
+  details.secbox > summary::-webkit-details-marker { display: none; }
+  details.secbox > summary::before { content: "▸"; color: var(--accent); font-weight: 600; align-self: center; }
+  details.secbox[open] > summary::before { content: "▾"; }
+  details.secbox > summary h2 { margin: 0.9rem 0; }
+  .sum-desc { grid-column: 2; margin: 0 0 0.75rem; color: var(--muted); font-size: 0.85rem; max-width: 60ch; }
+  details.day-box > summary { cursor: pointer; list-style: none; }
+  details.day-box > summary::-webkit-details-marker { display: none; }
   .caveat { font-size: 0.85rem; color: var(--muted); margin-top: 2.5rem; border-top: 1px solid var(--line); padding-top: 1rem; }
   .caveat strong { color: var(--red); }
 
@@ -263,22 +275,31 @@
   <section class="photo-band" data-bg="0"><span class="band-caption">Landmark One</span></section>
   <div class="sheet">
 
-  <!-- Duplicate this .day block per day -->
-  <div class="day">
+  <details class="secbox">
+  <summary><h2 class="section-h" style="margin:0.9rem 0">Day by Day</h2><p class="sum-desc">One-line description shown while collapsed — the trip's shape at a glance.</p></summary>
+  <!-- Duplicate this details.day-box per day -->
+  <details class="day-box">
+  <summary><div class="day" style="border-bottom:none; padding-bottom:0">
     <div class="datepost"><div class="dow">Day</div><div class="num">00</div><div class="mon">Mon</div></div>
+    <div><h3 style="margin:0.4rem 0">Day Title <span class="tag opt">optional item</span></h3></div>
+  </div></summary>
+  <div class="day" style="padding-top:0">
+    <div class="datepost"></div>
     <div>
-      <h3>Day Title <span class="tag opt">optional item</span></h3>
       <div class="slot"><div class="t">Morning</div><p>Morning plan with an <a href="https://example.com" target="_blank" rel="noopener">official link</a>. <span class="cost">฿000 (X$00)</span></p></div>
       <div class="slot"><div class="t">Afternoon</div><p>Afternoon plan.</p></div>
       <div class="slot"><div class="t">Evening</div><p>Evening plan.</p></div>
     </div>
   </div>
+  </details>
+  </details>
 
   </div>
   <section class="photo-band" data-bg="1"><span class="band-caption">Landmark Two</span></section>
   <div class="sheet">
 
-  <h2 class="section-h">Flights</h2>
+  <details class="secbox">
+  <summary><h2 class="section-h" style="margin:0.9rem 0">Flights</h2><p class="sum-desc">Carriers, times and indicative fares for the route.</p></summary>
   <div class="tablewrap">
     <table>
       <thead><tr><th scope="col">Airline</th><th scope="col">Schedule</th><th scope="col">Indicative price</th><th scope="col">Bags</th></tr></thead>
@@ -288,8 +309,10 @@
       </tbody>
     </table>
   </div>
+  </details>
 
-  <h2 class="section-h">Where You're Staying — 3 Options</h2>
+  <details class="secbox">
+  <summary><h2 class="section-h" style="margin:0.9rem 0">Where You're Staying — 3 Options</h2><p class="sum-desc">Three vetted hotels with photos, indicative rates and a points option.</p></summary>
   <p class="hint">Tap a property for photos and full details. Rates shown are indicative — check live exact-date totals (incl. taxes/fees).</p>
   <div class="hotels">
     <!-- Duplicate this article ×3; imgs 2-3 use data-src -->
@@ -317,12 +340,14 @@
     <p>Check current transfer partners (they change — 19 Apr 2026 devaluation precedent) and the Citi Travel portal (~1.0–1.3¢/pt). State points needed for this stay, which partner fits the destination and party size, and whether the portal beats transferring. Balance context lives in memory.</p>
     <p class="k fine" style="display:block">Ratios verified DATE — details in research/points.md.</p>
   </div>
+  </details>
 
   </div>
   <section class="photo-band" data-bg="2"><span class="band-caption">Landmark Three</span></section>
   <div class="sheet">
 
-  <h2 class="section-h">Budget Estimate</h2>
+  <details class="secbox">
+  <summary><h2 class="section-h" style="margin:0.9rem 0">Budget Estimate</h2><p class="sum-desc">Low/high totals per line — THB primary.</p></summary>
   <div class="tablewrap">
     <table>
       <thead><tr><th scope="col">Item</th><th scope="col">Low</th><th scope="col">High</th></tr></thead>
@@ -332,16 +357,19 @@
       </tbody>
     </table>
   </div>
+  </details>
 
   </div>
   <section class="photo-band" data-bg="3"><span class="band-caption">Landmark Four</span></section>
   <div class="sheet">
 
-  <h2 class="section-h">Booking Checklist</h2>
+  <details class="secbox">
+  <summary><h2 class="section-h" style="margin:0.9rem 0">Booking Checklist</h2><p class="sum-desc">Every booking action in order, with verify-first flags.</p></summary>
   <ul class="check">
     <li>First booking action with key detail</li>
     <li>Second booking action — <strong>verify X before paying</strong></li>
   </ul>
+  </details>
 
   </div>
   </main>

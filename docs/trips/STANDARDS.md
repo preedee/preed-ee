@@ -28,6 +28,11 @@ Defaults for every trip itinerary page under `docs/trips/<slug>/`. Established 2
 - Visible affordance badge ("＋2 photos · details" ↔ "Show less").
 - Collapsed state shows the persuasive pitch line; fine print (`.fine`) is what collapses.
 
+## Collapsible section boxes (default)
+- Every major section (At a glance / Day by day / Flights / Hotels / Budget / Eat sheet / Checklist) is a `<details class="secbox">` — **collapsed by default**, native details/summary (keyboard-accessible, no JS).
+- The collapsed summary shows the section title **plus a one-line `.sum-desc` description** so the reader knows what's inside before expanding.
+- Each day is its own collapsible box inside Day by day.
+
 ## Parallax destination photo bands (default)
 - Every trip page gets 3–4 full-bleed photo bands of destination landmarks between major sections, revealing a fixed background layer (`#bg-stage`, `position:fixed; z-index:-1`) that crossfades per band via IntersectionObserver — never `background-attachment:fixed` (broken on iOS Safari).
 - Content lives in `.sheet` wrappers (`display:flow-root`, solid theme background + spread box-shadow to cover body padding); bands are transparent windows with a caption chip naming the place.

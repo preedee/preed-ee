@@ -47,6 +47,6 @@ Defaults for every trip itinerary page under `docs/trips/<slug>/`. Established 2
 - Prices THB-primary, local currency in parentheses, conversion rate noted.
 - Every activity links to its official website (`target="_blank" rel="noopener"`), URLs HEAD-verified before publishing.
 - Hotels: 3 options in expandable tiles with photos; availability + all-in prices (incl. taxes/fees) checked live where possible, honestly labeled "indicative" otherwise, with dated OTA deep-links per hotel.
-- Points: every hotels section includes a Citi ThankYou points card — re-verify current transfer partners/ratios (they devalue; Apr 2026 precedent) and the portal rate, state points needed for the stay, and recommend portal vs transfer. Full research in `research/points.md`.
+- Points: every hotels section includes a Citi ThankYou points card — **transfer partners only, never the Citi travel portal** (user preference). Re-verify current partners/ratios (they devalue; Apr 2026 precedent), name the partner properties at the destination that fit the party, state points needed; if no partner property fits, say so honestly. Full research in `research/points.md`.
 - Footer/fine-print text runs the full content width (no narrow max-width caps inside full-width boxes).
 - Pages carry `<meta name="robots" content="noindex">` and an emoji SVG favicon.

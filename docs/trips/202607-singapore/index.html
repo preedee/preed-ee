@@ -221,6 +221,15 @@
   .hotel:not(.expanded) .fine { display: none; }
   @media (prefers-reduced-motion: reduce) { .hotel { transition: none; } }
   @media (max-width: 560px) { .hotel.expanded .gallery { grid-template-columns: 1fr; } .hotel.expanded .gallery img { height: 200px; } }
+  details.secbox { background: var(--card); border: 1px solid var(--line); border-radius: 4px; margin: 1rem 0; padding: 0 1.1rem 0.3rem; }
+  details.secbox > summary { cursor: pointer; list-style: none; display: grid; grid-template-columns: auto 1fr; column-gap: 0.6rem; align-items: baseline; padding: 0.2rem 0; }
+  details.secbox > summary::-webkit-details-marker { display: none; }
+  details.secbox > summary::before { content: "▸"; color: var(--accent); font-weight: 600; align-self: center; }
+  details.secbox[open] > summary::before { content: "▾"; }
+  details.secbox > summary h2 { margin: 0.9rem 0; }
+  .sum-desc { grid-column: 2; margin: 0 0 0.75rem; color: var(--muted); font-size: 0.85rem; max-width: 60ch; }
+  details.day-box > summary { cursor: pointer; list-style: none; }
+  details.day-box > summary::-webkit-details-marker { display: none; }
   .caveat { font-size: 0.85rem; color: var(--muted); margin-top: 2.5rem; border-top: 1px solid var(--line); padding-top: 1rem; }
   .caveat strong { color: var(--red); }
 
@@ -247,67 +256,96 @@
   <main>
   <section class="photo-band" data-bg="0"><span class="band-caption">Marina Bay</span></section>
   <div class="sheet">
+  <details class="secbox">
+  <summary><h2 class="section-h" style="margin:0.9rem 0">Day by Day</h2><p class="sum-desc">Five days — arrival river cruise, Gardens by the Bay, Universal Studios Monday, the zoo, and a Jewel send-off.</p></summary>
 
   <!-- Saturday -->
-  <div class="day">
+  <details class="day-box">
+  <summary><div class="day" style="border-bottom:none; padding-bottom:0">
     <div class="datepost"><div class="dow">Sat</div><div class="num">25</div><div class="mon">Jul</div></div>
+    <div><h3 style="margin:0.4rem 0">Arrival &amp; Riverside Evening</h3></div>
+  </div></summary>
+  <div class="day" style="padding-top:0">
+    <div class="datepost"></div>
     <div>
-      <h3>Arrival &amp; Riverside Evening</h3>
       <div class="slot"><div class="t">Morning</div><p>Fly Bangkok → Singapore — pick: <strong>Thai Airways TG403, 08:00 → 11:15</strong> (checked bags included). Budget alternatives in the flights table below.</p></div>
       <div class="slot"><div class="t">Afternoon</div><p>Grab XL to Furama RiverFront <span class="cost">฿520–910 (S$20–35)</span> — check in to the Family Room (two queens, kids eat free). Hotel pool while the heat peaks.</p></div>
       <div class="slot"><div class="t">Evening</div><p><a href="https://www.rivercruise.com.sg" target="_blank" rel="noopener">Singapore River Cruise</a> from Clarke Quay to Marina Bay <span class="cost">~฿2,080 family (S$80), summer promo may halve it</span>, Merlion photo stop, then satay dinner at <a href="https://www.laupasat.sg" target="_blank" rel="noopener">Lau Pa Sat</a> — Satay Street fires up from 7pm.</p></div>
     </div>
   </div>
+  </details>
 
   <!-- Sunday -->
-  <div class="day">
+  <details class="day-box">
+  <summary><div class="day" style="border-bottom:none; padding-bottom:0">
     <div class="datepost"><div class="dow">Sun</div><div class="num">26</div><div class="mon">Jul</div></div>
+    <div><h3 style="margin:0.4rem 0">Gardens by the Bay &amp; Marina Bay <span class="tag opt">optional padel</span></h3></div>
+  </div></summary>
+  <div class="day" style="padding-top:0">
+    <div class="datepost"></div>
     <div>
-      <h3>Gardens by the Bay &amp; Marina Bay <span class="tag opt">optional padel</span></h3>
       <div class="slot"><div class="t">Morning</div><p>Slow breakfast, hotel pool, or a browse around Bugis Junction. <em>Optional padel:</em> rooftop court at <strong><a href="https://thepadel.co" target="_blank" rel="noopener">The Padel Co</a></strong>, Fortune Centre L6B, Bugis — open 07:00, book on <span class="mono"><a href="https://playtomic.com" target="_blank" rel="noopener">Playtomic</a></span>, family welcome to watch from the café. <span class="cost">~฿2,340–3,380/court/hr (S$90–130)</span></p></div>
       <div class="slot"><div class="t">Afternoon</div><p>Cloud Forest + Flower Dome at <a href="https://www.gardensbythebay.com.sg" target="_blank" rel="noopener">Gardens by the Bay</a> — air-conditioned domes for the hot hours. <span class="cost">฿1,250 adult / ฿730 child (S$48 / 28)</span></p></div>
       <div class="slot"><div class="t">Evening</div><p>Free Garden Rhapsody light show at Supertree Grove (19:45), Marina Bay waterfront stroll, dinner at Marina Bay or Clarke Quay.</p></div>
     </div>
   </div>
+  </details>
 
   <!-- Monday -->
-  <div class="day uss">
+  <details class="day-box">
+  <summary><div class="day uss" style="border-bottom:none; padding-bottom:0">
     <div class="datepost"><div class="dow">Mon</div><div class="num">27</div><div class="mon">Jul</div></div>
+    <div><h3 style="margin:0.4rem 0"><a href="https://www.rwsentosa.com/en/play/universal-studios-singapore" target="_blank" rel="noopener">Universal Studios Singapore</a> <span class="tag red">Full Day</span></h3></div>
+  </div></summary>
+  <div class="day uss" style="padding-top:0">
+    <div class="datepost"></div>
     <div>
-      <h3><a href="https://www.rwsentosa.com/en/play/universal-studios-singapore" target="_blank" rel="noopener">Universal Studios Singapore</a> <span class="tag red">Full Day</span></h3>
       <div class="slot"><div class="t">Morning</div><p>Arrive 09:45 for the 10:00 open — straight to Sci-Fi City and Minion Land before queues build. Grab to Sentosa <span class="cost">฿390–650 (S$15–25)</span> or MRT + Sentosa Express <span class="cost">฿104 pp (S$4)</span>.</p></div>
       <div class="slot"><div class="t">Afternoon</div><p>Full park day (typical close 20:00). Late July isn't a Singapore school holiday — Monday crowds are light, so skip the Express Pass and save ~฿9,400 (S$360). Indoor rides when the 1pm shower passes through. <span class="cost">tickets ~฿7,550 family (S$290)</span></p></div>
       <div class="slot"><div class="t">Evening</div><p>Dinner at VivoCity on the way home, or collapse gratefully at the hotel.</p></div>
     </div>
   </div>
+  </details>
 
   <!-- Tuesday -->
-  <div class="day">
+  <details class="day-box">
+  <summary><div class="day" style="border-bottom:none; padding-bottom:0">
     <div class="datepost"><div class="dow">Tue</div><div class="num">28</div><div class="mon">Jul</div></div>
+    <div><h3 style="margin:0.4rem 0">Singapore Zoo &amp; Chinatown <span class="tag opt">optional padel</span></h3></div>
+  </div></summary>
+  <div class="day" style="padding-top:0">
+    <div class="datepost"></div>
     <div>
-      <h3>Singapore Zoo &amp; Chinatown <span class="tag opt">optional padel</span></h3>
       <div class="slot"><div class="t">Morning</div><p>Lazy morning — sleep in and hit the hotel pool before the zoo. <em>Optional padel:</em> 90 minutes at <strong><a href="https://pop-padel.com" target="_blank" rel="noopener">Pop Padel</a></strong>, 8A Lengkok Bahru, Redhill — 10 min from the hotel, covered courts, book via the Pop Padel app or WhatsApp <a class="mono" href="https://wa.me/6580245700" target="_blank" rel="noopener">+65 8024 5700</a>. <span class="cost">฿4,060 / 90 min (S$156)</span></p></div>
       <div class="slot"><div class="t">Afternoon</div><p><a href="https://www.mandai.com/en/singapore-zoo" target="_blank" rel="noopener">Singapore Zoo</a> with unlimited tram — arrive by 13:30, last entry 17:00. <span class="cost">฿1,270 adult / ฿880 child (S$49 / 34)</span> Optional upgrade: Mandai Xperience Pass adds Night Safari + River Wonders <span class="cost">฿2,470 / ฿1,690 (S$95 / 65)</span>.</p></div>
       <div class="slot"><div class="t">Evening</div><p>Chinatown wander and dinner at Maxwell Food Centre (Tian Tian chicken rice) — or stay north for Night Safari if you took the pass.</p></div>
     </div>
   </div>
+  </details>
 
   <!-- Wednesday -->
-  <div class="day">
+  <details class="day-box">
+  <summary><div class="day" style="border-bottom:none; padding-bottom:0">
     <div class="datepost"><div class="dow">Wed</div><div class="num">29</div><div class="mon">Jul</div></div>
+    <div><h3 style="margin:0.4rem 0">Jewel Changi &amp; Fly Home</h3></div>
+  </div></summary>
+  <div class="day" style="padding-top:0">
+    <div class="datepost"></div>
     <div>
-      <h3>Jewel Changi &amp; Fly Home</h3>
       <div class="slot"><div class="t">Morning</div><p>Check out. Easy morning — hotel pool or a quick Chinatown souvenir run.</p></div>
       <div class="slot"><div class="t">Afternoon</div><p>Head to Changi early: Rain Vortex and Forest Valley are free; kids bounce the Sky Nets at <a href="https://www.jewelchangiairport.com" target="_blank" rel="noopener">Canopy Park</a>. Late lunch at Jewel. <span class="cost">~฿1,040–1,560 family (S$40–60)</span></p></div>
       <div class="slot"><div class="t">Evening</div><p>Fly Singapore → Bangkok, afternoon or early evening — land the same evening (Bangkok is 1h behind).</p></div>
     </div>
   </div>
+  </details>
 
   <!-- Hotel -->
+  </details>
   </div>
   <section class="photo-band" data-bg="1"><span class="band-caption">Supertree Grove · Gardens by the Bay</span></section>
   <div class="sheet">
-  <h2 class="section-h">Flights — BKK &#8646; SIN</h2>
+  <details class="secbox">
+  <summary><h2 class="section-h" style="margin:0.9rem 0">Flights — BKK &#8646; SIN</h2><p class="sum-desc">Carriers, times and fares — Thai Airways TG403 is the pick, ≈฿28–36k for four.</p></summary>
   <div class="tablewrap">
     <table>
       <thead><tr><th scope="col">Airline</th><th scope="col">Outbound Sat 25 Jul</th><th scope="col">Indicative price</th><th scope="col">Bags</th></tr></thead>
@@ -322,8 +360,10 @@
     </table>
   </div>
   <p class="k" style="font-size:0.85rem">Recommended: TG403 out + Wednesday-afternoon TG return ≈ <strong>฿28,000–36,000 for 4</strong>, bags included, land 11:15 with the whole first day ahead. Budget play: Lion Air out + Scoot/AirAsia back ≈ ฿24,000–25,000 before checked bags (฿500–900 per bag per leg erodes the gap). Fares are published July-2026 samples, not locked quotes — a Saturday departure for 4 will price higher. Note: Jetstar Asia shut down in 2025.</p>
+  </details>
 
-  <h2 class="section-h">Where You're Staying — 3 Options</h2>
+  <details class="secbox">
+  <summary><h2 class="section-h" style="margin:0.9rem 0">Where You're Staying — 3 Options</h2><p class="sum-desc">Three vetted hotels with photos and indicative rates — plus your ThankYou-points option.</p></summary>
   <p class="hint">Tap a property for photos and full details. Rates shown are indicative — live exact-date totals (incl. 9% GST + 10% service charge) via each tile’s link; hotel-site "from S$" rates are ++ (add ~19.9%).</p>
   <div class="hotels">
 
@@ -389,6 +429,7 @@
     <p>Your ~500k-point balance over-covers this stay many times. Simplest and best: book any of these hotels through the <strong>Citi Travel portal</strong> at ~1.0–1.3¢/point — this 4-night stay costs roughly <span class="mono">70k–120k points</span>, Furama included. Transfer routes are optional: <strong>Accor ALL</strong> (2:1, cash-like €40 per 2,000 pts) fits Novotel on Kitchener's true family rooms; <strong>Wyndham</strong> (1:1, ~15k pts/room/night) only fits Days/Ramada Zhongshan Park. Skip Choice and I Prefer — no Singapore inventory / devalued 19 Apr 2026.</p>
     <p class="k fine" style="display:block">Ratios verified 13 Jul 2026 (post-April devaluation) — details in research/points.md.</p>
   </div>
+  </details>
 
   
 
@@ -396,7 +437,8 @@
   </div>
   <section class="photo-band" data-bg="2"><span class="band-caption">Universal Studios Singapore</span></section>
   <div class="sheet">
-  <h2 class="section-h">Budget Estimate</h2>
+  <details class="secbox">
+  <summary><h2 class="section-h" style="margin:0.9rem 0">Budget Estimate</h2><p class="sum-desc">≈ ฿76–108k all-in for four, line by line, THB primary.</p></summary>
   <div class="tablewrap">
     <table>
       <thead><tr><th scope="col">Item</th><th scope="col">Low</th><th scope="col">High</th></tr></thead>
@@ -413,7 +455,10 @@
     </table>
   </div>
 
-  <h2 class="section-h">More Family Activity Ideas</h2>
+  </details>
+
+  <details class="secbox">
+  <summary><h2 class="section-h" style="margin:0.9rem 0">More Family Activity Ideas</h2><p class="sum-desc">Zoo swaps, rainy-day covers and free Sentosa options with prices.</p></summary>
   <p class="hint">Swaps for the Tuesday zoo slot, rainy-day covers, or a longer trip. Tourist rates.</p>
   <div class="tablewrap">
     <table>
@@ -433,10 +478,12 @@
   </div>
 
   <!-- Checklist -->
+  </details>
   </div>
   <section class="photo-band" data-bg="3"><span class="band-caption">Clarke Quay</span></section>
   <div class="sheet">
-  <h2 class="section-h">Booking Checklist</h2>
+  <details class="secbox">
+  <summary><h2 class="section-h" style="margin:0.9rem 0">Booking Checklist</h2><p class="sum-desc">Six bookings in order — verify the USS calendar before buying tickets.</p></summary>
   <ul class="check">
     <li>Flights — Thai Airways TG403 out Sat 25 Jul, afternoon TG return Wed 29 Jul (~฿28–36k for 4, bags incl.); LCC fallback ~฿24–25k before bags</li>
     <li>Furama RiverFront Family Room, 25–29 Jul</li>
@@ -445,6 +492,7 @@
     <li>Optional — Pop Padel, app or WhatsApp <a class="mono" href="https://wa.me/6580245700" target="_blank" rel="noopener">+65 8024 5700</a>, Tuesday morning, 90 min</li>
     <li>River cruise + Gardens + Zoo tickets on Klook or official sites (Jun–Aug cruise promo)</li>
   </ul>
+  </details>
 
   </div>
   </main>

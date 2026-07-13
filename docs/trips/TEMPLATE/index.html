@@ -23,10 +23,17 @@
      with dates + occupancy pre-filled (searchresults.html?ss=NAME&checkin=...&group_adults=...).
      Fill the Citi ThankYou points card: re-verify transfer ratios + portal cpp, write
      research/points.md, and recommend portal vs transfer for this destination.
-  6. All section boxes are <details class="secbox"> — collapsed by default, summary shows the
+  6. Flights: TWO tables (outbound + return) with identical columns (Airline | dated leg |
+     price pp/leg | Bags / notes), pick-first rows, an "avoid" row for itinerary-breaking
+     times. RANK BY TOTAL ALL-IN PRICE (whole party incl. bags/seats) + TIME — convenience
+     is a footnote, never the decider. Departures 11:00+ by default; early departures are
+     acceptable on solo trips when justified (e.g., event start times) — annotate why.
+  7. Pizza: schedule the destination's best pizza as a named meal slot (verify 50 Top Pizza /
+     Michelin / local consensus; address, price, hours, reservation note, plus a backup).
+  8. All section boxes are <details class="secbox"> — collapsed by default, summary shows the
      h2 title plus a one-line .sum-desc description. Keep that pattern; each day is its own
      collapsible details.day-box inside Day by Day.
-  7. Deploy: git add + commit + push in ~/Cowork/preed-ee (Pages serves /docs). Verify live.
+  9. Deploy: git add + commit + push in ~/Cowork/preed-ee (Pages serves /docs). Verify live.
 -->
 <body>
 <div id="bg-stage" aria-hidden="true">
@@ -302,16 +309,29 @@
   <div class="sheet">
 
   <details class="secbox">
-  <summary><h2 class="section-h" style="margin:0.9rem 0">Flights</h2><p class="sum-desc">Carriers, times and indicative fares for the route.</p></summary>
+  <summary><h2 class="section-h" style="margin:0.9rem 0">Flights</h2><p class="sum-desc">Out and back — ranked by total all-in price and time.</p></summary>
+  <h3 class="section-h" style="font-size:0.85rem; margin:1rem 0 0.75rem">Outbound — Day DD (11:00+ unless solo/justified)</h3>
   <div class="tablewrap">
     <table>
-      <thead><tr><th scope="col">Airline</th><th scope="col">Schedule</th><th scope="col">Indicative price</th><th scope="col">Bags</th></tr></thead>
+      <thead><tr><th scope="col">Airline</th><th scope="col">Outbound Day DD</th><th scope="col">Indicative price</th><th scope="col">Bags / notes</th></tr></thead>
       <tbody>
-        <tr><th scope="row"><strong>Carrier A</strong> <span class="tag">pick</span></th><td class="n">XX000 · 00:00 → 00:00</td><td class="n">~฿0,000 pp RT</td><td>included</td></tr>
-        <tr><th scope="row">Carrier B</th><td class="n">00:00 → 00:00</td><td class="n">~฿0,000 pp/leg</td><td>checked extra</td></tr>
+        <tr><th scope="row"><strong>Carrier A</strong> <span class="tag">pick</span></th><td class="n">XX000 · 00:00 → 00:00</td><td class="n">~฿0,000 pp/leg</td><td>checked bags extra (~฿0,000 pp/leg)</td></tr>
+        <tr><th scope="row">Carrier B</th><td class="n">XX000 · 00:00 → 00:00</td><td class="n">~฿0,000 pp/leg</td><td>bags included</td></tr>
+        <tr><th scope="row">Carrier C</th><td class="n">XX000 · 00:00</td><td class="n">—</td><td>lands too late for the evening plan — avoid</td></tr>
       </tbody>
     </table>
   </div>
+  <h3 class="section-h" style="font-size:0.85rem; margin:1.5rem 0 0.75rem">Return — Day DD</h3>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th scope="col">Airline</th><th scope="col">Return Day DD</th><th scope="col">Indicative price</th><th scope="col">Bags / notes</th></tr></thead>
+      <tbody>
+        <tr><th scope="row"><strong>Carrier A</strong> <span class="tag">pick</span></th><td class="n">XX000 · 00:00 → 00:00</td><td class="n">~฿0,000 pp/leg</td><td>same airline as outbound pick</td></tr>
+        <tr><th scope="row">Carrier B</th><td class="n">XX000 · 00:00 / XX002 · 00:00</td><td class="n">~฿0,000 pp/leg</td><td>bags included</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="k" style="font-size:0.85rem">Recommended pairing (ranked on total price + time): <strong>PICK out + PICK back ≈ ฿00,000 all-in for N including bags</strong>. Alternative pairing ≈ ฿00,000. Note fare-sample date and any excluded early departures.</p>
   </details>
 
   <details class="secbox">

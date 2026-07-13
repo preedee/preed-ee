@@ -43,6 +43,12 @@ Defaults for every trip itinerary page under `docs/trips/<slug>/`. Established 2
 - Phone numbers are tappable links (`https://wa.me/<number>` and/or `tel:`).
 - Hint copy must describe the phone experience, not desktop ("across the page" means nothing when cards are already full-width).
 
+## Flights (defaults)
+- Two tables — outbound and return — with identical columns: Airline | dated leg (`XX000 · 00:00 → 00:00`) | indicative price pp/leg | Bags / notes. Pick-first row order; include an "avoid" row for departures that break the itinerary.
+- **Rank by total all-in price (whole party, incl. bags/seats/fees) + time.** Convenience factors (bundled bags, single PNR, meals) are footnotes, never the decider.
+- **Departures 11:00+ by default.** Early departures are acceptable on solo trips when justified (e.g., tournament or event start times) — annotate the exception on the page.
+- Close with a recommended pairing line showing the all-in family/party total.
+
 ## Content defaults (from user preferences)
 - Prices THB-primary, local currency in parentheses, conversion rate noted.
 - Every activity links to its official website (`target="_blank" rel="noopener"`), URLs HEAD-verified before publishing.

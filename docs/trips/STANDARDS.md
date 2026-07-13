@@ -46,7 +46,7 @@ Defaults for every trip itinerary page under `docs/trips/<slug>/`. Established 2
 ## Content defaults (from user preferences)
 - Prices THB-primary, local currency in parentheses, conversion rate noted.
 - Every activity links to its official website (`target="_blank" rel="noopener"`), URLs HEAD-verified before publishing.
-- Hotels: 3 options in expandable tiles with photos; availability + all-in prices (incl. taxes/fees) checked live where possible, honestly labeled "indicative" otherwise, with dated OTA deep-links per hotel.
+- Hotels: options in expandable tiles with photos — the section title states the true option count. Availability MUST be checked for the exact dates (drop unavailable properties); prices labeled "indicative" unless live-quoted. Every hotel links to Booking.com with dates and occupancy pre-filled (`searchresults.html?ss=<name>&checkin=&checkout=&group_adults=&group_children=&age=…&no_rooms=1`).
 - Pizza: every trip schedules the destination's best pizza as a named meal slot — verify current rankings (50 Top Pizza Asia-Pacific / Michelin / strong local consensus), include address, price, hours and reservation note, plus a backup.
 - Points: every hotels section includes a Citi ThankYou points card — **transfer partners only, never the Citi travel portal** (user preference). Re-verify current partners/ratios (they devalue; Apr 2026 precedent), name the partner properties at the destination that fit the party, state points needed; if no partner property fits, say so honestly. Full research in `research/points.md`.
 - Footer/fine-print text runs the full content width (no narrow max-width caps inside full-width boxes).

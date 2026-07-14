@@ -152,6 +152,9 @@ _(no pending items)_
 ## padel-season-map
 _(no pending items)_
 
+## padel-partnership-network
+_(no pending items)_
+
 ---
 
 # Other

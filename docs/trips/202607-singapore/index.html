@@ -230,6 +230,20 @@
   .sum-desc { grid-column: 2; margin: 0 0 0.75rem; color: var(--muted); font-size: 0.85rem; max-width: 60ch; }
   details.day-box > summary { cursor: pointer; list-style: none; }
   details.day-box > summary::-webkit-details-marker { display: none; }
+  .tablewrap.notes-hover { overflow: visible; background: none; }
+  td.has-note { position: relative; cursor: help; }
+  td.has-note .note-dot { color: var(--accent); font-size: 0.75em; vertical-align: 0.15em; }
+  td.has-note::after {
+    content: attr(data-note);
+    position: absolute; left: 0; bottom: calc(100% + 6px); z-index: 6;
+    width: min(46ch, 72vw);
+    background: var(--ink); color: var(--ground);
+    padding: 0.5rem 0.75rem; border-radius: 4px;
+    font-size: 0.8rem; line-height: 1.45; font-family: var(--body);
+    opacity: 0; pointer-events: none; transition: opacity 0.12s ease;
+  }
+  td.has-note:hover::after, td.has-note:focus::after { opacity: 1; }
+  @media (prefers-reduced-motion: reduce) { td.has-note::after { transition: none; } }
   .caveat { font-size: 0.85rem; color: var(--muted); margin-top: 2.5rem; border-top: 1px solid var(--line); padding-top: 1rem; }
   .caveat strong { color: var(--red); }
 
@@ -509,19 +523,19 @@
   <div class="sheet">
   <details class="secbox">
   <summary><h2 class="section-h" style="margin:0.9rem 0">Budget Estimate</h2><p class="sum-desc">Estimates vs actuals — flights ฿57,186, hotel ฿311 + 110k Accor points; the rest pending.</p></summary>
-  <div class="tablewrap">
+  <div class="tablewrap notes-hover">
     <table>
-      <thead><tr><th scope="col">Item</th><th scope="col">Est. low</th><th scope="col">Est. high</th><th scope="col">Actual</th><th scope="col">Notes</th></tr></thead>
+      <thead><tr><th scope="col">Item — hover ⓘ for notes</th><th scope="col">Est. low</th><th scope="col">Est. high</th><th scope="col">Actual</th></tr></thead>
       <tbody>
-        <tr><td>Flights BKK ⇄ SIN × 4</td><td class="n">฿20,000</td><td class="n">฿36,000</td><td class="n">฿57,186</td><td>✅ Booked — Scoot TR639/TR610 incl. bags &amp; taxes, minus 6,000 KrisFlyer miles redeemed. Peak fares blew past the estimate.</td></tr>
-        <tr><td>Hotel · 4 nights</td><td class="n">฿15,600</td><td class="n">฿21,840</td><td class="n">฿311 + 110k pts</td><td>✅ Booked Swissôtel Stamford 5★ Premier Prestige, Marina Bay view — room value ฿84,051, paid with Accor points</td></tr>
-        <tr><td>Universal Studios (2A + 2C)</td><td class="n">฿7,540</td><td class="n">฿8,060</td><td class="n">—</td><td>buy ahead; verify Mon 27 on the RWS calendar</td></tr>
-        <tr><td>Gardens by the Bay · Zoo · Jewel</td><td class="n">฿9,310</td><td class="n">฿13,820</td><td class="n">—</td><td>upper end = Mandai Xperience Pass upgrade</td></tr>
-        <tr><td>Chili crab — Jumbo Seafood (family)</td><td class="n">฿3,900</td><td class="n">฿5,200</td><td class="n">—</td><td>Sunday with Gordon's family; crab is market-priced</td></tr>
-        <tr><td>Padel · both sessions (optional)</td><td class="n">฿6,660</td><td class="n">฿8,740</td><td class="n">—</td><td>Pop Padel flat ฿4,060/90min; The Padel Co dynamic on Playtomic</td></tr>
-        <tr><td>Food · 5 days (hawker-forward)</td><td class="n">฿7,800</td><td class="n">฿11,700</td><td class="n">—</td><td>Lau Pa Sat / Maxwell keep this low; ANTO pizza night included</td></tr>
-        <tr><td>Local transport + airport Grabs</td><td class="n">฿3,900</td><td class="n">฿5,720</td><td class="n">—</td><td>SimplyGo contactless on MRT; Grab XL for airport + USS days</td></tr>
-        <tr class="total"><td>Total</td><td class="n">฿74,700</td><td class="n">฿111,100</td><td class="n">฿57,497 + 110k pts</td><td>flights + hotel actual; activities and food pending</td></tr>
+        <tr><td class="has-note" tabindex="0" data-note="✅ Booked — Scoot TR639/TR610 incl. bags &amp; taxes, minus 6,000 KrisFlyer miles redeemed. Peak fares blew past the estimate." title="✅ Booked — Scoot TR639/TR610 incl. bags &amp; taxes, minus 6,000 KrisFlyer miles redeemed. Peak fares blew past the estimate.">Flights BKK ⇄ SIN × 4 <span class="note-dot">ⓘ</span></td><td class="n">฿20,000</td><td class="n">฿36,000</td><td class="n">฿57,186</td></tr>
+        <tr><td class="has-note" tabindex="0" data-note="✅ Booked Swissôtel Stamford 5★ Premier Prestige, Marina Bay view — room value ฿84,051, paid with Accor points." title="✅ Booked Swissôtel Stamford 5★ Premier Prestige, Marina Bay view — room value ฿84,051, paid with Accor points.">Hotel · 4 nights <span class="note-dot">ⓘ</span></td><td class="n">฿15,600</td><td class="n">฿21,840</td><td class="n">฿311 + 110k pts</td></tr>
+        <tr><td class="has-note" tabindex="0" data-note="Buy ahead; verify Mon 27 on the RWS calendar first." title="Buy ahead; verify Mon 27 on the RWS calendar first.">Universal Studios (2A + 2C) <span class="note-dot">ⓘ</span></td><td class="n">฿7,540</td><td class="n">฿8,060</td><td class="n">—</td></tr>
+        <tr><td class="has-note" tabindex="0" data-note="Upper end = Mandai Xperience Pass upgrade." title="Upper end = Mandai Xperience Pass upgrade.">Gardens by the Bay · Zoo · Jewel <span class="note-dot">ⓘ</span></td><td class="n">฿9,310</td><td class="n">฿13,820</td><td class="n">—</td></tr>
+        <tr><td class="has-note" tabindex="0" data-note="Sunday with Gordon&#39;s family; crab is market-priced." title="Sunday with Gordon&#39;s family; crab is market-priced.">Chili crab — Jumbo Seafood (family) <span class="note-dot">ⓘ</span></td><td class="n">฿3,900</td><td class="n">฿5,200</td><td class="n">—</td></tr>
+        <tr><td class="has-note" tabindex="0" data-note="Pop Padel flat ฿4,060/90min; The Padel Co dynamic on Playtomic." title="Pop Padel flat ฿4,060/90min; The Padel Co dynamic on Playtomic.">Padel · both sessions (optional) <span class="note-dot">ⓘ</span></td><td class="n">฿6,660</td><td class="n">฿8,740</td><td class="n">—</td></tr>
+        <tr><td class="has-note" tabindex="0" data-note="Lau Pa Sat / Maxwell keep this low; ANTO pizza night included." title="Lau Pa Sat / Maxwell keep this low; ANTO pizza night included.">Food · 5 days (hawker-forward) <span class="note-dot">ⓘ</span></td><td class="n">฿7,800</td><td class="n">฿11,700</td><td class="n">—</td></tr>
+        <tr><td class="has-note" tabindex="0" data-note="SimplyGo contactless on MRT; Grab XL for airport + USS days." title="SimplyGo contactless on MRT; Grab XL for airport + USS days.">Local transport + airport Grabs <span class="note-dot">ⓘ</span></td><td class="n">฿3,900</td><td class="n">฿5,720</td><td class="n">—</td></tr>
+        <tr class="total"><td class="has-note" tabindex="0" data-note="Flights + hotel actual; activities and food pending." title="Flights + hotel actual; activities and food pending.">Total <span class="note-dot">ⓘ</span></td><td class="n">฿74,700</td><td class="n">฿111,100</td><td class="n">฿57,497 + 110k pts</td></tr>
       </tbody>
     </table>
   </div>

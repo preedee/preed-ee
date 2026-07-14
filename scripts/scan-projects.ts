@@ -23,7 +23,8 @@ type LogoSpec =
 
 type ProjectStatus = "live" | "wip" | "paused" | "skill" | "fork" | "archived";
 
-type Meta = { stack: string; purpose: string; group: string; logo: LogoSpec; status: ProjectStatus; pendingActions?: string[]; gitExcludePaths?: string[]; website?: string; commandsInclude?: string[]; commandsExclude?: string[] };
+type ProjectLink = { label: string; url: string };
+type Meta = { stack: string; purpose: string; group: string; logo: LogoSpec; status: ProjectStatus; pendingActions?: string[]; gitExcludePaths?: string[]; website?: string; links?: ProjectLink[]; commandsInclude?: string[]; commandsExclude?: string[] };
 
 const DEFAULT_COMMAND_EXCLUDES = new Set(["typecheck", "prebuild", "postinstall", "preinstall", "prepare"]);
 
@@ -82,7 +83,7 @@ const META: Record<string, Meta> = {
   "playbypoint":                { stack: "Docs",                          purpose: "PlayByPoint build specs and prompt templates",    group: GROUP_OTHER, logo: { kind: "monogram", letter: "P", bg: "#334155", fg: "#f8fafc", as: "playbypoint.svg" }, status: "wip" },
   "new-project":                { stack: "PAI skill (in design)",         purpose: "/new-project slash command — auto-register a new Cowork project on this dashboard", group: GROUP_OTHER, logo: { kind: "monogram", letter: "N", bg: "#7dd3c0", fg: "#0a0a0a", as: "new-project.svg" }, status: "wip" },
   "organize-folder":            { stack: "Bun, TypeScript",               purpose: "Reusable CLI: dedupe + translate Thai filenames + route into folder structure", group: GROUP_OTHER, logo: { kind: "monogram", letter: "O", bg: "#475569", fg: "#f8fafc", as: "organize-folder.svg" }, status: "live" },
-  "trip-planner":               { stack: "Claude Artifact",               purpose: "Verified trip itineraries with budget tracking",  group: GROUP_OTHER, logo: { kind: "monogram", letter: "T", bg: "#10b981", fg: "#f8fafc", as: "trip-planner.svg" }, status: "live", website: "https://preed.ee/trips/202607-samui/" },
+  "trip-planner":               { stack: "Claude Artifact",               purpose: "Verified trip itineraries with budget tracking",  group: GROUP_OTHER, logo: { kind: "monogram", letter: "T", bg: "#10b981", fg: "#f8fafc", as: "trip-planner.svg" }, status: "live", website: "https://preed.ee/trips/202607-samui/", links: [{ label: "Samui Jul 2026", url: "https://preed.ee/trips/202607-samui/" }, { label: "Singapore Jul 2026", url: "https://preed.ee/trips/202607-singapore/" }] },
   "nest-dental":                { stack: "TBD",                           purpose: "Nest International Marketing Proposal",           group: GROUP_NEST, logo: { kind: "monogram", letter: "N", bg: "#ef4444", fg: "#f8fafc", as: "nest-dental.svg" }, status: "wip" },
   "superassistant":             { stack: "Claude Code, PAI, Bun, MCP",    purpose: "Assistant 'Mike' — memory, agents, cadence, life-OS", group: GROUP_PERSONAL, logo: { kind: "local", file: "superassistant-logo.jpeg", as: "superassistant.jpeg" }, status: "wip" },
   "instagram-notion-sync":      { stack: "Python, Notion API, launchd",   purpose: "Auto-syncs Instagram saves into grouped Notion pages + photo-wall", group: GROUP_PERSONAL, logo: { kind: "local", file: "instagram.svg", as: "instagram-notion-sync.svg" }, status: "live" },
@@ -113,6 +114,7 @@ type Project = {
   status: ProjectStatus;
   pendingActions?: string[];
   website?: string;
+  links?: ProjectLink[];
   commands?: string[];
 };
 
@@ -218,6 +220,7 @@ async function describe(name: string, path: string, notes: Map<string, string[]>
     status: meta.status,
     pendingActions: nextActions ?? meta.pendingActions,
     website: meta.website,
+    links: meta.links,
     commands,
   };
 }

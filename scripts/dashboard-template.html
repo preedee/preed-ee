@@ -222,6 +222,20 @@
           if (p.stack) bodyEl.appendChild(el('span', 'project-stack', p.stack));
           if (p.purpose) bodyEl.appendChild(el('p', 'project-purpose', p.purpose));
 
+          if (Array.isArray(p.links) && p.links.length > 0) {
+            var linksEl = el('div', 'project-links');
+            p.links.forEach(function (lnk) {
+              var pill = document.createElement('a');
+              pill.className = 'project-link-pill';
+              pill.href = lnk.url;
+              pill.target = '_blank';
+              pill.rel = 'noopener noreferrer';
+              pill.textContent = lnk.label || lnk.url;
+              linksEl.appendChild(pill);
+            });
+            bodyEl.appendChild(linksEl);
+          }
+
           if (Array.isArray(p.pendingActions) && p.pendingActions.length > 0) {
             var pendingCount = p.pendingActions.length;
             var chip = el('span', 'pending-chip', 'Pending · ' + pendingCount);

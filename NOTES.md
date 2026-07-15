@@ -113,6 +113,9 @@ _(no pending items)_
 ## tps-data-analytics
 _(no pending items)_
 
+## tps-singha
+_(no pending items)_
+
 ## tps-tatler
 _(no pending items)_
 

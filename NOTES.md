@@ -142,6 +142,9 @@ _(no pending items)_
 ## tps-scraping
 - Test scraping script with latest TPS tournament
 
+## supercourt-scraper
+_(no pending items)_
+
 ---
 
 # Padel Thailand

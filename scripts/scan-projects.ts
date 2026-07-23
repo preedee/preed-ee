@@ -64,6 +64,7 @@ const META: Record<string, Meta> = {
   "matchday-backend":           { stack: "Supabase (PG17 + Edge Fns)",    purpose: "Matchday backend — Postgres + Edge Functions + Realtime", group: GROUP_MATCHDAY, logo: MATCHDAY_LOGO, status: "wip" },
   "matchday-web":               { stack: "Next.js 16, React 19, Tailwind 4", purpose: "Matchday Next.js frontend — single-elim padel tournaments", group: GROUP_MATCHDAY, logo: MATCHDAY_LOGO, status: "wip" },
   "tps-scraping":               { stack: "Python",                        purpose: "Parse Thai Padel Series tournament PDFs → CSV",  group: GROUP_MATCHDAY, logo: MATCHDAY_LOGO, status: "wip" },
+  "supercourt-scraper":         { stack: "Bun, TS, Playwright",           purpose: "Tournament data scraper for supercourt.co",       group: GROUP_MATCHDAY, logo: { kind: "monogram", letter: "S", bg: "#334155", fg: "#f8fafc", as: "supercourt-scraper.svg" }, status: "wip" },
   "mobile-app-padel":           { stack: "Flutter",                       purpose: "TPS mobile app",                                  group: GROUP_PADEL, logo: TPS_LOGO, status: "wip" },
   "padel-backend":              { stack: "Express / Node",                purpose: "Padel API backend",                               group: GROUP_PADEL, logo: TPS_LOGO, status: "live" },
   "the-padel-society-admin":    { stack: "Next.js 14, React 18",          purpose: "Padel Society admin console",                     group: GROUP_PADEL, logo: TPS_LOGO, status: "live" },

@@ -30,7 +30,7 @@ const DEFAULT_COMMAND_EXCLUDES = new Set(["typecheck", "prebuild", "postinstall"
 
 const GROUP_TBDC = "Tooth Boutique Dental Clinic";
 const GROUP_CLINERA = "Clinera";
-const GROUP_MATCHDAY = "Matchday";
+const GROUP_MATCHDAY = "OpenRally";
 const GROUP_PADEL = "The Padel Society";
 const GROUP_PADEL_THAILAND = "Padel Thailand";
 const GROUP_OTHER = "Other";
@@ -60,9 +60,9 @@ const META: Record<string, Meta> = {
   "tbdc / meta":                { stack: "Docs",                          purpose: "Meta (FB/IG) Ads reinstatement + compliant rebuild plan", group: GROUP_TBDC, logo: TBDC_LOGO, status: "wip" },
   "clinera":                    { stack: "Planning phase",                purpose: "Dental clinic ops + LINE booking + reminders",   group: GROUP_CLINERA, logo: { kind: "monogram", letter: "C", bg: "#5C8A5A", fg: "#ffffff", as: "clinera.svg" }, status: "wip" },
   "dentsoft-strategy-deck":     { stack: "Bun, TS, pptxgenjs, HTML",      purpose: "Competitive strategy brief on Dentsoft (dentsoft.in) — PPTX deck + single-page web brief", group: GROUP_CLINERA, logo: { kind: "monogram", letter: "D", bg: "#0B2545", fg: "#ffffff", as: "dentsoft.svg" }, status: "live", website: "https://preed.ee/clinera/dentsoft" },
-  "matchday":                   { stack: "Next.js (product-hub), MD specs", purpose: "Matchday spec docs + product-hub marketing site", group: GROUP_MATCHDAY, logo: MATCHDAY_LOGO, status: "wip", website: "https://padelthailand.com/matchday/" },
-  "matchday-backend":           { stack: "Supabase (PG17 + Edge Fns)",    purpose: "Matchday backend — Postgres + Edge Functions + Realtime", group: GROUP_MATCHDAY, logo: MATCHDAY_LOGO, status: "wip" },
-  "matchday-web":               { stack: "Next.js 16, React 19, Tailwind 4", purpose: "Matchday Next.js frontend — single-elim padel tournaments", group: GROUP_MATCHDAY, logo: MATCHDAY_LOGO, status: "wip" },
+  "matchday":                   { stack: "Next.js (product-hub), MD specs", purpose: "OpenRally spec docs + product-hub marketing site", group: GROUP_MATCHDAY, logo: MATCHDAY_LOGO, status: "wip", website: "https://padelthailand.com/matchday/" },
+  "matchday-backend":           { stack: "Supabase (PG17 + Edge Fns)",    purpose: "OpenRally backend — Postgres + Edge Functions + Realtime", group: GROUP_MATCHDAY, logo: MATCHDAY_LOGO, status: "wip" },
+  "matchday-web":               { stack: "Next.js 16, React 19, Tailwind 4", purpose: "OpenRally Next.js frontend — single-elim padel tournaments", group: GROUP_MATCHDAY, logo: MATCHDAY_LOGO, status: "wip", website: "https://openrally.vercel.app/" },
   "tps-scraping":               { stack: "Python",                        purpose: "Parse Thai Padel Series tournament PDFs → CSV",  group: GROUP_MATCHDAY, logo: MATCHDAY_LOGO, status: "wip" },
   "supercourt-scraper":         { stack: "Bun, TS, Playwright",           purpose: "Tournament data scraper for supercourt.co",       group: GROUP_MATCHDAY, logo: { kind: "monogram", letter: "S", bg: "#334155", fg: "#f8fafc", as: "supercourt-scraper.svg" }, status: "wip" },
   "mobile-app-padel":           { stack: "Flutter",                       purpose: "TPS mobile app",                                  group: GROUP_PADEL, logo: TPS_LOGO, status: "wip" },
@@ -96,7 +96,7 @@ const GROUP_ORDER = [GROUP_TBDC, GROUP_NEST, GROUP_CLINERA, GROUP_PADEL, GROUP_M
 const GROUP_NAV_LABELS: Record<string, string> = {
   [GROUP_TBDC]: "TBDC",
   [GROUP_CLINERA]: "Clinera",
-  [GROUP_MATCHDAY]: "Matchday",
+  [GROUP_MATCHDAY]: "OpenRally",
   [GROUP_PADEL]: "TPS",
   [GROUP_PADEL_THAILAND]: "Padel TH",
   [GROUP_NEST]: "Nest",

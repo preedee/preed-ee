@@ -121,7 +121,7 @@ _(no pending items)_
 
 ---
 
-# Matchday
+# OpenRally (formerly Matchday)
 
 ## matchday
 - Visual sanity check of magic-link flow once dev environment is fully wired

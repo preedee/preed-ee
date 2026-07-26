@@ -77,6 +77,12 @@
     .photos img { width: 100%; height: 220px; object-fit: cover; display: block; }
     .photos figcaption { padding: 8px 12px; color: var(--ink-3); font-size: .76rem; }
     .rofr { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 7%, var(--surface)); }
+    .links { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; }
+    a.linktile { display: block; background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; text-decoration: none; transition: border-color .15s; }
+    a.linktile:hover { border-color: var(--accent); }
+    a.linktile .n { color: var(--ink); font-weight: 600; font-size: .92rem; }
+    a.linktile .n::after { content: " \2197"; color: var(--accent); font-size: .8em; }
+    a.linktile .d { color: var(--ink-3); font-size: .76rem; margin-top: 2px; line-height: 1.35; }
     .rofr a { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
     .rofr p { color: var(--ink-2); font-size: .92rem; max-width: 68ch; }
     .rofr .deadline { color: var(--ink); font-weight: 650; }
@@ -248,6 +254,21 @@
 </details>
 
   
+
+  <details class="secbox" open>
+  <summary><h2>KAIYŌ online</h2><p class="sum-desc">The venue's public footprint — official site, reviews, maps, and press.</p></summary>
+  <div class="sec-body">
+  <div class="links">
+    <a class="linktile" href="https://www.kaiyosf.com/rooftop" target="_blank" rel="noopener"><span class="n">kaiyosf.com</span><div class="d">Official site — menus, hours, private events</div></a>
+    <a class="linktile" href="https://www.yelp.com/biz/kaiyo-rooftop-san-francisco-7" target="_blank" rel="noopener"><span class="n">Yelp</span><div class="d">1,100+ reviews and 2,900+ photos of the rooftop</div></a>
+    <a class="linktile" href="https://www.google.com/maps/search/?api=1&amp;query=KAIYO+Rooftop+701+3rd+St+San+Francisco" target="_blank" rel="noopener"><span class="n">Google Maps</span><div class="d">Location, ratings, and busy-hours data</div></a>
+    <a class="linktile" href="https://www.instagram.com/kaiyosf/" target="_blank" rel="noopener"><span class="n">Instagram @kaiyosf</span><div class="d">Official feed — the venue as guests see it</div></a>
+    <a class="linktile" href="https://www.kaiyosf.com/reservations" target="_blank" rel="noopener"><span class="n">Reservations</span><div class="d">Book the rooftop or ground floor via Resy</div></a>
+    <a class="linktile" href="https://www.therooftopguide.com/rooftop-bars-in-san-francisco/kaiyo-rooftop.html" target="_blank" rel="noopener"><span class="n">The Rooftop Guide</span><div class="d">Independent write-up among SF's rooftop bars</div></a>
+  </div>
+  </div>
+</details>
+
   <footer>
     Compiled by Preedee Chenhansa from Rooftop Hospitality Group, LLC investor updates and financial reports, 2020 – July 2026 (operator: John Park, Brick&nbsp;x&nbsp;Brick Hospitality; accounts: MPB Accounting). Figures are as reported by the company; June 2026 not fully reconciled where noted in source reports.<br>
     Confidential — for members of Rooftop Hospitality Group, LLC only. Please do not redistribute. This page is informational and is not investment advice.

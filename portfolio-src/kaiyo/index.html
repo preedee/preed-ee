@@ -14,7 +14,7 @@
       --line: #2e3835;
       --ink: #e8ecea;
       --ink-2: #a8b3af;
-      --ink-3: #7a8581;
+      --ink-3: #8f9a96;
       --accent: #7dd3c0;
       --rev: #2aa88f;
       --pos: #568ee8;
@@ -32,9 +32,18 @@
     header h1 { font-size: 1.05rem; font-weight: 600; letter-spacing: .02em; }
     header p { color: var(--ink-3); font-size: .85rem; }
     .hero { border-radius: 14px; overflow: hidden; margin: 20px 0 8px; }
-    .hero img { width: 100%; display: block; }
+    .hero img { width: 100%; height: auto; display: block; }
     .caption { color: var(--ink-3); font-size: .78rem; margin: 6px 2px 0; }
-    h2 { font-size: .8rem; font-weight: 600; text-transform: uppercase; letter-spacing: .12em; color: var(--accent); margin: 44px 0 14px; }
+    details.secbox { margin-top: 40px; }
+    details.secbox > summary { cursor: pointer; list-style: none; display: grid; grid-template-columns: 20px 1fr; column-gap: 0; align-items: baseline; }
+    details.secbox > summary::-webkit-details-marker { display: none; }
+    details.secbox > summary::before { content: "\25B8"; color: var(--accent); font-weight: 600; align-self: center; }
+    details.secbox[open] > summary::before { content: "\25BE"; }
+    details.secbox > summary h2 { margin: 0; }
+    details.secbox > summary:hover h2 { color: var(--ink); }
+    .sec-body { padding-left: 20px; }
+    .sum-desc { grid-column: 2; margin: 4px 0 0; color: var(--ink-3); font-size: .84rem; max-width: 62ch; }
+    h2 { font-size: .8rem; font-weight: 600; text-transform: uppercase; letter-spacing: .12em; color: var(--accent); }
     p.lede { color: var(--ink-2); font-size: .95rem; max-width: 66ch; }
     .tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin-top: 14px; }
     .tile { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; }
@@ -49,12 +58,13 @@
     .bar-label { font-size: 11px; fill: var(--ink-2); }
     .bar-value { font-size: 11.5px; fill: var(--ink); font-weight: 600; }
     .axis-note { font-size: 10.5px; fill: var(--ink-3); }
-    details { margin-top: 10px; }
-    details summary { color: var(--ink-3); font-size: .78rem; cursor: pointer; }
+    details:not(.secbox) { margin-top: 10px; }
+    details:not(.secbox) > summary { color: var(--ink-3); font-size: .85rem; cursor: pointer; padding: 12px 0; }
     details table { margin-top: 8px; }
     table { width: 100%; border-collapse: collapse; font-size: .88rem; }
     td, th { padding: 8px 10px; border-bottom: 1px solid var(--line); text-align: left; }
     th { color: var(--ink-3); font-weight: 500; font-size: .76rem; text-transform: uppercase; letter-spacing: .06em; }
+    tr.total td { border-top: 1px solid var(--ink-3); }
     td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
     td.neg { color: var(--neg); }
     .timeline { list-style: none; }
@@ -67,10 +77,15 @@
     .photos img { width: 100%; height: 220px; object-fit: cover; display: block; }
     .photos figcaption { padding: 8px 12px; color: var(--ink-3); font-size: .76rem; }
     .rofr { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 7%, var(--surface)); }
-    .rofr h3 { color: var(--accent); font-size: .85rem; text-transform: uppercase; letter-spacing: .1em; margin-bottom: 10px; }
+    .rofr a { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
     .rofr p { color: var(--ink-2); font-size: .92rem; max-width: 68ch; }
     .rofr .deadline { color: var(--ink); font-weight: 650; }
     footer { margin-top: 52px; padding-top: 18px; border-top: 1px solid var(--line); color: var(--ink-3); font-size: .76rem; line-height: 1.7; }
+    @media (max-width: 560px) {
+      .bar-value { font-size: 26px; }
+      .bar-label { font-size: 23px; }
+      .axis-note { font-size: 21px; }
+    }
     @media (max-width: 480px) {
       .photos { grid-template-columns: 1fr; }
       .timeline li { grid-template-columns: 64px 1fr; }
@@ -93,7 +108,9 @@
   </div>
   <p class="caption">The rooftop terrace atop Hyatt Place SOMA — pergola, LED wall and 236-seat capacity with open city views.</p>
 
-  <h2>Snapshot — H1 2026</h2>
+  <details class="secbox" open>
+  <summary><h2>Snapshot — H1 2026</h2><p class="sum-desc">Revenue +9.9%, back to positive net income; four key figures at a glance.</p></summary>
+  <div class="sec-body">
   <p class="lede">Both revenue and net income improved against the same period last year. Rooftop weatherization construction is underway, targeted to finish in early September 2026 ahead of Q4.</p>
   <div class="tiles">
     <div class="tile"><div class="v up">$2.63M</div><div class="l">H1 2026 revenue (+9.9% vs H1 2025)</div></div>
@@ -101,8 +118,23 @@
     <div class="tile"><div class="v">$109k</div><div class="l">Cash on hand, June 30 2026</div></div>
     <div class="tile"><div class="v down">−$313k</div><div class="l">Member equity, June 30 2026</div></div>
   </div>
+  </div>
+</details>
 
-  <h2>Performance since opening</h2>
+  <details class="secbox" open>
+  <summary><h2>Open item for members</h2><p class="sum-desc">Justin Binn&#8217;s 0.56 units at $19,800 — members have first refusal until July 31, 2026.</p></summary>
+  <div class="sec-body">
+  <div class="panel rofr">
+    <p>Investor Justin Binn has offered his <strong>0.56 ownership units</strong> for sale at <strong>$19,800</strong> for personal reasons. Under the Operating Agreement, existing members hold a right of first refusal before the interest may be offered outside. Interested members must give <span class="deadline">written notice to John Park by July 31, 2026</span> (<a href="mailto:john@bxbhospitality.com?subject=ROFR%20%E2%80%94%200.56%20units">john@bxbhospitality.com</a>).</p>
+  </div>
+
+  </div>
+</details>
+
+
+  <details class="secbox">
+  <summary><h2>Performance since opening</h2><p class="sum-desc">Revenue and operating result, 2022–2026, charts and table.</p></summary>
+  <div class="sec-body">
   <div class="panel charts">
     <div>
       <h3>Revenue by year ($M)</h3>
@@ -143,7 +175,7 @@
         <g text-anchor="middle">
           <text class="bar-value" x="80"  y="34">+473</text>
           <text class="bar-value" x="200" y="52">+331</text>
-          <text class="bar-value" x="320" y="171">−460</text>
+          <text class="bar-value" x="320" y="166">−460</text>
           <text class="bar-value" x="440" y="119">−38</text>
           <text class="bar-value" x="560" y="86">+51</text>
           <text class="bar-label" x="80"  y="193">2022</text>
@@ -168,8 +200,12 @@
       </table>
     </details>
   </div>
+  </div>
+</details>
 
-  <h2>Balance sheet — June 30, 2026</h2>
+  <details class="secbox">
+  <summary><h2>Balance sheet — June 30, 2026</h2><p class="sum-desc">Cash $109k, liabilities ≈$2.08M, member equity −$313k.</p></summary>
+  <div class="sec-body">
   <div class="panel">
     <table>
       <tr><th>Item</th><th class="num">Amount</th></tr>
@@ -180,13 +216,17 @@
       <tr><td>True Hospitality note</td><td class="num neg">$443k</td></tr>
       <tr><td>Loan from J. Park (net)</td><td class="num neg">$216k</td></tr>
       <tr><td>Wells Fargo line of credit</td><td class="num neg">$61k</td></tr>
-      <tr><td><strong>Total liabilities</strong></td><td class="num neg"><strong>≈$2.08M</strong></td></tr>
-      <tr><td><strong>Member equity</strong> (capital contributed $3.54M less accumulated deficit $3.90M)</td><td class="num neg"><strong>−$313k</strong></td></tr>
+      <tr class="total"><td><strong>Total liabilities</strong></td><td class="num neg"><strong>≈$2.08M</strong></td></tr>
+      <tr class="total"><td><strong>Member equity</strong> (capital contributed $3.54M less accumulated deficit $3.90M)</td><td class="num neg"><strong>−$313k</strong></td></tr>
     </table>
     <p class="caption">No member distributions have been made to date; operating profits in 2022–23 went to debt service and the $1.3M ground-floor buildout.</p>
   </div>
+  </div>
+</details>
 
-  <h2>Six years in brief</h2>
+  <details class="secbox">
+  <summary><h2>Six years in brief</h2><p class="sum-desc">From permits and COVID to opening, buildout, and this summer's weatherization.</p></summary>
+  <div class="sec-body">
   <div class="panel">
     <ul class="timeline">
       <li><span class="yr">Jan 2020</span><span class="ev">~$1.5M raised; permits finally cleared after months with Planning &amp; Health.</span></li>
@@ -204,13 +244,10 @@
       <figure><img src="img/weatherization-2026.jpg" alt="Crane lifting weatherization steel at the Hyatt Place building, July 2026"><figcaption>July 2026 — crane day for the weatherization project.</figcaption></figure>
     </div>
   </div>
-
-  <h2>Open item for members</h2>
-  <div class="panel rofr">
-    <h3>Right of first refusal — closes July 31, 2026</h3>
-    <p>Investor Justin Binn has offered his <strong>0.56 ownership units</strong> for sale at <strong>$19,800</strong> for personal reasons. Under the Operating Agreement, existing members hold a right of first refusal before the interest may be offered outside. Interested members must give <span class="deadline">written notice to John Park by July 31, 2026</span> (john@bxbhospitality.com).</p>
   </div>
+</details>
 
+  
   <footer>
     Compiled by Preedee Chenhansa from Rooftop Hospitality Group, LLC investor updates and financial reports, 2020 – July 2026 (operator: John Park, Brick&nbsp;x&nbsp;Brick Hospitality; accounts: MPB Accounting). Figures are as reported by the company; June 2026 not fully reconciled where noted in source reports.<br>
     Confidential — for members of Rooftop Hospitality Group, LLC only. Please do not redistribute. This page is informational and is not investment advice.

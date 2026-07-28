@@ -136,6 +136,12 @@
   .slot p { margin: 0; font-size: 0.95rem; }
   .slot .cost { font-family: var(--mono); font-size: 0.78rem; color: var(--muted); white-space: nowrap; }
 
+  /* Trip photo strips */
+  .snaps { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 6px; margin: 1rem 0 0.4rem; }
+  .snaps img { width: 100%; height: auto; aspect-ratio: 3 / 4; object-fit: cover; border-radius: 3px; display: block; background: var(--line); }
+  .snaps img.land { grid-column: span 2; aspect-ratio: 3 / 2; }
+  @media (max-width: 420px) { .snaps { grid-template-columns: repeat(2, 1fr); } }
+
   .tag {
     display: inline-block; font-family: var(--display); font-size: 0.64rem;
     text-transform: uppercase; letter-spacing: 0.12em; font-weight: 600;
@@ -257,21 +263,21 @@
 <div class="wrap">
   <header>
   <button id="theme-toggle" type="button" aria-label="Toggle dark or light theme" title="Toggle theme">◐</button>
-  <p class="eyebrow">Family Trip · 2 Adults + 2 Kids · 4 Nights</p>
+  <p class="eyebrow">Family Trip · 2 Adults + 2 Kids · As It Happened</p>
   <h1>Singapore<br>25 – 29 July 2026</h1>
 
   <div class="facts">
-    <div class="fact"><b>Hotel</b>✅ Booked — Swissôtel The Stamford 5★</div>
-    <div class="fact"><b>Flights</b>✅ Booked — Scoot TR639 / TR610</div>
-    <div class="fact"><b>Budget</b>≈ ฿97–111k cash + 110k Accor pts</div>
-    <div class="fact"><b>Weather</b>31°C · brief showers ~1pm</div>
+    <div class="fact"><b>Hotel</b>Swissôtel The Stamford 5★ — 110k Accor pts</div>
+    <div class="fact"><b>Flights</b>Scoot TR639 / TR610 — ฿57,186 for 4</div>
+    <div class="fact"><b>Style</b>Malls, food &amp; city wandering — zero queues</div>
+    <div class="fact"><b>Parked</b>USS · padel · zoo · ANTO → next time</div>
   </div>
   </header>
   <main>
   <section class="photo-band" data-bg="0"><span class="band-caption">Marina Bay</span></section>
   <div class="sheet">
   <details class="secbox">
-  <summary><h2 class="section-h" style="margin:0.9rem 0">Day by Day</h2><p class="sum-desc">Five days — low-key arrival, chili crab with Gordon's family Sunday, padel and the zoo Monday, Universal Studios Tuesday, and a Jewel send-off.</p></summary>
+  <summary><h2 class="section-h" style="margin:0.9rem 0">Day by Day — As It Happened</h2><p class="sum-desc">How it actually went: satay and the Merlion, chili crab with Gordon &amp; Cindy, Jurassic World and the light show, Singapore Slings at Long Bar, Haji Lane by night — with photos. Open each day.</p></summary>
 
   <!-- Saturday -->
   <details class="day-box">
@@ -282,9 +288,12 @@
   <div class="day" style="padding-top:0">
     <div class="datepost"></div>
     <div>
-      <div class="slot"><div class="t">Morning</div><p>Properly unhurried — the whole morning at home. Long lunch, leave for Suvarnabhumi ~13:00 (LCC counters want 2h).</p></div>
-      <div class="slot"><div class="t">Afternoon</div><p>Fly BKK → SIN — pick: <strong>Scoot TR639, 15:25 → 18:55</strong> (add checked bags at booking). Grab XL to <strong>Swissôtel The Stamford</strong> (City Hall) <span class="cost">฿520–910 (S$20–35)</span>, check in ~20:00 — Marina Bay view from the balcony.</p></div>
-      <div class="slot"><div class="t">Evening</div><p>Low-key settle-in — drop the bags and stroll straight out for late satay at <a href="https://www.laupasat.sg" target="_blank" rel="noopener">Lau Pa Sat</a> Satay Street (~20:45; grills run late). Early night. <span class="cost">~฿800–1,200 family</span></p></div>
+      <div class="slot"><div class="t">Afternoon</div><p>Flew <strong>Scoot TR639, 15:25 → 18:55</strong>, landed at dusk and checked into <strong>Swissôtel The Stamford</strong> — Marina Bay view from the balcony, as advertised.</p></div>
+      <div class="slot"><div class="t">Evening</div><p>Straight out for late satay at <a href="https://www.laupasat.sg" target="_blank" rel="noopener">Lau Pa Sat</a> Satay Street — squid skewers a clear hit. Then Primmy &amp; Pap walked over to the 7-Eleven at ParkRoyal for supplies. Early night.</p></div>
+      <div class="snaps">
+        <img data-src="img/sat-laupasat.jpg" src="data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 3 4%22><rect width=%223%22 height=%224%22 fill=%22%23aab5aa%22/></svg>" width="480" height="640" alt="Satay Street dinner at Lau Pa Sat — squid skewers and satay platters" loading="lazy">
+        <img data-src="img/sat-seveneleven.jpg" src="data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 3 4%22><rect width=%223%22 height=%224%22 fill=%22%23aab5aa%22/></svg>" width="480" height="640" alt="Night supply run to the 7-Eleven at ParkRoyal" loading="lazy">
+      </div>
     </div>
   </div>
   </details>
@@ -293,14 +302,21 @@
   <details class="day-box">
   <summary><div class="day" style="border-bottom:none; padding-bottom:0">
     <div class="datepost"><div class="dow">Sun</div><div class="num">26</div><div class="mon">Jul</div></div>
-    <div><h3 style="margin:0.4rem 0">Gardens by the Bay &amp; Marina Bay</h3></div>
+    <div><h3 style="margin:0.4rem 0">Merlion, Marina Bay &amp; Chili Crab with Gordon</h3></div>
   </div></summary>
   <div class="day" style="padding-top:0">
     <div class="datepost"></div>
     <div>
-      <div class="slot"><div class="t">Morning</div><p>Slow breakfast, hotel pool, or a browse around Bugis Junction. <em>(Padel is Monday morning — racket arms stay fresh for Gordon's crab tonight.)</em></p></div>
-      <div class="slot"><div class="t">Afternoon</div><p>Cloud Forest + Flower Dome at <a href="https://www.gardensbythebay.com.sg" target="_blank" rel="noopener">Gardens by the Bay</a> — air-conditioned domes for the hot hours. <span class="cost">฿1,250 adult / ฿730 child (S$48 / 28)</span></p></div>
-      <div class="slot"><div class="t">Evening</div><p>👨‍👩‍👧‍👦🦀 <strong>Chili-crab dinner with cousin Gordon &amp; family</strong> — <a href="https://www.jumboseafood.com.sg" target="_blank" rel="noopener">Jumbo Seafood, Riverside Point</a> at ~18:00 (10-min Grab from the Gardens), then everyone heads back for the <strong>20:45</strong> Garden Rhapsody light show at Supertree Grove. <span class="cost">~฿3,900–5,200 for your four (crab at market price ~S$110+/kg) — reserve online</span></p></div>
+      <div class="slot"><div class="t">Morning</div><p>Late start, exactly as designed.</p></div>
+      <div class="slot"><div class="t">Afternoon</div><p>Lunch at <strong>Shake Shack, Suntec City</strong>, then walked down through the Esplanade to the <strong>Merlion</strong> for the obligatory photos — Marina Bay Sands posing across the water.</p></div>
+      <div class="slot"><div class="t">Evening</div><p>👨‍👩‍👧‍👦🦀 <strong>Chili-crab dinner with cousin Gordon &amp; Cindy</strong> at <a href="https://www.jumboseafood.com.sg" target="_blank" rel="noopener">Jumbo Seafood, Riverside Point</a> — crab bibs for everyone. Wandered <strong>Clarke Quay</strong> after, ice cream in hand.</p></div>
+      <div class="snaps">
+        <img data-src="img/sun-esplanade.jpg" src="data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 3 4%22><rect width=%223%22 height=%224%22 fill=%22%23aab5aa%22/></svg>" width="480" height="640" alt="The four of us on the Esplanade lawn, skyline behind" loading="lazy">
+        <img data-src="img/sun-mbs-selfie.jpg" src="data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 3 4%22><rect width=%223%22 height=%224%22 fill=%22%23aab5aa%22/></svg>" width="480" height="640" alt="Family selfie on the waterfront with Marina Bay Sands behind" loading="lazy">
+        <img data-src="img/sun-merlion.jpg" src="data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 3 4%22><rect width=%223%22 height=%224%22 fill=%22%23aab5aa%22/></svg>" width="480" height="640" alt="Family group photo at the Merlion" loading="lazy">
+        <img class="land" data-src="img/sun-jumbo-gordon.jpg" src="data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 4 3%22><rect width=%224%22 height=%223%22 fill=%22%23aab5aa%22/></svg>" width="640" height="480" alt="Both families in Jumbo crab bibs around the table with Gordon and Cindy" loading="lazy">
+        <img data-src="img/sun-clarkequay.jpg" src="data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 3 4%22><rect width=%223%22 height=%224%22 fill=%22%23aab5aa%22/></svg>" width="480" height="640" alt="Kids with a pink balloon under the Clarke Quay sign at night" loading="lazy">
+      </div>
     </div>
   </div>
   </details>
@@ -309,30 +325,44 @@
   <details class="day-box">
   <summary><div class="day" style="border-bottom:none; padding-bottom:0">
     <div class="datepost"><div class="dow">Mon</div><div class="num">27</div><div class="mon">Jul</div></div>
-    <div><h3 style="margin:0.4rem 0">Padel, Singapore Zoo &amp; Chinatown <span class="tag opt">🎾 10:00</span></h3></div>
+    <div><h3 style="margin:0.4rem 0">The Shoppes, Gardens by the Bay &amp; the Light Show</h3></div>
   </div></summary>
   <div class="day" style="padding-top:0">
     <div class="datepost"></div>
     <div>
-      <div class="slot"><div class="t">Morning</div><p>🎾 <strong>Padel 10:00–11:30</strong> on the rooftop at <strong><a href="https://thepadel.co" target="_blank" rel="noopener">The Padel Co</a></strong>, Fortune Centre L6B, Bugis — Court 1, family welcome to watch from the café; showers on site, easy lunch around Bugis after. Book on <span class="mono"><a href="https://playtomic.com/clubs/the-padel-co-reserve?date=2026-07-27" target="_blank" rel="noopener">Playtomic</a></span> — not booked yet. <span class="cost">฿3,120 / 90 min (S$120, verified 16 Jul)</span></p></div>
-      <div class="slot"><div class="t">Afternoon</div><p><a href="https://www.mandai.com/en/singapore-zoo" target="_blank" rel="noopener">Singapore Zoo</a> with unlimited tram — ~35 min Grab from Bugis; arrive by 13:30, last entry 17:00. <span class="cost">฿1,270 adult / ฿880 child (S$49 / 34)</span> Optional upgrade: Mandai Xperience Pass adds Night Safari + River Wonders <span class="cost">฿2,470 / ฿1,690 (S$95 / 65)</span>.</p></div>
-      <div class="slot"><div class="t">Evening</div><p>Chinatown wander, then 🍕 dinner at <a href="https://www.antopizzeria.com" target="_blank" rel="noopener">ANTO Pizza e Aperitivi</a> (2 Jiak Chuan Rd, Tanjong Pagar) — <strong>Singapore's best pizzeria</strong>, #15 in Asia-Pacific on 50 Top Pizza 2026. ~฿620–1,090 per pizza (S$24–42++), daily to 23:00 — <strong>reserve ahead</strong> (~80 seats, tel 9689 6869). Hawker fallback: Maxwell Food Centre (Tian Tian chicken rice) — or stay north for Night Safari if you took the pass.</p></div>
+      <div class="slot"><div class="t">Midday</div><p>Lunch at <strong>Muji Cafe, Raffles City</strong> — conveniently next door to the hotel. <em>(The 10:00 padel slot quietly surrendered to the holiday pace.)</em></p></div>
+      <div class="slot"><div class="t">Afternoon</div><p>Walked <strong><a href="https://www.marinabaysands.com/shopping.html" target="_blank" rel="noopener">The Shoppes at Marina Bay Sands</a></strong> — canal, sampan and all — then over to <a href="https://www.gardensbythebay.com.sg" target="_blank" rel="noopener">Gardens by the Bay</a> for <strong>Jurassic World: The Experience</strong>: life-size animatronic dinosaurs among the greenery, a hit with both kids.</p></div>
+      <div class="slot"><div class="t">Evening</div><p>Stayed on for the <strong>Garden Rhapsody</strong> light show at Supertree Grove — the Supertrees in full colour (free, and still the best show in town).</p></div>
+      <div class="snaps">
+        <img data-src="img/mon-shoppes.jpg" src="data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 3 4%22><rect width=%223%22 height=%224%22 fill=%22%23aab5aa%22/></svg>" width="480" height="640" alt="Inside The Shoppes at Marina Bay Sands by the canal" loading="lazy">
+        <img data-src="img/mon-jurassic-sign.jpg" src="data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 3 4%22><rect width=%223%22 height=%224%22 fill=%22%23aab5aa%22/></svg>" width="480" height="640" alt="Kid posing at the Jurassic World: The Experience entrance sign" loading="lazy">
+        <img data-src="img/mon-jurassic-dinos.jpg" src="data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 3 4%22><rect width=%223%22 height=%224%22 fill=%22%23aab5aa%22/></svg>" width="480" height="640" alt="The kids among animatronic dinosaurs at Jurassic World: The Experience" loading="lazy">
+        <img data-src="img/mon-supertrees.jpg" src="data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 3 4%22><rect width=%223%22 height=%224%22 fill=%22%23aab5aa%22/></svg>" width="480" height="640" alt="Family in front of the glowing Supertrees at dusk" loading="lazy">
+        <img data-src="img/mon-lightshow.jpg" src="data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 3 4%22><rect width=%223%22 height=%224%22 fill=%22%23aab5aa%22/></svg>" width="480" height="640" alt="Garden Rhapsody light show — Supertrees lit in pink and purple" loading="lazy">
+      </div>
     </div>
   </div>
   </details>
 
   <!-- Tuesday -->
   <details class="day-box">
-  <summary><div class="day uss" style="border-bottom:none; padding-bottom:0">
+  <summary><div class="day" style="border-bottom:none; padding-bottom:0">
     <div class="datepost"><div class="dow">Tue</div><div class="num">28</div><div class="mon">Jul</div></div>
-    <div><h3 style="margin:0.4rem 0"><a href="https://www.rwsentosa.com/en/play/universal-studios-singapore" target="_blank" rel="noopener">Universal Studios Singapore</a> <span class="tag red">Full Day</span></h3></div>
+    <div><h3 style="margin:0.4rem 0">Long Bar Slings, Orchard &amp; Kampong Glam</h3></div>
   </div></summary>
-  <div class="day uss" style="padding-top:0">
+  <div class="day" style="padding-top:0">
     <div class="datepost"></div>
     <div>
-      <div class="slot"><div class="t">Morning</div><p>Arrive 09:45 for the 10:00 open — straight to Sci-Fi City and Minion Land before queues build. Grab to Sentosa <span class="cost">฿390–650 (S$15–25)</span> or MRT + Sentosa Express <span class="cost">฿104 pp (S$4)</span>. ✅ Park confirmed open Tue 28 Jul, 10:00–20:00 (RWS calendar, checked 16 Jul).</p></div>
-      <div class="slot"><div class="t">Afternoon</div><p>Full park day (close 20:00). Late July isn't a Singapore school holiday — weekday crowds are light, so skip the Express Pass and save ~฿9,400 (S$360). Indoor rides when the 1pm shower passes through. <span class="cost">tickets ~฿7,550 family (S$290)</span></p></div>
-      <div class="slot"><div class="t">Evening</div><p>Dinner at VivoCity on the way home, or collapse gratefully at the hotel.</p></div>
+      <div class="slot"><div class="t">Midday</div><p>Lunch at <strong>Raffles City</strong> again (when the food court next door is this good, why fight it). <em>Universal Studios lost the vote to a slower day in town — parked for next time.</em></p></div>
+      <div class="slot"><div class="t">Afternoon</div><p><strong>Singapore Slings at <a href="https://www.raffles.com/singapore/dining/long-bar/" target="_blank" rel="noopener">Long Bar</a>, Raffles Hotel</strong> — the drink at its birthplace, peanut shells on the floor as tradition demands. Then across to Orchard: <strong>313@Somerset</strong> and <strong>Orchard Gateway</strong>, with a <strong>teppanyaki</strong> dinner between the two.</p></div>
+      <div class="slot"><div class="t">Evening</div><p>Night wander through <strong>Haji Lane &amp; Arab Street</strong> — murals, boutiques and the Sultan Mosque under a full-ish moon.</p></div>
+      <div class="snaps">
+        <img data-src="img/tue-view.jpg" src="data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 3 4%22><rect width=%223%22 height=%224%22 fill=%22%23aab5aa%22/></svg>" width="480" height="640" alt="The kids at the window, Padang and Marina Bay far below" loading="lazy">
+        <img data-src="img/tue-raffles.jpg" src="data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 3 4%22><rect width=%223%22 height=%224%22 fill=%22%23aab5aa%22/></svg>" width="480" height="640" alt="Family in front of the white Raffles Hotel facade" loading="lazy">
+        <img class="land" data-src="img/tue-longbar.jpg" src="data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 4 3%22><rect width=%224%22 height=%223%22 fill=%22%23aab5aa%22/></svg>" width="640" height="480" alt="Singapore Slings and a sack of peanuts at Long Bar" loading="lazy">
+        <img data-src="img/tue-arabstreet.jpg" src="data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 3 4%22><rect width=%223%22 height=%224%22 fill=%22%23aab5aa%22/></svg>" width="480" height="640" alt="Crossing at Arab Street at night" loading="lazy">
+        <img data-src="img/tue-hajilane.jpg" src="data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 3 4%22><rect width=%223%22 height=%224%22 fill=%22%23aab5aa%22/></svg>" width="480" height="640" alt="Night stroll near Haji Lane with the moon over the palms" loading="lazy">
+      </div>
     </div>
   </div>
   </details>
@@ -341,7 +371,7 @@
   <details class="day-box">
   <summary><div class="day" style="border-bottom:none; padding-bottom:0">
     <div class="datepost"><div class="dow">Wed</div><div class="num">29</div><div class="mon">Jul</div></div>
-    <div><h3 style="margin:0.4rem 0">Jewel Changi &amp; Fly Home</h3></div>
+    <div><h3 style="margin:0.4rem 0">Jewel Changi &amp; Fly Home <span class="tag opt">the plan</span></h3></div>
   </div></summary>
   <div class="day" style="padding-top:0">
     <div class="datepost"></div>
@@ -519,20 +549,20 @@
 
   <!-- Budget -->
   </div>
-  <section class="photo-band" data-bg="2"><span class="band-caption">Universal Studios Singapore</span></section>
+  <section class="photo-band" data-bg="2"><span class="band-caption">Universal Studios — next time</span></section>
   <div class="sheet">
   <details class="secbox">
-  <summary><h2 class="section-h" style="margin:0.9rem 0">Budget Estimate</h2><p class="sum-desc">Estimates vs actuals — flights ฿57,186, hotel ฿311 + 110k Accor points; the rest pending.</p></summary>
+  <summary><h2 class="section-h" style="margin:0.9rem 0">Budget Estimate</h2><p class="sum-desc">Estimates vs how it landed — flights ฿57,186, hotel ฿311 + 110k Accor points; USS and padel skipped, crab delivered.</p></summary>
   <div class="tablewrap notes-hover">
     <table>
       <thead><tr><th scope="col">Item — hover ⓘ for notes</th><th scope="col">Est. low</th><th scope="col">Est. high</th><th scope="col">Actual</th></tr></thead>
       <tbody>
         <tr><td class="has-note" tabindex="0" data-note="✅ Booked — Scoot TR639/TR610 incl. bags &amp; taxes, minus 6,000 KrisFlyer miles redeemed. Peak fares blew past the estimate." title="✅ Booked — Scoot TR639/TR610 incl. bags &amp; taxes, minus 6,000 KrisFlyer miles redeemed. Peak fares blew past the estimate.">Flights BKK ⇄ SIN × 4 <span class="note-dot">ⓘ</span></td><td class="n">฿20,000</td><td class="n">฿36,000</td><td class="n">฿57,186</td></tr>
         <tr><td class="has-note" tabindex="0" data-note="✅ Booked Swissôtel Stamford 5★ Premier Prestige, Marina Bay view — room value ฿84,051, paid with Accor points." title="✅ Booked Swissôtel Stamford 5★ Premier Prestige, Marina Bay view — room value ฿84,051, paid with Accor points.">Hotel · 4 nights <span class="note-dot">ⓘ</span></td><td class="n">฿15,600</td><td class="n">฿21,840</td><td class="n">฿311 + 110k pts</td></tr>
-        <tr><td class="has-note" tabindex="0" data-note="Buy ahead; Tue 28 Jul confirmed open 10:00–20:00 on the RWS calendar (16 Jul)." title="Buy ahead; Tue 28 Jul confirmed open 10:00–20:00 on the RWS calendar (16 Jul).">Universal Studios (2A + 2C) <span class="note-dot">ⓘ</span></td><td class="n">฿7,540</td><td class="n">฿8,060</td><td class="n">—</td></tr>
-        <tr><td class="has-note" tabindex="0" data-note="Upper end = Mandai Xperience Pass upgrade." title="Upper end = Mandai Xperience Pass upgrade.">Gardens by the Bay · Zoo · Jewel <span class="note-dot">ⓘ</span></td><td class="n">฿9,310</td><td class="n">฿13,820</td><td class="n">—</td></tr>
-        <tr><td class="has-note" tabindex="0" data-note="Sunday with Gordon&#39;s family; crab is market-priced." title="Sunday with Gordon&#39;s family; crab is market-priced.">Chili crab — Jumbo Seafood (family) <span class="note-dot">ⓘ</span></td><td class="n">฿3,900</td><td class="n">฿5,200</td><td class="n">—</td></tr>
-        <tr><td class="has-note" tabindex="0" data-note="The Padel Co ฿3,120/90min verified on Playtomic (Mon 27, 10:00); Pop Padel ฿4,060/90min if squeezed in — currently unscheduled." title="The Padel Co ฿3,120/90min verified on Playtomic (Mon 27, 10:00); Pop Padel ฿4,060/90min if squeezed in — currently unscheduled.">Padel · The Padel Co (+ optional Pop Padel) <span class="note-dot">ⓘ</span></td><td class="n">฿3,120</td><td class="n">฿7,180</td><td class="n">—</td></tr>
+        <tr><td class="has-note" tabindex="0" data-note="Skipped — the slow-city version of the trip won. Parked for next time." title="Skipped — the slow-city version of the trip won. Parked for next time.">Universal Studios (2A + 2C) <span class="note-dot">ⓘ</span></td><td class="n">฿7,540</td><td class="n">฿8,060</td><td class="n">✕ skipped</td></tr>
+        <tr><td class="has-note" tabindex="0" data-note="Did Jurassic World: The Experience + the free Garden Rhapsody show instead of domes and zoo; Jewel on the Wednesday." title="Did Jurassic World: The Experience + the free Garden Rhapsody show instead of domes and zoo; Jewel on the Wednesday.">Gardens by the Bay · Zoo · Jewel <span class="note-dot">ⓘ</span></td><td class="n">฿9,310</td><td class="n">฿13,820</td><td class="n">partial</td></tr>
+        <tr><td class="has-note" tabindex="0" data-note="Happened Sunday with Gordon &amp; Cindy at Riverside Point — crab bibs all round." title="Happened Sunday with Gordon &amp; Cindy at Riverside Point — crab bibs all round.">Chili crab — Jumbo Seafood (family) <span class="note-dot">ⓘ</span></td><td class="n">฿3,900</td><td class="n">฿5,200</td><td class="n">✅ done</td></tr>
+        <tr><td class="has-note" tabindex="0" data-note="Skipped — the 10:00 Monday slot lost to holiday pace. Venue verified and parked for next time." title="Skipped — the 10:00 Monday slot lost to holiday pace. Venue verified and parked for next time.">Padel · The Padel Co (+ optional Pop Padel) <span class="note-dot">ⓘ</span></td><td class="n">฿3,120</td><td class="n">฿7,180</td><td class="n">✕ skipped</td></tr>
         <tr><td class="has-note" tabindex="0" data-note="Lau Pa Sat / Maxwell keep this low; ANTO pizza night included." title="Lau Pa Sat / Maxwell keep this low; ANTO pizza night included.">Food · 5 days (hawker-forward) <span class="note-dot">ⓘ</span></td><td class="n">฿7,800</td><td class="n">฿11,700</td><td class="n">—</td></tr>
         <tr><td class="has-note" tabindex="0" data-note="SimplyGo contactless on MRT; Grab XL for airport + USS days." title="SimplyGo contactless on MRT; Grab XL for airport + USS days.">Local transport + airport Grabs <span class="note-dot">ⓘ</span></td><td class="n">฿3,900</td><td class="n">฿5,720</td><td class="n">—</td></tr>
         <tr class="total"><td class="has-note" tabindex="0" data-note="Flights + hotel actual; activities and food pending." title="Flights + hotel actual; activities and food pending.">Total <span class="note-dot">ⓘ</span></td><td class="n">฿74,700</td><td class="n">฿111,100</td><td class="n">฿57,497 + 110k pts</td></tr>
@@ -543,8 +573,16 @@
   </details>
 
   <details class="secbox">
-  <summary><h2 class="section-h" style="margin:0.9rem 0">More Family Activity Ideas</h2><p class="sum-desc">Zoo swaps, rainy-day covers and free Sentosa options with prices.</p></summary>
-  <p class="hint">Swaps for the Monday zoo slot, rainy-day covers, or a longer trip. Tourist rates.</p>
+  <summary><h2 class="section-h" style="margin:0.9rem 0">For Next Time</h2><p class="sum-desc">Everything researched and verified for this trip that didn't happen — headliners plus the full family-activity idea sheet, prices included.</p></summary>
+  <div class="card" style="margin-top:0.5rem">
+    <h3>The headliners we parked</h3>
+    <p>🎢 <a href="https://www.rwsentosa.com/en/play/universal-studios-singapore" target="_blank" rel="noopener">Universal Studios Singapore</a> — ~฿7,550 (S$290) for the four; school-term weekday, arrive 09:45, skip the Express Pass.</p>
+    <p>🎾 <a href="https://thepadel.co" target="_blank" rel="noopener">The Padel Co</a> rooftop at Fortune Centre, Bugis — S$120/90 min via <a href="https://playtomic.com/clubs/the-padel-co-reserve" target="_blank" rel="noopener">Playtomic</a>, showers on site. Alt: Pop Padel, WhatsApp <a class="mono" href="https://wa.me/6580245700" target="_blank" rel="noopener">+65 8024 5700</a>.</p>
+    <p>🦁 <a href="https://www.mandai.com/en/singapore-zoo" target="_blank" rel="noopener">Singapore Zoo</a> — S$49/34 with tram; the Mandai Xperience Pass (S$95/65) adds Night Safari + River Wonders.</p>
+    <p>🍕 <a href="https://www.antopizzeria.com" target="_blank" rel="noopener">ANTO Pizza e Aperitivi</a>, Tanjong Pagar — Singapore's best pizzeria, #15 Asia-Pacific on 50 Top Pizza 2026; reserve ahead (tel 9689 6869).</p>
+    <p>🌸 Cloud Forest + Flower Dome (S$48/28) — we did the outdoor gardens and Jurassic World; the domes are still owed. 🚢 Singapore River cruise · 🍢 Satay by the Bay.</p>
+  </div>
+  <p class="hint">And the full idea sheet from the planning round — rainy-day covers and Sentosa options. Tourist rates.</p>
   <div class="tablewrap">
     <table>
       <thead><tr><th scope="col">Activity</th><th scope="col">Adult</th><th scope="col">Child</th><th scope="col">Notes</th></tr></thead>
@@ -568,25 +606,23 @@
   <section class="photo-band" data-bg="3"><span class="band-caption">Clarke Quay</span></section>
   <div class="sheet">
   <details class="secbox">
-  <summary><h2 class="section-h" style="margin:0.9rem 0">Booking Checklist</h2><p class="sum-desc">Six bookings in order — verify the USS calendar before buying tickets.</p></summary>
+  <summary><h2 class="section-h" style="margin:0.9rem 0">How the Bookings Landed</h2><p class="sum-desc">The planning checklist, settled — what got booked, what happened on the day, and what was let go.</p></summary>
   <ul class="check">
-    <li>✅ BOOKED — Scoot TR639 out (Sat 15:25) + TR610 back (Wed 16:15), ฿57,185.52 total for 4 incl. bags</li>
-    <li>✅ BOOKED — Swissôtel The Stamford, Premier Prestige Marina Bay view, 25–29 Jul (110k Accor points + ฿311)</li>
-    <li>USS tickets for <strong>Tue 28 Jul</strong> — ✅ park confirmed open 10:00–20:00 (RWS calendar, checked 16 Jul)</li>
-    <li>The Padel Co — <strong>Mon 27 Jul 10:00–11:30, Court 1, ฿3,120 (S$120)</strong>: <a href="https://playtomic.com/clubs/the-padel-co-reserve?date=2026-07-27" target="_blank" rel="noopener">book on Playtomic</a> (slot + price verified 16 Jul, not yet booked)</li>
-    <li>Optional — Pop Padel, app or WhatsApp <a class="mono" href="https://wa.me/6580245700" target="_blank" rel="noopener">+65 8024 5700</a> — currently unscheduled (USS took its Tuesday morning)</li>
-    <li>Reserve <a href="https://www.antopizzeria.com" target="_blank" rel="noopener">ANTO</a> for <strong>Monday</strong> dinner — ~80 seats at Singapore's top-ranked pizzeria (tel 9689 6869)</li>
-    <li>Gardens by the Bay + Zoo tickets on Klook or official sites</li>
-    <li>SG Arrival Card for all 4 — free on the official <a href="https://eservices.ica.gov.sg/sgarrivalcard/" target="_blank" rel="noopener">ICA e-service</a>, submit 22–25 Jul (within 3 days of arrival); avoid paid third-party sites. No visa needed for Thai citizens (30-day visa-free)</li>
-    <li>Check all 4 passports valid past late Jan 2027 (6 months beyond arrival)</li>
-    <li>Confirm with Gordon, then reserve <a href="https://www.jumboseafood.com.sg" target="_blank" rel="noopener">Jumbo Seafood Riverside Point</a> for Sunday ~18:00 — chili crab for both families, 20:45 light show after</li>
+    <li>✅ Flights — Scoot TR639 out (Sat 15:25) + TR610 back (Wed 16:15), ฿57,185.52 total for 4 incl. bags</li>
+    <li>✅ Hotel — Swissôtel The Stamford, Premier Prestige Marina Bay view, 25–29 Jul (110k Accor points + ฿311)</li>
+    <li>✅ Chili crab with Gordon &amp; Cindy — <a href="https://www.jumboseafood.com.sg" target="_blank" rel="noopener">Jumbo Seafood Riverside Point</a>, Sunday evening. A keeper of a formula.</li>
+    <li>✅ SG Arrival Cards submitted; passports fine</li>
+    <li>✕ USS tickets — never bought; the park was confirmed open but a slow city day won. Next time.</li>
+    <li>✕ The Padel Co Mon 10:00 — slot verified but never booked. Next time.</li>
+    <li>✕ ANTO reservation — teppanyaki on Orchard happened instead; the pizza debt carries over.</li>
+    <li>✕ Zoo / river-cruise tickets — replaced by Jurassic World: The Experience and the free light show.</li>
   </ul>
   </details>
 
   </div>
   </main>
   <footer>
-  <p class="caveat"><strong>Verify before booking:</strong> prices are indicative from July 2026 research; THB converted at ≈26 THB per SGD. The Padel Co verified at S$120/90 min on Playtomic (16 Jul, Mon 27 10:00 slot); Pop Padel's opening hours aren't published — confirm on WhatsApp. Origin assumed Bangkok.</p>
+  <p class="caveat">This page now records the trip as taken (updated 28 Jul 2026, on the ground in Singapore); Wednesday remains the plan. Planning figures are indicative from July 2026 research, THB at ≈26 per SGD — re-verify prices and slots before reusing the "For Next Time" ideas. Trip photos are ours.</p>
   <p class="caveat" style="margin-top:0.6rem">Background photos via Wikimedia Commons: <a href="https://commons.wikimedia.org/wiki/File:Singapore_Marina_Bay_Dusk_2018-02-27.jpg" target="_blank" rel="noopener">Marina Bay</a> (CC BY-SA 4.0) · <a href="https://commons.wikimedia.org/wiki/File:Supertree_Grove,_Gardens_by_the_Bay,_Singapore1.jpg" target="_blank" rel="noopener">Supertree Grove</a> (CC0) · <a href="https://commons.wikimedia.org/wiki/File:Globe,_Universal_Studios_Singapore_(Unsplash).jpg" target="_blank" rel="noopener">Universal globe</a> (CC0) · <a href="https://commons.wikimedia.org/wiki/File:Clarke_Quay_and_Singapore_River_(3170376941).jpg" target="_blank" rel="noopener">Clarke Quay</a> (CC BY 2.0).</p>
   </footer>
 </div>
@@ -600,6 +636,13 @@
         var badge = btn.querySelector('.expand-badge');
         if (badge) badge.textContent = open ? 'Show less' : '＋2 photos · details';
         if (open) card.querySelectorAll('img[data-src]').forEach(function (im) {
+          im.src = im.getAttribute('data-src'); im.removeAttribute('data-src');
+        });
+      });
+    });
+    document.querySelectorAll('details.day-box').forEach(function (d) {
+      d.addEventListener('toggle', function () {
+        if (d.open) d.querySelectorAll('.snaps img[data-src]').forEach(function (im) {
           im.src = im.getAttribute('data-src'); im.removeAttribute('data-src');
         });
       });

@@ -17,6 +17,7 @@ import { staticryptFile } from "./lib/staticrypt";
 
 const ROOT = resolve(import.meta.dir, "..");
 const DATA = join(homedir(), ".claude", "MEMORY", "health", "whoop_daily.jsonl");
+const DEXA = join(homedir(), ".claude", "MEMORY", "health", "dexa.json");
 const OUT_DIR = join(ROOT, "docs", "personal", "fitness");
 const TMP_DIR = join(ROOT, ".tmp-fitness");
 const DAYS = 30;
@@ -275,7 +276,46 @@ const DARK_VARS = `
   --status-warn: #fab219;
   --status-good-ink: #0ca30c; --status-warn-ink: #fab219; --status-crit-ink: #e66767;`;
 
-function render(days: Day[]): string {
+interface DexaScan {
+  date: string; clinic: string; weight_kg: number; bmi: number; body_fat_pct: number;
+  lean_mass_kg: number; bmd_centile: number; bmd_t_score: number; visceral_fat_cm3: number;
+  ag_ratio: number; rmr_kcal: number; rsmi_kg_m2: number;
+}
+
+function loadDexa(): DexaScan[] {
+  try { return JSON.parse(readFileSync(DEXA, "utf8")).scans ?? []; } catch { return []; }
+}
+
+function dexaSection(scans: DexaScan[]): string {
+  if (!scans.length) return "";
+  const latest = scans[scans.length - 1];
+  const cell = (k: string, v: string, s: string) =>
+    `<div class="tile"><div class="k">${k}</div><div class="v">${v}</div><div class="s">${s}</div></div>`;
+  const history = scans.length > 1
+    ? `<div class="tablewrap"><table>
+        <thead><tr><th scope="col">Date</th><th scope="col">Weight kg</th><th scope="col">Fat %</th><th scope="col">Lean kg</th><th scope="col">RSMI</th><th scope="col">Visceral cm³</th><th scope="col">Bone centile</th></tr></thead>
+        <tbody>${scans.map(s =>
+          `<tr><th scope="row">${dayLabel(s.date)} ${s.date.slice(0, 4)}</th><td class="num">${s.weight_kg}</td><td class="num">${s.body_fat_pct}</td><td class="num">${s.lean_mass_kg}</td><td class="num">${s.rsmi_kg_m2}</td><td class="num">${s.visceral_fat_cm3}</td><td class="num">${s.bmd_centile}</td></tr>`
+        ).join("")}</tbody></table></div>`
+    : "";
+  return `<details class="secbox">
+  <summary><h2>Body composition</h2> <span class="sum-desc">DEXA · ${esc(latest.clinic)} · ${dayLabel(latest.date)} ${latest.date.slice(0, 4)}</span></summary>
+  <div class="secbody">
+    <div class="tiles" style="margin-bottom: 8px;">
+      ${cell("Body fat", `${latest.body_fat_pct}<span class="u">%</span>`, "lean for age (Z −1.0)")}
+      ${cell("Lean mass", `${latest.lean_mass_kg}<span class="u">kg</span>`, `of ${latest.weight_kg} kg · BMI ${latest.bmi}`)}
+      ${cell("Bone density", `${latest.bmd_centile}<span class="u">th</span>`, `centile · T ${latest.bmd_t_score}`)}
+      ${cell("Visceral fat", `${latest.visceral_fat_cm3}<span class="u">cm³</span>`, "male 25–49 median ≈746")}
+      ${cell("RSMI", `${latest.rsmi_kg_m2}`, "limb muscle — healthy band 9–10 ⚠")}
+      ${cell("RMR", `${latest.rmr_kcal.toLocaleString()}<span class="u">kcal</span>`, "≈2,400–2,700 maintenance")}
+    </div>
+    <p class="fine">RSMI (arm+leg lean mass ÷ height²) sits below the healthy-normal band for men — the training lever is lifting, especially legs. Bone density top 6% for age. Next scan ~Feb 2027.</p>
+    ${history}
+  </div>
+</details>`;
+}
+
+function render(days: Day[], dexa: DexaScan[], records: Map<string, Rec>): string {
   const today = days[days.length - 1];
   const latestRec = days.findLast(d => d.recovery !== null);
   const latestSleep = days.findLast(d => d.sleepH !== null);
@@ -291,6 +331,11 @@ function render(days: Day[]): string {
     if (w.sport === "paddle-tennis") padelCount++;
     else if (w.sport === "weightlifting") gymCount++;
   }
+  const latestBody = [...records.values()].filter(r => r.type === "body" && r.weight_kilogram)
+    .sort((a, b) => String(a.id).localeCompare(String(b.id))).pop();
+  const weightTile = latestBody
+    ? `<div class="tile"><div class="k">Weight</div><div class="v">${f1(latestBody.weight_kilogram)}<span class="u">kg</span></div><div class="s">Whoop profile</div></div>`
+    : "";
 
   const recoveryChart = barChart(days, {
     title: "Daily recovery percentage, last 30 days",
@@ -441,6 +486,7 @@ td.num { font-variant-numeric: tabular-nums; }
 .chip-padel { border-color: var(--series-sleep); color: var(--series-sleep); font-weight: 600; }
 .padel-row th, .padel-row td { background: color-mix(in srgb, var(--series-sleep) 6%, transparent); }
 
+.fine { color: var(--ink-2); font-size: 0.875rem; margin: 4px 0 12px; }
 #tip { position: fixed; z-index: 10; background: var(--ink); color: var(--page); font-size: 0.875rem; padding: 6px 10px; border-radius: 7px; pointer-events: none; opacity: 0; transition: opacity 0.1s; max-width: 280px; }
 footer { color: var(--muted); font-size: 0.75rem; margin-top: 24px; }
 </style>
@@ -465,6 +511,7 @@ ${zm ? `<section class="verdict" style="--vcolor: var(--status-${z}); --vink: va
   <div class="tile"><div class="k">Sleep 7d avg</div><div class="v">${f1(sleep7)}<span class="u">h</span></div><div class="s">target ${SLEEP_TARGET_H} h</div></div>
   <div class="tile"><div class="k">Strain 7d avg</div><div class="v">${f1(strain7)}</div><div class="s">of 21</div></div>
   <div class="tile"><div class="k">Padel 30d</div><div class="v">${padelCount}<span class="u">sessions</span></div><div class="s">${gymCount} gym</div></div>
+  ${weightTile}
 </div>
 
 <details class="secbox" open>
@@ -506,6 +553,8 @@ ${zm ? `<section class="verdict" style="--vcolor: var(--status-${z}); --vink: va
     </table>
   </div>
 </details>
+
+${dexaSection(dexa)}
 
 <details class="secbox">
   <summary><h2>Data table</h2> <span class="sum-desc">every day, every metric — the numbers behind the charts</span></summary>
@@ -560,8 +609,9 @@ document.getElementById('theme-toggle').addEventListener('click', function () {
 // ---------- main ----------
 
 const noEncrypt = process.argv.includes("--no-encrypt");
-const days = buildDays(loadLatest());
-const html = render(days);
+const records = loadLatest();
+const days = buildDays(records);
+const html = render(days, loadDexa(), records);
 
 mkdirSync(TMP_DIR, { recursive: true });
 

@@ -4,3 +4,4 @@ bun.lockb
 *.log
 .staticrypt.json
 docs/projects.json
+.tmp-fitness/

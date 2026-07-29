@@ -140,6 +140,7 @@
   .snaps { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 6px; margin: 1rem 0 0.4rem; }
   .snaps img { width: 100%; height: auto; aspect-ratio: 3 / 4; object-fit: cover; border-radius: 3px; display: block; background: var(--line); }
   .snaps img.land { grid-column: span 2; aspect-ratio: 3 / 2; }
+  .snaps:empty { display: none; }
   @media (max-width: 420px) { .snaps { grid-template-columns: repeat(2, 1fr); } }
 
   .tag {
@@ -290,7 +291,7 @@
     <div>
       <div class="slot"><div class="t">Afternoon</div><p>Flew <strong>Scoot TR639, 15:25 → 18:55</strong>, landed at dusk and checked into <strong>Swissôtel The Stamford</strong> — Marina Bay view from the balcony, as advertised.</p></div>
       <div class="slot"><div class="t">Evening</div><p>Straight out for late satay at <a href="https://www.laupasat.sg" target="_blank" rel="noopener">Lau Pa Sat</a> Satay Street — squid skewers a clear hit. Then Primmy &amp; Pap walked over to the 7-Eleven at ParkRoyal for supplies. Early night.</p></div>
-      <div class="snaps">
+      <div class="snaps" id="snaps-sat">
         <img data-src="img/sat-laupasat.jpg" src="data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 3 4%22><rect width=%223%22 height=%224%22 fill=%22%23aab5aa%22/></svg>" width="480" height="640" alt="Satay Street dinner at Lau Pa Sat — squid skewers and satay platters" loading="lazy">
         <img data-src="img/sat-seveneleven.jpg" src="data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 3 4%22><rect width=%223%22 height=%224%22 fill=%22%23aab5aa%22/></svg>" width="480" height="640" alt="Night supply run to the 7-Eleven at ParkRoyal" loading="lazy">
       </div>
@@ -310,7 +311,7 @@
       <div class="slot"><div class="t">Morning</div><p>Late start, exactly as designed.</p></div>
       <div class="slot"><div class="t">Afternoon</div><p>Lunch at <strong>Shake Shack, Suntec City</strong>, then walked down through the Esplanade to the <strong>Merlion</strong> for the obligatory photos — Marina Bay Sands posing across the water.</p></div>
       <div class="slot"><div class="t">Evening</div><p>👨‍👩‍👧‍👦🦀 <strong>Chili-crab dinner with cousin Gordon &amp; Cindy</strong> at <a href="https://www.jumboseafood.com.sg" target="_blank" rel="noopener">Jumbo Seafood, Riverside Point</a> — crab bibs for everyone. Wandered <strong>Clarke Quay</strong> after, ice cream in hand.</p></div>
-      <div class="snaps">
+      <div class="snaps" id="snaps-sun">
         <img data-src="img/sun-lazy-morning.jpg" src="data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 3 4%22><rect width=%223%22 height=%224%22 fill=%22%23aab5aa%22/></svg>" width="480" height="640" alt="Slow Sunday morning — still in bed at the Swissôtel" loading="lazy">
         <img data-src="img/sun-esplanade.jpg" src="data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 3 4%22><rect width=%223%22 height=%224%22 fill=%22%23aab5aa%22/></svg>" width="480" height="640" alt="The four of us on the Esplanade lawn, skyline behind" loading="lazy">
         <img data-src="img/sun-bay-kid.jpg" src="data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 3 4%22><rect width=%223%22 height=%224%22 fill=%22%23aab5aa%22/></svg>" width="480" height="640" alt="At the waterfront railing, Marina Bay Sands across the water" loading="lazy">
@@ -336,7 +337,7 @@
       <div class="slot"><div class="t">Midday</div><p>Lunch at <strong>Muji Cafe, Raffles City</strong> — conveniently next door to the hotel. <em>(The 10:00 padel slot quietly surrendered to the holiday pace.)</em></p></div>
       <div class="slot"><div class="t">Afternoon</div><p>Walked <strong><a href="https://www.marinabaysands.com/shopping.html" target="_blank" rel="noopener">The Shoppes at Marina Bay Sands</a></strong> — canal, sampan and all — then over to <a href="https://www.gardensbythebay.com.sg" target="_blank" rel="noopener">Gardens by the Bay</a> for <strong>Jurassic World: The Experience</strong>: life-size animatronic dinosaurs among the greenery, a hit with both kids.</p></div>
       <div class="slot"><div class="t">Evening</div><p>Stayed on for the <strong>Garden Rhapsody</strong> light show at Supertree Grove — the Supertrees in full colour (free, and still the best show in town).</p></div>
-      <div class="snaps">
+      <div class="snaps" id="snaps-mon">
         <img data-src="img/mon-rafflescity.jpg" src="data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 3 4%22><rect width=%223%22 height=%224%22 fill=%22%23aab5aa%22/></svg>" width="480" height="640" alt="The girls in their dresses in the Raffles City atrium" loading="lazy">
         <img data-src="img/mon-shoppes.jpg" src="data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 3 4%22><rect width=%223%22 height=%224%22 fill=%22%23aab5aa%22/></svg>" width="480" height="640" alt="Inside The Shoppes at Marina Bay Sands by the canal" loading="lazy">
         <img data-src="img/mon-jurassic-sign.jpg" src="data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 3 4%22><rect width=%223%22 height=%224%22 fill=%22%23aab5aa%22/></svg>" width="480" height="640" alt="Kid posing at the Jurassic World: The Experience entrance sign" loading="lazy">
@@ -362,7 +363,7 @@
       <div class="slot"><div class="t">Midday</div><p>Lunch at <strong>Raffles City</strong> again (when the food court next door is this good, why fight it). <em>Universal Studios lost the vote to a slower day in town — parked for next time.</em></p></div>
       <div class="slot"><div class="t">Afternoon</div><p><strong>Singapore Slings at <a href="https://www.raffles.com/singapore/dining/long-bar/" target="_blank" rel="noopener">Long Bar</a>, Raffles Hotel</strong> — the drink at its birthplace, peanut shells on the floor as tradition demands. Then across to Orchard: <strong>313@Somerset</strong> and <strong>Orchard Gateway</strong>, with a <strong>teppanyaki</strong> dinner between the two.</p></div>
       <div class="slot"><div class="t">Evening</div><p>Night wander through <strong>Haji Lane &amp; Arab Street</strong> — murals, boutiques and the Sultan Mosque under a full-ish moon.</p></div>
-      <div class="snaps">
+      <div class="snaps" id="snaps-tue">
         <img data-src="img/tue-view.jpg" src="data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 3 4%22><rect width=%223%22 height=%224%22 fill=%22%23aab5aa%22/></svg>" width="480" height="640" alt="The kids at the window, Padang and Marina Bay far below" loading="lazy">
         <img data-src="img/tue-raffles-sign.jpg" src="data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 3 4%22><rect width=%223%22 height=%224%22 fill=%22%23aab5aa%22/></svg>" width="480" height="640" alt="Walking past the Raffles sign into the hotel grounds" loading="lazy">
         <img data-src="img/tue-raffles.jpg" src="data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 3 4%22><rect width=%223%22 height=%224%22 fill=%22%23aab5aa%22/></svg>" width="480" height="640" alt="Family in front of the white Raffles Hotel facade" loading="lazy">
@@ -388,6 +389,7 @@
       <div class="slot"><div class="t">Morning</div><p>Easy last morning at the Stamford — <strong>checked out at 13:00</strong> and headed straight for Changi.</p></div>
       <div class="slot"><div class="t">Afternoon</div><p>Lunch at <strong><a href="https://www.jewelchangiairport.com" target="_blank" rel="noopener">Jewel</a></strong> (landside T1) before the flight. The Canopy Park Sky Nets stayed unbounced — lunch and a look around was plenty; parked with the other next-time ideas.</p></div>
       <div class="slot"><div class="t">Evening</div><p>✅ Flew <strong>Scoot TR610, 16:15 → 17:50</strong> — landed Suvarnabhumi with the evening to spare. Trip complete.</p></div>
+      <div class="snaps" id="snaps-wed"></div>
     </div>
   </div>
   </details>
@@ -690,5 +692,6 @@
       });
     })();
   </script>
+<script>if (new URLSearchParams(location.search).has('edit')) { var s = document.createElement('script'); s.src = '../edit.js'; document.body.appendChild(s); }</script>
 </body>
 </html>

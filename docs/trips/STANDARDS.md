@@ -23,6 +23,15 @@ Defaults for every trip itinerary page under `docs/trips/<slug>/`. Established 2
 - Gallery images beyond the first use `data-src` and are swapped in on expand (display:none does NOT prevent lazy-image fetch).
 - `onerror` swaps to a neutral SVG data-URI placeholder — never `this.remove()`.
 
+## Day photo galleries & in-page edit mode
+- Each day section carries a `<div class="snaps" id="snaps-<key>">` gallery — **keep the div even when empty** (`.snaps:empty { display: none; }` hides it). The `id` key must be unique per page: day-of-week (`sat`, `sun`…) when the trip spans ≤7 days, otherwise `d1`, `d2`, …
+- Galleries contain **only `<img>` tags** — no wrapping `<a>`/`<figure>` (edit.js's source transform depends on this). The page's inline script must lazy-swap `.snaps img[data-src]` on the day `<details>` toggle (TEMPLATE ships this).
+- Photo filenames follow `img/<key>-<slug>.jpg`. `edit.js`'s `imgTag()` is the canonical generator of gallery img markup (placeholder SVG, 480×640/640×480 dims) — keep TEMPLATE's exemplars in lockstep with it.
+- Every page includes the conditional loader before `</body>` (TEMPLATE ships it) so normal visits never fetch the script: `<script>if (new URLSearchParams(location.search).has('edit')) { … s.src = '../edit.js' … }</script>`
+- Appending `?edit` to the page URL enables photo editing: tap a photo to mark for removal, ＋ Add photos to upload (client-side resized to standards: 640px longest edge, JPEG q72, alt text prompted). Saving commits via the GitHub Contents API — images first, then the page, then removed image files are deleted — live on the next Pages deploy (~1 min).
+- Auth: fine-grained PAT scoped to `preedee/preed-ee` with Contents read/write, pasted on first use, stored in browser localStorage only. **Never commit a token to the repo.**
+- After editing from the browser, run `git pull` before any local work on the repo — browser commits land directly on `main`.
+
 ## Interactive cards (hotel tiles etc.)
 - Expand control is a real `<button aria-expanded>` wrapping the gallery only; links stay outside the button (no nested interactive controls).
 - Visible affordance badge ("＋2 photos · details" ↔ "Show less").

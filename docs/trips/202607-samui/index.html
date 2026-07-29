@@ -182,6 +182,11 @@
   @media (prefers-reduced-motion: no-preference){
     .slots li, .brow{transition:background .15s ease;}
   }
+  .snaps { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 6px; margin: 1rem 0 0.4rem; }
+  .snaps img { width: 100%; height: auto; aspect-ratio: 3 / 4; object-fit: cover; border-radius: 3px; display: block; background: var(--line); }
+  .snaps img.land { grid-column: span 2; aspect-ratio: 3 / 2; }
+  .snaps:empty { display: none; }
+  @media (max-width: 420px) { .snaps { grid-template-columns: repeat(2, 1fr); } }
 </style>
 
 <div class="wrap">
@@ -226,6 +231,7 @@
     <li><span class="t mono">20:15</span><span class="what"><b>Coco Tam's — Karnivore's client visit, beach swings &amp; the 21:00 fire show</b> <a class="maplink" href="https://www.google.com/maps/search/?api=1&amp;query=Coco+Tam%27s+Bophut+Koh+Samui" target="_blank" rel="noopener">map ↗</a> <span class="chip ok">mission 2 · must-eat</span><span class="d">fire shows 19:15 &amp; 21:00 · right on Bophut beach, steps from the walking street · no reservations for beanbags — claim one early · ~฿300–600</span></span></li>
   </ul>
   <div class="daynote">Tonight is the Full Moon Party on Phangan (moved to 31 Jul for Buddhist Lent) — you're on the right island for an early tournament night, but expect a lively Bangrak pier.</div>
+  <div class="snaps" id="snaps-fri"></div>
 </details>
 
 <details class="day">
@@ -235,6 +241,7 @@
     <li><span class="t mono">08:30</span><span class="what"><b>Tournament — Padel Tropical</b><span class="d">all day; club restaurant and recovery zone on site for between-match lunch (~฿300)</span></span></li>
     <li><span class="t mono">19:00</span><span class="what"><b>Dinner — 🍕 Pizzeria Sorte Napoletana, Bophut</b> <a class="maplink" href="https://www.google.com/maps/search/?api=1&amp;query=Pizzeria+Sorte+Napoletana+Bophut+Koh+Samui" target="_blank" rel="noopener">map ↗</a> <span class="chip ok">best pizza on Samui · Pizza DOC</span><span class="d">Thailand's only Pizza DOC–certified pizzeria — true Neapolitan, 24h dough · from ฿490 · daily 13:00–23:00, book ahead in high season · seafood alternate: Sabienglae, Bangrak (daily 10:00–22:00, ฿400–600)</span></span></li>
   </ul>
+  <div class="snaps" id="snaps-sat"></div>
 </details>
 
 <details class="day">
@@ -247,6 +254,7 @@
     <li><span class="t mono">18:15</span><span class="what"><b>Songthaew to Patrick's rental</b> <a class="maplink" href="https://maps.app.goo.gl/bctGyTuKED75CqeU8" target="_blank" rel="noopener">exact pin ↗</a><span class="d">Haad Rin → Srithanu/Chao Phao (west coast) 30–45 min · ฿150–300 · post-party exodus flows the other way</span></span></li>
     <li><span class="t mono">20:00</span><span class="what"><b>Dinner — Thong Sala night market (Phantip)</b> <a class="maplink" href="https://www.google.com/maps/search/?api=1&amp;query=Phantip+Night+Market+Thong+Sala+Koh+Phangan" target="_blank" rel="noopener">map ↗</a> <span class="chip ok">open daily ~16:00–22:00</span><span class="d">฿100–200 all-in street feast</span></span></li>
   </ul>
+  <div class="snaps" id="snaps-sun"></div>
 </details>
 
 <details class="day">
@@ -261,6 +269,7 @@
     <li><span class="t mono">19:00</span><span class="what"><b>Dinner — Orion Cafe, Srithanu beachfront</b> <a class="maplink" href="https://www.google.com/maps/search/?api=1&amp;query=Orion+Healing+Centre+Srithanu+Koh+Phangan" target="_blank" rel="noopener">map ↗</a> <span class="chip ok">open daily 07:30–23:00</span><span class="d">~฿250 · or night market round two · or 🍕 Cucina Elementare, Srithanu's cosy pizza pick</span></span></li>
   </ul>
   <div class="daynote">Big-swing alternative: Ang Thong Marine Park full-day trip (~฿1,700–2,200 + ฿300 fee, open in August, runs Mondays) — but it consumes the whole day, so only if the weather is perfect and the rental visit moves to Sunday evening. Fits the budget either way.</div>
+  <div class="snaps" id="snaps-mon"></div>
 </details>
 
 <details class="day">
@@ -275,6 +284,7 @@
     <li><span class="t mono">19:45</span><span class="what"><b>Grab home</b><span class="d">~฿300</span></span></li>
   </ul>
   <div class="daynote">Ferry schedules shift seasonally — confirm the early-afternoon Thong Sala sailing when you're on the island (checklist item 1's pier visit covers this). Worst case, the ~16:00 boat still connects to an 18:30+ flight.</div>
+  <div class="snaps" id="snaps-tue"></div>
 </details>
 </details>
 
@@ -361,6 +371,13 @@
 </footer>
 </div>
 <script>
+  document.querySelectorAll('details.day').forEach(function (d) {
+    d.addEventListener('toggle', function () {
+      if (d.open) d.querySelectorAll('.snaps img[data-src]').forEach(function (im) {
+        im.src = im.getAttribute('data-src'); im.removeAttribute('data-src');
+      });
+    });
+  });
   (function () {
     var bgs = document.querySelectorAll('#bg-stage .bg');
     bgs[0].classList.add('active');
@@ -390,5 +407,6 @@
     });
   })();
 </script>
+<script>if (new URLSearchParams(location.search).has('edit')) { var s = document.createElement('script'); s.src = '../edit.js'; document.body.appendChild(s); }</script>
 </body>
 </html>

@@ -266,6 +266,11 @@
     .datepost .num { font-size: 2rem; }
     .slot { grid-template-columns: 1fr; gap: 0.1rem; }
   }
+  .snaps { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 6px; margin: 1rem 0 0.4rem; }
+  .snaps img { width: 100%; height: auto; aspect-ratio: 3 / 4; object-fit: cover; border-radius: 3px; display: block; background: var(--line); }
+  .snaps img.land { grid-column: span 2; aspect-ratio: 3 / 2; }
+  .snaps:empty { display: none; }
+  @media (max-width: 420px) { .snaps { grid-template-columns: repeat(2, 1fr); } }
 </style>
 
 <div class="wrap">
@@ -299,6 +304,8 @@
       <div class="slot"><div class="t">Morning</div><p>Morning plan with an <a href="https://example.com" target="_blank" rel="noopener">official link</a>. <span class="cost">฿000 (X$00)</span></p></div>
       <div class="slot"><div class="t">Afternoon</div><p>Afternoon plan.</p></div>
       <div class="slot"><div class="t">Evening</div><p>Evening plan.</p></div>
+      <!-- Day photo gallery — keep even when empty; id must be unique per page (dow like "sat", or "d1","d2"). ?edit mode adds/removes photos here. -->
+      <div class="snaps" id="snaps-d1"></div>
     </div>
   </div>
   </details>
@@ -402,6 +409,13 @@
   </footer>
 </div>
 <script>
+  document.querySelectorAll('details.day-box').forEach(function (d) {
+    d.addEventListener('toggle', function () {
+      if (d.open) d.querySelectorAll('.snaps img[data-src]').forEach(function (im) {
+        im.src = im.getAttribute('data-src'); im.removeAttribute('data-src');
+      });
+    });
+  });
     document.querySelectorAll('.hotel-toggle').forEach(function (btn) {
       btn.addEventListener('click', function () {
         var card = btn.closest('.hotel');
@@ -447,5 +461,6 @@
       });
     })();
   </script>
+<script>if (new URLSearchParams(location.search).has('edit')) { var s = document.createElement('script'); s.src = '../edit.js'; document.body.appendChild(s); }</script>
 </body>
 </html>

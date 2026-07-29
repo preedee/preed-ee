@@ -513,6 +513,12 @@ body.landing h1 { margin: 0; font-size: 24px; font-weight: 600; letter-spacing: 
 body.landing .tagline { margin: calc(var(--s) * 1) 0 calc(var(--s) * 4); color: var(--fg-muted); font-size: 14px; }
 body.landing .project-link { color: var(--accent); text-decoration: none; font-size: 14px; font-family: var(--mono); }
 body.landing .project-link:hover { text-decoration: underline; }
+body.landing .nav-links { display: flex; flex-direction: column; gap: calc(var(--s) * 1); }
+body.landing .nav-links p { margin: 0; }
+body.landing .social-links { display: flex; justify-content: center; gap: calc(var(--s) * 2.5); margin-top: calc(var(--s) * 4); }
+body.landing .social-links a { display: inline-flex; opacity: 0.8; transition: opacity 0.15s ease; }
+body.landing .social-links a:hover { opacity: 1; }
+body.landing .index-note { margin-top: calc(var(--s) * 4); }
 
 /* Focus + reduced motion */
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }

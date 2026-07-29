@@ -16,7 +16,8 @@ if git diff --quiet -- "$PAGE"; then
   exit 0
 fi
 
-git pull --rebase origin main || { git rebase --abort 2>/dev/null; echo "rebase conflict — manual fix needed"; exit 1; }
+# --autostash: the repo often has unrelated WIP changes; stash them around the rebase
+git pull --rebase --autostash origin main || { git rebase --abort 2>/dev/null; echo "rebase conflict — manual fix needed"; exit 1; }
 git add "$PAGE"
 git commit -m "fitness: daily data refresh"
 git push origin main

@@ -1,20 +1,23 @@
 /* Trip page photo edit mode.
    Loaded by each trip page only when ?edit is in the URL. Adds remove/add controls to the
-   day photo galleries (.snaps[id^="snaps-"]) and commits changes straight back to the
-   GitHub repo via the Contents API, so the live page updates itself (~1 min deploy).
-   Auth: fine-grained PAT (contents:write on preedee/preed-ee only), pasted once,
-   kept in localStorage — never in this file, never in the repo. */
+   day photo galleries (.snaps[id^="snaps-"]) and commits changes via the Contents API:
+   photos go straight to the public repo (preed-ee), the page HTML goes to the private
+   source repo (preed-ee-src), whose Action re-encrypts and publishes (~2 min to live).
+   Auth: fine-grained PAT (contents:write on preedee/preed-ee AND preedee/preed-ee-src),
+   pasted once, kept in localStorage — never in this file, never in the repo. */
 (() => {
   'use strict';
   if (!new URLSearchParams(location.search).has('edit')) return;
   if (window.top !== window.self) return;   // never editable inside a frame (clickjacked commits)
 
-  const OWNER = 'preedee', REPO = 'preed-ee', BRANCH = 'main';
+  const OWNER = 'preedee', REPO = 'preed-ee', SRC_REPO = 'preed-ee-src', BRANCH = 'main';
   const TOKEN_KEY = 'tripEditToken';
   const pathMatch = location.pathname.match(/\/trips\/([^/]+)\//);
   if (!pathMatch) { console.warn('[edit] not a /trips/<slug>/ URL'); return; }
-  const REPO_DIR = 'docs/trips/' + pathMatch[1];
+  const REPO_DIR = 'docs/trips/' + pathMatch[1];            // public: photos + encrypted output
+  const SRC_DIR = 'pages/trips/' + pathMatch[1];            // private: plaintext HTML source
   const API = `https://api.github.com/repos/${OWNER}/${REPO}/contents/`;
+  const SRC_API = `https://api.github.com/repos/${OWNER}/${SRC_REPO}/contents/`;
 
   const galleries = [...document.querySelectorAll('.snaps[id^="snaps-"]')];
   if (!galleries.length) { console.warn('[edit] no snaps galleries found'); return; }
@@ -210,8 +213,8 @@
 
   /* ---------- persistence ---------- */
 
-  const api = async (path, opts = {}) => {
-    const res = await fetch(API + path, {
+  const call = async (base, path, opts = {}) => {
+    const res = await fetch(base + path, {
       ...opts,
       headers: {
         Authorization: 'Bearer ' + localStorage.getItem(TOKEN_KEY),
@@ -221,11 +224,14 @@
     });
     if (!res.ok) {
       const detail = await res.json().catch(() => ({}));
-      const hint = res.status === 401 || res.status === 403 ? ' — check your token (🔑)' : '';
+      const hint = res.status === 401 || res.status === 403 || res.status === 404
+        ? ' — check your token (🔑) covers preed-ee AND preed-ee-src, and that the source file exists' : '';
       throw Object.assign(new Error(`GitHub ${res.status}: ${detail.message || res.statusText}${hint}`), { httpStatus: res.status });
     }
     return res.json();
   };
+  const api = (path, opts) => call(API, path, opts);       // public repo: photos + encrypted output
+  const srcApi = (path, opts) => call(SRC_API, path, opts); // private repo: plaintext HTML source
 
   const blobToBase64 = (blob) => new Promise((res, rej) => {
     const r = new FileReader();
@@ -268,8 +274,17 @@
   };
 
   const commitAll = async () => {
+    status('Reading page source…');
+    // Transform first: a source-parse failure must abort BEFORE any image commit lands.
+    const loadSource = async () => {
+      const src = await srcApi(`${SRC_DIR}/index.html?ref=${BRANCH}`);
+      return { sha: src.sha, html: transformHtml(b64ToText(src.content)) };
+    };
     status('Preparing images…');
-    const contents = await Promise.all(staged.adds.map((a) => blobToBase64(a.blob)));
+    const [cur, contents] = await Promise.all([
+      loadSource(),
+      Promise.all(staged.adds.map((a) => blobToBase64(a.blob))),
+    ]);
     for (let i = 0; i < staged.adds.length; i++) {   // sequential: each PUT is a commit on main
       status(`Uploading ${staged.adds[i].name}…`);
       await api(`${REPO_DIR}/img/${staged.adds[i].name}`, {
@@ -278,20 +293,20 @@
       });
     }
     status('Updating page…');
-    const put = async () => {
-      const cur = await api(`${REPO_DIR}/index.html?ref=${BRANCH}`);
-      await api(`${REPO_DIR}/index.html`, {
-        method: 'PUT',
-        body: JSON.stringify({
-          message: `trip photos: ${staged.adds.length} added, ${staged.removals.size} removed`,
-          content: await textToB64(transformHtml(b64ToText(cur.content))),
-          sha: cur.sha,
-          branch: BRANCH,
-        }),
-      });
-    };
-    try { await put(); }
-    catch (e) { if (e.httpStatus === 409) await put(); else throw e; }  // stale sha: refetch once
+    const put = async ({ sha, html }) => srcApi(`${SRC_DIR}/index.html`, {
+      method: 'PUT',
+      body: JSON.stringify({
+        message: `trip photos: ${staged.adds.length} added, ${staged.removals.size} removed`,
+        content: await textToB64(html),
+        sha,
+        branch: BRANCH,
+      }),
+    });
+    try { await put(cur); }
+    catch (e) {
+      if (e.httpStatus !== 409) throw e;   // stale sha: refetch + retransform once
+      await put(await loadSource());
+    }
     for (const name of staged.removals) {   // page no longer references these; failures leave harmless orphans
       try {
         const file = await api(`${REPO_DIR}/img/${name}?ref=${BRANCH}`);
@@ -317,7 +332,7 @@
       document.querySelectorAll('.snaps img.ed-staged').forEach((i) => i.classList.remove('ed-staged'));
       staged.adds = []; staged.removals.clear();
       refreshBar();
-      status('Committed ✓ — live on preed.ee in ~1 min', 'ok');
+      status('Committed ✓ — encrypted page rebuilds via Action, live in ~2 min', 'ok');
     } catch (err) {
       status(err.message, 'err');
       refreshBar();

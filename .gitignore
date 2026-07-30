@@ -5,3 +5,6 @@ bun.lockb
 .staticrypt.json
 docs/projects.json
 .tmp-fitness/
+
+# build state — must never publish (password-oracle risk, see preed-ee-src/build.ts)
+docs/.build-manifest.json

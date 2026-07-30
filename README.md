@@ -17,6 +17,10 @@ preed-ee/
     └── com.preedee.preed-ee-rebuild.plist
 ```
 
+## Protected pages
+
+Everything except the landing page is staticrypt-encrypted. Plaintext sources live in the private repo `preedee/preed-ee-src`, whose Action encrypts and pushes into `docs/` here. Locally-generated pages (projects dashboard, fitness) are encrypted by `scripts/lib/staticrypt.ts` with the same shared salt, so one unlock remembers across the whole site for 30 days. Never commit plaintext page HTML under `docs/`.
+
 ## Local workflow
 
 ```bash

@@ -142,7 +142,7 @@ _(no pending items)_
 ## tps-scraping
 - Test scraping script with latest TPS tournament
 
-## supercourt-scraper
+## padel-scrapers
 _(no pending items)_
 
 ---

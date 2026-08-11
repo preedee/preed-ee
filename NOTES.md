@@ -140,7 +140,8 @@ _(no pending items)_
 - Set up Vercel project at v0.2.0+ and replace deploy.yml stub
 
 ## padel-scrapers
-- Test the merged Thai Padel Series PDF parser (`tps-scraping/`) with the latest TPS tournament
+- Run `brew install poppler` — the `tps` source needs `pdftotext` and it is not installed
+- Test the ported `tps` source end-to-end from PDFs (only the .txt fixtures have been run)
 
 ## openrally-wpr
 - Send the partner-access enquiry via the WPR contact form; ask for sandbox credentials on console.worldpadelrating.com

@@ -148,6 +148,9 @@ _(no pending items)_
 - Decide: re-cut `lib/levels.ts` tier bands onto WPR's uniform 1.4 grid, or keep ours and stop calling them WPR bands
 - Decide: which rating drives seeding and level gates — competitive WPR or WPR-s
 - Add confidence (% + NC/LC/✓) and gender to the rating model before the first mixed-gender category is seeded
+- Decide when to approach WPR relative to the TPA deal closing (Tournated teardown says: during, not after)
+- Decide whether we are willing to white-label — federation brand on the product, OpenRally invisible
+- Decide the territory to ask WPR for: Thailand alone (winnable) vs SE Asia (a stretch)
 
 ---
 

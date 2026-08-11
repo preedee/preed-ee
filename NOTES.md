@@ -139,11 +139,14 @@ _(no pending items)_
 - v0.2.0 Player Identity: real player home, profile completion, OAuth buttons
 - Set up Vercel project at v0.2.0+ and replace deploy.yml stub
 
-## tps-scraping
-- Test scraping script with latest TPS tournament
-
 ## padel-scrapers
-_(no pending items)_
+- Test the merged Thai Padel Series PDF parser (`tps-scraping/`) with the latest TPS tournament
+
+## openrally-wpr
+- Send the partner-access enquiry via the WPR contact form; ask for sandbox credentials on console.worldpadelrating.com
+- Decide: re-cut `lib/levels.ts` tier bands onto WPR's uniform 1.4 grid, or keep ours and stop calling them WPR bands
+- Decide: which rating drives seeding and level gates — competitive WPR or WPR-s
+- Add confidence (% + NC/LC/✓) and gender to the rating model before the first mixed-gender category is seeded
 
 ---
 

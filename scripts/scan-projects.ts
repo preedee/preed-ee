@@ -11,7 +11,22 @@ const DASHBOARD_HTML = join(SITE_ROOT, "projects", "index.html");
 const NOTES_FILE = resolve(import.meta.dir, "../NOTES.md");
 
 const TOP_EXCLUDE = new Set([".claude", ".DS_Store", "libs", "preed-ee"]);
-const TBDC_EXCLUDE = new Set(["Plans"]);
+
+const NO_EXCLUDE: ReadonlySet<string> = new Set();
+
+// Parent folders that hold projects rather than being projects themselves. The scanner
+// descends one level into each and registers the children under their META key. Defaults
+// suit every group: exclude nothing, and use the child dir name as the key verbatim.
+// Only tbdc overrides them — it predates the group folders, keys its entries "tbdc / x",
+// and keeps a Plans/ dir that is notes rather than a project.
+const GROUP_DIRS: Record<string, { exclude?: ReadonlySet<string>; key?: (sub: string) => string }> = {
+  tbdc: { exclude: new Set(["Plans"]), key: (sub) => `tbdc / ${sub}` },
+  tps: {},
+  "padel-thailand": {},
+  openrally: {},
+  personal: {},
+  other: {},
+};
 
 const DATA_START = "<!-- DATA:START -->";
 const DATA_END = "<!-- DATA:END -->";
@@ -40,8 +55,8 @@ const GROUP_PERSONAL = "Personal";
 const TBDC_LOGO: LogoSpec = { kind: "copy", from: "tbdc/clinicdocs/assets/logo-monogram.png", as: "tbdc.png" };
 const TPS_LOGO: LogoSpec = { kind: "local", file: "tps-logo.png", as: "tps.png" };
 const MATCHDAY_LOGO: LogoSpec = { kind: "local", file: "matchday-logo.png", as: "matchday.png" };
-const AMITY_LOGO: LogoSpec = { kind: "copy", from: "amity-social-uikit-flutter/assets/images/ShareWorldLogo.png", as: "amity.png" };
-const PADEL_THAILAND_LOGO: LogoSpec = { kind: "copy", from: "padelthailand/img/logo.svg", as: "padelthailand.svg" };
+const AMITY_LOGO: LogoSpec = { kind: "copy", from: "tps/amity-social-uikit-flutter/assets/images/ShareWorldLogo.png", as: "amity.png" };
+const PADEL_THAILAND_LOGO: LogoSpec = { kind: "copy", from: "padel-thailand/padelthailand/img/logo.svg", as: "padelthailand.svg" };
 
 const META: Record<string, Meta> = {
   "tbdc / web":                 { stack: "Next.js 16, React 19, TS",     purpose: "Clinic website for Tooth Boutique Dental Clinic", group: GROUP_TBDC, logo: TBDC_LOGO, status: "live" },
@@ -63,8 +78,8 @@ const META: Record<string, Meta> = {
   "matchday":                   { stack: "Next.js (product-hub), MD specs", purpose: "OpenRally spec docs + product-hub marketing site", group: GROUP_MATCHDAY, logo: MATCHDAY_LOGO, status: "wip", website: "https://padelthailand.com/matchday/" },
   "matchday-backend":           { stack: "Supabase (PG17 + Edge Fns)",    purpose: "OpenRally backend — Postgres + Edge Functions + Realtime", group: GROUP_MATCHDAY, logo: MATCHDAY_LOGO, status: "wip" },
   "matchday-web":               { stack: "Next.js 16, React 19, Tailwind 4", purpose: "OpenRally Next.js frontend — single-elim padel tournaments", group: GROUP_MATCHDAY, logo: MATCHDAY_LOGO, status: "wip", website: "https://openrally.vercel.app/" },
-  "tps-scraping":               { stack: "Python",                        purpose: "Parse Thai Padel Series tournament PDFs → CSV",  group: GROUP_MATCHDAY, logo: MATCHDAY_LOGO, status: "wip" },
-  "padel-scrapers":             { stack: "Bun, TS (no deps)",             purpose: "Padel tournament/league scrapers → normalized Google Sheets (supercourt, cmpl, poddium)", group: GROUP_MATCHDAY, logo: { kind: "monogram", letter: "P", bg: "#334155", fg: "#f8fafc", as: "padel-scrapers.svg" }, status: "wip" },
+  "padel-scrapers":             { stack: "Bun, TS (no deps), Python",     purpose: "Padel tournament/league scrapers → normalized Google Sheets (supercourt, cmpl, poddium) + Thai Padel Series PDF parser", group: GROUP_MATCHDAY, logo: { kind: "monogram", letter: "P", bg: "#334155", fg: "#f8fafc", as: "padel-scrapers.svg" }, status: "wip" },
+  "openrally-wpr":              { stack: "Static HTML, Vercel",           purpose: "WPR (World Padel Rating) integration research for OpenRally v3", group: GROUP_MATCHDAY, logo: MATCHDAY_LOGO, status: "wip", website: "https://openrally-wpr.vercel.app/" },
   "mobile-app-padel":           { stack: "Flutter",                       purpose: "TPS mobile app",                                  group: GROUP_PADEL, logo: TPS_LOGO, status: "wip" },
   "padel-backend":              { stack: "Express / Node",                purpose: "Padel API backend",                               group: GROUP_PADEL, logo: TPS_LOGO, status: "live" },
   "the-padel-society-admin":    { stack: "Next.js 14, React 18",          purpose: "Padel Society admin console",                     group: GROUP_PADEL, logo: TPS_LOGO, status: "live" },
@@ -227,7 +242,7 @@ async function describe(name: string, path: string, notes: Map<string, string[]>
   };
 }
 
-async function listDirs(path: string, exclude: Set<string>) {
+async function listDirs(path: string, exclude: ReadonlySet<string>) {
   const entries = await readdir(path, { withFileTypes: true });
   return entries
     .filter((e) => e.isDirectory() && !e.name.startsWith(".") && !exclude.has(e.name))
@@ -240,10 +255,11 @@ async function scan(): Promise<{ projects: Project[]; notesOrder: string[] }> {
   const jobs: Promise<Project | null>[] = [];
   const knownNames: string[] = [];
   for (const { name, full } of top) {
-    if (name === "tbdc") {
-      const subs = await listDirs(full, TBDC_EXCLUDE);
+    const groupDir = GROUP_DIRS[name];
+    if (groupDir) {
+      const subs = await listDirs(full, groupDir.exclude ?? NO_EXCLUDE);
       for (const s of subs) {
-        const fullName = `tbdc / ${s.name}`;
+        const fullName = groupDir.key ? groupDir.key(s.name) : s.name;
         knownNames.push(fullName);
         jobs.push(describe(fullName, s.full, notes.pending));
       }

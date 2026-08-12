@@ -152,6 +152,12 @@ _(no pending items)_
 - Decide whether we are willing to white-label — federation brand on the product, OpenRally invisible
 - Decide the territory to ask WPR for: Thailand alone (winnable) vs SE Asia (a stretch)
 
+## openrally-scout
+- Ask PadelLevels two things: does a real API exist yet, and will they rate results submitted by a non-partner platform
+- Decide PadelLevels vs WPR as OpenRally's rating layer — get PadelLevels' answers before committing to either
+- Scope roster cost-splitting (entry fees, court costs) as an OpenRally feature — the gap Padelfin is aiming at
+- Re-check Padelfin around Feb 2027; re-analyse properly if an app-store listing or funding announcement appears
+
 ---
 
 # Padel Thailand

@@ -143,7 +143,7 @@ _(no pending items)_
 - Run `brew install poppler` — the `tps` source needs `pdftotext` and it is not installed
 - Test the ported `tps` source end-to-end from PDFs (only the .txt fixtures have been run)
 
-## openrally-wpr
+## openrally-workbench
 - Send the partner-access enquiry via the WPR contact form; ask for sandbox credentials on console.worldpadelrating.com
 - Decide: re-cut `lib/levels.ts` tier bands onto WPR's uniform 1.4 grid, or keep ours and stop calling them WPR bands
 - Decide: which rating drives seeding and level gates — competitive WPR or WPR-s
@@ -151,8 +151,6 @@ _(no pending items)_
 - Decide when to approach WPR relative to the TPA deal closing (Tournated teardown says: during, not after)
 - Decide whether we are willing to white-label — federation brand on the product, OpenRally invisible
 - Decide the territory to ask WPR for: Thailand alone (winnable) vs SE Asia (a stretch)
-
-## openrally-scout
 - Ask PadelLevels two things: does a real API exist yet, and will they rate results submitted by a non-partner platform
 - Decide PadelLevels vs WPR as OpenRally's rating layer — get PadelLevels' answers before committing to either
 - Scope roster cost-splitting (entry fees, court costs) as an OpenRally feature — the gap Padelfin is aiming at

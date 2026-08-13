@@ -144,7 +144,6 @@ _(no pending items)_
 - Test the ported `tps` source end-to-end from PDFs (only the .txt fixtures have been run)
 
 ## openrally-workbench
-- Send the partner-access enquiry via the WPR contact form; ask for sandbox credentials on console.worldpadelrating.com
 - Decide: re-cut `lib/levels.ts` tier bands onto WPR's uniform 1.4 grid, or keep ours and stop calling them WPR bands
 - Decide: which rating drives seeding and level gates — competitive WPR or WPR-s
 - Add confidence (% + NC/LC/✓) and gender to the rating model before the first mixed-gender category is seeded

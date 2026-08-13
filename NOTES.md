@@ -157,6 +157,8 @@ _(no pending items)_
 - Decide PadelLevels vs WPR as OpenRally's rating layer — get PadelLevels' answers before committing to either
 - Scope roster cost-splitting (entry fees, court costs) as an OpenRally feature — the gap Padelfin is aiming at
 - Re-check Padelfin around Feb 2027; re-analyse properly if an app-store listing or funding announcement appears
+- Watch PlayerData for a racket-sport product — Tennis Australia is a strategic investor in the May 2026 Series A; that launch is the trigger to re-analyse
+- Borrow ScorePlay's idea: auto-send each player their own match media (we already hold the draw + roster data). Do not approach the company
 
 ---
 

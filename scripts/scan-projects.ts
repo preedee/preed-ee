@@ -87,6 +87,7 @@ const META: Record<string, Meta> = {
   "tps-monthly-reports":        { stack: "Skill",                         purpose: "The Padel Society monthly reports skill",         group: GROUP_PADEL, logo: TPS_LOGO, status: "skill" },
   "tps-tournament-dashboard":   { stack: "HTML/CSS/JS",                   purpose: "Static tournament results dashboard",             group: GROUP_PADEL, logo: TPS_LOGO, status: "wip" },
   "ptp-league-scheduler":       { stack: "Python",                        purpose: "Generate padel league round-robin schedule",      group: GROUP_PADEL, logo: TPS_LOGO, status: "wip" },
+  "ptp-league":                 { stack: "Static HTML/CSS/JS",            purpose: "Pad Thai Padel League results and rankings",     group: GROUP_PADEL, logo: TPS_LOGO, status: "wip" },
   "tps-data-analytics":         { stack: "Planning phase",                purpose: "Data analytics for The Padel Society",            group: GROUP_PADEL, logo: TPS_LOGO, status: "wip" },
   "tps-tatler":                 { stack: "Static site",                   purpose: "The Padel Society's partnership proposal to Tatler", group: GROUP_PADEL, logo: TPS_LOGO, status: "live", website: "https://tps-tatler-proposal.vercel.app" },
   "tps-singha":                 { stack: "Static site",                   purpose: "The Padel Society's partnership proposal to Singha", group: GROUP_PADEL, logo: TPS_LOGO, status: "live", website: "https://tps-singha-concept.vercel.app" },

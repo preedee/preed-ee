@@ -122,7 +122,7 @@ body.dashboard {
 .tagline {
   margin: 4px 0 0;
   color: var(--fg-muted);
-  font-size: 12px;
+  font-size: 14px;
   font-family: var(--mono);
 }
 
@@ -136,7 +136,7 @@ body.dashboard {
   display: flex;
   gap: calc(var(--s) * 1.5);
   font-family: var(--mono);
-  font-size: 12px;
+  font-size: 14px;
 }
 .nav-links a {
   color: var(--fg-muted);
@@ -179,7 +179,7 @@ body.dashboard {
   flex-direction: column;
   align-items: flex-end;
   gap: 2px;
-  font-size: 11px;
+  font-size: 14px;
   font-family: var(--mono);
   color: var(--fg-muted);
   text-align: right;
@@ -209,7 +209,7 @@ body.dashboard {
 .group > summary::-webkit-details-marker { display: none; }
 .group-name {
   color: var(--accent);
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 600;
   font-family: var(--mono);
   text-transform: uppercase;
@@ -217,7 +217,7 @@ body.dashboard {
 }
 .group-count {
   color: var(--fg-muted);
-  font-size: 11px;
+  font-size: 14px;
   font-family: var(--mono);
   background: var(--chip-bg);
   padding: 2px 8px;
@@ -297,14 +297,14 @@ body.dashboard {
   display: block;
   margin-top: 2px;
   color: var(--accent);
-  font-size: 11px;
+  font-size: 14px;
   font-family: var(--mono);
   letter-spacing: 0.02em;
 }
 .project-purpose {
   margin: 4px 0 0;
   color: var(--fg-muted);
-  font-size: 13px;
+  font-size: 15px;
 }
 
 .pending-chip,
@@ -316,7 +316,7 @@ body.dashboard {
   border-radius: 10px;
   background: var(--chip-bg);
   font-family: var(--mono);
-  font-size: 10px;
+  font-size: 14px;
   font-weight: 600;
 }
 .project-links {
@@ -356,7 +356,7 @@ body.dashboard {
   padding: 0;
   list-style: none;
   color: var(--fg-muted);
-  font-size: 13px;
+  font-size: 15px;
   line-height: 1.45;
 }
 .project-pending .pending-list li {
@@ -395,7 +395,7 @@ body.dashboard {
   padding: 0;
   list-style: none;
   font-family: var(--mono);
-  font-size: 12px;
+  font-size: 14px;
   line-height: 1.5;
   color: var(--fg-muted);
 }
@@ -410,7 +410,7 @@ body.dashboard {
   padding: 2px 8px;
   border-radius: 10px;
   font-family: var(--mono);
-  font-size: 10px;
+  font-size: 14px;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.06em;
@@ -425,7 +425,7 @@ body.dashboard {
 .project-created, .project-updated {
   text-align: right;
   color: var(--fg-muted);
-  font-size: 12px;
+  font-size: 14px;
   font-family: var(--mono);
   white-space: nowrap;
 }
@@ -437,7 +437,7 @@ body.dashboard {
   padding: calc(var(--s) * 3) 0;
   color: var(--fg-muted);
   text-align: center;
-  font-size: 13px;
+  font-size: 15px;
 }
 
 .page-foot {
@@ -445,7 +445,7 @@ body.dashboard {
   padding-top: calc(var(--s) * 2);
   border-top: 1px solid var(--border);
   color: var(--fg-muted);
-  font-size: 11px;
+  font-size: 14px;
   font-family: var(--mono);
   opacity: 0.6;
 }
@@ -478,7 +478,7 @@ body.dashboard {
 }
 
 @media (max-width: 720px) {
-  body.dashboard { padding: 0 calc(var(--s) * 2) calc(var(--s) * 6); font-size: 13px; }
+  body.dashboard { padding: 0 calc(var(--s) * 2) calc(var(--s) * 6); font-size: 15px; }
   .page-head { flex-direction: column; align-items: flex-start; padding: calc(var(--s) * 1.5) 0; }
   .page-meta { align-items: flex-start; text-align: left; }
   .nav-controls { width: 100%; justify-content: space-between; }
@@ -490,7 +490,7 @@ body.dashboard {
   .project-created, .project-updated {
     grid-column: 2 / 3;
     text-align: left;
-    font-size: 11px;
+    font-size: 14px;
   }
   .date-label { display: inline; color: var(--fg-muted); opacity: 0.6; }
 }

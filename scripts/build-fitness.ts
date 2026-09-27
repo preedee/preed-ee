@@ -489,15 +489,21 @@ td.num { font-variant-numeric: tabular-nums; }
 .fine { color: var(--ink-2); font-size: 0.875rem; margin: 4px 0 12px; }
 #tip { position: fixed; z-index: 10; background: var(--ink); color: var(--page); font-size: 0.875rem; padding: 6px 10px; border-radius: 7px; pointer-events: none; opacity: 0; transition: opacity 0.1s; max-width: 280px; }
 footer { color: var(--muted); font-size: 0.875rem; margin-top: 24px; }
+.skip { position: absolute; left: -9999px; }
+.skip:focus { left: 12px; top: 12px; z-index: 100; background: var(--page, #fff); color: var(--ink, #000); padding: 10px 14px; border-radius: 8px; outline: 2px solid currentColor; outline-offset: 2px; }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; } }
 </style>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 <div class="wrap">
 <header>
   <h1><a href="/">preed.ee</a> / fitness</h1>
   <div class="spacer"></div>
   <button id="theme-toggle" aria-label="Toggle dark or light theme">◐</button>
 </header>
+
+<main id="main">
 <p class="subtitle">Whoop recovery &amp; padel readiness · last ${DAYS} days · updated ${generated} ICT</p>
 
 ${zm ? `<section class="verdict" style="--vcolor: var(--status-${z}); --vink: var(--status-${z}-ink);" aria-label="Today's readiness verdict">
@@ -565,6 +571,8 @@ ${dexaSection(dexa)}
     </table>
   </div>
 </details>
+
+</main>
 
 <footer>Data: Whoop API v2, pulled daily at 07:00 ICT. Recovery zones per Whoop convention. Private page — not indexed.</footer>
 </div>

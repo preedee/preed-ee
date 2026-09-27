@@ -8,3 +8,7 @@ docs/projects.json
 
 # build state — must never publish (password-oracle risk, see preed-ee-src/build.ts)
 docs/.build-manifest.json
+
+# Playwright CLI scratch output
+.playwright-cli/
+**/.playwright-cli/

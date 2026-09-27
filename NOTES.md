@@ -203,6 +203,13 @@ _(no pending items)_
 ## trip-planner
 _(no pending items)_
 
+## lsa-site
+- Resubmit SBTi registration once the site URL is updated in the validation portal
+- Scope 1 + 2 emissions figures still missing — SBTi calls public reporting of these essential
+- Answer Anthony on the 2-year website engagement
+- Outlined-vector lockup (wordmark converted to paths) for print/third-party use
+- lsaccelerated.com renews 20 Oct 2026 — who pays is unsettled with Piotr
+
 ---
 
 # Nest

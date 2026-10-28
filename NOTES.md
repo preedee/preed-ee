@@ -163,6 +163,9 @@ _(no pending items)_
 - Watch PlayerData for a racket-sport product — Tennis Australia is a strategic investor in the May 2026 Series A; that launch is the trigger to re-analyse
 - Borrow ScorePlay's idea: auto-send each player their own match media (we already hold the draw + roster data). Do not approach the company
 
+## setpoint
+_(no pending items)_
+
 ---
 
 # Padel Thailand

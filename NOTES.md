@@ -73,6 +73,9 @@ _(no pending items)_
 - Decide: keep existing Page followers vs. fresh Page
 - Then: draft reinstatement/rebuild runbook + one-time appeal + compliant creative guidelines
 
+## tbdc / management
+_(no pending items)_
+
 ---
 
 # Clinera
@@ -125,6 +128,24 @@ _(no pending items)_
 ## tps-competitions
 _(no pending items)_
 
+## tps-bookings
+_(no pending items)_
+
+## tps-wrapped
+_(no pending items)_
+
+## draftday
+_(no pending items)_
+
+## tps-padel
+_(no pending items)_
+
+## th-padel-report
+_(no pending items)_
+
+## tps-admin-venues-mockup
+_(no pending items)_
+
 ---
 
 # OpenRally (formerly Matchday)
@@ -132,18 +153,6 @@ _(no pending items)_
 ## matchday
 - Visual sanity check of magic-link flow once dev environment is fully wired
 - Native-Thai review of matchday-web/messages/th.json before any visible launch
-
-## matchday-backend
-- v0.1.0 Foundation shipped (auth schema, RLS, on-signup trigger, Realtime POC, CI green)
-- Set SUPABASE_ACCESS_TOKEN + SUPABASE_DB_PASSWORD repo secrets so deploy.yml can run
-- Push v0.1.0 schema to remote prod project (`supabase db push` once secrets are set)
-- v0.2.0 Player Identity: full profile fields, social OAuth providers, email infra
-
-## matchday-web
-- v0.1.0 Foundation shipped (Next.js 16 + shadcn + i18n TH/EN + magic-link auth)
-- Visual smoke-test of magic-link → /me end-to-end (dev server fix landed today)
-- v0.2.0 Player Identity: real player home, profile completion, OAuth buttons
-- Set up Vercel project at v0.2.0+ and replace deploy.yml stub
 
 ## padel-scrapers
 - Run `brew install poppler` — the `tps` source needs `pdftotext` and it is not installed
@@ -166,6 +175,30 @@ _(no pending items)_
 ## setpoint
 _(no pending items)_
 
+## breakpoint
+_(no pending items)_
+
+## samui-world-cup
+_(no pending items)_
+
+## openrally-tpa
+_(no pending items)_
+
+## openrally-deck
+_(no pending items)_
+
+## import
+_(no pending items)_
+
+## seed
+_(no pending items)_
+
+## openrally-scout
+_(no pending items)_
+
+## openrally-wpr
+_(no pending items)_
+
 ---
 
 # Padel Thailand
@@ -174,7 +207,7 @@ _(no pending items)_
 _(no pending items)_
 
 ## padel-clubs-scraper
-- Scrape padel clubs in Bangkok
+- Reviews + Apify discovery still open; photos backfilling free-tier only
 
 ## padel-season-map
 _(no pending items)_
@@ -213,6 +246,12 @@ _(no pending items)_
 - Outlined-vector lockup (wordmark converted to paths) for print/third-party use
 - lsaccelerated.com renews 20 Oct 2026 — who pays is unsettled with Piotr
 
+## homeburg-site
+_(no pending items)_
+
+## trihub
+_(no pending items)_
+
 ---
 
 # Nest
@@ -235,3 +274,6 @@ _(no pending items)_
 - Add ANTHROPIC_API_KEY for real Claude Haiku summaries (snippets for now)
 - Wire daily launchd schedule (~7am ICT)
 - Review/prune the ~24-sender allowlist in config.ts
+
+## opentable-bot
+_(no pending items)_

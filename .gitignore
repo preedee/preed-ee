@@ -12,3 +12,6 @@ docs/.build-manifest.json
 # Playwright CLI scratch output
 .playwright-cli/
 **/.playwright-cli/
+
+# PAI Algorithm WORK runs written relative to cwd — never publish
+MEMORY/

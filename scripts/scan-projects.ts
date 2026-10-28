@@ -45,7 +45,7 @@ const DEFAULT_COMMAND_EXCLUDES = new Set(["typecheck", "prebuild", "postinstall"
 
 const GROUP_TBDC = "Tooth Boutique Dental Clinic";
 const GROUP_CLINERA = "Clinera";
-const GROUP_MATCHDAY = "OpenRally";
+const GROUP_OPENRALLY = "OpenRally";
 const GROUP_PADEL = "The Padel Society";
 const GROUP_PADEL_THAILAND = "Padel Thailand";
 const GROUP_OTHER = "Other";
@@ -54,7 +54,7 @@ const GROUP_PERSONAL = "Personal";
 
 const TBDC_LOGO: LogoSpec = { kind: "copy", from: "tbdc/clinicdocs/assets/logo-monogram.png", as: "tbdc.png" };
 const TPS_LOGO: LogoSpec = { kind: "local", file: "tps-logo.png", as: "tps.png" };
-const MATCHDAY_LOGO: LogoSpec = { kind: "local", file: "matchday-logo.png", as: "matchday.png" };
+const OPENRALLY_LOGO: LogoSpec = { kind: "local", file: "openrally-logo.png", as: "openrally.png" };
 const AMITY_LOGO: LogoSpec = { kind: "copy", from: "tps/amity-social-uikit-flutter/assets/images/ShareWorldLogo.png", as: "amity.png" };
 const PADEL_THAILAND_LOGO: LogoSpec = { kind: "copy", from: "padel-thailand/padelthailand/img/logo.svg", as: "padelthailand.svg" };
 
@@ -76,18 +76,17 @@ const META: Record<string, Meta> = {
   "tbdc / management": { stack: "Bun, TS, Google Sheets", purpose: "Monthly cash-basis P&L into the Management [TBDC] sheet", group: GROUP_TBDC, logo: TBDC_LOGO, status: "wip" },
   "clinera":                    { stack: "Planning phase",                purpose: "Dental clinic ops + LINE booking + reminders",   group: GROUP_CLINERA, logo: { kind: "monogram", letter: "C", bg: "#5C8A5A", fg: "#ffffff", as: "clinera.svg" }, status: "wip" },
   "dentsoft-strategy-deck":     { stack: "Bun, TS, pptxgenjs, HTML",      purpose: "Competitive strategy brief on Dentsoft (dentsoft.in) — PPTX deck + single-page web brief", group: GROUP_CLINERA, logo: { kind: "monogram", letter: "D", bg: "#0B2545", fg: "#ffffff", as: "dentsoft.svg" }, status: "live", website: "https://preed.ee/clinera/dentsoft" },
-  "matchday":                   { stack: "Next.js (product-hub), MD specs", purpose: "OpenRally spec docs + product-hub marketing site", group: GROUP_MATCHDAY, logo: MATCHDAY_LOGO, status: "wip", website: "https://padelthailand.com/matchday/" },
-  "padel-scrapers":             { stack: "Bun, TS (no deps), Python",     purpose: "Padel tournament/league scrapers → normalized Google Sheets (supercourt, cmpl, poddium, openrally, tps)", group: GROUP_MATCHDAY, logo: { kind: "monogram", letter: "P", bg: "#334155", fg: "#f8fafc", as: "padel-scrapers.svg" }, status: "wip" },
-  "openrally-workbench":        { stack: "Static HTML, Vercel",           purpose: "Research desk — competitor scouting, federation formats, rating providers, product drafts", group: GROUP_MATCHDAY, logo: MATCHDAY_LOGO, status: "live", website: "https://openrally-workbench.vercel.app/", links: [{ label: "Scout — 4 targets", url: "https://openrally-workbench.vercel.app/scout" }, { label: "Tournated teardown", url: "https://openrally-workbench.vercel.app/tournated" }, { label: "Federation comparison", url: "https://openrally-workbench.vercel.app/compare" }, { label: "WPR brief", url: "https://openrally-workbench.vercel.app/wpr" }] },
-  "breakpoint": { stack: "Next.js 16 monorepo (web, backend, product-hub), Supabase", purpose: "openrally.co — the OpenRally tournament app product repo", group: GROUP_MATCHDAY, logo: MATCHDAY_LOGO, status: "live", website: "https://openrally.co" },
-  "samui-world-cup": { stack: "Static HTML, Vercel", purpose: "Samui Padel World Cup 2026 — group schedule, seeded into openrally.co", group: GROUP_MATCHDAY, logo: MATCHDAY_LOGO, status: "live", website: "https://samui-world-cup.vercel.app" },
-  "openrally-tpa": { stack: "Static HTML, Vercel", purpose: "Partnership proposal — OpenRally × Thailand Padel Association 2026 season", group: GROUP_MATCHDAY, logo: MATCHDAY_LOGO, status: "live", website: "https://tpa-openrally.vercel.app" },
-  "openrally-deck": { stack: "Static HTML, Vercel", purpose: "Organiser pitch deck — Run It Like A Tour Event", group: GROUP_MATCHDAY, logo: MATCHDAY_LOGO, status: "live", website: "https://openrally-deck.vercel.app" },
-  "import": { stack: "Bun/Node scripts, Supabase", purpose: "One-off Tatler Padel Series 2026 import into the OpenRally DB", group: GROUP_MATCHDAY, logo: MATCHDAY_LOGO, status: "wip" },
-  "seed": { stack: "Bun/Node script, Supabase", purpose: "OpenRally player seeder — realistic test players", group: GROUP_MATCHDAY, logo: MATCHDAY_LOGO, status: "live" },
-  "openrally-scout": { stack: "Static HTML, Vercel", purpose: "Competitor scouting desk — superseded by openrally-workbench/scout", group: GROUP_MATCHDAY, logo: MATCHDAY_LOGO, status: "archived", website: "https://openrally-workbench.vercel.app/scout" },
-  "openrally-wpr": { stack: "Static HTML, Bun, Vercel", purpose: "WPR rating-provider research — superseded by openrally-workbench/wpr", group: GROUP_MATCHDAY, logo: MATCHDAY_LOGO, status: "archived", website: "https://openrally-workbench.vercel.app/wpr" },
-  "setpoint":                   { stack: "Next.js 16 monorepo, Supabase, Rust/Axum", purpose: "Court booking + club management SaaS (padel/tennis/pickleball) — OpenRally's home", group: GROUP_MATCHDAY, logo: { kind: "copy", from: "openrally/setpoint/apps/admin/public/favicon.svg", as: "setpoint.svg" }, status: "live", website: "https://getsetpoint.io" },
+  "padel-scrapers":             { stack: "Bun, TS (no deps), Python",     purpose: "Padel tournament/league scrapers → normalized Google Sheets (supercourt, cmpl, poddium, openrally, tps)", group: GROUP_OPENRALLY, logo: { kind: "monogram", letter: "P", bg: "#334155", fg: "#f8fafc", as: "padel-scrapers.svg" }, status: "wip" },
+  "openrally-workbench":        { stack: "Static HTML, Vercel",           purpose: "Research desk — competitor scouting, federation formats, rating providers, product drafts", group: GROUP_OPENRALLY, logo: OPENRALLY_LOGO, status: "live", website: "https://openrally-workbench.vercel.app/", links: [{ label: "Scout — 4 targets", url: "https://openrally-workbench.vercel.app/scout" }, { label: "Tournated teardown", url: "https://openrally-workbench.vercel.app/tournated" }, { label: "Federation comparison", url: "https://openrally-workbench.vercel.app/compare" }, { label: "WPR brief", url: "https://openrally-workbench.vercel.app/wpr" }] },
+  "breakpoint": { stack: "Next.js 16 monorepo (web, backend, product-hub), Supabase", purpose: "openrally.co — the OpenRally tournament app product repo", group: GROUP_OPENRALLY, logo: OPENRALLY_LOGO, status: "live", website: "https://openrally.co" },
+  "samui-world-cup": { stack: "Static HTML, Vercel", purpose: "Samui Padel World Cup 2026 — group schedule, seeded into openrally.co", group: GROUP_OPENRALLY, logo: OPENRALLY_LOGO, status: "live", website: "https://samui-world-cup.vercel.app" },
+  "openrally-tpa": { stack: "Static HTML, Vercel", purpose: "Partnership proposal — OpenRally × Thailand Padel Association 2026 season", group: GROUP_OPENRALLY, logo: OPENRALLY_LOGO, status: "live", website: "https://tpa-openrally.vercel.app" },
+  "openrally-deck": { stack: "Static HTML, Vercel", purpose: "Organiser pitch deck — Run It Like A Tour Event", group: GROUP_OPENRALLY, logo: OPENRALLY_LOGO, status: "live", website: "https://openrally-deck.vercel.app" },
+  "import": { stack: "Bun/Node scripts, Supabase", purpose: "One-off Tatler Padel Series 2026 import into the OpenRally DB", group: GROUP_OPENRALLY, logo: OPENRALLY_LOGO, status: "wip" },
+  "seed": { stack: "Bun/Node script, Supabase", purpose: "OpenRally player seeder — realistic test players", group: GROUP_OPENRALLY, logo: OPENRALLY_LOGO, status: "live" },
+  "openrally-scout": { stack: "Static HTML, Vercel", purpose: "Competitor scouting desk — superseded by openrally-workbench/scout", group: GROUP_OPENRALLY, logo: OPENRALLY_LOGO, status: "archived", website: "https://openrally-workbench.vercel.app/scout" },
+  "openrally-wpr": { stack: "Static HTML, Bun, Vercel", purpose: "WPR rating-provider research — superseded by openrally-workbench/wpr", group: GROUP_OPENRALLY, logo: OPENRALLY_LOGO, status: "archived", website: "https://openrally-workbench.vercel.app/wpr" },
+  "setpoint":                   { stack: "Next.js 16 monorepo, Supabase, Rust/Axum", purpose: "Court booking + club management SaaS (padel/tennis/pickleball) — OpenRally's home", group: GROUP_OPENRALLY, logo: { kind: "copy", from: "openrally/setpoint/apps/admin/public/favicon.svg", as: "setpoint.svg" }, status: "live", website: "https://getsetpoint.io" },
   "mobile-app-padel":           { stack: "Flutter",                       purpose: "TPS mobile app",                                  group: GROUP_PADEL, logo: TPS_LOGO, status: "wip" },
   "padel-backend":              { stack: "Express / Node",                purpose: "Padel API backend",                               group: GROUP_PADEL, logo: TPS_LOGO, status: "live" },
   "the-padel-society-admin":    { stack: "Next.js 14, React 18",          purpose: "Padel Society admin console",                     group: GROUP_PADEL, logo: TPS_LOGO, status: "live" },
@@ -126,12 +125,12 @@ const META: Record<string, Meta> = {
   "instagram-notion-sync":      { stack: "Python, Notion API, launchd",   purpose: "Auto-syncs Instagram saves into grouped Notion pages + photo-wall", group: GROUP_PERSONAL, logo: { kind: "local", file: "instagram.svg", as: "instagram-notion-sync.svg" }, status: "live" },
 };
 
-const GROUP_ORDER = [GROUP_TBDC, GROUP_NEST, GROUP_CLINERA, GROUP_PADEL, GROUP_MATCHDAY, GROUP_PADEL_THAILAND, GROUP_PERSONAL, GROUP_OTHER];
+const GROUP_ORDER = [GROUP_TBDC, GROUP_NEST, GROUP_CLINERA, GROUP_PADEL, GROUP_OPENRALLY, GROUP_PADEL_THAILAND, GROUP_PERSONAL, GROUP_OTHER];
 
 const GROUP_NAV_LABELS: Record<string, string> = {
   [GROUP_TBDC]: "TBDC",
   [GROUP_CLINERA]: "Clinera",
-  [GROUP_MATCHDAY]: "OpenRally",
+  [GROUP_OPENRALLY]: "OpenRally",
   [GROUP_PADEL]: "TPS",
   [GROUP_PADEL_THAILAND]: "Padel TH",
   [GROUP_NEST]: "Nest",

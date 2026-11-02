@@ -123,6 +123,7 @@ const META: Record<string, Meta> = {
   "nest-dental":                { stack: "TBD",                           purpose: "Nest International Marketing Proposal",           group: GROUP_PERSONAL, logo: { kind: "monogram", letter: "N", bg: "#ef4444", fg: "#f8fafc", as: "nest-dental.svg" }, status: "wip" },
   "superassistant":             { stack: "Claude Code, PAI, Bun, MCP",    purpose: "Assistant 'Mike' — memory, agents, cadence, life-OS", group: GROUP_PERSONAL, logo: { kind: "local", file: "superassistant-logo.jpeg", as: "superassistant.jpeg" }, status: "wip" },
   "instagram-notion-sync":      { stack: "Python, Notion API, launchd",   purpose: "Auto-syncs Instagram saves into grouped Notion pages + photo-wall", group: GROUP_PERSONAL, logo: { kind: "local", file: "instagram.svg", as: "instagram-notion-sync.svg" }, status: "live" },
+  "aia-health-insurance":       { stack: "Docs",                         purpose: "Compare 4 AIA health+life quotes (฿24k–53k) — family cover",  group: GROUP_PERSONAL, logo: { kind: "monogram", letter: "A", bg: "#0ea5e9", fg: "#f8fafc", as: "aia-health-insurance.svg" }, status: "wip" },
 };
 
 const GROUP_ORDER = [GROUP_TBDC, GROUP_NEST, GROUP_CLINERA, GROUP_PADEL, GROUP_OPENRALLY, GROUP_PADEL_THAILAND, GROUP_PERSONAL, GROUP_OTHER];

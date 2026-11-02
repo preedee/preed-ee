@@ -273,3 +273,7 @@ _(no pending items)_
 
 ## opentable-bot
 _(no pending items)_
+
+## aia-health-insurance
+- [ ] Get AIA quotation PDF (benefits, limits, deductible) and pick an option (quotes: ฿24,476 / 29,076 / 41,276 / 52,576)
+- [ ] Ask AIA: age step-ups, renewal guarantee, pre-existing exclusions, overseas cover

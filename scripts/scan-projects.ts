@@ -51,11 +51,13 @@ const GROUP_PADEL_THAILAND = "Padel Thailand";
 const GROUP_OTHER = "Other";
 const GROUP_NEST = "Nest";
 const GROUP_PERSONAL = "Personal";
+const GROUP_TPA = "Thailand Padel Association";
 
 const TBDC_LOGO: LogoSpec = { kind: "copy", from: "tbdc/clinicdocs/assets/logo-monogram.png", as: "tbdc.png" };
 const TPS_LOGO: LogoSpec = { kind: "local", file: "tps-logo.png", as: "tps.png" };
 const OPENRALLY_LOGO: LogoSpec = { kind: "local", file: "openrally-logo.png", as: "openrally.png" };
 const AMITY_LOGO: LogoSpec = { kind: "copy", from: "tps/amity-social-uikit-flutter/assets/images/ShareWorldLogo.png", as: "amity.png" };
+const TPA_LOGO: LogoSpec = { kind: "copy", from: "tpa/img/tpa-favicon.png", as: "tpa.png" };
 const PADEL_THAILAND_LOGO: LogoSpec = { kind: "copy", from: "padel-thailand/padelthailand/img/logo.svg", as: "padelthailand.svg" };
 
 const META: Record<string, Meta> = {
@@ -124,15 +126,17 @@ const META: Record<string, Meta> = {
   "superassistant":             { stack: "Claude Code, PAI, Bun, MCP",    purpose: "Assistant 'Mike' — memory, agents, cadence, life-OS", group: GROUP_PERSONAL, logo: { kind: "local", file: "superassistant-logo.jpeg", as: "superassistant.jpeg" }, status: "wip" },
   "instagram-notion-sync":      { stack: "Python, Notion API, launchd",   purpose: "Auto-syncs Instagram saves into grouped Notion pages + photo-wall", group: GROUP_PERSONAL, logo: { kind: "local", file: "instagram.svg", as: "instagram-notion-sync.svg" }, status: "live" },
   "aia-health-insurance":       { stack: "Docs",                         purpose: "Compare 4 AIA health+life quotes (฿24k–53k) — family cover",  group: GROUP_PERSONAL, logo: { kind: "monogram", letter: "A", bg: "#0ea5e9", fg: "#f8fafc", as: "aia-health-insurance.svg" }, status: "wip" },
+  "tpa":                        { stack: "Static HTML, Vercel",         purpose: "TPA 2027 planning: events, ranking points, PBPI reference", group: GROUP_TPA, logo: TPA_LOGO, status: "live", website: "https://tpa-2027.vercel.app" },
 };
 
-const GROUP_ORDER = [GROUP_TBDC, GROUP_NEST, GROUP_CLINERA, GROUP_PADEL, GROUP_OPENRALLY, GROUP_PADEL_THAILAND, GROUP_PERSONAL, GROUP_OTHER];
+const GROUP_ORDER = [GROUP_TBDC, GROUP_NEST, GROUP_CLINERA, GROUP_PADEL, GROUP_OPENRALLY, GROUP_TPA, GROUP_PADEL_THAILAND, GROUP_PERSONAL, GROUP_OTHER];
 
 const GROUP_NAV_LABELS: Record<string, string> = {
   [GROUP_TBDC]: "TBDC",
   [GROUP_CLINERA]: "Clinera",
   [GROUP_OPENRALLY]: "OpenRally",
   [GROUP_PADEL]: "TPS",
+  [GROUP_TPA]: "TPA",
   [GROUP_PADEL_THAILAND]: "Padel TH",
   [GROUP_NEST]: "Nest",
   [GROUP_PERSONAL]: "Personal",

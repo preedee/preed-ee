@@ -107,6 +107,23 @@
         if (text != null) n.textContent = text;
         return n;
       }
+      function copyText(text) {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          return navigator.clipboard.writeText(text);
+        }
+        return new Promise(function (resolve, reject) {
+          var ta = document.createElement('textarea');
+          ta.value = text;
+          ta.style.position = 'fixed';
+          ta.style.opacity = '0';
+          document.body.appendChild(ta);
+          ta.select();
+          var ok = false;
+          try { ok = document.execCommand('copy'); } catch (e) {}
+          document.body.removeChild(ta);
+          ok ? resolve() : reject(new Error('copy failed'));
+        });
+      }
       function dateCell(cls, labelText, dateStr) {
         var cell = el('span', cls);
         cell.appendChild(el('span', 'date-label', labelText + ' '));
@@ -234,6 +251,33 @@
               linksEl.appendChild(pill);
             });
             bodyEl.appendChild(linksEl);
+          }
+
+          if (p.resume && p.resume.id) {
+            var resumeCmd = 'cd ' + p.resume.dir + ' && claude --resume ' + p.resume.id;
+            var resumeEl = el('div', 'project-links');
+            var resumeBtn = el('button', 'resume-btn', 'Copy Resume');
+            resumeBtn.type = 'button';
+            resumeBtn.title = resumeCmd;
+            resumeBtn.setAttribute('aria-label', 'Copy resume command for ' + p.name);
+            resumeBtn.addEventListener('click', function (cmd, btn) {
+              return function () {
+                copyText(cmd).then(function () {
+                  btn.textContent = 'Copied';
+                  btn.classList.add('is-copied');
+                }, function () {
+                  btn.textContent = 'Copy Failed';
+                }).then(function () {
+                  setTimeout(function () {
+                    btn.textContent = 'Copy Resume';
+                    btn.classList.remove('is-copied');
+                  }, 1600);
+                });
+              };
+            }(resumeCmd, resumeBtn));
+            resumeEl.appendChild(resumeBtn);
+            resumeEl.appendChild(el('span', 'resume-age', 'last session ' + p.resume.at.slice(0, 10)));
+            bodyEl.appendChild(resumeEl);
           }
 
           if (Array.isArray(p.pendingActions) && p.pendingActions.length > 0) {

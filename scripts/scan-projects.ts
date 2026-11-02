@@ -1,6 +1,7 @@
 #!/usr/bin/env bun
 import { readdir, stat, readFile, writeFile, rm, mkdir, copyFile } from "node:fs/promises";
 import { join, resolve, dirname } from "node:path";
+import { homedir } from "node:os";
 import { $ } from "bun";
 
 const COWORK_ROOT = "/Users/preedee/Cowork";
@@ -143,6 +144,10 @@ const GROUP_NAV_LABELS: Record<string, string> = {
   [GROUP_OTHER]: "Other",
 };
 
+// Newest Claude Code session tied to a project, for the "Copy Resume" button on its card.
+// dir is where the session was launched (claude --resume only finds it from there).
+type Resume = { id: string; dir: string; at: string };
+
 type Project = {
   name: string;
   stack: string;
@@ -157,6 +162,7 @@ type Project = {
   website?: string;
   links?: ProjectLink[];
   commands?: string[];
+  resume?: Resume;
 };
 
 function monogramSvg(letter: string, bg: string, fg: string): string {
@@ -244,7 +250,55 @@ async function readNotesMd(): Promise<NotesData> {
   return { pending, order };
 }
 
-async function describe(name: string, path: string, notes: Map<string, string[]>): Promise<Project | null> {
+// ---- Claude Code sessions -> resume commands ------------------------------------
+// Sessions live at ~/.claude/projects/<encoded launch dir>/<uuid>.jsonl and every line
+// carries the cwd it ran in. Read just the head (launch dir) and tail (where the work
+// ended) of recent files, then give each project its newest session.
+const CLAUDE_PROJECTS = join(homedir(), ".claude", "projects");
+const SESSION_WINDOW_MS = 45 * 24 * 60 * 60 * 1000;
+const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/;
+const CWD_RE = /"cwd":"([^"\\]+)"/g;
+
+type Session = { id: string; firstCwd?: string; lastCwd?: string; mtimeMs: number };
+
+async function loadSessions(): Promise<Session[]> {
+  const out: Session[] = [];
+  let dirs: string[];
+  try { dirs = await readdir(CLAUDE_PROJECTS); } catch { return out; }
+  const cutoff = Date.now() - SESSION_WINDOW_MS;
+  for (const d of dirs) {
+    let files: string[];
+    try { files = await readdir(join(CLAUDE_PROJECTS, d)); } catch { continue; }
+    for (const f of files) {
+      if (!f.endsWith(".jsonl")) continue;
+      const id = f.slice(0, -".jsonl".length);
+      if (!UUID_RE.test(id)) continue;
+      const full = join(CLAUDE_PROJECTS, d, f);
+      const st = await stat(full).catch(() => null);
+      if (!st || !st.isFile() || st.mtimeMs < cutoff) continue;
+      const file = Bun.file(full);
+      const head = await file.slice(0, 16384).text();
+      const tail = await file.slice(Math.max(0, st.size - 131072), st.size).text();
+      const first = [...head.matchAll(CWD_RE)][0]?.[1];
+      const lastAll = [...tail.matchAll(CWD_RE)];
+      out.push({ id, firstCwd: first, lastCwd: lastAll[lastAll.length - 1]?.[1] ?? first, mtimeMs: st.mtimeMs });
+    }
+  }
+  return out;
+}
+
+const underPath = (cwd: string | undefined, p: string) => !!cwd && (cwd === p || cwd.startsWith(p + "/"));
+
+function findResume(path: string, sessions: Session[]): Resume | undefined {
+  const newest = (pred: (x: Session) => boolean) => sessions.filter(pred).sort((a, b) => b.mtimeMs - a.mtimeMs)[0];
+  const s = newest((x) => underPath(x.lastCwd, path)) ?? newest((x) => underPath(x.firstCwd, path));
+  if (!s) return undefined;
+  const launch = s.firstCwd ?? path;
+  const home = homedir();
+  return { id: s.id, dir: launch.startsWith(home) ? "~" + launch.slice(home.length) : launch, at: new Date(s.mtimeMs).toISOString() };
+}
+
+async function describe(name: string, path: string, notes: Map<string, string[]>, sessions: Session[]): Promise<Project | null> {
   const meta = META[name];
   if (!meta) return null;
   const [dates, fs, commands] = await Promise.all([gitDates(path, meta.gitExcludePaths), stat(path), readCommands(path, meta)]);
@@ -263,6 +317,7 @@ async function describe(name: string, path: string, notes: Map<string, string[]>
     website: meta.website,
     links: meta.links,
     commands,
+    resume: findResume(path, sessions),
   };
 }
 
@@ -275,6 +330,7 @@ async function listDirs(path: string, exclude: ReadonlySet<string>) {
 
 async function scan(): Promise<{ projects: Project[]; notesOrder: string[] }> {
   const notes = await readNotesMd();
+  const sessions = await loadSessions();
   const top = await listDirs(COWORK_ROOT, TOP_EXCLUDE);
   const jobs: Promise<Project | null>[] = [];
   const knownNames: string[] = [];
@@ -285,11 +341,11 @@ async function scan(): Promise<{ projects: Project[]; notesOrder: string[] }> {
       for (const s of subs) {
         const fullName = groupDir.key ? groupDir.key(s.name) : s.name;
         knownNames.push(fullName);
-        jobs.push(describe(fullName, s.full, notes.pending));
+        jobs.push(describe(fullName, s.full, notes.pending, sessions));
       }
     } else {
       knownNames.push(name);
-      jobs.push(describe(name, full, notes.pending));
+      jobs.push(describe(name, full, notes.pending, sessions));
     }
   }
   const unknownHeadings = notes.order.filter((k) => !knownNames.includes(k));

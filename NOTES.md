@@ -34,6 +34,8 @@ _(no pending items)_
 ## tbdc / clinicdocs
 - Split into brand deck and training deck
 - Enhance training deck to add daily checklist, TBDC contact info
+- Admin forms hub (merged 2026-11-01): decide whether to merge the hand-kept "📱 คนไช้ที่โทรมานัด" tab with the new "📞 โทรเข้า" tab
+- Admin forms hub: Google service account can edit all of "TBDC 2026" — narrow access if wanted
 
 ## tbdc / ads-monitor
 - Move scheduled daily + weekly jobs from local launchd to GitHub Actions cron
